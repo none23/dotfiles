@@ -1,0 +1,12 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon></icon>
+	<name>open in terminal</name>
+	<unique-id>1432481130474116-3</unique-id>
+	<command>/usr/bin/gnome-terminal %f</command>
+	<description>gnome-terminal</description>
+	<patterns>*</patterns>
+	<text-files/>
+</action>
+</actions>
