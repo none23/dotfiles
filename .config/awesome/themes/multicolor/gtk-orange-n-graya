@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+
+    <!-- Profile: gnome-color-chooser-compact -->
+  <profile name="gnome-color-chooser-compact">
+    <content>
+style &quot;gnome-color-chooser-compact&quot;
+{
+  GtkContainer::border_width=0
+  GtkButton::default_border    = { 0, 0, 0, 0 }
+  GtkButton::interior-focus = 0
+  GtkButton::focus-padding = 0
+  GtkButton::focus-line-width = 0
+  GtkButton::focus-line-height = 0
+  GtkButton::inner-border      = {2, 1, 1, 2}
+  
+#  GtkRange       ::trough_border     = 0
+#  GtkPaned       ::handle_size       = 3
+#  GtkRange       ::slider_width      = 12
+#  GtkRange       ::stepper_size      = 12
+#  GtkOptionMenu::indicator_spacing = { 0, 0, 0, 0 }
+#  GtkOptionMenu::indicator_size = { 16, 18 }
+  
+#  GtkEntry	 ::inner-border	     = { 0, 0, 0, 0 }
+
+#  GtkNotebook::tab-border = 0
+#  GtkNotebook::tab-hborder = 0
+#  GtkNotebook::tab-vborder = 0
+#  GtkNotebook::show-border = 0
+#  GtkNotebook::gtk-button-images = 0
+#  GtkNotebook::gtk-menu-images = 0
+#  GtkNotebook::arrow-spacing = 0
+#  GtkNotebook::tab-curvature = 0
+#  GtkNotebook::tab-overlap = 0
+#  GtkNotebook::focus-line-width = 0
+  
+  
+#  GtkScrollbar   ::min_slider_length = 30
+#  GtkScale       ::slider-length     = 27
+#  GtkCheckButton ::indicator_size    = 12   # for tinyphil people
+# GtkMenuBar     ::internal-padding  = 0
+#  GtkExpander    ::expander_size     = 12
+#  GtkComboBox    ::appears-as-list = 1      # as gnomecc option!
+  GtkComboBox    ::arrow-size = 4
+    
+  GtkButton      ::child-displacement-x = 0
+  GtkButton      ::child-displacement-y = 0
+  GtkButtonBox   ::child-min-height=18
+  GtkButtonBox   ::child-min-width=18
+  GtkButtonBox   ::child-internal-pad-x=1
+  GtkButtonBox   ::child-internal-pad-y=1
+
+#  WnckTasklist   ::fade-overlay-rect = 0
+
+  GtkTreeView::expander-size = 9
+#  GtkTreeView::expander-indent = 0
+  GtkTreeView::focus-line-width = 0
+#  GtkTreeView::spacing = 0
+  GtkTreeView::horizontal-separator = 0
+  GtkTreeView::vertical-separator = 0
+#  GtkTreeView::row-ending-details = 0
+#  GtkTreeView::treeview-left=1
+#  GtkTreeView::treeview-right=0
+#  GtkTreeView::treeview-middle=0
+#  GtkTreeView::passive_focus = 0
+#  GtkTreeView::separator-height = 0
+#  GtkTreeView::tree-line-pattern = &quot;\000\000&quot;
+#  GtkTreeView::grid-line-pattern = &quot;\000\000&quot;
+#  GtkTreeView::grid-line-width = 0
+#  GtkTreeView::tree-line-width = 0
+
+
+  
+#  GtkCheckButton::indicator-spacing=0
+#  GtkCheckButton::indicator-size=13
+#  GtkCheckMenuItem::indicator-size=13
+    
+  xthickness = 1
+  ythickness = 1
+}
+class &quot;GtkWidget&quot; style &quot;gnome-color-chooser-compact&quot;
+
+style &quot;gnome-color-chooser-compact-tooltips&quot;
+{
+  xthickness = 4
+  ythickness = 4
+}
+widget &quot;gtk-tooltip*&quot; style &quot;gnome-color-chooser-compact-tooltips&quot;
+  </content>
+  </profile>
+
+  <!-- Category: default -->
+    <!-- Element: bg[NORMAL] -->
+  <element id ="0" value="#222222"/>
+    <!-- Element: bg[PRELIGHT] -->
+  <element id ="1" value="#DE5E1E"/>
+    <!-- Element: bg[SELECTED] -->
+  <element id ="2" value="#FF5500"/>
+    <!-- Element: bg[ACTIVE] -->
+  <element id ="3" value="#333333"/>
+    <!-- Element: bg[INSENSITIVE] -->
+  <element id ="4" value="#1E1E1E"/>
+    <!-- Element: fg[NORMAL] -->
+  <element id ="5" value="#777777"/>
+    <!-- Element: fg[PRELIGHT] -->
+  <element id ="6" value="#222222"/>
+    <!-- Element: fg[SELECTED] -->
+  <element id ="7" value="#141414"/>
+    <!-- Element: fg[ACTIVE] -->
+  <element id ="8" value="#777777"/>
+    <!-- Element: fg[INSENSITIVE] -->
+  <element id ="9" value="#424242"/>
+    <!-- Element: base[NORMAL] -->
+  <element id ="10" value="#222222"/>
+    <!-- Element: base[PRELIGHT] -->
+  <element id ="11" value="#DE5E1E"/>
+    <!-- Element: base[SELECTED] -->
+  <element id ="12" value="#FF5500"/>
+    <!-- Element: base[ACTIVE] -->
+  <element id ="13" value="#FF5500"/>
+    <!-- Element: base[INSENSITIVE] -->
+  <element id ="14" value="#222222"/>
+    <!-- Element: text[NORMAL] -->
+  <element id ="15" value="#BF5F30"/>
+    <!-- Element: text[PRELIGHT] -->
+  <element id ="16" value="#222222"/>
+    <!-- Element: text[SELECTED] -->
+  <element id ="17" value="#000000"/>
+    <!-- Element: text[ACTIVE] -->
+  <element id ="18" value="#222222"/>
+    <!-- Element: text[INSENSITIVE] -->
+  <element id ="19" value="#333333"/>
+    <!-- Element: xthickness -->
+  <element id ="20" value="2"/>
+    <!-- Element: ythickness -->
+  <element id ="21" value="2"/>
+    <!-- Element: bg_pixmap[NORMAL] -->
+  <element id ="56" value="56" disabled="true"/>
+    <!-- Element: bg_pixmap[PRELIGHT] -->
+  <element id ="57" value="57" disabled="true"/>
+    <!-- Element: bg_pixmap[INSENSITIVE] -->
+  <element id ="60" value="60" disabled="true"/>
+    <!-- Element: GtkMenuBar::shadow_type -->
+  <element id ="79" value="GTK_SHADOW_NONE"/>
+    <!-- Element: GtkToolbar::shadow_type -->
+  <element id ="80" value="GTK_SHADOW_NONE"/>
+    <!-- Element: GtkWidget::link-color -->
+  <element id ="81" value="#0029FF"/>
+    <!-- Element: GtkWidget::visited-link-color -->
+  <element id ="82" value="#00B6FF"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="default">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="FALSE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="1"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="1" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="2" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#FF5500"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="3"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.15" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="5" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.10" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="1" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="0" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="0" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="0"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="0"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="2" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="1"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="1"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="2"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0"/>
+  </engine>
+
+
+  <!-- Category: desktop-icon -->
+    <!-- Element: NautilusIconContainer::frame_text -->
+  <element id ="22" value="1"/>
+    <!-- Element: text[NORMAL] -->
+  <element id ="23" value="#000000" disabled="true"/>
+    <!-- Element: base[NORMAL] -->
+  <element id ="24" value="#FFFFFF" disabled="true"/>
+    <!-- Element: NautilusIconContainer::normal_alpha -->
+  <element id ="25" value="0" disabled="true"/>
+    <!-- Element: NautilusIconContainer::normal_icon_render_mode -->
+  <element id ="61" value="3"/>
+    <!-- Element: NautilusIconContainer::prelight_icon_render_mode -->
+  <element id ="62" value="2"/>
+    <!-- Element: NautilusIconContainer::normal_icon_color -->
+  <element id ="63" value="#1E9EDE"/>
+    <!-- Element: NautilusIconContainer::prelight_icon_color -->
+  <element id ="64" value="#DE5E1E"/>
+    <!-- Element: NautilusIconContainer::normal_icon_saturation -->
+  <element id ="65" value="0"/>
+    <!-- Element: NautilusIconContainer::prelight_icon_saturation -->
+  <element id ="66" value="255"/>
+    <!-- Element: NautilusIconContainer::normal_icon_brightness -->
+  <element id ="67" value="200" disabled="true"/>
+    <!-- Element: NautilusIconContainer::prelight_icon_brightness -->
+  <element id ="68" value="255" disabled="true"/>
+    <!-- Element: NautilusIconContainer::selection_box_color -->
+  <element id ="69" value="#FF5600"/>
+    <!-- Element: NautilusIconContainer::selection_box_alpha -->
+  <element id ="70" value="30"/>
+    <!-- Element: NautilusIconContainer::normal_icon_lighten -->
+  <element id ="71" value="0" disabled="true"/>
+    <!-- Element: NautilusIconContainer::prelight_icon_lighten -->
+  <element id ="72" value="25" disabled="true"/>
+    <!-- Element: NautilusIconContainer::activate_prelight_icon_label -->
+  <element id ="73" value="1"/>
+    <!-- Element: text[PRELIGHT] -->
+  <element id ="74" value="#000000" disabled="true"/>
+    <!-- Element: base[PRELIGHT] -->
+  <element id ="75" value="#FFFFFF" disabled="true"/>
+    <!-- Element: NautilusIconContainer::prelight_alpha -->
+  <element id ="76" value="255" disabled="true"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="desktop-icon">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#164B89"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="3"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: panel -->
+    <!-- Element: bg[NORMAL] -->
+  <element id ="26" value="#222222"/>
+    <!-- Element: bg[PRELIGHT] -->
+  <element id ="27" value="#FF0000" disabled="true"/>
+    <!-- Element: bg[SELECTED] -->
+  <element id ="28" value="#FFFFFF" disabled="true"/>
+    <!-- Element: bg[ACTIVE] -->
+  <element id ="29" value="#0000FF" disabled="true"/>
+    <!-- Element: bg[INSENSITIVE] -->
+  <element id ="30" value="#EEEAB0" disabled="true"/>
+    <!-- Element: fg[NORMAL] -->
+  <element id ="31" value="#DC5D1E"/>
+    <!-- Element: fg[PRELIGHT] -->
+  <element id ="32" value="#00FF00" disabled="true"/>
+    <!-- Element: fg[SELECTED] -->
+  <element id ="33" value="#FFFFFF" disabled="true"/>
+    <!-- Element: fg[ACTIVE] -->
+  <element id ="34" value="#FFFF00" disabled="true"/>
+    <!-- Element: fg[INSENSITIVE] -->
+  <element id ="35" value="#DBDACC" disabled="true"/>
+    <!-- Element: xthickness -->
+  <element id ="36" value="1"/>
+    <!-- Element: ythickness -->
+  <element id ="37" value="1"/>
+    <!-- Element: font_name -->
+  <element id ="54" value="Terminus 8"/>
+    <!-- Element: bg_pixmap[NORMAL] -->
+  <element id ="55" value="55" disabled="true"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="panel">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#000000" disabled="true"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="2" disabled="true"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: startmenue -->
+    <!-- Element: bg[NORMAL] -->
+  <element id ="201" value="#999999" disabled="true"/>
+    <!-- Element: bg[SELECTED] -->
+  <element id ="202" value="#FF0000" disabled="true"/>
+    <!-- Element: fg[NORMAL] -->
+  <element id ="203" value="#FF0000" disabled="true"/>
+    <!-- Element: fg[PRELIGHT] -->
+  <element id ="204" value="#00FF00" disabled="true"/>
+    <!-- Element: xthickness -->
+  <element id ="211" value="1"/>
+    <!-- Element: ythickness -->
+  <element id ="212" value="1"/>
+    <!-- Element: font_name -->
+  <element id ="213" value="Terminus 8"/>
+    <!-- Element: bg_pixmap[NORMAL] -->
+  <element id ="214" value="214" disabled="true"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="startmenue">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#000000" disabled="true"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="2" disabled="true"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: window-decoration-with_compiz -->
+    <!-- Element: fg[NORMAL] -->
+  <element id ="38" value="#C8C8C8" disabled="true"/>
+    <!-- Element: fg[SELECTED] -->
+  <element id ="39" value="#FF5500"/>
+    <!-- Element: bg[NORMAL] -->
+  <element id ="40" value="#BBBBBB" disabled="true"/>
+    <!-- Element: bg[SELECTED] -->
+  <element id ="41" value="#FFC050" disabled="true"/>
+
+  <!-- Category: window-decoration -->
+    <!-- Element: fg[NORMAL] -->
+  <element id ="42" value="#C8C8C8" disabled="true"/>
+    <!-- Element: bg[SELECTED] -->
+  <element id ="43" value="#FFC050" disabled="true"/>
+
+  <!-- Category: scrollbar -->
+    <!-- Element: bg[NORMAL] -->
+  <element id ="44" value="#00BFFF" disabled="true"/>
+    <!-- Element: bg[PRELIGHT] -->
+  <element id ="45" value="#FFFFFF" disabled="true"/>
+    <!-- Element: bg[ACTIVE] -->
+  <element id ="46" value="#00DFFF" disabled="true"/>
+    <!-- Element: GtkScrollbar::slider_width -->
+  <element id ="47" value="10"/>
+    <!-- Element: GtkScrollbar::stepper_size -->
+  <element id ="77" value="12"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="scrollbar">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#000000" disabled="true"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="2" disabled="true"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: progressbar -->
+    <!-- Element: bg[SELECTED] -->
+  <element id ="48" value="#205ED9" disabled="true"/>
+    <!-- Element: xthickness -->
+  <element id ="49" value="1"/>
+    <!-- Element: ythickness -->
+  <element id ="50" value="1"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="progressbar">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#000000" disabled="true"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="2" disabled="true"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: tooltips -->
+    <!-- Element: bg[NORMAL] -->
+  <element id ="51" value="#FFFFAF" disabled="true"/>
+    <!-- Element: fg[NORMAL] -->
+  <element id ="78" value="#000000" disabled="true"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="tooltips">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0" disabled="true"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#000000" disabled="true"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="2" disabled="true"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: button -->
+    <!-- Element: xthickness -->
+  <element id ="52" value="2"/>
+    <!-- Element: ythickness -->
+  <element id ="53" value="1"/>
+    <!-- Element: bg[NORMAL] -->
+  <element id ="83" value="#222222"/>
+    <!-- Element: bg[PRELIGHT] -->
+  <element id ="84" value="#FF5500"/>
+    <!-- Element: bg[SELECTED] -->
+  <element id ="85" value="#FF5500"/>
+    <!-- Element: bg[ACTIVE] -->
+  <element id ="86" value="#111111"/>
+    <!-- Element: bg[INSENSITIVE] -->
+  <element id ="87" value="#2B2B2B"/>
+    <!-- Element: fg[NORMAL] -->
+  <element id ="88" value="#DE5E1E"/>
+    <!-- Element: fg[PRELIGHT] -->
+  <element id ="89" value="#000000"/>
+    <!-- Element: fg[ACTIVE] -->
+  <element id ="91" value="#DE5E1E"/>
+    <!-- Element: fg[INSENSITIVE] -->
+  <element id ="92" value="#282828"/>
+    <!-- Element: font_name -->
+  <element id ="93" value="Terminus 8"/>
+
+    <!-- Engine: murrine -->
+  <engine name="murrine" category="button">
+      <!-- Param: Animations (Enable animations on progressbars, radio and checkbuttons) -->
+    <element name="animation" value="TRUE" disabled="true"/>
+      <!-- Param: Arrow Style -->
+    <element name="arrowstyle" value="0" disabled="true"/>
+      <!-- Param: Colorize scrollbar (Colorize scrollbar with bg[SELECTED]) -->
+    <element name="colorize_scrollbar" value="TRUE" disabled="true"/>
+      <!-- Param: Cell Style -->
+    <element name="cellstyle" value="1" disabled="true"/>
+      <!-- Param: Combobox Style -->
+    <element name="comboboxstyle" value="0" disabled="true"/>
+      <!-- Param: Contrast (Dangerous, should be MODIFIED ONLY BY HAND in gtkrc into separated sections) -->
+    <element name="contrast" value="1.0" disabled="true"/>
+      <!-- Param: Default Button Color (Sets the Color of Default button 2px border) -->
+    <element name="default_button_color" value="#000000" disabled="true"/>
+      <!-- Param: Expander Style -->
+    <element name="expanderstyle" value="0"/>
+      <!-- Param: Focus Color (Sets the Color of Focus) -->
+    <element name="focus_color" value="#FF5500"/>
+      <!-- Param: Focus Style -->
+    <element name="focusstyle" value="2" disabled="true"/>
+      <!-- Param: Glaze Style -->
+    <element name="glazestyle" value="0" disabled="true"/>
+      <!-- Param: Glow Shade (Enable and set the Glow Shade) -->
+    <element name="glow_shade" value="1.0" disabled="true"/>
+      <!-- Param: Glow Style -->
+    <element name="glowstyle" value="0" disabled="true"/>
+      <!-- Param: Handle Style -->
+    <element name="handlestyle" value="0" disabled="true"/>
+      <!-- Param: Highlight Shade (Increse/Decrease the highlight shade) -->
+    <element name="highlight_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Shade (Increse/Decrease the lightborder shade) -->
+    <element name="lightborder_shade" value="1.1" disabled="true"/>
+      <!-- Param: Lightborder Style -->
+    <element name="lightborderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview header style -->
+    <element name="listviewheaderstyle" value="0" disabled="true"/>
+      <!-- Param: Listview separators -->
+    <element name="listviewstyle" value="0" disabled="true"/>
+      <!-- Param: MenubarItem Style -->
+    <element name="menubaritemstyle" value="0" disabled="true"/>
+      <!-- Param: Menubar Style -->
+    <element name="menubarstyle" value="0" disabled="true"/>
+      <!-- Param: MenuItem Style -->
+    <element name="menuitemstyle" value="0" disabled="true"/>
+      <!-- Param: Menu Style -->
+    <element name="menustyle" value="1" disabled="true"/>
+      <!-- Param: Prelight Shade (Increse/Decrease the prelight shade) -->
+    <element name="prelight_shade" value="1.0" disabled="true"/>
+      <!-- Param: Progressbar style -->
+    <element name="progressbarstyle" value="1" disabled="true"/>
+      <!-- Param: Relief style of widget -->
+    <element name="reliefstyle" value="2" disabled="true"/>
+      <!-- Param: Enable/Disable RGBA support -->
+    <element name="rgba" value="TRUE" disabled="true"/>
+      <!-- Param: Roundness -->
+    <element name="roundness" value="1" disabled="true"/>
+      <!-- Param: Additional scrollbar features -->
+    <element name="scrollbarstyle" value="0" disabled="true"/>
+      <!-- Param: Separator style -->
+    <element name="separatorstyle" value="0" disabled="true"/>
+      <!-- Param: Slider style -->
+    <element name="sliderstyle" value="0" disabled="true"/>
+      <!-- Param: Spinbutton Style -->
+    <element name="spinbuttonstyle" value="0" disabled="true"/>
+      <!-- Param: Stepper style -->
+    <element name="stepperstyle" value="0" disabled="true"/>
+      <!-- Param: Text Style -->
+    <element name="textstyle" value="0" disabled="true"/>
+      <!-- Param: Text Shade (Increse/Decrease the text shadow shade) -->
+    <element name="text_shade" value="1.06" disabled="true"/>
+      <!-- Param: Toolbar style -->
+    <element name="toolbarstyle" value="0" disabled="true"/>
+  </engine>
+
+
+  <!-- Category: combobox -->
+    <!-- Element: text[NORMAL] -->
+  <element id ="94" value="#DE5E1E"/>
+    <!-- Element: text[PRELIGHT] -->
+  <element id ="95" value="#000000"/>
+    <!-- Element: text[ACTIVE] -->
+  <element id ="97" value="#FF5500"/>
+    <!-- Element: text[INSENSITIVE] -->
+  <element id ="98" value="#333333"/>
+
+  <!-- Category: _TOPLEVEL_ -->
+    <!-- Element: gtk-menu -->
+  <element id ="100" value="12,12"/>
+    <!-- Element: panel-menu -->
+  <element id ="102" value="12,12"/>
+    <!-- Element: gtk-large-toolbar -->
+  <element id ="103" value="16,16"/>
+    <!-- Element: gtk-button -->
+  <element id ="104" value="12,12"/>
+    <!-- Element: gtk-button-images -->
+  <element id ="105" value="0" disabled="true"/>
+
+</theme>
