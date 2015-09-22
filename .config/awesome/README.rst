@@ -13,8 +13,10 @@ my current awesome wm configs
 Description
 --------------------------------
 I use this configuration on my Arch Linux laptop.
+
 - Added a layout I always wanted
-- Keybinding changed to be vim-like. Quite good, with <Esc> remapped to
-  <Caps_Lock> and the original <Esc> used as <Hyper>. 
+
+- Keybinding changed to be vim-like. Quite good, with <Esc> remapped to <Caps_Lock> and the original <Esc> used as <Hyper>. 
+
 - Black/orange theme with transparent terminals
 
