@@ -1,0 +1,50 @@
+set nocompatible
+filetype plugin on
+filetype indent on
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set ls=2
+set incsearch
+set hlsearch
+syntax on
+set number
+set relativenumber
+set autoindent smartindent
+map tn :tabn<CR>
+map tp :tabp<CR>
+map tm :tabm<CR>
+map tt :tabt<CR>
+map ts :tabs<CR>
+map <C-S-Right> :tabn<CR>
+imap <C-S-Right> <ESC>:tabn<CR>
+map <C-S-Left> :tabp<CR>
+imap <C-S-Left> <ESC>:tabp<CR>
+set completeopt-=preview
+set guioptions-=T
+set guioptions-=r
+set guioptions-=i
+set guioptions-=e
+set guioptions-=L
+set guioptions-=t
+set guioptions-=m
+set cursorline
+set background=dark
+set scrolloff=7
+set wildmenu
+set wildmode=list:full
+vnoremap < <gv
+vnoremap > >gv
+noremap ; :
+noremap <C-L> :nohl<CR><C-L>
+set tw=79
+set colorcolumn=80
+highlight ColorColumn ctermbg=233
+let mapleader = "\<space>"
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+vmap <Leader>P "+P
+vmap <Leader>p "+p
+nmap <Leader>P "+P
+nmap <Leader>p "+p
