@@ -263,7 +263,6 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Home",        function () awful.screen.focus(1)                       end),
 
   --Menus (and similar)
-  awful.key({ modkey,           }, "q",           function () mymainmenu:show({ keygrabber = true })      end),
   awful.key({ modkey,           }, "z",           function() menubar.show() 	                          end),
   awful.key({ modkey,           }, "x",           function () mypromptbox[mouse.screen]:run()             end),
   awful.key({ modkey, "Control" }, "x",           function () awful.prompt.run({ prompt = "Run Lua: " },
@@ -315,9 +314,9 @@ globalkeys = awful.util.table.join(
   --Actions
   awful.key({ modkey,           }, "F12",         function () awful.util.spawn("xlock")                   end),
   awful.key({ modkey,           }, "c",           function () os.execute("xsel -p -o | xsel -i -b")       end),
-  --awful.key({ modkey,           }, "v",           function () os.execute("xsel -p -o | xsel -i -b")       end), TODO
-  awful.key({ altkey, "Control" }, "r",           awesome.restart),
-  awful.key({ altkey, "Control" }, "q",           awesome.quit), 	  
+  awful.key({ modkey,           }, "v",           function () mymainmenu:show({ keygrabber = true })      end),  
+  awful.key({ modkey, "Control" }, "r",           awesome.restart),
+  awful.key({ modkey, "Control" }, "q",           awesome.quit), 	  
   awful.key({  }, "XF86AudioRaiseVolume",         function () awful.util.spawn("amixer -q set Master 5%+")
                                                    volumewidget.update()                                  end), 
   awful.key({  }, "XF86AudioLowerVolume",         function () awful.util.spawn("amixer -q set Master 5%-")
