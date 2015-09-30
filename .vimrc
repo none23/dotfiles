@@ -197,17 +197,25 @@ highlight ColorColumn ctermbg=233
 let mapleader = " "
 
 " open another split
-map <F4> :sp<CR>
-map <S-F16> :vs<CR>
+map <F2> :sp<CR>
+map <S-F14> :vs<CR>
 
 " close current split
 map <F6> <Esc><C-w>c
+
+" yank/paste to system clipboard
+nmap <F8> "+yy
+vmap <F8> "+y
+nmap <F9> "+p
+vmap <F9> "+p
+nmap <S-F21> "+P
+vmap <S-F21> "+P
 
 " ============================================================================
 " Plugins settings and mappings
 " Tagbar ----------------------------- 
 " toggle tagbar display
-map <S-F14> :TagbarToggle<CR>
+map <S-F13> :TagbarToggle<CR>
 " autofocus on tagbar open
 let g:tagbar_autofocus = 0
 
@@ -227,10 +235,10 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " disable terminal features, that make Conqu run slow 
 let g:ConqueTerm_FastMode = 1
 " restore terminals when sestoring session
-let g:ConqueTerm_ExecFileKey = '<F4>'
+let g:ConqueTerm_ExecFileKey = '<F5>'
 let g:ConqueTerm_SessionSupport = 1
 let g:ConqueTerm_PyVersion = 3
-map <F2> :ConqueTermSplit zsh<CR>
+map <F4> :ConqueTermSplit zsh<CR>
 
 " NERDTree ----------------------------- 
 " toggle nerdtree display
@@ -286,20 +294,12 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return "\<C-y>\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
