@@ -1,0 +1,6 @@
+set enable-keypad on
+set expand-tilde on
+set editing-mode vi
+set show-mode-in-prompt on
+set blink-matching-paren on
+
