@@ -14,7 +14,8 @@ alias ton='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias xtv='xrandr --output LVDS1 --primary --preferred --mode 1366x768 --output HDMI1 --mode 1360x768 --left-of LVDS1'
 alias pn='ping -c 10 8.8.8.8'
 alias yor='sudo pacman -R $(pacman -Qtdq)'
-alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/.cache/sessions /home/n/gksu.lock'
+alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/gksu.lock'
+alias msf='msfconsole --quiet -x \"db_connect n@msf\"'
 
 #global
     alias -g ...='../..'
