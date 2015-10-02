@@ -1,0 +1,40 @@
+alias noblank='xset -dpms r s 14400 noblank'
+alias la='ls -A --color=tty'
+alias ll='ls -lh --color=tty'
+alias ls='ls --color=tty'
+alias p='sudo pacman'
+alias P='sudo pacman -Syu'
+alias y='yaourt'
+alias Y='yaourt -Syua'
+alias sshide='sshuttle -r 52.2.174.174 0/0 --dns -D'
+alias sshive='sshuttle -r 52.2.174.174 0/0 --dns -v' 
+alias sshpotify='sshuttle -r 52.2.174.174 78.31.8.0/21 193.182.8.0/21 95.215.60.0/22 --dns -D'
+alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
+alias ton='xinput --enable SynPS/2\ Synaptics\ TouchPad'
+alias xtv='xrandr --output LVDS1 --primary --preferred --mode 1366x768 --output HDMI1 --mode 1360x768 --left-of LVDS1'
+alias pn='ping -c 10 8.8.8.8'
+alias yor='sudo pacman -R $(pacman -Qtdq)'
+alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/gksu.lock'
+alias msf='msfconsole --quiet -x \"db_connect n@msf\"'
+alias bfg='java -jar /home/n/builds/bfg.jar'
+alias dot='(cd /home/n/none23/dotfiles && git ls-files --modified -z | xargs -0
+git add && git commit -m "updated" && git push origin master)'
+
+#global
+    alias -g ...='../..'
+    alias -g ....='../../..'
+    alias -g .....='../../../..'
+#file extensions
+    alias -s html=chromium
+    alias -s conf=vim
+    alias -s lua=vim
+    alias -s xml=vim
+    alias -s txt=vim
+    alias -s xml=vim
+    alias -s css=vim
+    alias -s ini=vim
+    alias -s pdf=zathura
+
+		
+
+
