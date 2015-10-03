@@ -3,9 +3,9 @@
 <action>
 	<icon></icon>
 	<name>open in terminal</name>
-	<unique-id>1432481130474116-3</unique-id>
-	<command>/usr/bin/gnome-terminal %f</command>
-	<description>gnome-terminal</description>
+	<unique-id>1443887378271757-1</unique-id>
+	<command>/usr/bin/konsole %f</command>
+	<description>konsole</description>
 	<patterns>*</patterns>
 	<text-files/>
 </action>
