@@ -1,0 +1,10 @@
+[Configuration]
+LastActiveMode=THUNAR_RENAMER_MODE_BOTH
+LastActiveRenamer=ThunarSbrRemoveRenamer
+
+[ThunarSbrRemoveRenamer]
+EndOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+StartOffset=0
+EndOffset=8
+StartOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+
