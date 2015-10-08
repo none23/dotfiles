@@ -64,19 +64,19 @@ function nlay.arrange(p)
             --client 2
             c = cls[2]
             g = {}
-            g.height = wa.height - bw * 2
-            g.width = slaveRwid - bw * 2
-            g.x = wa.x + mainwid 
-            g.y = wa.y
+            g.height = slaveBhei - bw * 2
+            g.width = mainwid - bw * 2
+            g.x = wa.x 
+            g.y = wa.y + mainhei
             c:geometry(g)
 
             --client 3
             c = cls[3]
             g = {}
-            g.height = slaveBhei - bw * 2
-            g.width = mainwid - bw * 2
-            g.x = wa.x 
-            g.y = wa.y + mainhei
+            g.height = wa.height - bw * 2
+            g.width = slaveRwid - bw * 2
+            g.x = wa.x + mainwid 
+            g.y = wa.y
             c:geometry(g)
 
         --If four clients or more 

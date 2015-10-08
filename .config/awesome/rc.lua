@@ -72,9 +72,7 @@ sugvim     = "gksudo gvim -d"
 local layouts = {
   awful.layout.suit.tile,
   awful.layout.suit.tile.bottom,
-  nlay,
-  lain.layout.uselesstile, 
-  lain.layout.uselesstile.bottom 
+  nlay
   }
   --awful.layout.suit.tile.top,
   --awful.layout.suit.fair,fair
@@ -82,6 +80,8 @@ local layouts = {
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
   --awful.layout.suit.max}
+  --lain.layout.uselesstile, 
+  --lain.layout.uselesstile.bottom 
 
 tags = {names = {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
   layout = { layouts[3], layouts[3], layouts[3], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] } }
