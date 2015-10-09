@@ -1,0 +1,20 @@
+" Settings
+
+set nohud
+set noautofocus
+set changelog
+
+" searching
+set smartcase
+set incsearch
+
+set insertmappings
+
+"path
+set localconfig
+configpath="/home/n/none23/dotfiles/.config/cvim/cvimrc"
+homedirectory="/home/n/none23/dotfiles/.config/cvim/"
+
+" color/formatting
+highlight="#e47e4a"
+activehighlight="#ff5500"
