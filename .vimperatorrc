@@ -1,0 +1,62 @@
+" Settings ____________________________________________________________________
+
+" safe browsing
+set noloadplugins
+
+" tab completion
+set complete=bhslSf
+set maxitems=10
+
+" History size
+set history=10000
+set messages=10000
+set =10000
+
+
+"
+
+
+" Hit enter to follow selected hint
+set followhints=1
+
+" don't autofocus input elements on open
+set focuscontent
+
+" GUI _________________________________________________________________________
+
+" title
+set titlestring=Firefox
+
+"
+
+" status contents
+set status="input,ssl,location,bookmark,tabcount,position"
+
+" open links in a new tab
+set popups=tab
+
+" tab numbers
+set tabnumbers
+
+" 
+
+
+" show tabbar only
+set gui=none,tabs
+
+
+" Mappings ____________________________________________________________________
+
+" move faster
+nnoremap j 3j
+nnoremap k 3k
+
+" colon - semicolon
+nnoremap ; :
+
+" Next/Previous tab with K/J
+nnoremap K :tabnext<CR>
+nnoremap J :tabNext<CR>
+
+" Close tab with x
+nnoremap x :tabclose<CR>
