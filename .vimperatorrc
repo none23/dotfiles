@@ -7,16 +7,15 @@ set noloadplugins
 set complete=bhslSf
 set maxitems=10
 
-" History size
+" history size
 set history=10000
 set messages=10000
 set =10000
 
+" use letters instead of numbers for hints
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
 
-"
-
-
-" Hit enter to follow selected hint
+" hit enter to follow selected hint
 set followhints=1
 
 " don't autofocus input elements on open
@@ -42,21 +41,21 @@ set tabnumbers
 
 
 " show tabbar only
-set gui=none,tabs
+set gui=none
 
 
 " Mappings ____________________________________________________________________
 
 " move faster
-nnoremap j 3j
-nnoremap k 3k
+nnoremap j 7j
+nnoremap k 7k
 
 " colon - semicolon
 nnoremap ; :
 
-" Next/Previous tab with K/J
+" next/previous tab with K/J
 nnoremap K :tabnext<CR>
 nnoremap J :tabNext<CR>
 
-" Close tab with x
+" close tab with x
 nnoremap x :tabclose<CR>
