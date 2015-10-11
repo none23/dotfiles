@@ -4,16 +4,13 @@
 set noloadplugins
 
 " tab completion
-set complete=bhslSf
-set maxitems=10
+set complete=bslSfh
+set maxitems=20
 
 " history size
 set history=10000
 set messages=10000
 set =10000
-
-" use letters instead of numbers for hints
-set hintchars=hjklasdfgyuiopqwertnmzxcvb
 
 " hit enter to follow selected hint
 set followhints=1
@@ -41,7 +38,10 @@ set tabnumbers
 
 
 " show tabbar only
-set gui=none
+set gui=none,tabs
+
+" colorscheme
+colorscheme nwsome
 
 
 " Mappings ____________________________________________________________________
@@ -59,3 +59,4 @@ nnoremap J :tabNext<CR>
 
 " close tab with x
 nnoremap x :tabclose<CR>
+
