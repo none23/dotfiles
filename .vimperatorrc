@@ -21,18 +21,18 @@ set focuscontent
 " GUI _________________________________________________________________________
 
 " title
-set titlestring=Firefox
+set titlestring=
 
 "
 
 " status contents
-set status="input,ssl,location,bookmark,tabcount,position"
+set status="ssl,location,bookmark,tabcount,position"
 
 " open links in a new tab
 set popups=tab
 
-" tab numbers
-set tabnumbers
+" no tab numbers
+set notabnumbers
 
 " 
 
