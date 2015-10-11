@@ -1,0 +1,22 @@
+" ==Vimperator_Color_Scheme==
+"   name:ywgx
+" ==ywgx_Color_Scheme==
+
+hi Normal             background:#000000; color:#de5e1e; font-size:10pt; 
+hi CmdLine            background:#000000; color:#de5e1e; font-size:10pt;  font-weight:normal; padding:0px 3px
+hi CompGroup          background:#000000; color:#afafaf
+hi CompTitle          background:#000000; color:#2C100E;                  font-weight:bold
+hi CompItem           background:#000000; color:#afafaf;                                                            padding:0px 3px
+hi CompItem[selected] background:#2C001E; color:#00cc22
+hi CompDesc           background:#0boe13; color:#00cc22
+hi CompDesc[selected] background:#2C001E; color:#00cc22
+hi CompMsg            background:#0boe13; color:#afafaf
+hi ErrorMsg           background:#ff6565; color:#000000
+hi Filter                                 color:#000000;                 font-weight:bold;
+hi StatusLine         background:#000000; color:#FFFFFF; font-size:10pt; font-weight:normal; 
+
+hi Hint font-family:Sans;font-size:10px;font-weight:bold;color:white; background-color:rgba(0, 0, 0, 0.5);border:solid 1px LightGray;
+style -name statusbar chrome://* <<EOM
+#status-bar statusbarpanel {padding:0 1px !important;}
+statusbarpanel > * { margin:0 !important; padding:0 2px 0 0 !important; }
+EOM
