@@ -127,9 +127,9 @@ ca w!! w !sudo tee "%"
 " use 256 colors when possible
 if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
 	let &t_Co = 256
-    colorscheme desert256
+    colorscheme tir_black
 else
-    colorscheme desert
+    colorscheme tir_black
 endif
 " guifont
 set guifont=Terminess\ Powerline\ 8
