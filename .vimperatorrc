@@ -10,7 +10,6 @@ set maxitems=20
 " history size
 set history=10000
 set messages=10000
-set =10000
 
 " hit enter to follow selected hint
 set followhints=1
@@ -57,6 +56,6 @@ nnoremap ; :
 nnoremap K :tabnext<CR>
 nnoremap J :tabNext<CR>
 
-" close tab with x
-nnoremap x :tabclose<CR>
+" " close tab with x
+" nnoremap x :tabclose<CR>
 
