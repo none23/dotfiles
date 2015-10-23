@@ -1,7 +1,7 @@
 theme                               = {}
 
 theme.confdir                       = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
-theme.wallpaper                     = theme.confdir .. "/Road.jpg"
+theme.wallpaper                     = theme.confdir .. "/Road1.jpg"
 
 
 theme.font                          = "Ubuntu Mono 8"
