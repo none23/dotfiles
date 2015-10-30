@@ -345,16 +345,16 @@ globalkeys = awful.util.table.join(
   awful.key({ altkey,           }, "2",           function () awful.util.spawn(browser2) end),
   awful.key({ altkey, "Control" }, "2",           function () awful.util.spawn(pronmode) end),
   
+  awful.key({ altkey,           }, "3",           function () awful.util.spawn("zathura") end),
+
   awful.key({ altkey,           }, "4",           function () awful.util.spawn(filemgr) end),
   awful.key({ altkey, "Control" }, "4",           function () awful.util.spawn(filemgr2) end), 
   awful.key({ altkey,           }, "dollar",      function () awful.util.spawn_with_shell("gksudo" ..filemgr) end),
   awful.key({ altkey, "Control" }, "dollar",      function () awful.util.spawn_with_shell("gksudo" .. filemgr2) end),
-
-  awful.key({ altkey,           }, "5",           function () awful.util.spawn("zathura") end),
         
   awful.key({ altkey,           }, "6",           function () awful.util.spawn(byobu) end),
   awful.key({ altkey, "Control" }, "6",           function () awful.util.spawn(bash) end), 
-  awful.key({ altkey, }, "asciicircum",           function () awful.util.spawn_with_shell("gksudo" .. byobu) end),
+  awful.key({ altkey,           }, "asciicircum", function () awful.util.spawn_with_shell("gksudo" .. byobu) end),
   awful.key({ altkey,"Control"}, "asciicircum",   function () awful.util.spawn_with_shell("gksudo" .. bash)  end),
         
   awful.key({ altkey,           }, "9",           function () awful.util.spawn("transset-df .7") end),
@@ -378,9 +378,13 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Control" }, "r",           awesome.restart),
   awful.key({ modkey, "Control" }, "q",           awesome.quit), 	  
   awful.key({  }, "XF86AudioRaiseVolume",         function () awful.util.spawn("amixer -q set Master 5%+")
-                                                   volumewidget.update() end), 
+                                                      volumewidget.update()
+                                                  end), 
+
   awful.key({  }, "XF86AudioLowerVolume",         function () awful.util.spawn("amixer -q set Master 5%-")
-                                                   volumewidget.update() end), 
+                                                      volumewidget.update() 
+                                                  end), 
+
   awful.key({  }, "XF86AudioMute",                function () awful.util.spawn("amixer -q set Master playback toggle")
                                                    volumewidget.update() end))
 --Client keybindings
