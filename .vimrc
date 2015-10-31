@@ -90,7 +90,8 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " always show status bar
-set ls=2
+set laststatus=2
+set noshowmode
 
 " incremental search
 set incsearch
