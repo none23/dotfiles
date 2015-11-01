@@ -24,21 +24,12 @@ then
     export TERM="xterm-256color"
 fi
 
-autoload -U promptinit
+autoload -Uz promptinit
 autoload -U colors && colors
 
-# Show vi-mode in prompt
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/<<NORMAL}/(main|viins)/<<INSERT}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-#prompt off
-#PROMPT="%F{black}%K{'#DE5E1EFF'}[%n@%M | %~]%f%k %F{'#DE5E1EFF'} %# %f"
 promptinit
+prompt off
+
 
 #Numeric Keypad
 bindkey "^[OH" beginning-of-line
@@ -50,7 +41,7 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
 
-powerline-daemon -q
-. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-
-
+ powerline-daemon -q
+ . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+# 
+# 
