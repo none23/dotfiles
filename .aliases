@@ -1,4 +1,3 @@
-alias noblank='xset -dpms r s 14400 noblank'
 alias la='ls -A --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
@@ -19,14 +18,15 @@ alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/
 alias msf='msfconsole --quiet -x \"db_connect n@msf\"'
 alias bfg='java -jar /home/n/builds/bfg.jar'
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
-alias unwifi='sudo airmon-ng check kill'
+alias wmon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor &&
+sudo ifconfig wlp7s0 up'
 
 #global
     alias -g ...='../..'
     alias -g ....='../../..'
     alias -g .....='../../../..'
 #file extensions
-    alias -s html=chromium
+    alias -s html=firefox
     alias -s conf=vim
     alias -s lua=vim
     alias -s xml=vim
