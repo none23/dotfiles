@@ -21,7 +21,7 @@ alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0
 alias wmon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
-alias sms='python /home/n/none23/sms/sms.py'
+alias sendsms='python /home/n/none23/sendsms/sendsms.py'
 
 #global
     alias -g ...='../..'
