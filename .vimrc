@@ -23,7 +23,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 " ============================================================================
 " Better file browser
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 " Quickly anywhere without counting words
 Plugin 'easymotion/vim-easymotion'
 " Class/module browser
@@ -241,13 +241,13 @@ let g:ConqueTerm_SessionSupport = 1
 let g:ConqueTerm_PyVersion = 3
 map <F4> :ConqueTermSplit zsh<CR>
 
-" NERDTree ----------------------------- 
-" toggle nerdtree display
-map <F3> :NERDTreeToggle<CR>
-" open nerdtree with the current file selected
-nmap ,t :NERDTreeFind<CR>
-" don;t show these file types
-let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+"  " NERDTree ----------------------------- 
+"  " toggle nerdtree display
+" map <F3> :NERDTreeToggle<CR>
+"  " open nerdtree with the current file selected
+" nmap ,t :NERDTreeFind<CR>
+"  " don;t show these file types
+" let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 " Syntastic ------------------------------
 " show list of errors and warnings on the current file
@@ -304,4 +304,34 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
+
+" Ranger as the file-chooser
+function! RangeChooser()
+    let temp = tempname()
+    if has("gui_running")
+        exec 'silent !xterm -e ranger --choosefiles=' . shellescape(temp)
+    else
+        exec 'silent !ranger --choosefiles=' . shellescape(temp)
+    endif
+    if !filereadable(temp)
+        redraw!
+        " Nothing to read.
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        redraw!
+        " Nothing to open.
+        return
+    endif
+    " Edit the first item.
+    exec 'edit ' . fnameescape(names[0])
+    " Add any remaning items to the arg list/buffer list.
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+    redraw!
+endfunction
+command! -bar RangerChooser call RangeChooser()
+nnoremap <F3> :<C-U>RangerChooser<CR>
 endif
