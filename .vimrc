@@ -309,7 +309,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 function! RangeChooser()
     let temp = tempname()
     if has("gui_running")
-        exec 'silent !xterm -e ranger --choosefiles=' . shellescape(temp)
+        exec 'silent !urxvt -e ranger --choosefiles=' . shellescape(temp)
     else
         exec 'silent !ranger --choosefiles=' . shellescape(temp)
     endif

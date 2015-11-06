@@ -5,7 +5,7 @@ from ranger.gui.colorscheme import ColorScheme
 from ranger.gui.color import *
 
 class Default(ColorScheme):
-    progress_bar_color = cyan
+    progress_bar_color = 202
 
     def use(self, context):
         fg, bg, attr = default_colors
@@ -21,31 +21,31 @@ class Default(ColorScheme):
             if context.empty or context.error:
                 bg = red
             if context.border:
-                fg = default
+                fg = 202
             if context.media:
                 if context.image:
-                    fg = yellow
+                    fg = 166
                 else:
                     fg = magenta
             if context.container:
                 fg = red
             if context.directory:
                 attr |= bold
-                fg = cyan
+                fg = 202
             elif context.executable and not \
                     any((context.media, context.container,
                         context.fifo, context.socket)):
                 attr |= bold
-                fg = green
+                fg = 26
             if context.socket:
                 fg = magenta
                 attr |= bold
             if context.fifo or context.device:
-                fg = yellow
+                fg = 166
                 if context.device:
                     attr |= bold
             if context.link:
-                fg = context.good and blue or magenta
+                fg = context.good and 214 or magenta
             if context.tag_marker and not context.selected:
                 attr |= bold
                 if fg in (red, magenta):
@@ -60,7 +60,7 @@ class Default(ColorScheme):
                     attr |= bold
                 if context.marked:
                     attr |= bold
-                    fg = yellow
+                    fg = 166
             if context.badinfo:
                 if attr & reverse:
                     bg = magenta
@@ -70,36 +70,39 @@ class Default(ColorScheme):
         elif context.in_titlebar:
             attr |= bold
             if context.hostname:
-                fg = context.bad and red or green
+                fg = 232
+                bg = 202
             elif context.directory:
-                fg = cyan
+                fg = 202
             elif context.tab:
                 if context.good:
-                    bg = green
+                    bg = 34
             elif context.link:
-                fg = blue
+                fg = 214
 
         elif context.in_statusbar:
+            fg = 0
+            bg = 202
             if context.permissions:
                 if context.good:
-                    fg = blue
+                    bg = 166
                 elif context.bad:
-                    fg = magenta
+                    bg = 160
             if context.marked:
                 attr |= bold | reverse
-                fg = yellow
+                bg = 25
             if context.message:
                 if context.bad:
                     attr |= bold
-                    fg = red
-            if context.loaded:
-                bg = self.progress_bar_color
+                    bg = red
             if context.vcsinfo:
-                fg = cyan
+                bg = 25
                 attr &= ~bold
             if context.vcscommit:
-                fg = yellow
+                bg = 34
                 attr &= ~bold
+            if context.loaded:
+                bg = 166
 
 
         if context.text:
@@ -108,7 +111,7 @@ class Default(ColorScheme):
 
         if context.in_taskview:
             if context.title:
-                fg = cyan
+                bg = 25
 
             if context.selected:
                 attr |= reverse
@@ -142,7 +145,7 @@ class Default(ColorScheme):
             elif context.vcsbehind:
                 fg = red
             elif context.vcsahead:
-                fg = cyan
+                fg = 50
             elif context.vcsdiverged:
                 fg = magenta
             elif context.vcsunknown:
