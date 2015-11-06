@@ -51,7 +51,7 @@ modkey     = "Mod4"
 altkey     = "Mod3"
 terminal   = "konsole"
 yarminal   = "lxterminal"
-byobu      = "lxterminal -e byobu"
+tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
 editor_gui = "gvim"
@@ -349,9 +349,8 @@ globalkeys = awful.util.table.join(
   awful.key({ altkey,           }, "dollar",      function () awful.util.spawn_with_shell("gksudo" ..filemgr) end),
   awful.key({ altkey, "Control" }, "dollar",      function () awful.util.spawn_with_shell("gksudo" .. filemgr2) end),
         
-  awful.key({ altkey,           }, "6",           function () awful.util.spawn(byobu) end),
+  awful.key({ altkey,           }, "6",           function () awful.util.spawn(tmux) end),
   awful.key({ altkey, "Control" }, "6",           function () awful.util.spawn(bash) end), 
-  awful.key({ altkey,           }, "asciicircum", function () awful.util.spawn_with_shell("gksudo" .. byobu) end),
   awful.key({ altkey,"Control"}, "asciicircum",   function () awful.util.spawn_with_shell("gksudo" .. bash)  end),
         
   awful.key({ altkey,           }, "9",           function () awful.util.spawn("transset-df .7") end),
@@ -365,7 +364,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,	        }, "Tab" ,        function () drop(ranger) end), 
   awful.key({ modkey,	        }, "KP_Subtract", function () drop(pronmode)  end), 
   awful.key({ modkey,	        }, "KP_Divide",   function () drop(gvim) end), 
-  awful.key({ modkey,	        }, "KP_Multiply", function () drop(byobu) end), 
+  awful.key({ modkey,	        }, "KP_Multiply", function () drop(tmux) end), 
   awful.key({ modkey,           }, "KP_Begin",    function () drop(nm) end),  --[KP_Begin is 5 on numpad]
 
   --Actions
