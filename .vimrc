@@ -1,6 +1,6 @@
 set nocompatible
 
-" Setting up Vundle {{{
+" Set up Vundle if not installed {{{
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
@@ -11,10 +11,8 @@ if !filereadable(vundle_readme)
     let iCanHazVundle=0
 endif
 " }}}
-
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-
 " Python3 Powerline {{{
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
@@ -248,7 +246,6 @@ function! RangeChooser()
 endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <F3> :<C-U>RangerChooser<CR>
-endif
 " }}}
 
 " MS Windows Documents {{{----------------------------------------------------
@@ -355,8 +352,7 @@ nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 " }}}
 
-" Neocomplete
-" {{{-------------------------------------------------------------------------
+" Neocomplete {{{-------------------------------------------------------------
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -371,6 +367,7 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
+endif
 " }}}
 
 " }}}
