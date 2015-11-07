@@ -1,6 +1,6 @@
 set nocompatible
 
-" Setting up Vundle 
+" Setting up Vundle {{{
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
@@ -10,14 +10,18 @@ if !filereadable(vundle_readme)
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
     let iCanHazVundle=0
 endif
+" }}}
 
 filetype off
-
 set rtp+=~/.vim/bundle/vundle/
+
+" Python3 Powerline {{{
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
+" }}}
 
+" Vundle Plugins {{{
 call vundle#rc()
 " let Vundle manage Vundle
 Plugin 'gmarik/vundle'
@@ -70,15 +74,15 @@ if iCanHazVundle == 0
     :PluginInstall
 endif
 " ============================================================================
+" }}}
 
-" Vim settings and mappings
-" You can edit them as you wish
+" Vim Settings and Mappings {{{
 
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on
 
-" tabs and spaces handling
+" tabs/spases {{{
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -88,6 +92,7 @@ set shiftwidth=4
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+" }}}
 
 " always show status bar
 set laststatus=2
@@ -158,7 +163,7 @@ set scrolloff=7
 set wildmenu
 set wildmode=list:full
 
-" better backup, swap and undos storage
+" better backup, swap and undos storage {{{
 set directory=~/.vim/dirs/tmp     " directory to place swap files in
 set backup                        " make backup files
 set backupdir=~/.vim/dirs/backups " where to put backup files
@@ -178,20 +183,21 @@ endif
 if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
+" }}}
 
-"indent without loosing focus
+" indent without loosing focus
 vnoremap < <gv
 vnoremap > >gv
 
-"no shift for ':'
+" command with colon
 noremap ; :
 
 "clear search results highlighting
 nnoremap <C-L> :nohl<CR><C-L>
 
-"highlight 80'th column
+"highlight 79'th column
 set tw=79 "width
-set colorcolumn=80
+set colorcolumn=79
 highlight ColorColumn ctermbg=233
 
 " map leader to space
@@ -204,108 +210,16 @@ map <S-F14> :vs<CR>
 " close current split
 map <F6> <Esc><C-w>c
 
-" yank/paste to system clipboard
+" yank/paste to system clipboard {{{
 nmap <F8> "+yy
 vmap <F8> "+y
 nmap <F9> "+p
 vmap <F9> "+p
 nmap <S-F21> "+P
 vmap <S-F21> "+P
+" }}}
 
-" ============================================================================
-" Plugins settings and mappings
-" Tagbar ----------------------------- 
-" toggle tagbar display
-map <S-F13> :TagbarToggle<CR>
-" autofocus on tagbar open
-let g:tagbar_autofocus = 0
-
-" EasyMotion --------------------------- 
-map <Leader> <Plug>(easymotion-prefix)
-
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward))
-
-" ExpandRegion --------------------------- 
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-" ConqueTerm ---------------------------- 
-" disable terminal features, that make Conqu run slow 
-let g:ConqueTerm_FastMode = 1
-" restore terminals when sestoring session
-let g:ConqueTerm_ExecFileKey = '<F5>'
-let g:ConqueTerm_SessionSupport = 1
-let g:ConqueTerm_PyVersion = 3
-map <F4> :ConqueTermSplit zsh<CR>
-
-"  " NERDTree ----------------------------- 
-"  " toggle nerdtree display
-" map <F3> :NERDTreeToggle<CR>
-"  " open nerdtree with the current file selected
-" nmap ,t :NERDTreeFind<CR>
-"  " don;t show these file types
-" let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-
-" Syntastic ------------------------------
-" show list of errors and warnings on the current file
-nmap ,e :Errors<CR>
-" check also when just opened the file
-let g:syntastic_check_on_open = 1
-" don't put icons on the sign column (it hides the vcs status icons of signify)
-let g:syntastic_enable_signs = 1
-" custom icons (enable them if you use a patched font, and enable the previous 
-" setting)
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-
-" Python-mode ------------------------------
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-let pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_virtualenv = 1
-nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
-nmap ,o :RopeFindOccurrences<CR>
-
-" TabMan ------------------------------
-" mappings to toggle display, and to focus on it
-let g:tabman_toggle = 'tl'
-let g:tabman_focus  = 'tf'
-
-" Autoclose ------------------------------
-
-" Fix to let ESC work as espected with Autoclose plugin
-let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
-
-" Window Chooser ------------------------------
-nmap  -  <Plug>(choosewin)
-" show big letters
-let g:choosewin_overlay_enable = 1
-
-" Neocomplete --------------------------------
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=python3complete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-
-" Ranger as the file-chooser
+" Ranger as the file-chooser {{{----------------------------------------------
 function! RangeChooser()
     let temp = tempname()
     if has("gui_running")
@@ -335,3 +249,130 @@ endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <F3> :<C-U>RangerChooser<CR>
 endif
+" }}}
+
+" MS Windows Documents {{{----------------------------------------------------
+" opening
+" autocmd BufReadPre *.doc set ro
+autocmd BufReadPre *.doc set hlsearch!
+autocmd BufReadPost *.doc %!antiword "%"
+
+" saving modified <NAME>.doc as <NAME>.txt
+function! SaveCopyForMSWordDocs(filename) range
+    let l:extension = '.' . fnamemodify( a:filename, ':e' )
+    if l:extension == '.doc'
+        let l:extension == '.txt'
+    endif
+    execute "write " . l:filename
+endfunction
+" }}}
+
+" }}}
+
+" Plugins Settings and Mappings {{{
+
+" Tagbar {{{------------------------------------------------------------------
+" toggle tagbar display
+map <S-F13> :TagbarToggle<CR>
+" autofocus on tagbar open
+let g:tagbar_autofocus = 0
+" }}}
+
+" EasyMotion {{{-------------------------------------------------------------- 
+map <Leader> <Plug>(easymotion-prefix)
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward))
+" }}}
+
+" ExpandRegion {{{------------------------------------------------------------ 
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" }}}
+
+" ConqueTerm {{{--------------------------------------------------------------
+" disable terminal features, that make Conqu run slow 
+let g:ConqueTerm_FastMode = 1
+" restore terminals when sestoring session
+let g:ConqueTerm_ExecFileKey = '<F5>'
+let g:ConqueTerm_SessionSupport = 1
+let g:ConqueTerm_PyVersion = 3
+map <F4> :ConqueTermSplit zsh<CR>
+" }}}
+
+" NERDTree (off) {{{----------------------------------------------------------
+"  " toggle nerdtree display
+" map <F3> :NERDTreeToggle<CR>
+"  " open nerdtree with the current file selected
+" nmap ,t :NERDTreeFind<CR>
+"  " don;t show these file types
+" let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+" }}}
+
+" Syntastic {{{---------------------------------------------------------------
+" show list of errors and warnings on the current {{{e
+nmap ,e :Errors<CR>
+" check also when just opened the file
+let g:syntastic_check_on_open = 1
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+let g:syntastic_enable_signs = 1
+" custom icons (enable them if you use a patched font, and enable the previous 
+" setting)
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+" }}}
+
+" Python-mode {{{-------------------------------------------------------------
+let g:pymode_doc = 0
+let g:pymode_doc_key = 'K'
+let pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_virtualenv = 1
+nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
+nmap ,o :RopeFindOccurrences<CR>
+" }}}
+
+" TabMan {{{------------------------------------------------------------------
+" mappings to toggle display, and to focus on it
+let g:tabman_toggle = 'tl'
+let g:tabman_focus  = 'tf'
+" }}}
+
+" Autoclose {{{---------------------------------------------------------------
+" fix to let ESC work as espected with Autoclose plugin
+let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+" }}}
+
+" Window Chooser {{{----------------------------------------------------------
+nmap  -  <Plug>(choosewin)
+" show big letters
+let g:choosewin_overlay_enable = 1
+" }}}
+
+" Neocomplete
+" {{{-------------------------------------------------------------------------
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+" }}}
+
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
