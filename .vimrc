@@ -63,6 +63,9 @@ Plugin 'matchit.zip'
 Plugin 'YankRing.vim'
 " Jedi-Vim
 Plugin 'davidhalter/jedi-vim'
+" Restore vim sessions 
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 " ============================================================================
 
 " Install plugins the first time vim runs
