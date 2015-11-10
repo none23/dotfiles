@@ -54,8 +54,8 @@ yarminal   = "lxterminal"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
-editor_gui = "gvim"
-vim        = "konsole -e vim"
+editor_gui = "konsole -e nvim"
+vim        = "konsole -e nvim"
 nm         = "urxvt -e nm-tui"
 browser    = "firefox"
 browser2   = "chromium"
@@ -77,25 +77,25 @@ local layouts = {
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
   --awful.layout.suit.max}
-  --lain.layout.uselesstile, 
-  --lain.layout.uselesstile.bottom 
+  --lain.layout.uselesstile,
+  --lain.layout.uselesstile.bottom
 
 tags = {names = {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
   layout = { layouts[3], layouts[3], layouts[3], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] } }
-        
+
 for s = 1, screen.count() do tags[s] = awful.tag(tags.names, s, tags.layout) end
 
---for t = 1, 9 do 
+--for t = 1, 9 do
 --  --Screen 1
---  awful.tag.setnmaster  (1,     tags[1][t]) 
---  awful.tag.setncol     (1,     tags[1][t]) 
---  awful.tag.setmwfact   (0.65,  tags[1][t]) 
+--  awful.tag.setnmaster  (1,     tags[1][t])
+--  awful.tag.setncol     (1,     tags[1][t])
+--  awful.tag.setmwfact   (0.65,  tags[1][t])
 ----[[  for s = 2, screen.count() do
 --    --Other screens
---    awful.tag.setnmaster  (0,     tags[s][t]) 
---    awful.tag.setncol     (0,     tags[s][t]) 
---    --awful.tag.setmwfact   (0.5, tags[s][t]) 
---end]] 
+--    awful.tag.setnmaster  (0,     tags[s][t])
+--    awful.tag.setncol     (0,     tags[s][t])
+--    --awful.tag.setmwfact   (0.5, tags[s][t])
+--end]]
 --end
 
 for s = 1, screen.count() do
@@ -106,19 +106,19 @@ for s = 1, screen.count() do
     end
 end
 
-require("awful.autofocus") 
+require("awful.autofocus")
 
 --Wallpaper
 for s = 1, screen.count() do
-    if beautiful.wallpaper then 
-        --gears.wallpaper.fit(beautiful.wallpaper, s) end end 
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true) end end 
+    if beautiful.wallpaper then
+        --gears.wallpaper.fit(beautiful.wallpaper, s) end end
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true) end end
 
 --Freedesktop menu
 mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
  theme = { height = 12, width = 130 }})
 --Batttery warning (from ArchWiki)
-local function trim(s) return s:find'^%s*$' and '' or s:match'^%s*(.*%S)' end 
+local function trim(s) return s:find'^%s*$' and '' or s:match'^%s*(.*%S)' end
 local function bat_notification()
   local f_capacity = assert(io.open("/sys/class/power_supply/BAT1/capacity", "r"))
   local f_status = assert(io.open("/sys/class/power_supply/BAT1/status", "r"))
@@ -179,7 +179,7 @@ mytasklist.buttons = awful.util.table.join(
 
                                 client.focus = c
                                 c:raise()
-                            end 
+                            end
                         end),
 
     awful.button({ }, 3, function ()
@@ -227,7 +227,7 @@ for s = 1, screen.count() do
         right_layout:add(batwidget)
         right_layout:add(mytextclock)
 
-    --Bring it all together 
+    --Bring it all together
     local layout = wibox.layout.align.horizontal()
         layout:set_left(left_layout)
         layout:set_middle(mytasklist[s])
@@ -253,8 +253,8 @@ globalkeys = awful.util.table.join(
 
   awful.key({ modkey,           }, "h",
             function() awful.client.focus.global_bydirection("left")
-                if client.focus 
-                    then client.focus:raise() 
+                if client.focus
+                    then client.focus:raise()
                 end
             end),
 
@@ -268,7 +268,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "w",
             function () awful.client.focus.byidx( 1)
                 if client.focus
-                    then client.focus:raise() 
+                    then client.focus:raise()
                 end
             end),
 
@@ -286,7 +286,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "j" ,
                 function () awful.client.swap.global_bydirection("down" )
                 end),
-                    
+
     awful.key({ modkey, "Shift"   }, "k",
                 function () awful.client.swap.global_bydirection("up"   )
                 end),
@@ -298,7 +298,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",
                 function () awful.client.swap.global_bydirection("right")
                 end),
-  
+
   --Manual layout manipulation
   awful.key({ modkey,           }, "period",      function () awful.tag.incncol(1) end),
   awful.key({ modkey,           }, "comma",       function () awful.tag.incncol(-1) end),
@@ -333,53 +333,53 @@ globalkeys = awful.util.table.join(
 
   --Applications
   awful.key({ modkey,           }, "Return",      function () awful.util.spawn(terminal) end),
-  awful.key({ modkey,	          }, "KP_Enter",  function () awful.util.spawn_with_shell(suterm) end), 
-  awful.key({ modkey,	          }, "KP_Add",    function () awful.util.spawn_with_shell(sugvim) end), 
+  awful.key({ modkey,	          }, "KP_Enter",  function () awful.util.spawn_with_shell(suterm) end),
+  awful.key({ modkey,	          }, "KP_Add",    function () awful.util.spawn_with_shell(sugvim) end),
   awful.key({ altkey,           }, "grave",       function () awful.util.spawn(gvim) end),
 
   awful.key({ altkey,           }, "1",           function () awful.util.spawn(browser) end),
   awful.key({ altkey, "Control" }, "1",           function () awful.util.spawn("tor-browser-en") end),
   awful.key({ altkey,           }, "2",           function () awful.util.spawn(browser2) end),
   awful.key({ altkey, "Control" }, "2",           function () awful.util.spawn(pronmode) end),
-  
+
   awful.key({ altkey,           }, "3",           function () awful.util.spawn("zathura") end),
 
   awful.key({ altkey,           }, "4",           function () awful.util.spawn(filemgr) end),
-  awful.key({ altkey, "Control" }, "4",           function () awful.util.spawn(filemgr2) end), 
+  awful.key({ altkey, "Control" }, "4",           function () awful.util.spawn(filemgr2) end),
   awful.key({ altkey,           }, "dollar",      function () awful.util.spawn_with_shell("gksudo" ..filemgr) end),
   awful.key({ altkey, "Control" }, "dollar",      function () awful.util.spawn_with_shell("gksudo" .. filemgr2) end),
-        
+
   awful.key({ altkey,           }, "6",           function () awful.util.spawn(tmux) end),
-  awful.key({ altkey, "Control" }, "6",           function () awful.util.spawn(bash) end), 
+  awful.key({ altkey, "Control" }, "6",           function () awful.util.spawn(bash) end),
   awful.key({ altkey,"Control"}, "asciicircum",   function () awful.util.spawn_with_shell("gksudo" .. bash)  end),
-        
+
   awful.key({ altkey,           }, "9",           function () awful.util.spawn("transset-df .7") end),
-  awful.key({ altkey, "Control" }, "9",           function () awful.util.spawn("transset-df .3") end), 
+  awful.key({ altkey, "Control" }, "9",           function () awful.util.spawn("transset-df .3") end),
 
   awful.key({ altkey,           }, "0",           function () awful.util.spawn("pavucontrol") end),
-  awful.key({ altkey, "Control" }, "0",           function () awful.util.spawn("paprefs") end), 
+  awful.key({ altkey, "Control" }, "0",           function () awful.util.spawn("paprefs") end),
 
   --Scratchdrop (drop-down applications)
-  awful.key({ modkey,	        }, "grave",       function () drop(terminal) end), 
-  awful.key({ modkey,	        }, "Tab" ,        function () drop(ranger) end), 
-  awful.key({ modkey,	        }, "KP_Subtract", function () drop(pronmode)  end), 
-  awful.key({ modkey,	        }, "KP_Divide",   function () drop(gvim) end), 
-  awful.key({ modkey,	        }, "KP_Multiply", function () drop(tmux) end), 
+  awful.key({ modkey,	        }, "grave",       function () drop(terminal) end),
+  awful.key({ modkey,	        }, "Tab" ,        function () drop(ranger) end),
+  awful.key({ modkey,	        }, "KP_Subtract", function () drop(pronmode)  end),
+  awful.key({ modkey,	        }, "KP_Divide",   function () drop(gvim) end),
+  awful.key({ modkey,	        }, "KP_Multiply", function () drop(tmux) end),
   awful.key({ modkey,           }, "KP_Begin",    function () drop(nm) end),  --[KP_Begin is 5 on numpad]
 
   --Actions
   awful.key({ modkey,           }, "F12",         function () awful.util.spawn("xlock") end),
   awful.key({ modkey,           }, "c",           function () os.execute("xsel -p -o | xsel -i -b") end),
-  awful.key({ modkey,           }, "v",           function () mymainmenu:show({ keygrabber = true }) end),  
+  awful.key({ modkey,           }, "v",           function () mymainmenu:show({ keygrabber = true }) end),
   awful.key({ modkey, "Control" }, "r",           awesome.restart),
-  awful.key({ modkey, "Control" }, "q",           awesome.quit), 	  
+  awful.key({ modkey, "Control" }, "q",           awesome.quit),
   awful.key({  }, "XF86AudioRaiseVolume",         function () awful.util.spawn("amixer -q set Master 5%+")
                                                       volumewidget.update()
-                                                  end), 
+                                                  end),
 
   awful.key({  }, "XF86AudioLowerVolume",         function () awful.util.spawn("amixer -q set Master 5%-")
-                                                      volumewidget.update() 
-                                                  end), 
+                                                      volumewidget.update()
+                                                  end),
 
   awful.key({  }, "XF86AudioMute",                function () awful.util.spawn("amixer -q set Master playback toggle")
                                                    volumewidget.update() end))
@@ -410,7 +410,7 @@ clientkeys = awful.util.table.join(
                 end),
 
     awful.key({ modkey,           }, "y",
-                function (c) c.sticky = not c.sticky 
+                function (c) c.sticky = not c.sticky
                 end),
 
     awful.key({ modkey,           }, "g",
@@ -439,7 +439,7 @@ clientkeys = awful.util.table.join(
 
     awful.key({ modkey,           }, "m",
                 function (c) c.maximized_horizontal = not c.maximized_horizontal
-                    c.maximized_vertical   = not c.maximized_vertical 
+                    c.maximized_vertical   = not c.maximized_vertical
                 end),
 
     awful.key({ modkey,           }, "minus",
@@ -450,24 +450,24 @@ clientkeys = awful.util.table.join(
                 function (c) c.maximized_vertical = not c.maximized_vertical
                 end))
 
-for i = 1, 9 
+for i = 1, 9
     do globalkeys = awful.util.table.join(globalkeys,
         awful.key({ modkey,           }, "#"..i + 9,
-                    function () 
+                    function ()
                         for s = 1, screen.count() do
                             local tag = awful.tag.gettags(s)[i]
-                            if tag 
+                            if tag
                                 then awful.tag.viewonly(tag)
-                            end 
-                        end 
+                            end
+                        end
                     end),
 
         awful.key({ modkey, "Shift"   }, "#"..i + 9,
-                    function () 
+                    function ()
                         local tag = awful.tag.gettags(client.focus.screen)[i]
                         if client.focus and tag
                             then awful.client.movetotag(tag)
-                        end 
+                        end
                     end),
 
         awful.key({ modkey, "Alt", "Shift"}, "#"..i + 9,
@@ -479,7 +479,6 @@ for i = 1, 9
                     end))
 
 end
-                                                    
 
 --  awful.key({ modkey,           }, "d",       function () awful.tag.setproperty()             end),        --for experimenting
 
@@ -494,8 +493,8 @@ root.keys(globalkeys)
 awful.rules.rules = {
   {rule = { },                               callback = awful.client.setslave },
   {rule = { },                               properties = { border_width = beautiful.border_width}},
-  {rule = { },                               properties = { focus = awful.client.focus.filter}}, 
-  {rule = { },                               properties = { keys = clientkeys}}, 
+  {rule = { },                               properties = { focus = awful.client.focus.filter}},
+  {rule = { },                               properties = { keys = clientkeys}},
   {rule = { },                               properties = { buttons = clientbuttons}},
   {rule = { },                               properties = { size_hints_honor = true}},
   {rule = { name = "Page(s) Unresponsive" }, properties = { floating = true}},

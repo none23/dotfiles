@@ -24,6 +24,7 @@ alias gdrk='xset dpms force off'
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
 
 #global
+    alias -g vim='nvim'
     alias -g ...='../..'
     alias -g ....='../../..'
     alias -g .....='../../../..'
