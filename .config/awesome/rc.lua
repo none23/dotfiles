@@ -62,8 +62,7 @@ browser2   = "chromium"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
-gvim       = "gvim"
-sugvim     = "gksudo gvim -d"
+gvim       = "konsole -e nvim"
 
 --Layouts and tags table
 local layouts = {
@@ -334,7 +333,6 @@ globalkeys = awful.util.table.join(
   --Applications
   awful.key({ modkey,           }, "Return",      function () awful.util.spawn(terminal) end),
   awful.key({ modkey,	          }, "KP_Enter",  function () awful.util.spawn_with_shell(suterm) end),
-  awful.key({ modkey,	          }, "KP_Add",    function () awful.util.spawn_with_shell(sugvim) end),
   awful.key({ altkey,           }, "grave",       function () awful.util.spawn(gvim) end),
 
   awful.key({ altkey,           }, "1",           function () awful.util.spawn(browser) end),
