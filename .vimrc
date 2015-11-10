@@ -115,6 +115,7 @@ syntax on
 set number
 set relativenumber
 set autoindent smartindent
+
 " tab navigation mappings
 map tn :tabn<CR>
 map tp :tabp<CR>
@@ -127,21 +128,18 @@ map <C-S-Left> :tabp<CR>
 imap <C-S-Left> <Esc>:tabp<CR>
 
 
-" Comment this line to enable autocompletion preview window
-" (displays documentation related to the selected completion option)
-" Disabled by default because preview makes the window flicker
-set completeopt-=preview
+" set completeopt-=preview
 
 " save as sudo
-ca w!! w !sudo tee "%"
-
-" use 256 colors when possible
-if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
-	let &t_Co = 256
-    colorscheme torte
-else
-    colorscheme torte
-endif
+ ca w!! w !sudo tee "%"
+ 
+" " use 256 colors when possible
+" if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
+" 	let &t_Co = 256
+"     colorscheme torte
+" else
+"     colorscheme torte
+" endif
 " guifont
 set guifont=Terminess\ Powerline\ 8
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 8
@@ -152,7 +150,10 @@ set guioptions-=e
 set guioptions-=L
 set guioptions-=t
 set guioptions-=m
+
+" colors
 set background=dark
+colorscheme nwsome
 set cursorline
 
 " colors for gvim
@@ -381,12 +382,18 @@ endif
 " }}}
 
 " }}}
-"
+
 " Airline {{{-----------------------------------------------------------------
 let g:airline_powerline_fonts=1
-let g:airline_theme='dark'
+let g:airline_theme='simple'
 
 " tab line
 let g:airline#extensions#tabline#enabled=0
+
+" Neovim Settings {{==========================================================
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+"}}===========================================================================
+
 
 " vim:foldmethod=marker:foldlevel=0
