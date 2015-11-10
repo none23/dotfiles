@@ -13,21 +13,23 @@ endif
 " }}}
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-" Python3 Powerline {{{
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-" }}}
+"" Python3 Powerline (off -- doesn't work with neovim) {{{
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
+"" }}}
 
 " Vundle Plugins {{{
 call vundle#rc()
 " let Vundle manage Vundle
 Plugin 'gmarik/vundle'
 " ============================================================================
-" Better file browser
+"" Better file browser
 " Plugin 'scrooloose/nerdtree'
 " Quickly anywhere without counting words
 Plugin 'easymotion/vim-easymotion'
+" Airline
+Plugin 'bling/vim-airline'
 " Class/module browser
 Plugin 'majutsushi/tagbar'
 " Zen coding
@@ -37,7 +39,7 @@ Plugin 'kien/tabman.vim'
 " Terminal Vim with 256 colors colorscheme
 Plugin 'fisadev/fisa-vim-colorscheme'
 " Consoles as buffers
-Plugin 'rosenfeld/conque-term'
+" Plugin 'rosenfeld/conque-term' -- not needed with neovim
 " Surround
 Plugin 'tpope/vim-surround'
 " Expand region
@@ -50,7 +52,7 @@ Plugin 'michaeljsmith/vim-indent-object'
 " operators, highlighting, run and ipdb breakpoints)
 Plugin 'klen/python-mode'
 " Better autocompletion
-Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim' -- doesn't work in neovim
 " Window chooser
 Plugin 't9md/vim-choosewin'
 " Python and other languages code checker
@@ -61,9 +63,11 @@ Plugin 'IndexedSearch'
 Plugin 'matchit.zip'
 " Yank history navigation
 Plugin 'YankRing.vim'
+" Completion with TAB
+Plugin 'ervandew/supertab'
 " Jedi-Vim
 Plugin 'davidhalter/jedi-vim'
-" Restore vim sessions 
+" Restore vim sessions
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 " ============================================================================
@@ -134,9 +138,9 @@ ca w!! w !sudo tee "%"
 " use 256 colors when possible
 if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
 	let &t_Co = 256
-    colorscheme tir_black
+    colorscheme torte
 else
-    colorscheme tir_black
+    colorscheme torte
 endif
 " guifont
 set guifont=Terminess\ Powerline\ 8
@@ -206,7 +210,10 @@ let mapleader = " "
 
 " open another split
 map <F2> :sp<CR>
+map <F4> :below 10sp term://$SHELL<CR>i
 map <S-F14> :vs<CR>
+map <S-F16> :vs<CR>:term<CR>
+map <S-F16> :below 10sp term:///bin/ranger<CR>i
 
 " close current split
 map <F6> <Esc><C-w>c
@@ -278,7 +285,7 @@ map <S-F13> :TagbarToggle<CR>
 let g:tagbar_autofocus = 0
 " }}}
 
-" EasyMotion {{{-------------------------------------------------------------- 
+" EasyMotion {{{--------------------------------------------------------------
 map <Leader> <Plug>(easymotion-prefix)
 
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -287,20 +294,20 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward))
 " }}}
 
-" ExpandRegion {{{------------------------------------------------------------ 
+" ExpandRegion {{{------------------------------------------------------------
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 " }}}
 
-" ConqueTerm {{{--------------------------------------------------------------
-" disable terminal features, that make Conqu run slow 
-let g:ConqueTerm_FastMode = 1
-" restore terminals when sestoring session
-let g:ConqueTerm_ExecFileKey = '<F5>'
-let g:ConqueTerm_SessionSupport = 1
-let g:ConqueTerm_PyVersion = 3
-map <F4> :ConqueTermSplit zsh<CR>
-" }}}
+" " ConqueTerm (off - not needed with neovim) {{{-----------------------------
+" " disable terminal features, that make Conqu run slow
+" let g:ConqueTerm_FastMode = 1
+" " restore terminals when sestoring session
+" let g:ConqueTerm_ExecFileKey = '<F5>'
+" let g:ConqueTerm_SessionSupport = 1
+" let g:ConqueTerm_PyVersion = 3
+" map <F4> :ConqueTermSplit zsh<CR>
+" " }}}
 
 " NERDTree (off) {{{----------------------------------------------------------
 "  " toggle nerdtree display
@@ -318,7 +325,7 @@ nmap ,e :Errors<CR>
 let g:syntastic_check_on_open = 1
 " don't put icons on the sign column (it hides the vcs status icons of signify)
 let g:syntastic_enable_signs = 1
-" custom icons (enable them if you use a patched font, and enable the previous 
+" custom icons (enable them if you use a patched font, and enable the previous
 " setting)
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
@@ -374,5 +381,12 @@ endif
 " }}}
 
 " }}}
+"
+" Airline {{{-----------------------------------------------------------------
+let g:airline_powerline_fonts=1
+let g:airline_theme='dark'
+
+" tab line
+let g:airline#extensions#tabline#enabled=0
 
 " vim:foldmethod=marker:foldlevel=0
