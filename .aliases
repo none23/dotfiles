@@ -1,3 +1,4 @@
+# Aliases {{{
 # listing files {{{
 alias la='ls -A --color=tty'
 alias ll='ls -lh --color=tty'
@@ -47,8 +48,9 @@ alias gdrk='xset dpms force off'
 # send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
 # }}}
+# }}}
 
-# Global {{{
+# Global Aliases {{{
 alias -g vim='nvim'
 alias -g gvim='konsole -s nvim'
 alias -g ...='../..'
@@ -66,6 +68,10 @@ alias -g .....='../../../..'
     alias -s css=vim
     alias -s ini=vim
     alias -s pdf=zathura
+# }}}
+
+# Execute at sourcing this file: {{{
+toff
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0

@@ -55,7 +55,6 @@ awful.util.spawn_with_shell("xmodmap /home/$USER/.Xmodmap")
 awful.util.spawn_with_shell("xset s off")
 awful.util.spawn_with_shell("xset -dpms")
 awful.util.spawn_with_shell("xset r rate 200 60")
-awful.util.spawn_with_shell("xinput --disable SynPS/2\ Synaptics\ TouchPad")
 awful.util.spawn_with_shell("source /home/$USER/.aliases")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lua")
 -- }}}
