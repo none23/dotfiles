@@ -1,36 +1,62 @@
+# listing files {{{
 alias la='ls -A --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
+# }}}
+# package mgmt {{{
 alias p='sudo pacman'
 alias P='sudo pacman -Syu'
 alias y='yaourt'
 alias Y='yaourt -Syua'
+alias yor='sudo pacman -R $(pacman -Qtdq)'
+# }}}
+# sshuttle {{{
 alias sshide='sshuttle -r 52.1.52.92 0/0 --dns -D'
 alias sshive='sshuttle -r 52.1.52.92 0/0 --dns -v' 
 alias sshpotify='sshuttle -r 52.1.52.92 78.31.8.0/21 193.182.8.0/21 95.215.60.0/22 --dns -D'
+# }}}
+# touchpad switch {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias ton='xinput --enable SynPS/2\ Synaptics\ TouchPad'
-alias xvirtr='xrandr --addmode VIRTUAL1 1366x768 && xrandr --output LVDS1 --primary --preferred --mode 1366x768 --output VIRTUAL1 --mode 1366x768 --right-of LVDS1'
-alias xvirtl='xrandr --addmode VIRTUAL1 1366x768 && xrandr --output LVDS1 --primary --preferred --mode 1366x768 --output VIRTUAL1 --mode 1366x768 --left-of LVDS1'
-alias xvirtoff='xrandr --output VIRTUAL1 --off'
+# }}}
+# check ping {{{
 alias pn='ping -c 10 -i .2 8.8.8.8'
+# }}}
+# improved dd {{{
 alias dd='sudo dcfldd'
-alias yor='sudo pacman -R $(pacman -Qtdq)'
+# }}}
+# remove trash files {{{
 alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/gksu.lock'
+# }}}
+# msfconsole {{{
 alias msf='msfconsole --quiet -x \"db_connect n@msf\"'
-alias bfg='java -jar /home/n/builds/bfg.jar'
+# }}}
+# git {{{
+# add, commit, and push dotfiles
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
+# git removal tool
+alias bfg='java -jar /home/n/builds/bfg.jar'
+# }}}
+# wireless monitor mode switch {{{
 alias wmon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
+# }}}
+# screen blanking {{{
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
+# }}}
+# send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
+# }}}
 
-#global
-    alias -g vim='nvim'
-    alias -g ...='../..'
-    alias -g ....='../../..'
-    alias -g .....='../../../..'
-#file extensions
+# Global {{{
+alias -g vim='nvim'
+alias -g gvim='konsole -s nvim'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+# }}}
+
+# File Extensions {{{
     alias -s html=firefox
     alias -s conf=vim
     alias -s lua=vim
@@ -40,7 +66,6 @@ alias sendsms='python /home/n/none23/sendsms/sendsms.py'
     alias -s css=vim
     alias -s ini=vim
     alias -s pdf=zathura
+# }}}
 
-		
-
-
+# vim:filetype=zsh:foldmethod=marker:foldlevel=0

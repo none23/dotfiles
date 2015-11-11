@@ -1,21 +1,23 @@
 -- Requirements {{{
-local gears             = require("gears")
-local awful             = require("awful")
-      awful.rules       = require("awful.rules")
-local wibox             = require("wibox")
-local beautiful         = require("beautiful")
-local naughty           = require("naughty")
-local drop              = require("scratchdrop")
-local lain              = require("lain")
-local menubar           = require("menubar")
-local scratch           = require("scratchdrop")
-local nlay              = require("nlay") -- my own awesome layout
+local gears       = require("gears")
+local awful       = require("awful")
+      awful.rules = require("awful.rules")
+local wibox       = require("wibox")
+local beautiful   = require("beautiful")
+local naughty     = require("naughty")
+local drop        = require("scratchdrop")
+local lain        = require("lain")
+local menubar     = require("menubar")
+local scratch     = require("scratchdrop")
+local nlay        = require("nlay") -- my own awesome layout
 -- }}}
 -- Error handling {{{
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-    title = "Oops, you're out of luck, buddy!",
-    text = awesome.startup_errors })
+    naughty.notify({
+                    preset = naughty.config.presets.critical,
+                    title = "Oops, you're out of luck, buddy!",
+                    text = awesome.startup_errors
+                    })
 end
 
 do
@@ -53,6 +55,7 @@ awful.util.spawn_with_shell("xmodmap /home/$USER/.Xmodmap")
 awful.util.spawn_with_shell("xset s off")
 awful.util.spawn_with_shell("xset -dpms")
 awful.util.spawn_with_shell("xset r rate 200 60")
+awful.util.spawn_with_shell("xinput --disable SynPS/2\ Synaptics\ TouchPad")
 awful.util.spawn_with_shell("source /home/$USER/.aliases")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lua")
 -- }}}
@@ -91,10 +94,12 @@ local layouts = {
                  }
 tags = {
         name = {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
-        layout = { layouts[4],
-                   layouts[1], layouts[1], layouts[1], layouts[1],
-                   layouts[2], layouts[2], layouts[2],
-                   layouts[3] }
+        layout = {
+                  layouts[4],
+                  layouts[1], layouts[1], layouts[1], layouts[1],
+                  layouts[2], layouts[2], layouts[2],
+                  layouts[3]
+                  }
        }
 for s = 1, screen.count() do
     tags[s] = awful.tag(tags.name, s, tags.layout)
@@ -136,70 +141,112 @@ require("awful.autofocus")
 for s = 1, screen.count() do
     if beautiful.wallpaper then
         --gears.wallpaper.fit(beautiful.wallpaper, s) end end
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true) end end
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+    end
+end
 -- }}}
 -- Freedesktop menu {{{
 mymainmenu = awful.menu.new({
                              items = require("menugen").build_menu(),
-                             theme = { height = 12,
-                                       width = 130 }
+                             theme = {height = 12,
+                                      width = 130}
                              })
 -- }}}
 -- Batttery warning {{{
-local function trim(s) return s:find'^%s*$' and '' or s:match'^%s*(.*%S)' end
+local function trim(s)
+          return s:find'^%s*$' and '' or s:match'^%s*(.*%S)'
+      end
 local function bat_notification()
-  local f_capacity = assert(io.open("/sys/class/power_supply/BAT1/capacity", "r"))
-  local f_status = assert(io.open("/sys/class/power_supply/BAT1/status", "r"))
-  local bat_capacity = tonumber(f_capacity:read("*all"))
-  local bat_status = trim(f_status:read("*all"))
-  if (bat_capacity <= 10 and bat_status == "Discharging") then naughty.notify({ title = "Battery Warning", text = "Battery low! " .. bat_capacity .."%" .. " left!",
-                                                                                fg="#010101",  bg="#FF0000", timeout= 59, position   = "top_right" }) end end
+          local f_capacity = assert(io.open("/sys/class/power_supply/BAT1/capacity", "r"))
+          local f_status = assert(io.open("/sys/class/power_supply/BAT1/status", "r"))
+          local bat_capacity = tonumber(f_capacity:read("*all"))
+          local bat_status = trim(f_status:read("*all"))
+          if (bat_capacity <= 10 and bat_status == "Discharging") then
+              naughty.notify({
+                              title = "Battery Warning",
+                              text = "Battery low! " .. bat_capacity .."%" .. " left!",
+                              fg="#010101",
+                              bg="#FF0000",
+                              timeout= 59,
+                              position   = "top_right"
+                              })
+          end
+      end
 battimer = timer({timeout = 60})
 battimer:connect_signal("timeout", bat_notification)
 battimer:start()
 -- }}}
 -- Widgets for wibox {{{
+-- define widgets {{{
 markup = lain.util.markup
-  --Textclock
-  --clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-  mytextclock = awful.widget.textclock(markup("#999999", "%d-%a") .. markup("#cccccc", ">") .. markup("#de5e1e", " %H:%M "))
-  --CPU
-  --cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-  cpuwidget = lain.widgets.cpu({settings = function() widget:set_markup(markup("#999999", cpu_now.usage .. "> ")) end})
-  --Battery
-  --baticon = wibox.widget.imagebox(beautiful.widget_batt)
-  batwidget = lain.widgets.bat({settings = function() if bat_now.perc == "N/A" then bat_now.perc = bat_now.perc .. "C " else bat_now.perc = bat_now.perc .. "% " end widget:set_markup(markup("#de5e1e", bat_now.perc)) end})
-  --ALSA volume
-  --volicon = wibox.widget.imagebox(beautiful.widget_vol)
-  volumewidget = lain.widgets.alsa({settings = function() if volume_now.status == "off" then volume_now.level = volume_now.level .. "M" end widget:set_markup(markup("#999999", volume_now.level .. "% ")) end })
-  --MEM
-  --memicon = wibox.widget.imagebox(beautiful.widget_mem)
-  memwidget = lain.widgets.mem({ settings = function() widget:set_markup(markup("#999999", mem_now.used .. "-")) end})
-  --and some spacers
-  spacer = wibox.widget.textbox(" ")
-  yapacer = wibox.widget.textbox(">")
-  --yaparacer = wibox.widget.textbox("-")
-
--- Create a wibox for each screen and add it
+-- textclock {{{
+mytextclock = awful.widget.textclock(markup("#999999", "%d-%a") ..
+                                     markup("#cccccc", ">") ..
+                                     markup("#de5e1e", " %H:%M "))
+-- }}}
+-- cpu {{{
+cpuwidget = lain.widgets.cpu({
+    settings = function()
+                   widget:set_markup(markup("#999999",
+                                            cpu_now.usage .. "> "))
+               end
+    })
+-- }}}
+-- battery {{{
+batwidget = lain.widgets.bat({
+    settings = function()
+                   if bat_now.perc == "N/A" then
+                       bat_now.perc = bat_now.perc .. "C "
+                   else
+                       bat_now.perc = bat_now.perc .. "% "
+                   end
+                   widget:set_markup(markup("#de5e1e", bat_now.perc))
+               end
+    })
+-- }}}
+-- alsa volume {{{
+volumewidget = lain.widgets.alsa({
+    settings = function()
+                   if volume_now.status == "off" then
+                       volume_now.level = volume_now.level .. "M"
+                   end
+                   widget:set_markup(markup("#999999",
+                                            volume_now.level .. "% "))
+               end
+    })
+-- }}}
+-- memory {{{
+memwidget = lain.widgets.mem({
+    settings = function()
+                   widget:set_markup(markup("#999999", mem_now.used .. "-"))
+               end
+    })
+-- }}}
+-- spacers {{{
+spacer = wibox.widget.textbox(" ")
+yapacer = wibox.widget.textbox(">")
+-- }}}
+-- }}}
+-- create a wibox for each screen and add it {{{
 mywibox = {}
 mypromptbox = {}
 mytaglist = {}
---Taglist click action
+-- }}}
+-- Taglist click action {{{
 mytaglist.buttons = awful.util.table.join(
-  awful.button({        }, 1, awful.tag.viewonly),
-  awful.button({ modkey }, 1, awful.client.movetotag),
-  awful.button({        }, 3, awful.tag.viewtoggle),
-  awful.button({ modkey }, 3, awful.client.toggletag))
+    awful.button({}, 1, awful.tag.viewonly),
+    awful.button({modkey}, 1, awful.client.movetotag),
+    awful.button({}, 3, awful.tag.viewtoggle),
+    awful.button({modkey}, 3, awful.client.toggletag))
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
-    awful.button({ }, 1, function (c)
-                            if c == client.focus
-                                then c.minimized = true
+    awful.button({}, 1, function (c)
+                            if c == client.focus then
+                                c.minimized = true
                             else
                                 c.minimized = false
-
-                                if not c:isvisible()
-                                    then awful.tag.viewonly(c:tags()[1])
+                                if not c:isvisible() then
+                                    awful.tag.viewonly(c:tags()[1])
                                 end
 
                                 client.focus = c
@@ -207,14 +254,15 @@ mytasklist.buttons = awful.util.table.join(
                             end
                         end),
 
-    awful.button({ }, 3, function ()
+    awful.button({}, 3, function ()
                             if instance
                                 then instance:hide()
                                 instance = nil
                             else
-                                instance = awful.menu.clients({ width=250 })
+                                instance = awful.menu.clients({width=250})
                             end
                         end))
+-- }}}
 -- }}}
 -- Wibox {{{
 for s = 1, screen.count() do
@@ -667,17 +715,19 @@ for i = 1, 9 do
                     function ()
                         local tag = awful.tag.gettags(client.focus.screen)[i]
                         if client.focus and tag
-                            then awful.client.movetotag(tag)
+                            then awful.client.toggletag(tag)
                         end
-                     end),
-
-        awful.key({modkey, alt, shift}, "#"..i + 9,
+                     end)
+        --[[
+        awful.key({modkey, shift}, "#"..i + 9,
                   function ()
                       local tag = awful.tag.gettags(client.focus.screen)[i]
                       if client.focus and tag
                           then awful.client.toggletag(tag)
                       end
-                  end))
+                  end)
+        --]]
+        )
 end
 -- }}}
 -- }}}
