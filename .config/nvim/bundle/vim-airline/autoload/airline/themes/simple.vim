@@ -1,9 +1,9 @@
 let g:airline#themes#simple#palette = {}
 
-let s:guibg = '#000000'
+let s:guibg = '#191919'
 let s:guibg2 = '#101010'
 let s:termbg = 0
-let s:termbg2= 17
+let s:termbg2= 232
 
 let s:N1 = [ s:guibg , '#ff5500' , s:termbg , 202 ]
 let s:N2 = [ '#ff5500' , s:guibg2, 202 , s:termbg2 ]
