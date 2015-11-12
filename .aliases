@@ -18,7 +18,8 @@ alias sshpotify='sshuttle -r 52.1.52.92 78.31.8.0/21 193.182.8.0/21 95.215.60.0/
 # }}}
 # touchpad switch {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
-alias ton='xinput --enable SynPS/2\ Synaptics\ TouchPad'
+alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
+alias ton='tonn && (sleep 10 && toff) &'
 # }}}
 # check ping {{{
 alias pn='ping -c 10 -i .2 8.8.8.8'
