@@ -14,7 +14,7 @@ alias yor='sudo pacman -R $(pacman -Qtdq)'
 # sshuttle {{{
 alias sshide='sshuttle -r 52.1.52.92 0/0 --dns -D'
 alias sshive='sshuttle -r 52.1.52.92 0/0 --dns -v' 
-alias sshpotify='sshuttle -r 52.1.52.92 78.31.8.0/21 193.182.8.0/21 95.215.60.0/22 --dns -D'
+alias sshpotify='sshuttle -r 52.1.52.92 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -D'
 # }}}
 # touchpad switch {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
@@ -71,7 +71,8 @@ alias -g .....='../../../..'
     alias -s pdf=zathura
 # }}}
 
-# Execute at sourcing this file: {{{
+# Execute upon sourcing this file: {{{
+source ~/.private_aliases
 toff
 # }}}
 
