@@ -755,6 +755,10 @@ awful.rules.rules = {
         properties = {floating = true}},
     {rule = {name = "Firefox Preferences"},
         properties = {floating = true}},
+    {rule = {class = "Abp"},
+        properties = {floating = true}},
+    {rule = {class = "Stylish"},
+        properties = {floating = true}},
     {rule = {class = "URxvt"},
         properties = {opacity = 0.90}},
     {rule = {class = "Lxterminal"},
@@ -786,6 +790,7 @@ awful.rules.rules = {
     {rule = {role = "gimp-image-window"},
         properties = {maximized_vertical = true}}
 }
+-- }}}
 -- Signals {{{
 -- signal function to execute when a new client appears {{{
 client.connect_signal("manage",
