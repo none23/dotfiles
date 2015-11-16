@@ -49,6 +49,9 @@ alias gdrk='xset dpms force off'
 # send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
 # }}}
+# ranger fm {{{
+alias rr='ranger .'
+# }}}
 # }}}
 
 # Global Aliases {{{
