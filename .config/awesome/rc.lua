@@ -71,7 +71,7 @@ tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
 browser    = "firefox"
-browser2   = "chromium"
+browser2   = "chromium --kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
@@ -662,9 +662,9 @@ clientkeys = awful.util.table.join(
                 function (c) awful.client.floating.toggle()
                 end),
 
-    awful.key({modkey}, "f",
+    --[[awful.key({modkey}, "f",
                 function (c) c.fullscreen = not c.fullscreen
-                end),
+                end),]] -- fullscreen is disabled globally (see signals)
 
     awful.key({modkey}, "t",
                 function (c) c.ontop = not c.ontop
@@ -759,6 +759,10 @@ awful.rules.rules = {
         properties = {floating = true}},
     {rule = {name = "Install user style"},
         properties = {floating = true}},
+    {rule = {class = "chromium"},
+        properties = {maximized_horizontal = false,
+                      maximized_vertical = false,
+                      floating = false}},
     {rule = {class = "URxvt"},
         properties = {opacity = 0.90}},
     {rule = {class = "Lxterminal"},
@@ -821,29 +825,37 @@ client.connect_signal("focus",
     end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
--- {{{ Arrange signal handler
-for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
-        local clients = awful.client.visible(s)
-        local layout  = awful.layout.getname(awful.layout.get(s))
+-- {{{ Signal handler
+for s = 1, screen.count() do
+    screen[s]:connect_signal("arrange",
+        function ()
+            local clients = awful.client.visible(s)
+            local layout  = awful.layout.getname(awful.layout.get(s))
 
-        if #clients > 0 then -- Fine grained borders and floaters control
-            for _, c in pairs(clients) do -- Floaters always have borders
-                -- No borders with only one humanly visible client
-                if layout == "max" then
-                    c.border_width = 0
-                elseif awful.client.floating.get(c) or layout == "floating" then
-                    c.border_width = beautiful.border_width
-                elseif #clients == 1 then
-                    clients[1].border_width = 0
-                    if layout ~= "max" then
-                        awful.client.moveresize(0, 0, 2, 0, clients[1])
+            if #clients > 0 then 
+                for _, c in pairs(clients) do 
+
+                    -- Disable fullscreen {{{
+                    if c.fullscreen == true then
+                        c.fullscreen = false
                     end
-                else
-                    c.border_width = beautiful.border_width
+                    -- }}}
+
+                    -- Borders {{{
+                    -- floaters always have a boarder
+                    if awful.client.floating.get(c) or layout == "floating" then
+                        c.border_width = beautiful.border_width
+
+                    -- no border for the only client
+                    elseif #clients == 1 then
+                        clients[1].border_width = 0
+                    else
+                        c.border_width = beautiful.border_width
+                    end
+                    -- }}}
                 end
             end
-        end
-      end)
+        end)
 end
 -- }}}
 -- }}}

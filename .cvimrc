@@ -1,49 +1,38 @@
 " Settings
-
 set nohud
 set noautofocus
 set nosmoothscroll
 set changelog
-
 let blacklists = ["https://mail.google.com/*", "*://mail.google.com/*", "@https://mail.google.com/mail/*"]
 let searchengine habr = "http://habrahabr.ru/search/?q="
 let searchengine youtube = "https://www.youtube.com/search?q="
 let searchalias h = "habr"
 let searchalias g = "google"
-
 set completeonopen
-    
 " page-searching
 set smartcase
 set incsearch
 let searchlimit = 40
 let scrollstep = 300
-
 "path
 set localconfig
 homedirectory="/home/n/downloads"
-
 " color/formatting
 let barposition="bottom"
 let highlight="#e47e4a"
 let activehighlight="#ff5500"
 set dimhintcharacters
 set showtabindices
-
 "mappings
 set insertmappings
 let mapleader = " "
-
 map ; :
-
 unmap w
 unmap s
 unmap e
 unmap s
-
 unmap R
 unmap E
-
-map <Leader>x :restore<Space>
-
+map u :restore<Space>
+map d x
 let qmark a = ["https://github.com/none23", "https://mail.google.com"]
