@@ -1,0 +1,11 @@
+    html {background: #000}
+    html {
+      -webkit-filter: grayscale(10%) invert(1) brightness(1) contrast(1) hue-rotate(180deg);
+      filter: grayscale(10%) invert(1) brightness(1) contrast(1) hue-rotate(180deg);
+      min-height: 100% !important;
+    }
+
+    img {
+      -webkit-filter: invert(1) hue-rotate(180deg);
+      filter: invert(1) hue-rotate(180deg);
+    }
