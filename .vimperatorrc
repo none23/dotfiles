@@ -1,4 +1,4 @@
-" Settings ____________________________________________________________________
+" Settings {{{
 
 " safe browsing
 set noloadplugins
@@ -16,15 +16,19 @@ set followhints=1
 
 " don't autofocus input elements on open
 set focuscontent
+" }}}
 
-" GUI _________________________________________________________________________
+" GUI {{{
 
 " title
 set titlestring=
 
-"
+" load userstyles
+source ~/.vimperator/styles/styles.js
+styledisable -name orangeblack
+styledisable -name inverted
 
-" status contents
+" status bar contents
 set status="ssl,location,bookmark,tabcount,position"
 
 " open links in a new tab
@@ -33,21 +37,19 @@ set popups=tab
 " no tab numbers
 set notabnumbers
 
-" 
-
 
 " show tabbar only
 set gui=none,tabs
 
 " colorscheme
 colorscheme nwsome
+" }}}
 
-
-" Mappings ____________________________________________________________________
+" Mappings {{{
 
 " move faster
-nnoremap j 7j
-nnoremap k 7k
+nnoremap j 9j
+nnoremap k 9k
 
 " colon - semicolon
 nnoremap ; :
@@ -56,6 +58,12 @@ nnoremap ; :
 nnoremap K :tabnext<CR>
 nnoremap J :tabNext<CR>
 
-" " close tab with x
-" nnoremap x :tabclose<CR>
+" toggle inverted color
+nmap <F2> :styletoggle -name inverted<CR>
+" nmap <leader>b :styletoggle -name orangeblack<CR>    -- NOT READY YET
 
+" gogle translate shortcut
+nmap <F4> :winopen https://translate.google.com<CR>
+" }}}
+
+" vim:filetype=vim:foldmethod=marker:foldlevel=0
