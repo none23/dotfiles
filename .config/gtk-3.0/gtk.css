@@ -2,14 +2,14 @@
 
 /* select-on */
 @define-color selected_bg_color #000000;
-@define-color selected_fg_color #f57900;
+@define-color selected_fg_color #ff5500;
 @define-color theme_selected_bg_color @selected_bg_color;
 @define-color theme_selected_fg_color @selected_fg_color;
 /* select-on */
 
 /* panel-on */
-@define-color panel_bg_color #232323;
-@define-color panel_fg_color #f57900;
+@define-color panel_bg_color #111111;
+@define-color panel_fg_color #ff5500;
 
 PanelWidget,
 PanelApplet,
@@ -88,8 +88,8 @@ WnckTasklist {
 /* panel-on */
 
 /* menu-on */
-@define-color menu_bg_color #232323;
-@define-color menu_fg_color #d3d7cf;
+@define-color menu_bg_color #111111;
+@define-color menu_fg_color #aaaaaa;
 
 GtkTreeMenu.menu,
 GtkMenuToolButton.menu,
@@ -125,12 +125,13 @@ GtkTreeMenu .menuitem * {
 
 .menuitem,
 .menu .menuitem {
-	background-color: transparent;
+	background-color: #232323;
 }
 
 .menu .menuitem:active,
 .menu .menuitem:hover {
-	background-color: @theme_selected_bg_color;
+	background-color: #121212;
+	color: #ff5500;
 }
 
 .menuitem.check,
@@ -139,12 +140,13 @@ GtkTreeMenu .menuitem * {
 .menuitem.radio:hover,
 .menuitem.check:active,
 .menuitem.radio:active {
-	background-color: transparent;
+	background-color: #ff5500;
+	color: #000000;
 }
 
 .menu .menuitem:insensitive,
 .menu .menuitem *:insensitive {
-	color: mix(@menu_fg_color,@menu_bg_color,0.5);
+	color: #444444;
 }
 
 .menuitem.arrow {
@@ -170,7 +172,7 @@ GtkTreeMenu .menuitem * {
 
 .menuitem.separator {
 	background-color: transparent;
-	color: shade(@menu_bg_color, 0.9);
+	color: shade(@menu_bg_color, 0.4);
 }
 
 .menuitem GtkCalendar,
