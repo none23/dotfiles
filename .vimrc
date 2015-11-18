@@ -1,6 +1,6 @@
 set nocompatible
-filetype off
 " Vundle {{{
+filetype off
 " Set up Vundle if not installed {{{
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
@@ -357,4 +357,4 @@ let g:airline#extensions#tabline#enabled=0
 
 " }}}
 
-" vim:foldmethod=marker:foldlevel=1
+" vim:foldmethod=marker:foldlevel=0
