@@ -2,6 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=45000
+export GTK_OVERLAY_SCROLLING=0
 setopt appendhistory
 bindkey -v
 # End of lines configured by zsh-newuser-install
