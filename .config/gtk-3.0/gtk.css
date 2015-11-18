@@ -140,8 +140,8 @@ GtkTreeMenu .menuitem * {
 .menuitem.radio:hover,
 .menuitem.check:active,
 .menuitem.radio:active {
-	background-color: #ff5500;
-	color: #000000;
+	background-color: #222;
+	color: #111;
 }
 
 .menu .menuitem:insensitive,
@@ -191,3 +191,24 @@ GtkTreeMenu .menuitem * {
 }
 
 /* menu-on */
+.window-frame, .window-frame:backdrop {
+ box-shadow: 0 0 0 black;
+ border-style: none;
+ margin: 0;
+ border-radius: 0;
+}
+
+.titlebar {
+ border-radius: 0;
+}
+
+
+.header-bar {
+  background-image: none;
+  background-color: #111;
+  box-shadow: none;
+}
+/* You may want to use this if you don't like the double title.
+GtkLabel.title {
+    opacity: 0;
+}*/
