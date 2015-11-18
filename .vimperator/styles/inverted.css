@@ -9,3 +9,9 @@
       -webkit-filter: invert(1) hue-rotate(180deg);
       filter: invert(1) hue-rotate(180deg);
     }
+
+hi Hint font-size: 12px; font-weight: bold; color:#000; background-color:#FF5500; padding: 0px 2px 0px 2px;
+hi Hint::after content: attr(number);
+hi HintActive background-color: #0055FF; color: #000;
+hi HintElem background-color: #DE5E1E; color: #000;
+hi HintImage opacity: 0.5;

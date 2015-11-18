@@ -25,3 +25,9 @@
 /* patch: hitbox(3) */ div.mediaControls,div[ng-click="doubleClickFullscreen()"],button[class] { background-color: initial !important; }
 
 /* patch: firefox bug */ div[id="tab-background-fill"] { background-color: initial !important; }
+
+hi Hint font-size: 12px; font-weight: bold; color:#fff; background-color:#FF5500; padding: 0px 2px 0px 2px;
+hi Hint::after content: attr(number);
+hi HintActive background-color: #0055FF; color: #fff;
+hi HintElem background-color: #DE5E1E; color: #fff;
+hi HintImage opacity: 0.5;
