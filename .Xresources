@@ -2,7 +2,7 @@
 ! 
 !  General
 urxvt*termName:           rxvt-unicode-256color
-urxvt*loginShell:         true
+URxvt*termName:           rxvt-unicode-256color
 urxvt*scrollBar:         false
 URxvt*scrollTtyOutput: false
 URxvt*scrollTtyKeypress: true
@@ -18,18 +18,17 @@ urxvt*urgentOnBell:       true
 
  ! Extensions:
 !urxvt*perl-lib:        /usr/lib/urxvt/perl/
-urxvt*perl-ext-common: default,matcher,searchable-scrollback,clipboard,autocomplete-ALL-the-things
+urxvt*perl-ext-common: default,matcher,searchable-scrollback
 urxvt*urlLauncher:     /usr/local/bin/firefox
-URxvt.keysym.M-slash:  perl:aAtt:complete
 
 urxvt*matcher.button:  1
  ! Catch ugly URLs:
  
  ! Appearance:
 
-!urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
-!urxvt*font:    URxvt.font: xft:Terminess\ Powerline:pixelsize=8,xft:Fixed:pixelsize=8
-!urxvt*boldFont: URxvt.font: xft:Terminess\ Powerline:pixelsize=8,xft:Fixed:pixelsize=8
+URxvt*font: xft:Terminess\ Powerline:pixelsize=9,xft:Terminess\ Powerline:pixelsize=8
+URxvt*faceName:Terminess\ Powerline:style=Regular:size=8
+urxvt*faceName:Terminess\ Powerline:style=Regular:size=8
  
  ! Cursor:
 urxvt*cursorColor: #DCDCCC
@@ -40,43 +39,43 @@ urxvt*.colorUL:    #ffffff
  !urxvt*shading:    50
  !urxvt*transparent:true
 
-			!URxvt*background: [95]#2222
-			URxvt*.foreground: #F2F1F0
-			URxvt*.cursorColor: #F67730
+            !URxvt*background: [95]#2222
+            URxvt*.foreground: #F2F1F0
+            URxvt*.cursorColor: #F67730
 
-			!black:
-			!URxvt*color0: #222222
-			!URxvt*color8: #666666
+            !black:
+            !URxvt*color0: #222222
+            !URxvt*color8: #666666
 
-			!red:
-			!URxvt*color1: #ff3D3D
-			!URxvt*color9: #ff4F4F
+            !red:
+            !URxvt*color1: #ff3D3D
+            !URxvt*color9: #ff4F4F
 
-			!green:
-			!URxvt*color2: #B7CE42
-			!URxvt*color10: #BDE077
+            !green:
+            !URxvt*color2: #B7CE42
+            !URxvt*color10: #BDE077
 
-			!yellow:
-			!URxvt*color3: #F6784F
-			!URxvt*color11: #F07746
+            !yellow:
+            !URxvt*color3: #F6784F
+            !URxvt*color11: #F07746
 
-			!blue:
-			!URxvt*color4: #7DC1CF
-			!*color4: #66AABB
-			!URxvt*color12: #4E9FB1
-			!*color12: #AACCBB
+            !blue:
+            !URxvt*color4: #7DC1CF
+            !*color4: #66AABB
+            !URxvt*color12: #4E9FB1
+            !*color12: #AACCBB
 
-			!magenta:
-			!URxvt*color5: #B7416E
-			!URxvt*color13: #E16A98
+            !magenta:
+            !URxvt*color5: #B7416E
+            !URxvt*color13: #E16A98
 
-			!cyan:
-			!URxvt*color6: #6D878D
-			!URxvt*color14: #42717B
+            !cyan:
+            !URxvt*color6: #6D878D
+            !URxvt*color14: #42717B
 
-			!white:
-			!URxvt*color7: #F2F1F0
-			!URxvt*color15: #F2F1F0
+            !white:
+            !URxvt*color7: #F2F1F0
+            !URxvt*color15: #F2F1F0
 !BLK Cursor
 #define _color0        #000d18
 #define _color8        #000d18
@@ -106,31 +105,31 @@ urxvt*.colorUL:    #ffffff
 #define _colorUL       #ccdc90
 #define _colorIT       #80d4aa
 !TXT Normal, Normal, Cursor
-		#define _foreground    #ffffff
-		#define _background    #000000
-		#define _cursorColor   #8faf9f
-		URxvt*color0         : _color0
-		URxvt*color1         : _color1
-		URxvt*color2         : _color2
-		URxvt*color3         : _color3
-		URxvt*color4         : _color4
-		URxvt*color5         : _color5
-		URxvt*color6         : _color6
-		URxvt*color7         : _color7
-		URxvt*color8         : _color8
-		URxvt*color9         : _color9
-		URxvt*color10        : _color10
-		URxvt*color11        : _color11
-		URxvt*color12        : _color12
-		URxvt*color13        : _color13
-		URxvt*color14        : _color14
-		URxvt*color15        : _color15
-		URxvt*colorBD        : _colorBD
-		URxvt*colorIT        : _colorIT
-		URxvt*colorUL        : _colorUL
-		URxvt*foreground     : _foreground
-		URxvt*background     : _background
-		URxvt*cursorColor    : _cursorColor
+        #define _foreground    #ffffff
+        #define _background    #000000
+        #define _cursorColor   #8faf9f
+        URxvt*color0         : _color0
+        URxvt*color1         : _color1
+        URxvt*color2         : _color2
+        URxvt*color3         : _color3
+        URxvt*color4         : _color4
+        URxvt*color5         : _color5
+        URxvt*color6         : _color6
+        URxvt*color7         : _color7
+        URxvt*color8         : _color8
+        URxvt*color9         : _color9
+        URxvt*color10        : _color10
+        URxvt*color11        : _color11
+        URxvt*color12        : _color12
+        URxvt*color13        : _color13
+        URxvt*color14        : _color14
+        URxvt*color15        : _color15
+        URxvt*colorBD        : _colorBD
+        URxvt*colorIT        : _colorIT
+        URxvt*colorUL        : _colorUL
+        URxvt*foreground     : _foreground
+        URxvt*background     : _background
+        URxvt*cursorColor    : _cursorColor
 XTerm*color0         : _color0
 XTerm*color1         : _color1
 XTerm*color2         : _color2
@@ -161,12 +160,12 @@ URxvt.keysym.KP_Multiply: *
 URxvt.keysym.KP_Divide  : /
 URxvt.keysym.KP_Decimal : .
 URxvt.keysym.KP_Separator : ,
-URxvt.keysym.KP_2:      	2
-URxvt.keysym.KP_3:      	3
-URxvt.keysym.KP_4:      	4
-URxvt.keysym.KP_5:     	5
-URxvt.keysym.KP_6:     	6
-URxvt.keysym.KP_7:     	7
-URxvt.keysym.KP_8:     	8
-URxvt.keysym.KP_9:     	9
-URxvt.keysym.KP_0:     	0
+URxvt.keysym.KP_2:          2
+URxvt.keysym.KP_3:          3
+URxvt.keysym.KP_4:          4
+URxvt.keysym.KP_5:      5
+URxvt.keysym.KP_6:      6
+URxvt.keysym.KP_7:      7
+URxvt.keysym.KP_8:      8
+URxvt.keysym.KP_9:      9
+URxvt.keysym.KP_0:      0
