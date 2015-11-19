@@ -49,6 +49,7 @@ end
 
 os.setlocale(os.getenv("LANG"))
 run_once("xcompmgr &")
+awful.util.spawn_with_shell("xscreensaver -nosplash &")
 awful.util.spawn_with_shell("unclutter -idle 1 &")
 awful.util.spawn_with_shell("xrdb -merge /home/$USER/.Xresources")
 awful.util.spawn_with_shell("xmodmap /home/$USER/.Xmodmap")
@@ -600,7 +601,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({modkey}, "F12",
               function()
-                  awful.util.spawn("xlock")
+                  awful.util.spawn("xscreensaver-command -lock")
               end),
 
     awful.key({modkey}, "c",
