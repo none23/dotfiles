@@ -19,7 +19,7 @@ alias sshpotify='sshuttle -r 52.1.52.92 78.31.8.0/21 216.58.217.142/24 193.182.8
 # touchpad switch {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
-alias ton='tonn && (sleep 10 && toff) &'
+alias ton='tonn && (sleep 20 && toff) &'
 # }}}
 # check ping {{{
 alias pn='ping -c 10 -i .2 8.8.8.8'
@@ -77,6 +77,7 @@ alias -g .....='../../../..'
 # Execute upon sourcing this file: {{{
 source ~/.private_aliases
 toff
+export QT_QPA_PLATFORMTHEME="qt5ct"
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
