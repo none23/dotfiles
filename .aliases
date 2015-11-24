@@ -40,11 +40,15 @@ alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0
 alias bfg='java -jar /home/n/builds/bfg.jar'
 # }}}
 # wireless monitor mode switch {{{
-alias wmon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
+alias wmonon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
+alias wmonoff='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
 # }}}
 # screen blanking {{{
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
+# }}}
+# matrix wallpaper {{{
+alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
 # }}}
 # send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
