@@ -355,6 +355,10 @@ let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled=0
 " }}}
 
+"  Vim Session {{{
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+" }}}
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
