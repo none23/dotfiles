@@ -2,7 +2,7 @@
 DefaultProfile=zsh.profile
 
 [Favorite Profiles]
-Favorites=zsh.profile,tinyfont.profile
+Favorites=tinyfont.profile,zsh.profile
 
 [KonsoleWindow]
 SaveGeometryOnExit=false
