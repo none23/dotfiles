@@ -45,6 +45,13 @@ alias wmonon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && 
 alias wmonoff='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
 alias alpha='sudo ifconfig wlp0s20u1 down && sudo iw reg set GY && sudo iwconfig wlp0s20u1 mode monitor && sudo ifconfig wlp0s20u1 up && sudo iwconfig wlp0s20u1 txpower 30'
 # }}}
+# wps cracking {{{
+alias rvr='sudo reaver -i wlp0s20u1 -K 1 -vv -b'
+alias airodump='sudo airodump-ng -i wlp0s20u1 --wps --manufacturer'
+# }}}
+# matrix wallpaper {{{
+alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
+# }}}
 # screen blanking {{{
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
