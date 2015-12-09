@@ -48,7 +48,8 @@ alias alpha='sudo ifconfig wlp0s20u1 down && sudo iw reg set GY && sudo iwconfig
 # }}}
 # wps cracking {{{
 alias rvr='sudo reaver -i wlp0s20u1 -K 1 -vv -b'
-alias airodump='sudo airodump-ng -i wlp0s20u1 --wps --manufacturer'
+alias airodext='sudo airodump-ng -i wlp0s20u1 --wps --manufacturer'
+alias airodint='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 # }}}
 # matrix wallpaper {{{
 alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
