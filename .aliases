@@ -43,6 +43,7 @@ alias bfg='java -jar /home/n/builds/bfg.jar'
 # wireless monitor mode switch {{{
 alias wmonon='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias wmonoff='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
+alias alpha='sudo ifconfig wlp0s20u1 down && sudo iw reg set GY && sudo iwconfig wlp0s20u1 mode monitor && sudo ifconfig wlp0s20u1 up && sudo iwconfig wlp0s20u1 txpower 30'
 # }}}
 # screen blanking {{{
 alias wkp='xset dpms force on'
