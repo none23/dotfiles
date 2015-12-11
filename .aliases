@@ -64,6 +64,9 @@ alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glsl
 # send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
 # }}}
+# watch dmesg {{{
+alias dmesgn='watch "dmesg -e | tail"'
+# }}}
 # ranger fm {{{
 alias rr='ranger .'
 # }}}
