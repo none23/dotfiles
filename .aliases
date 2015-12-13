@@ -47,7 +47,8 @@ alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed &&
 alias alpha='sudo ifconfig alfa0 down && sudo iw reg set GY && sudo iwconfig alfa0 mode monitor && sudo ifconfig alfa0 up && sudo iwconfig alfa0 txpower 30'
 # }}}
 # wps cracking {{{
-alias rvr='sudo reaver -i alfa0 -K 1 -vv -b'
+alias rvrint='sudo reaver -i wlp7s0 -K 1 -vv -b'
+alias rvrext='sudo reaver -i alfa0 -K 1 -vv -b'
 alias airodext='sudo airodump-ng -i alfa0 --wps --manufacturer'
 alias airodint='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 # }}}
