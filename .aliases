@@ -59,9 +59,6 @@ alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glsl
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
 # }}}
-# matrix wallpaper {{{
-alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
-# }}}
 # send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms.py'
 # }}}
@@ -70,6 +67,10 @@ alias dmesgn='watch "dmesg -e | tail"'
 # }}}
 # ranger fm {{{
 alias rr='ranger .'
+# }}}
+# scan with sudo {{{
+alias masscan='sudo masscan'
+alias nmap='sudo nmap'
 # }}}
 # }}}
 
