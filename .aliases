@@ -68,9 +68,14 @@ alias dmesgn='watch "dmesg -e | tail"'
 # ranger fm {{{
 alias rr='ranger .'
 # }}}
-# scan with sudo {{{
+# add sudo {{{
 alias masscan='sudo masscan'
 alias nmap='sudo nmap'
+alias mount='sudo mount'
+alias umount='sudo umount'
+alias fdisk='sudo fdisk'
+alias systemctl='sudo systemctl'
+alias systemctl='sudo systemctl'
 # }}}
 # }}}
 
