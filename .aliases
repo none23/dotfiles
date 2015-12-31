@@ -75,7 +75,14 @@ alias mount='sudo mount'
 alias umount='sudo umount'
 alias fdisk='sudo fdisk'
 alias systemctl='sudo systemctl'
-alias systemctl='sudo systemctl'
+alias ifconfig='sudo ifconfig'
+alias cfdisk='sudo cfdisk'
+alias cgdisk='sudo cgdisk'
+alias gdisk='sudo gdisk'
+alias NetworkManager='sudo NetworkManager &'
+alias rfkill='sudo rfkill'
+alias gparted='sudo gparted &'
+
 # }}}
 # }}}
 
