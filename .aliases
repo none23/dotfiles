@@ -79,7 +79,7 @@ alias ifconfig='sudo ifconfig'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
 alias gdisk='sudo gdisk'
-alias NetworkManager='sudo NetworkManager &'
+alias NetworkManager='sudo NetworkManager'
 alias rfkill='sudo rfkill'
 alias gparted='sudo gparted &'
 
