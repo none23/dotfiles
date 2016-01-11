@@ -20,7 +20,7 @@ alias sshpotivy='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 9
 # touchpad switch {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
-alias ton='tonn && (sleep 20 && toff) &'
+alias ton='tonn && (sleep 30 && toff) &'
 # }}}
 # check ping {{{
 alias pn='ping -c 10 -i .2 8.8.8.8'
