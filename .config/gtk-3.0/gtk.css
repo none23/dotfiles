@@ -125,12 +125,12 @@ GtkTreeMenu .menuitem * {
 
 .menuitem,
 .menu .menuitem {
-	background-color: #232323;
+	background-color: #111;
 }
 
 .menu .menuitem:active,
 .menu .menuitem:hover {
-	background-color: #121212;
+	background-color: #222;
 	color: #ff5500;
 }
 
