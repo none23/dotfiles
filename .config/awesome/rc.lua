@@ -752,6 +752,7 @@ awful.rules.rules = {
                              size_hints_honor = true,
                              },
     },
+
     {rule = {name = "Page(s) Unresponsive"},
         properties = {floating = true}},
     {rule = {name = "Firefox Preferences"},
@@ -764,6 +765,7 @@ awful.rules.rules = {
         properties = {maximized_horizontal = false,
                       maximized_vertical = false,
                       floating = false}},
+
     {rule = {class = "URxvt"},
         properties = {opacity = 0.90}},
     {rule = {class = "Lxterminal"},
