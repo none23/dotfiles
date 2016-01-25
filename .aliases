@@ -1,4 +1,3 @@
-# Aliases {{{
 # listing files {{{
 alias la='ls -A --color=tty'
 alias ll='ls -lh --color=tty'
@@ -49,7 +48,8 @@ alias rvrint='sudo reaver -i wlp7s0 -K 1 -vv -b'
 alias rvrext='sudo reaver -i alfa0 -K 1 -vv -b'
 alias airodext='sudo airodump-ng -i alfa0 --wps --manufacturer'
 alias airodint='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
-alias silentjam='sudo wifijammer -d --world >> /dev/zero &'
+alias silentjam='sudo iwconfig && sudo wifijammer -d --world >> /dev/zero &'
+alias foilhat='sudo rfkill block all'
 # }}}
 # matrix wallpaper {{{
 alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
@@ -83,7 +83,6 @@ alias rfkill='sudo rfkill'
 alias gparted='sudo gparted &'
 
 # }}}
-# }}}
 
 # Global Aliases {{{
 alias -g vim='nvim'
@@ -92,7 +91,6 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 # }}}
-
 # File Extensions {{{
     alias -s html=firefox
     alias -s conf=vim
@@ -104,11 +102,9 @@ alias -g .....='../../../..'
     alias -s ini=vim
     alias -s pdf=zathura
 # }}}
-
 # Execute upon sourcing this file: {{{
 source ~/.private_aliases
 toff
 export QT_QPA_PLATFORMTHEME="qt5ct"
 # }}}
-
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
