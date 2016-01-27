@@ -71,8 +71,9 @@ yarminal   = "lxterminal"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
+chromium   = "chromium" 
 browser    = "firefox"
-browser2   = "chromium --kiosk"
+browser2   = chromium .. "--kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
@@ -510,11 +511,11 @@ globalkeys = awful.util.table.join(
               end),
     awful.key({altkey}, "2",
               function ()
-                  awful.util.spawn(browser2)
+                  awful.util.spawn(bzrowser2)
               end),
     awful.key({altkey, ctrl}, "2",
               function ()
-                  awful.util.spawn(pronmode)
+                  awful.util.spawn(chromium)
               end),
 
     awful.key({altkey}, "3",
