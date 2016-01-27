@@ -71,11 +71,11 @@ yarminal   = "lxterminal"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
-browser    = "firefox"
-browser2   = "chromium --kiosk"
+browser2   = "firefox-nightly"
+browser    = "chromium --kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
-pronmode   = "firefox --private-window"
+pronmode   = "firefox-nightly --private-window"
 gvim       = "konsole -e nvim"
 -- }}}
 -- Layouts and tags table {{{
