@@ -71,14 +71,14 @@ yarminal   = "lxterminal"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
-chromium   = "chromium --disable-sync-preferences" 
+chromium   = "chromium"
 browser    = "firefox"
-browser2   = chromium .. " --kiosk"
+browser2   = "chromium --kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
 gvim       = "konsole -e nvim"
--- }}}
+-- }}
 -- Layouts and tags table {{{
 local layouts = {
                  nlay,
@@ -511,7 +511,7 @@ globalkeys = awful.util.table.join(
               end),
     awful.key({altkey}, "2",
               function ()
-                  awful.util.spawn(bzrowser2)
+                  awful.util.spawn(browser2)
               end),
     awful.key({altkey, ctrl}, "2",
               function ()
@@ -836,7 +836,7 @@ for s = 1, screen.count() do
             local clients = awful.client.visible(s)
             local layout  = awful.layout.getname(awful.layout.get(s))
 
-            if #clients > 0 then 
+            if #clients > 0 then
                 for _, c in pairs(clients) do 
 
                     -- Disable fullscreen {{{

@@ -11,7 +11,7 @@ hi CompMsg                                                   font-style: italic;
 hi CompResult                                                max-width:500px; overflow:hidden; font-weight:normal;
 hi ErrorMsg           background:#FF5500;     color:#000000; font-weight: bold;
 hi Filter                                     color:#0055FF; 
-hi StatusLine         background:#000000;     color:#FF5500; font-weight: normal;
+hi StatusLine         background:#000000;     color:#FF5500; font: Ubuntu\ Mono\ derivative\ Powerline; font-weight: normal;
 hi URL                                        color:#333333; 
 hi URL:hover                                  color:#DE5E1E; 
 hi ModeMsg                                    color:#DE5E1E; border-radius: 1px; padding: 0px 5px;

@@ -19,14 +19,13 @@ set focuscontent
 " }}}
 
 " GUI {{{
-
 " title
 set titlestring=
 
 " load userstyles
-source ~/.vimperator/styles/styles.js
-styledisable -name orangeblack
-styledisable -name inverted
+" source ~/.vimperator/styles/styles.js
+" styledisable -name orangeblack
+" styledisable -name inverted
 
 " status bar contents
 set status="ssl,location,bookmark,tabcount,position"
@@ -58,12 +57,12 @@ nnoremap ; :
 nnoremap K :tabnext<CR>
 nnoremap J :tabNext<CR>
 
-" toggle inverted color
-nmap <F2> :styletoggle -name inverted<CR>
+" " toggle inverted color
+" nmap <F2> :styletoggle -name inverted<CR>
 " nmap <leader>b :styletoggle -name orangeblack<CR>    -- NOT READY YET
 
-" gogle translate shortcut
-nmap <F4> :winopen https://translate.google.com<CR>
+" " google translate shortcut
+" nmap <F4> :winopen https://translate.google.com<CR>
 " }}}
 
 " vim:filetype=vim:foldmethod=marker:foldlevel=0
