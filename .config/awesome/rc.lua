@@ -78,7 +78,7 @@ filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
 gvim       = "konsole -e nvim"
--- }}
+-- }}}
 -- Layouts and tags table {{{
 local layouts = {
                  nlay,
@@ -781,10 +781,10 @@ awful.rules.rules = {
         properties = {size_hints_honor = false}},
     {rule = {class = "Gretl_x11"},
         properties = {floating = true}},
+    {rule = {class = "Arandr"},
+        properties = {tag = tags[1][8]}},
     {rule = {class = "Tor Browser"},
         properties = {tag = tags[1][6]}},
-    {rule = {class = "Gvim"},
-        properties = {opacity = 0.90}},
     {rule = {class = "Zathura"},
         properties = {opacity = 0.90}},
     {rule = {class = "TexMaker"},
