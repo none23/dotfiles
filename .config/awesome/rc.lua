@@ -553,6 +553,15 @@ globalkeys = awful.util.table.join(
                   awful.util.spawn_with_shell("gksudo" .. bash)
               end),
 
+    -- on-the-fly transparency setting
+    awful.key({altkey}, "8",
+              function ()
+                  awful.util.spawn("transset-df .7")
+              end),
+    awful.key({altkey, ctrl}, "8",
+              function ()
+                  awful.util.spawn("transset-df .3")
+              end),
     awful.key({altkey}, "9",
               function ()
                   awful.util.spawn("transset-df .7")
@@ -837,7 +846,7 @@ for s = 1, screen.count() do
             local layout  = awful.layout.getname(awful.layout.get(s))
 
             if #clients > 0 then
-                for _, c in pairs(clients) do 
+                for _, c in pairs(clients) do
 
                     -- Disable fullscreen {{{
                     if c.fullscreen == true then
