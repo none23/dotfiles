@@ -540,17 +540,14 @@ globalkeys = awful.util.table.join(
                   awful.util.spawn_with_shell("gksudo" .. filemgr2)
               end),
 
-    awful.key({altkey}, "6",
+    awful.key({altkey}, "5",
               function ()
                   awful.util.spawn(tmux)
               end),
-    awful.key({altkey, ctrl}, "6",
+
+    awful.key({altkey}, "6",
               function ()
                   awful.util.spawn(bash)
-              end),
-    awful.key({altkey,ctrl}, "asciicircum",
-              function ()
-                  awful.util.spawn_with_shell("gksudo" .. bash)
               end),
 
     -- transparency manipulations
@@ -569,15 +566,6 @@ globalkeys = awful.util.table.join(
     awful.key({altkey, ctrl}, "9",
               function ()
                   awful.util.spawn("transset-df .4")
-              end),
-
-    awful.key({altkey}, "0",
-              function ()
-                  awful.util.spawn("pavucontrol")
-              end),
-    awful.key({altkey, ctrl}, "0",
-              function ()
-                  awful.util.spawn("paprefs")
               end),
     -- }}}
     -- scratchdrop applications {{{
