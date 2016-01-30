@@ -1,8 +1,8 @@
 [Desktop Entry]
-DefaultProfile=zsh.profile
+DefaultProfile=nwsome.profile
 
 [Favorite Profiles]
-Favorites=zsh.profile,tinyfont.profile
+Favorites=nwsome.profile,tinyfont.profile
 
 [KonsoleWindow]
 SaveGeometryOnExit=false
