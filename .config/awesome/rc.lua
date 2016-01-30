@@ -67,7 +67,7 @@ alt        = "Alt"
 ctrl       = "Control"
 
 terminal   = "konsole"
-yarminal   = "lxterminal"
+yarminal   = "urxvt"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
@@ -495,7 +495,7 @@ globalkeys = awful.util.table.join(
               end),
     awful.key({modkey}, "KP_Enter",
               function ()
-                  awful.util.spawn_with_shell(suterm)
+                  awful.util.spawn_with_shell(yarminal)
               end),
     awful.key({altkey}, "grave",
               function ()
@@ -550,7 +550,12 @@ globalkeys = awful.util.table.join(
                   awful.util.spawn(bash)
               end),
 
-    -- transparency manipulations
+    awful.key({altkey}, "7",
+              function ()
+                  awful.util.spawn(arandr)
+              end),
+
+    -- changing transparency quickly
     awful.key({altkey}, "8",
               function ()
                   awful.util.spawn("transset-df 1")
@@ -778,10 +783,12 @@ awful.rules.rules = {
         properties = {size_hints_honor = false}},
     {rule = {class = "Gretl_x11"},
         properties = {floating = true}},
-    {rule = {class = "Arandr"},
-        properties = {tag = tags[1][8]}},
     {rule = {class = "Tor Browser"},
         properties = {tag = tags[1][6]}},
+    {rule = {class = "Arandr"},
+        properties = {tag = tags[1][8]}},
+    {rule = {class = "chromium"},
+        properties = {tag = tags[1][9]}},
     {rule = {class = "Zathura"},
         properties = {opacity = 0.90}},
     {rule = {class = "TexMaker"},
