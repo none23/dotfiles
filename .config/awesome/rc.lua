@@ -553,22 +553,22 @@ globalkeys = awful.util.table.join(
                   awful.util.spawn_with_shell("gksudo" .. bash)
               end),
 
-    -- on-the-fly transparency setting
+    -- transparency manipulations
     awful.key({altkey}, "8",
               function ()
-                  awful.util.spawn("transset-df .7")
+                  awful.util.spawn("transset-df 1")
               end),
     awful.key({altkey, ctrl}, "8",
               function ()
-                  awful.util.spawn("transset-df .3")
+                  awful.util.spawn("transset-df .8")
               end),
     awful.key({altkey}, "9",
               function ()
-                  awful.util.spawn("transset-df .7")
+                  awful.util.spawn("transset-df .65")
               end),
     awful.key({altkey, ctrl}, "9",
               function ()
-                  awful.util.spawn("transset-df .3")
+                  awful.util.spawn("transset-df .4")
               end),
 
     awful.key({altkey}, "0",
