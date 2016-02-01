@@ -1,5 +1,5 @@
 # listing files {{{
-alias la='ls -A --color=tty'
+alias la='ls -Alh --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
 # }}}
