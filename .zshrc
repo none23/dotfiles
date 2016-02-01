@@ -16,7 +16,6 @@ compinit
 source ~/.aliases
 set -o vi
 xrdb ~/.Xresources
-source /bin/aws_zsh_completer.sh
 setopt completealiases
 
 # Turn on 256 color support
@@ -27,12 +26,10 @@ fi
 
 autoload -Uz promptinit
 autoload -U colors && colors
-
 promptinit
 prompt off
 
-
-# Numeric Keypad
+# Numeric Keypad {{{
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey -s "^[5~" "Prior"
@@ -41,16 +38,25 @@ bindkey -s "^[Oo" "/"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
+# }}}
 
-# Powerline
+# AWS-completer {{{
+source /bin/aws_zsh_completer.sh
+# }}}
+
+# Powerline {{{
  powerline-daemon -q
  . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+# }}}
 
-# SSH-Agent 
+# SSH-Agent {{{
 eval $(keychain --eval --quiet id_rsa)
+# }}}
 
-# Virtualenvwrapper
+# Virtualenvwrapper {{{
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=/home/n/projects
 source /usr/bin/virtualenvwrapper.sh
+# }}}
 
+# vim:filetype=zsh:foldmethod=marker:foldlevel=0
