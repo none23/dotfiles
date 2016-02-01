@@ -3,13 +3,6 @@ alias la='ls -Alh --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
 # }}}
-# package mgmt {{{
-alias p='sudo pacman'
-alias P='sudo pacman -Syu'
-alias y='yaourt'
-alias Y='yaourt -Syua'
-alias yor='sudo pacman -R $(pacman -Qtdq)'
-# }}}
 # sshuttle {{{
 alias sshide='sshuttle -r aws 0/0 --dns -D'
 alias sshive='sshuttle -r aws 0/0 --dns -v'
@@ -35,6 +28,8 @@ alias msf='sudo systemctl start postgresql.service && sudo msfconsole'
 # }}}
 # git {{{
 # add, commit, and push dotfiles
+# add, commit, and push dotfiles
+alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
 # git removal tool
 alias bfg='java -jar /home/n/builds/bfg.jar'
@@ -82,6 +77,13 @@ alias NetworkManager='sudo NetworkManager'
 alias rfkill='sudo rfkill'
 alias gparted='sudo gparted &'
 
+# }}}
+# package mgmt {{{
+alias p='sudo pacman'
+alias P='sudo pacman -Syu'
+alias y='yaourt'
+alias Y='yaourt -Syua && pkglist'
+alias yor='sudo pacman -R $(pacman -Qtdq)'
 # }}}
 
 # Global Aliases {{{
