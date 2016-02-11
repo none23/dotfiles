@@ -769,6 +769,8 @@ awful.rules.rules = {
                       maximized_vertical = false,
                       floating = false}},
 
+    {rule = {class = "konsole"},
+        properties = {opacity = 0.90}},
     {rule = {class = "URxvt"},
         properties = {opacity = 0.90}},
     {rule = {class = "Lxterminal"},
