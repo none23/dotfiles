@@ -20,15 +20,14 @@ Plugin 'gmarik/vundle'
 " Quickly anywhere without counting words
 Plugin 'easymotion/vim-easymotion'
 " Airline
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Class/module browser
 Plugin 'majutsushi/tagbar'
 " Zen coding
 Plugin 'mattn/emmet-vim'
 " Tab list panel
 Plugin 'kien/tabman.vim'
-" Terminal Vim with 256 colors colorscheme
-Plugin 'fisadev/fisa-vim-colorscheme'
 " Surround
 Plugin 'tpope/vim-surround'
 " Expand region
