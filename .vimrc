@@ -348,7 +348,7 @@ endif
 
 " Airline {{{
 let g:airline_powerline_fonts=1
-let g:airline_theme='simple'
+let g:airline_theme='nwsome'
 
 " tab line (off)
 let g:airline#extensions#tabline#enabled=0
