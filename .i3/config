@@ -11,7 +11,8 @@
 
 set $mod Mod4
 
-font pango:Terminus 9
+font pango:Ubuntu Mono 8
+
 
 new_window pixel 1
 new_float pixel 1
