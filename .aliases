@@ -109,7 +109,6 @@ alias -g .....='../../../..'
 # }}}
 # Execute upon sourcing this file: {{{
 source ~/.private_aliases
-toff
 export QT_QPA_PLATFORMTHEME="qt5ct"
 cat ~/TODO
 # }}}
