@@ -783,6 +783,8 @@ awful.rules.rules = {
         properties = {size_hints_honor = false}},
     {rule = {class = "Gnome-terminal"},
         properties = {size_hints_honor = false}},
+    {rule = {class = "feh"},
+        properties = {floating = true}},
     {rule = {class = "Gretl_x11"},
         properties = {floating = true}},
     {rule = {class = "Tor Browser"},
