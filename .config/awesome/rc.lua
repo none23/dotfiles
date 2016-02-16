@@ -77,7 +77,9 @@ browser2   = "chromium --kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
-gvim       = "konsole -e nvim"
+gvim       = "nvim-qt"
+sublime    = "subl3"
+
 -- }}}
 -- Layouts and tags table {{{
 local layouts = {
@@ -501,6 +503,10 @@ globalkeys = awful.util.table.join(
               function ()
                   awful.util.spawn(gvim)
               end),
+    awful.key({altkey, ctrl}, "grave",
+              function ()
+                  awful.util.spawn(sublime)
+              end),
     awful.key({altkey}, "1",
               function ()
                   awful.util.spawn(browser)
@@ -769,6 +775,8 @@ awful.rules.rules = {
                       maximized_vertical = false,
                       floating = false}},
 
+    {rule = {class = "nvim-qt"},
+        properties = {opacity = 0.90}},
     {rule = {class = "konsole"},
         properties = {opacity = 0.90}},
     {rule = {class = "URxvt"},
