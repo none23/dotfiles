@@ -91,7 +91,7 @@ alias yor='sudo pacman -R $(pacman -Qtdq)'
 
 # Global Aliases {{{
 alias -g vim='nvim'
-alias -g gvim='konsole -s nvim'
+alias -g gvim='nvim-qt'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
