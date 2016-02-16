@@ -360,4 +360,14 @@ let g:session_autosave = 'no'
 " }}}
 " }}}
 
+" Neovim-qt Settings {{{
+
+" Neovim-qt Guifont command
+command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
+
+" Set the font
+Guifont Terminess Powerline:h9
+
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
