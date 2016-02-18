@@ -77,7 +77,7 @@ browser2   = "chromium --kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
-gvim       = "nvim-qt"
+gvim       = "konsole -e nvim"
 sublime    = "subl3"
 
 -- }}}
