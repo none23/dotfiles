@@ -7,11 +7,11 @@
   <property name="last-window-height" type="int" value="750"/>
   <property name="last-window-maximized" type="bool" value="false"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_SMALLEST"/>
-  <property name="last-details-view-column-widths" type="string" value="50,676,50,50,218,50,50,70,388"/>
+  <property name="last-details-view-column-widths" type="string" value="50,227,50,50,536,50,50,70,388"/>
   <property name="last-separator-position" type="int" value="140"/>
   <property name="last-statusbar-visible" type="bool" value="false"/>
   <property name="last-location-bar" type="string" value="ThunarLocationEntry"/>
-  <property name="last-side-pane" type="string" value="void"/>
+  <property name="last-side-pane" type="string" value="ThunarShortcutsPane"/>
   <property name="misc-single-click" type="bool" value="false"/>
   <property name="default-view" type="string" value="ThunarDetailsView"/>
   <property name="last-show-hidden" type="bool" value="true"/>
