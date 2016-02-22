@@ -110,6 +110,5 @@ alias -g .....='../../../..'
 # Execute upon sourcing this file: {{{
 source ~/.private_aliases
 export QT_QPA_PLATFORMTHEME="qt5ct"
-echo "<add_memento.py_here>"
 # }}}
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
