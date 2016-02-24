@@ -78,7 +78,7 @@ filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
 gvim       = "konsole -e nvim"
-sublime    = "subl3"
+atom       = "atom"
 
 -- }}}
 -- Layouts and tags table {{{
@@ -505,7 +505,7 @@ globalkeys = awful.util.table.join(
               end),
     awful.key({altkey, ctrl}, "grave",
               function ()
-                  awful.util.spawn(sublime)
+                  awful.util.spawn(atom)
               end),
     awful.key({altkey}, "1",
               function ()
