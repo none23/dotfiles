@@ -38,7 +38,7 @@ set notabnumbers
 
 
 " show tabbar only
-set gui=none,tabs
+set gui=none,tabs,navigation
 
 " colorscheme
 colorscheme nwsome

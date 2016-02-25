@@ -503,10 +503,6 @@ globalkeys = awful.util.table.join(
               function ()
                   awful.util.spawn(gvim)
               end),
-    awful.key({altkey, ctrl}, "grave",
-              function ()
-                  awful.util.spawn(atom)
-              end),
     awful.key({altkey}, "1",
               function ()
                   awful.util.spawn(browser)
@@ -548,7 +544,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({altkey}, "5",
               function ()
-                  awful.util.spawn(tmux)
+                  awful.util.spawn(atom)
               end),
 
     awful.key({altkey}, "6",
