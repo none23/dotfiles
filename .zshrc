@@ -65,5 +65,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # }}}
 
+# Turn off touchpad {{{
+toff   # defined in ~/.aliases
+# }}}
+
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
 
