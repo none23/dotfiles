@@ -184,17 +184,9 @@ imap <C-S-Left> <Esc>:tabp<CR>
 " }}}
 
 " Splits navigation {{{
-map <F2> :sp<CR>
-map <F4> :below 10sp term://$SHELL<CR>i
-
-map <S-F2> :vs<CR>
-map <S-F14> :vs<CR>
-
-map <S-F4> :vs<CR>:term<CR>
-map <S-F16> :vs<CR>:term<CR>
-
-map <S-F4> :below 10sp term:///bin/ipython3<CR>i
-map <S-F16> :below 10sp term:///bin/ipython3<CR>i
+map <F2> :below 10sp term://$SHELL<CR>i
+map <F3> :above 10sp term:///usr/bin/ranger<CR>
+map <F4> :below 10sp term:///bin/ipython3<CR>i
 
 " TODO: leave terminal-mode with <F5>
 
@@ -205,41 +197,12 @@ map <F6> <Esc><C-w>c
 " Yank/paste to system clipboard {{{
 nmap <F8> "+yy
 vmap <F8> "+y
+
 nmap <F9> "+p
 vmap <F9> "+p
-nmap <S-F21> "+P
-vmap <S-F21> "+P
-" }}}
 
-" Ranger file-chooser (broken in neovim -- TODO) {{{
-" function! RangeChooser()
-"     let temp = tempname()
-"     if has("gui_running")
-"         exec 'silent !urxvt -e ranger --choosefiles=' . shellescape(temp)
-"     else
-"         exec 'silent !ranger --choosefiles=' . shellescape(temp)
-"     endif
-"     if !filereadable(temp)
-"         redraw!
-"         " Nothing to read.
-"         return
-"     endif
-"     let names = readfile(temp)
-"     if empty(names)
-"         redraw!
-"         " Nothing to open.
-"         return
-"     endif
-"     " Edit the first item.
-"     exec 'edit ' . fnameescape(names[0])
-"     " Add any remaning items to the arg list/buffer list.
-"     for name in names[1:]
-"         exec 'argadd ' . fnameescape(name)
-"     endfor
-"     redraw!
-" endfunction
-" command! -bar RangerChooser call RangeChooser()
-"nnoremap <F3> :<C-U>RangerChooser<CR>
+nmap <F7> "+P
+vmap <F7> "+P
 " }}}
 
 " MS Windows Documents {{{
@@ -249,17 +212,15 @@ autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
 " }}}
 
-" }}}
-
 " Plugins Settings and Mappings {{{
 
-" Tagbar {{{
-" toggle tagbar display
-map <S-F1> :TagbarToggle<CR>
-map <S-F13> :TagbarToggle<CR>
-" autofocus on tagbar open
-let g:tagbar_autofocus = 0
-" }}}
+" "  Tagbar (off) {{{
+" " toggle tagbar display
+" map <S-F1> :TagbarToggle<CR>
+" map <S-F13> :TagbarToggle<CR>
+" " autofocus on tagbar open
+" let g:tagbar_autofocus = 0
+" " }}}
 
 " EasyMotion {{{
 map <Leader> <Plug>(easymotion-prefix)

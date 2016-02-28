@@ -772,6 +772,11 @@ awful.rules.rules = {
                       floating = false}},
 
     {rule = {class = "Atom"},
+        properties = {maximized_horizontal = false,
+                      maximized_vertical = false,
+                      floating = false,
+                      opacity = 0.90}},
+    {rule = {class = "Atom"},
         properties = {opacity = 0.90}},
     {rule = {class = "nvim-qt"},
         properties = {opacity = 0.90}},
