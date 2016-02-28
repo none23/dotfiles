@@ -71,9 +71,9 @@ yarminal   = "urxvt"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
-chromium   = "chromium"
 browser    = "firefox"
-browser2   = "chromium --kiosk"
+browser2   = "chromium"
+chromium   = "chromium --kiosk"
 filemgr    = ranger
 filemgr2   = "thunar"
 pronmode   = "firefox --private-window"
@@ -771,6 +771,8 @@ awful.rules.rules = {
                       maximized_vertical = false,
                       floating = false}},
 
+    {rule = {class = "Atom"},
+        properties = {opacity = 0.90}},
     {rule = {class = "nvim-qt"},
         properties = {opacity = 0.90}},
     {rule = {class = "konsole"},
