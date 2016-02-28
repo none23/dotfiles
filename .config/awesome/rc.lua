@@ -522,7 +522,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({altkey}, "3",
               function ()
-                  awful.util.spawn("zathura")
+                  awful.util.spawn(atom)
               end),
 
     awful.key({altkey}, "4",
@@ -544,7 +544,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({altkey}, "5",
               function ()
-                  awful.util.spawn(atom)
+                  awful.util.spawn("zathura")
               end),
 
     awful.key({altkey}, "6",
