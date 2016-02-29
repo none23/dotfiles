@@ -19,6 +19,8 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 " Quickly anywhere without counting words
 Plugin 'easymotion/vim-easymotion'
+" Pug (jade) support
+Plugin 'digitaltoad/vim-pug'
 " Airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -69,8 +71,6 @@ endif
 filetype plugin on
 filetype indent on
 " }}}
-
-" Neovim Settings and Mappings {{{
 
 " Indentation {{{
 set expandtab
@@ -156,6 +156,9 @@ endif
 " Misc mappings {{{
 " save with sudo
  ca w!! w !sudo tee "%"
+
+ " save with C-s
+nnoremap <C-s> :w<CR>
 
 " indent without loosing focus
 vnoremap < <gv
