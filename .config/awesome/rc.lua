@@ -803,7 +803,7 @@ awful.rules.rules = {
     {rule = {class = "Arandr"},
         properties = {tag = tags[1][8]}},
     {rule = {class = "chromium"},
-        properties = {tag = tags[1][9]}},
+        properties = {tag = tags[1][2]}},
     {rule = {class = "Zathura"},
         properties = {opacity = 0.90}},
     {rule = {class = "TexMaker"},
