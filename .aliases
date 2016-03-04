@@ -84,8 +84,8 @@ alias gparted='sudo gparted &'
 # package mgmt {{{
 alias p='sudo pacman'
 alias P='sudo pacman -Syu'
-alias y='packer'
-alias Y='packer -Syu && pkglist'
+alias y='yaourt'
+alias Y='yaourt -Syu && pkglist'
 alias yor='sudo pacman -R $(pacman -Qtdq)'
 # }}}
 
