@@ -71,12 +71,12 @@ yarminal   = "urxvt"
 tmux       = "konsole -e tmux"
 bash       = "konsole -e bash"
 ranger     = "konsole -e ranger"
-browser    = "firefox"
-browser2   = "chromium"
-chromium   = "chromium --kiosk"
+browser    = "chromium"
+browser2   = "firefox"
+kiosked    = "chromium --kiosk"
+pronmode   = "firefox --private-window"
 filemgr    = ranger
 filemgr2   = "thunar"
-pronmode   = "firefox --private-window"
 gvim       = "konsole -e nvim"
 atom       = "atom"
 
@@ -517,7 +517,7 @@ globalkeys = awful.util.table.join(
               end),
     awful.key({altkey, ctrl}, "2",
               function ()
-                  awful.util.spawn(chromium)
+                  awful.util.spawn(kiosked)
               end),
 
     awful.key({altkey}, "3",
@@ -813,9 +813,9 @@ awful.rules.rules = {
     {rule = {class = "Vinagre"},
         properties = {floating = true}},
     {rule = {role = "gimp-image-window"},
-        properties = {maximized_horizontal = true}},
-    {rule = {role = "gimp-image-window"},
-        properties = {maximized_vertical = true}}
+        properties = {tag = tags[1][5],
+                      maximized_horizontal = true,
+                      maximized_vertical = true}}
 }
 -- }}}
 -- Signals {{{
