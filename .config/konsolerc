@@ -6,11 +6,12 @@ Favorites=nwsome.profile,tinyfont.profile
 
 [KonsoleWindow]
 SaveGeometryOnExit=false
+ShowAppNameOnTitleBar=false
 ShowMenuBarByDefault=false
 
 [MainWindow]
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAABVQAAABuAAAABAAAAAQAAAAIAAAACPwAAAAA
+State=AAAA/wAAAAD9AAAAAAAAAf8AAALuAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 
 [TabBar]
