@@ -121,12 +121,13 @@ set colorcolumn=79
 highlight ColorColumn ctermbg=233
 " }}}
 
-" Autocompletion {{{
-set wildmenu
-" set completeopt-=preview
+" Autocompletion  {{{
+"  " autocomplete first menu item
+" set wildmenu
+" " set completeopt-=preview
 
 " complete only the common part, list the options that match
-set wildmode=list:full
+set wildmode=list:longest
 " }}}
 
 " Backup, swap and undos storage {{{
