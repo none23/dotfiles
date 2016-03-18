@@ -78,6 +78,9 @@ alias cgdisk='sudo cgdisk'
 alias gdisk='sudo gdisk'
 alias NetworkManager='sudo NetworkManager'
 alias rfkill='sudo rfkill'
+alias minicom='sudo minicom'
+alias wifite='sudo wifite'
+alias aircheck='sudo aircheck'
 alias gparted='sudo gparted &'
 
 # }}}
