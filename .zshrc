@@ -2,15 +2,24 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=45000
+EDITOR=/usr/bin/nvim
 export GTK_OVERLAY_SCROLLING=0
 setopt appendhistory
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/n/.zshrc'
+zstyle 'acceptline'
+zstyle ':completion:*:*:*:users' ignored-patterns \
+    adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
+    named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
+    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs backup  bind  \
+    dictd  gnats  identd  irc  man  messagebus  postfix  proxy  sys  www-data
+zstyle nocompwarn true
 
 autoload -Uz compinit
 compinit
+
 # End of lines added by compinstall
 
 source ~/.aliases

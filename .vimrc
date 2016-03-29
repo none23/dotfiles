@@ -55,6 +55,8 @@ Plugin 'matchit.zip'
 Plugin 'YankRing.vim'
 " Completion with TAB
 Plugin 'ervandew/supertab'
+" Prettify JS 
+Plugin 'maksimr/vim-jsbeautify'
 " Jedi-Vim
 Plugin 'davidhalter/jedi-vim'
 " Restore vim sessions
