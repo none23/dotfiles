@@ -23,9 +23,6 @@ alias dd='sudo dcfldd'
 # remove trash files {{{
 alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/gksu.lock'
 # }}}
-# msfconsole {{{
-alias msf='sudo systemctl start postgresql.service && sudo msfconsole'
-# }}}
 # ipython {{{
 alias py='ipython3'
 # }}}
@@ -81,7 +78,8 @@ alias rfkill='sudo rfkill'
 alias minicom='sudo minicom'
 alias wifite='sudo wifite'
 alias aircheck='sudo aircheck'
-alias gparted='sudo gparted &'
+alias gparted='sudo gparted'
+alias skill='sudo kill'
 
 # }}}
 # package mgmt {{{
