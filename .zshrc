@@ -3,6 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=45000
 EDITOR=/usr/bin/nvim
+BROWSER=/usr/bin/chromium
 export GTK_OVERLAY_SCROLLING=0
 setopt appendhistory
 bindkey -v
