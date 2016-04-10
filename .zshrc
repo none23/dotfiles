@@ -22,6 +22,9 @@ autoload -Uz compinit
 compinit
 
 # End of lines added by compinstall
+# SSH-Agent {{{
+eval $(keychain --eval --quiet id_rsa)
+# }}}
 
 source ~/.aliases
 set -o vi
@@ -50,17 +53,9 @@ bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
 # }}}
 
-# AWS-completer {{{
-source /bin/aws_zsh_completer.sh
-# }}}
-
 # Powerline {{{
  powerline-daemon -q
  . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-# }}}
-
-# SSH-Agent {{{
-eval $(keychain --eval --quiet id_rsa)
 # }}}
 
 # Virtualenvwrapper {{{
@@ -70,6 +65,7 @@ source /usr/bin/virtualenvwrapper.sh
 # }}}
 
 # RVM {{{
+export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
