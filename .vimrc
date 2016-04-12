@@ -83,7 +83,7 @@ set shiftwidth=4
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }}}
 
 " Misc options {{{
@@ -100,8 +100,10 @@ set hlsearch
 " syntax highlight on
 syntax on
 
-" text width
-set tw=80 "width
+" prevent wrapping
+set textwidth=9999
+set nowrap
+
 
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=7
@@ -322,8 +324,14 @@ let g:airline#extensions#tabline#enabled=0
 " }}}
 
 "  Vim Session {{{
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
+" let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+"  automatically (silently) save current working session every 5 minutes 
+let g:session_autosave_periodic = 5
+let g:session_autosave_silent = 1
+" when prompting do not include instructions on disabling prompting
+let g:session_verbose_messages = 0
+" let g:session_autosave = 'no'
 " }}}
 " }}}
 
