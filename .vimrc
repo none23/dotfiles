@@ -30,6 +30,14 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mattn/emmet-vim'
 " Tab list panel
 Plugin 'kien/tabman.vim'
+" Better JS support
+Plugin 'pangloss/vim-javascript'
+" CSS colors preview
+Plugin 'ap/vim-css-color'
+" Sass support
+Plugin 'tpope/vim-haml'
+" Ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
 " Surround
 Plugin 'tpope/vim-surround'
 " Expand region
