@@ -709,7 +709,8 @@ for i = 1, 9 do
         awful.key({modkey}, "#"..i + 9,
                   function ()
                       for s = 1, screen.count() do
-                          local tag = awful.tag.gettags(s)[i]
+                          local ss = screen.count() + 1 - s
+                          local tag = awful.tag.gettags(ss)[i]
                           if tag
                               then awful.tag.viewonly(tag)
                           end
