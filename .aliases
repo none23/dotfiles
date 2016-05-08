@@ -54,7 +54,7 @@ alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
 # }}}
 # send sms {{{
-alias sendsms='python /home/n/none23/sendsms/sendsms.py'
+alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
 # }}}
 # watch dmesg {{{
 alias dmesgn='watch "dmesg -e | tail"'
