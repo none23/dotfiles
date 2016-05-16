@@ -36,6 +36,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'ap/vim-css-color'
 " Sass support
 Plugin 'tpope/vim-haml'
+" CoffeeScript support
+Plugin 'kchmck/vim-coffee-script'
 " Ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 " Surround
