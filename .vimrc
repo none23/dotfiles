@@ -19,6 +19,8 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 " Quickly anywhere without counting words
 Plugin 'easymotion/vim-easymotion'
+" Stylus support
+Plugin 'wavded/vim-stylus'
 " Pug (jade) support
 Plugin 'digitaltoad/vim-pug'
 " Airline
