@@ -109,6 +109,10 @@ set incsearch
 " highlighted search results
 set hlsearch
 
+" marker folding
+set foldmethod=marker
+set foldlevel=0
+
 " syntax highlight on
 syntax on
 
@@ -225,7 +229,7 @@ nmap <F7> "+P
 vmap <F7> "+P
 " }}}
 
-" MS Windows Documents {{{
+" MS Office Documents {{{
 " opening read-only and decoding
 autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.doc set hlsearch!
