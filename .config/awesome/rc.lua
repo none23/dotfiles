@@ -522,29 +522,17 @@ globalkeys = awful.util.table.join(
 
     awful.key({altkey}, "3",
               function ()
-                  awful.util.spawn(atom)
+                  awful.util.spawn("zathura")
               end),
 
     awful.key({altkey}, "4",
               function ()
-                  awful.util.spawn(filemgr)
-              end),
-    awful.key({altkey, ctrl}, "4",
-              function ()
-                  awful.util.spawn(filemgr2)
-              end),
-    awful.key({altkey}, "dollar",
-              function ()
-                  awful.util.spawn_with_shell("gksudo" ..filemgr)
-              end),
-    awful.key({altkey, ctrl}, "dollar",
-              function ()
-                  awful.util.spawn_with_shell("gksudo" .. filemgr2)
+                  awful.util.spawn("inkscape")
               end),
 
     awful.key({altkey}, "5",
               function ()
-                  awful.util.spawn("zathura")
+                  awful.util.spawn("gimp")
               end),
 
     awful.key({altkey}, "6",
@@ -771,7 +759,6 @@ awful.rules.rules = {
         properties = {maximized_horizontal = false,
                       maximized_vertical = false,
                       floating = false}},
-
     {rule = {class = "Atom"},
         properties = {opacity = 0.90}},
     {rule = {class = "nvim-qt"},
@@ -794,6 +781,12 @@ awful.rules.rules = {
         properties = {floating = true}},
     {rule = {class = "Gretl_x11"},
         properties = {floating = true}},
+    {rule = {role = "gimp-image-window"},
+        properties = {tag = tags[1][5],
+                      maximized_horizontal = true,
+                      maximized_vertical = true}},
+    {rule = {class = "Inkscape"},
+        properties = {tag = tags[1][4]}},
     {rule = {class = "Tor Browser"},
         properties = {tag = tags[1][6]}},
     {rule = {class = "Arandr"},
@@ -805,11 +798,7 @@ awful.rules.rules = {
     {rule = {class = "Vlc"},
         properties = {floating = true}},
     {rule = {class = "Vinagre"},
-        properties = {floating = true}},
-    {rule = {role = "gimp-image-window"},
-        properties = {tag = tags[1][5],
-                      maximized_horizontal = true,
-                      maximized_vertical = true}}
+        properties = {floating = true}}
 }
 -- }}}
 -- Signals {{{
