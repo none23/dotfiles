@@ -78,7 +78,8 @@ pronmode   = "firefox --private-window"
 filemgr    = ranger
 filemgr2   = "thunar"
 gvim       = "konsole -e nvim"
-atom       = "atom"
+atom       = "atom-git"
+touchenable = "touchpad_ctrl"
 
 -- }}}
 -- Layouts and tags table {{{
@@ -522,7 +523,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({altkey}, "3",
               function ()
-                  awful.util.spawn("zathura")
+                  awful.util.spawn(atom)
               end),
 
     awful.key({altkey}, "4",
@@ -591,6 +592,11 @@ globalkeys = awful.util.table.join(
 
     awful.key({modkey, ctrl}, "q",
               awesome.quit),
+
+    awful.key({modkey}, "F10",
+              function()
+                  awful.util.spawn(touchenable)
+              end),
 
     awful.key({modkey}, "F12",
               function()
