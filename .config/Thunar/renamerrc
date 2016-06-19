@@ -1,12 +1,6 @@
 [Configuration]
 LastActiveMode=THUNAR_RENAMER_MODE_NAME
-LastActiveRenamer=ThunarSbrInsertRenamer
-
-[ThunarSbrNumberRenamer]
-TextMode=THUNAR_SBR_TEXT_MODE_NT
-Mode=THUNAR_SBR_NUMBER_MODE_123
-Start=2
-Text=
+LastActiveRenamer=ThunarSbrNumberRenamer
 
 [ThunarSbrReplaceRenamer]
 Regexp=FALSE
@@ -25,4 +19,10 @@ Offset=0
 Mode=THUNAR_SBR_INSERT_MODE_INSERT
 OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
 Text=wood
+
+[ThunarSbrNumberRenamer]
+TextMode=THUNAR_SBR_TEXT_MODE_NT
+Mode=THUNAR_SBR_NUMBER_MODE_123
+Start=1
+Text=
 

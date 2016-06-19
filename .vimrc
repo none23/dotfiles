@@ -28,7 +28,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Class/module browser
 Plugin 'majutsushi/tagbar'
-" Zen coding
+" Emmet
 Plugin 'mattn/emmet-vim'
 " Tab list panel
 Plugin 'kien/tabman.vim'
