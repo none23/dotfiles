@@ -2,7 +2,7 @@
 DefaultProfile=nwsome.profile
 
 [Favorite Profiles]
-Favorites=nwsome.profile,tinyfont.profile
+Favorites=tinyfont.profile,nwsome.profile
 
 [KonsoleWindow]
 SaveGeometryOnExit=false
