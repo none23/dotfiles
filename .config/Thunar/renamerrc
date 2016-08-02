@@ -1,6 +1,6 @@
 [Configuration]
-LastActiveMode=THUNAR_RENAMER_MODE_NAME
-LastActiveRenamer=ThunarSbrNumberRenamer
+LastActiveMode=THUNAR_RENAMER_MODE_BOTH
+LastActiveRenamer=ThunarSbrInsertRenamer
 
 [ThunarSbrReplaceRenamer]
 Regexp=FALSE
@@ -8,21 +8,21 @@ Replacement=pug
 CaseSensitive=FALSE
 Pattern=jade
 
-[ThunarSbrInsertRenamer]
-Offset=0
-Mode=THUNAR_SBR_INSERT_MODE_OVERWRITE
-OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
-Text=md
-
-[ThunarSbrRemoveRenamer]
-EndOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-StartOffset=2
-EndOffset=0
-StartOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-
 [ThunarSbrNumberRenamer]
 TextMode=THUNAR_SBR_TEXT_MODE_NT
 Mode=THUNAR_SBR_NUMBER_MODE_123
-Start=14
+Start=101
 Text=
+
+[ThunarSbrRemoveRenamer]
+EndOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+StartOffset=3
+EndOffset=0
+StartOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
+[ThunarSbrInsertRenamer]
+Offset=0
+Mode=THUNAR_SBR_INSERT_MODE_INSERT
+OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+Text=.md
 
