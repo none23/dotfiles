@@ -76,7 +76,3 @@ toff   # defined in ~/.aliases
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
-
-
-# added by travis gem
-[ -f /home/n/.travis/travis.sh ] && source /home/n/.travis/travis.sh

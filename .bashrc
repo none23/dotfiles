@@ -10,5 +10,3 @@ PS1='[\u@\h \W]\$ '
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-# added by travis gem
-[ -f /home/n/.travis/travis.sh ] && source /home/n/.travis/travis.sh
