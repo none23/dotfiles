@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --bg-tile '/home/n/study/cheat_sheets/tmux_cheat_sheet.png'
+feh  --bg-fill '/home/n/drafty/ptrns/argyle.png'
