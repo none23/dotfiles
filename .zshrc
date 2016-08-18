@@ -10,7 +10,7 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/n/.zshrc'
-zstyle 'acceptline'
+zstyle ':acceptline' rehash true
 zstyle ':completion:*:*:*:users' ignored-patterns \
     adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
     named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
@@ -58,11 +58,11 @@ bindkey -s "^[Ok" "+"
  . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 # }}}
 
-# Virtualenvwrapper {{{
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=/home/n/projects
-source /usr/bin/virtualenvwrapper.sh
-# }}}
+# OFF # Virtualenvwrapper {{{
+# OFF export WORKON_HOME=$HOME/.virtualenvs
+# OFF export PROJECT_HOME=/home/n/projects
+# OFF source /usr/bin/virtualenvwrapper.sh
+# OFF # }}}
 
 # RVM {{{
 export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
