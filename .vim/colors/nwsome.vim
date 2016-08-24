@@ -3,7 +3,7 @@ hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="dw_orange"
+let g:colors_name="molokai"
 "--------------------------------------------------------------------
 
 hi Boolean                                       guifg=#ffff00
