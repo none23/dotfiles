@@ -95,7 +95,7 @@ set shiftwidth=4
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }}}
 
 " Misc options {{{
@@ -120,14 +120,16 @@ syntax on
 set textwidth=9999
 set nowrap
 
-
 " when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=7
+set scrolloff=5
 
 " show line numbers
 set number
 set relativenumber
 set autoindent smartindent
+
+" automatically strip trailing whitespace
+autocmd FileType python,js,json,pug,jade,stylus,css,sass,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 " }}}
 
 " Colorscheme {{{
@@ -197,23 +199,25 @@ let mapleader = " "
 " }}}
 
 " Tab navigation {{{
+map tt :tabnew<CR>
+map tcq :tabc<CR>
+
 map tn :tabn<CR>
 map tp :tabp<CR>
-map tm :tabm<CR>
-map tt :tabnew<CR>
-map ts :tab split<CR>
 map <C-S-Right> :tabn<CR>
-imap <C-S-Right> <Esc>:tabn<CR>
 map <C-S-Left> :tabp<CR>
+imap <C-S-Right> <Esc>:tabn<CR>
 imap <C-S-Left> <Esc>:tabp<CR>
+
+map tm0 :tabm0<CR>
+map tmm :tabm<CR>
 " }}}
 
 " Splits navigation {{{
 map <F2> :below 10sp term://$SHELL<CR>i
 map <F3> :above 10sp term:///usr/bin/ranger<CR>
-map <F4> :below 10sp term:///bin/ipython3<CR>i
-
-" TODO: leave terminal-mode with <F5>
+map <F4> :below 10sp term:///usr/bin/node<CR>i
+" map <F4> :below 10sp term:///bin/ipython3<CR>i
 
 " close current split
 map <F6> <Esc><C-w>c
@@ -273,7 +277,16 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Syntastic {{{
 " show list of errors and warnings on the current file
 nmap ,e :Errors<CR>
-" check also when just opened the file
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['standard']
+
 let g:syntastic_check_on_open = 1
 " don't put icons on the sign column (it hides the vcs status icons of signify)
 let g:syntastic_enable_signs = 1
