@@ -85,7 +85,6 @@ endif
 filetype plugin on
 filetype indent on
 " }}}
-
 " Indentation {{{
 set expandtab
 set tabstop=4
@@ -97,7 +96,6 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }}}
-
 " Misc options {{{
 " status bar
 set laststatus=2
@@ -127,11 +125,7 @@ set scrolloff=5
 set number
 set relativenumber
 set autoindent smartindent
-
-" automatically strip trailing whitespace
-autocmd FileType python,js,json,pug,jade,stylus,css,sass,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 " }}}
-
 " Colorscheme {{{
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
@@ -143,7 +137,14 @@ set cursorline
 set colorcolumn=79
 highlight ColorColumn ctermbg=233
 " }}}
+" Aurocmd on save {{{
+" remove trailing whitespace
+autocmd FileType python,javascript,json,jsx,pug,jade,html,stylus,css,sass,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 
+" autoformat js follow standard
+autocmd bufwritepost *.js silent !standard-format -w %
+set autoread
+" }}}
 " Autocompletion  {{{
 "  " autocomplete first menu item
 " set wildmenu
@@ -152,7 +153,6 @@ highlight ColorColumn ctermbg=233
 " complete only the common part, list the options that match
 set wildmode=list:longest
 " }}}
-
 " Backup, swap and undos storage {{{
 set directory=~/.vim/dirs/tmp     " directory to place swap files in
 set backup                        " make backup files
@@ -176,7 +176,6 @@ if !isdirectory(&undodir)
 endif
 " }}}
 " }}}
-
 " Misc mappings {{{
 " save with sudo
  ca w!! w !sudo tee "%"
@@ -197,7 +196,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 " map leader to space
 let mapleader = " "
 " }}}
-
 " Tab navigation {{{
 map tt :tabnew<CR>
 map tcq :tabc<CR>
@@ -212,7 +210,6 @@ imap <C-S-Left> <Esc>:tabp<CR>
 map tm0 :tabm0<CR>
 map tmm :tabm<CR>
 " }}}
-
 " Splits navigation {{{
 map <F2> :below 10sp term://$SHELL<CR>i
 map <F3> :above 10sp term:///usr/bin/ranger<CR>
@@ -222,7 +219,6 @@ map <F4> :below 10sp term:///usr/bin/node<CR>i
 " close current split
 map <F6> <Esc><C-w>c
 " }}}
-
 " Yank/paste to system clipboard {{{
 nmap <F8> "+yy
 vmap <F8> "+y
@@ -233,14 +229,12 @@ vmap <F9> "+p
 nmap <F7> "+P
 vmap <F7> "+P
 " }}}
-
 " MS Office Documents {{{
 " opening read-only and decoding
 autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
 " }}}
-
 " Plugins Settings and Mappings {{{
 
 " "  Tagbar (off) {{{
@@ -364,7 +358,6 @@ let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
 " }}}
 " }}}
-
 " Neovim-qt Settings {{{
 
 " Neovim-qt Guifont command

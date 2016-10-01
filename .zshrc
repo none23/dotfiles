@@ -27,6 +27,13 @@ eval $(keychain --eval --quiet id_rsa)
 # }}}
 
 source ~/.aliases
+if [[ -a ~/.private_aliases ]]; then
+    source ~/.private_aliases
+fi
+if [[ -a ~/.zshrc_local ]]; then
+    source ~/.zshrc_local
+fi
+export QT_QPA_PLATFORMTHEME="qt5ct"
 set -o vi
 xrdb ~/.Xresources
 setopt completealiases

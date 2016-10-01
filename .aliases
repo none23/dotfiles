@@ -104,7 +104,6 @@ smartresize() {
 # docker {{
 alias start-docker='sudo mount /dev/sdb6 /var/lib/docker && sleep 3 && sudo systemctl start docker.service'
 # }}}
-
 # Global Aliases {{{
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
@@ -123,9 +122,5 @@ alias -g .....='../../../..'
     alias -s css=vim
     alias -s ini=vim
     alias -s pdf=zathura
-# }}}
-# Execute upon sourcing this file: {{{
-source ~/.private_aliases
-export QT_QPA_PLATFORMTHEME="qt5ct"
 # }}}
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
