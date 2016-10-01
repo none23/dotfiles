@@ -27,22 +27,15 @@ eval $(keychain --eval --quiet id_rsa)
 # }}}
 
 source ~/.aliases
+# Private aliases {{{
 if [[ -a ~/.private_aliases ]]; then
     source ~/.private_aliases
 fi
-if [[ -a ~/.zshrc_local ]]; then
-    source ~/.zshrc_local
-fi
+# }}}
 export QT_QPA_PLATFORMTHEME="qt5ct"
 set -o vi
 xrdb ~/.Xresources
 setopt completealiases
-
-# Turn on 256 color support
-if [ "x$TERM" = "xxterm" ]
-then
-    export TERM="xterm-256color"
-fi
 
 autoload -Uz promptinit
 autoload -U colors && colors
@@ -59,27 +52,31 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
 # }}}
-
 # Powerline {{{
  powerline-daemon -q
  . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-# }}}
 
+# }}}
 # OFF # Virtualenvwrapper {{{
 # OFF export WORKON_HOME=$HOME/.virtualenvs
 # OFF export PROJECT_HOME=/home/n/projects
 # OFF source /usr/bin/virtualenvwrapper.sh
+# OFF 
 # OFF # }}}
-
 # RVM {{{
 export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# }}}
 
+# }}}
 # Turn off touchpad {{{
 toff   # defined in ~/.aliases
-# }}}
 
+# }}}
+# Machine-specific .zshrc
+if [[ -a ~/.zshrc_local ]]; then
+    source ~/.zshrc_local
+fi
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
