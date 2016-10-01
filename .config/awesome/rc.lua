@@ -135,7 +135,7 @@ for s = 2, screen.count() do
     for t = 1, 9 do
         awful.tag.setnmaster(1, tags[s][t])
         awful.tag.setncol(1, tags[s][t])
-        awful.tag.setmwfact(0.5, tags[s][t])
+        awful.tag.setmwfact(0.625, tags[s][t])
     end
 end
 -- }}}
