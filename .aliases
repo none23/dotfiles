@@ -2,65 +2,76 @@
 alias la='ls -Alh --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
+
 # }}}
 # sshuttle {{{
 alias sshide='sshuttle -r aws 0/0 --dns -D'
 alias sshive='sshuttle -r aws 0/0 --dns -v'
 alias sshpotify='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -D'
 alias sshpotivy='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -v'
+
 # }}}
 # touchpad switch {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias ton='tonn && (sleep 30 && toff) &'
+
 # }}}
 # check ping {{{
 alias pn='ping -c 10 -i .2 8.8.8.8'
+
 # }}}
 # improved dd {{{
 alias dd='sudo dcfldd'
+
 # }}}
 # remove trash files {{{
 alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/gksu.lock'
+
 # }}}
 # ipython {{{
 alias py='ipython3'
+
 # }}}
-# git {{{
-# add, commit, and push dotfiles
+# dotfiles and packagelist github {{{
 # add, commit, and push dotfiles
 alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
+
 # git removal tool
 alias bfg='java -jar /home/n/builds/bfg.jar'
+
 # }}}
 # wireless stuff {{{
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias wltx='sudo ifconfig wlp7s0 down && sudo iw reg set US && sudo ifconfig wlp7s0 up && sudo iwconfig wlp7s0 txpower 30'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
-alias alpha='sudo ifconfig alfa0 down && sudo iw reg set GY && sudo iwconfig alfa0 mode monitor && sudo ifconfig alfa0 up && sudo iwconfig alfa0 txpower 30'
-alias rvrint='sudo reaver -i wlp7s0 -K 1 -vv -b'
-alias rvrext='sudo reaver -i alfa0 -K 1 -vv -b'
-alias airodext='sudo airodump-ng -i alfa0 --wps --manufacturer'
-alias airodint='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
+alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
+alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 alias silentjam='sudo iwconfig && sudo wifijammer -d --world >> /dev/zero &'
 alias foilhat='sudo rfkill block all'
+
 # }}}
 # matrix wallpaper {{{
 alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
+
 # }}}
 # screen blanking {{{
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
+
 # }}}
 # send sms {{{
 alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
+
 # }}}
 # watch dmesg {{{
-alias dmesgn='watch "dmesg -e | tail"'
+alias dmesgg='watch "dmesg -e | tail"'
+
 # }}}
 # ranger fm {{{
 alias rr='ranger .'
+
 # }}}
 # xrandr {{{
 alias xrandr1368x768='xrandr --newmode "1368x768_60.00"  85.86  1368 1440 1584 1800  768 769 772 795  -HSync +Vsync && xrandr --addmode HDMI1 1368x768_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --above LVDS1 --mode 1368x768_60.00'
@@ -68,59 +79,110 @@ alias xrandr1280x1024='xrandr --newmode "1280x1024_60.00"  108.88  1280 1360 149
 alias xrandr1600x1200='xrandr --newmode "1600x1200_60.00" 160.96 1600 1704 1880 2160 1200 1201 1204 1242 -HSync +Vsync && xrandr --addmode HDMI1 1600x1200_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --above LVDS1 --mode 1600x1200_60.00'
 alias xrandr1080x1920='xrandr --newmode "1080x1920_60.00"  178.35  1080 1168 1288 1496  1920 1921 1924 1987  -HSync +Vsync && xrandr --addmode HDMI1 1080x1920_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --right-of LVDS1 --mode 1080x1920_60.00'
 alias xrandroff='xrandr --output LVDS1 --primary --output HDMI1 --off && xrandr --delmode HDMI1 1368x768_60.00 & xrandr --delmode HDMI1 1280x1024_60.00 & xrandr --delmode HDMI1 1600x1200_60.00 & (sleep 1 && xrandr --rmmode 1368x768_60.00 & xrandr --rmmode 1280x1024_60.00 & xrandr --rmmode 1600x1200_60.00)'
+
 # }}}
 # add sudo {{{
+alias systemctl='sudo systemctl'
+alias ifconfig='sudo ifconfig'
+alias NetworkManager='sudo NetworkManager'
+alias skill='sudo kill'
+
 alias masscan='sudo masscan'
 alias nmap='sudo nmap'
+
 alias mount='sudo mount'
 alias umount='sudo umount'
 alias fdisk='sudo fdisk'
-alias systemctl='sudo systemctl'
-alias ifconfig='sudo ifconfig'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
 alias gdisk='sudo gdisk'
-alias NetworkManager='sudo NetworkManager'
+alias gparted='sudo gparted'
+alias mkfs.ext4='sudo mkfs.ext4'
+
 alias rfkill='sudo rfkill'
-alias minicom='sudo minicom'
 alias wifite='sudo wifite'
 alias aircheck='sudo aircheck'
-alias gparted='sudo gparted'
-alias skill='sudo kill'
+
+alias minicom='sudo minicom'
 
 # }}}
-# package mgmt {{{
-alias p='sudo pacman'
+# package management (yaourt) {{{
 alias P='sudo pacman -Syu'
 alias y='yaourt'
-alias Y='yaourt -Syu && pkglist'
+alias Y='yaourt -Syu && pkglist && dot'
 alias yor='sudo pacman -R $(pacman -Qtdq)'
+
 # }}}
-# resize img {{{
+# resize image function {{{
 smartresize() {
    mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
 }
+
 # }}}
-# docker {{
-alias start-docker='sudo mount /dev/sdb6 /var/lib/docker && sleep 3 && sudo systemctl start docker.service'
+# launching docker {{{
+start-docker() {
+    if [ -a /dev/sdb6 ]; then
+        sudo mount /dev/sdb6 /var/lib/docker
+        sleep 3
+        sudo systemctl start docker.service
+    fi
+}
+
 # }}}
+# rsync backup script {{{
+bkpsync() {
+    if [[ -a ~/.bkp_part ]]; then
+        if [[ -a /dev/sdb6 ]]; then
+            BKP_PART=$(cat ~/.bkp_part)
+            BKP_MNT=/mnt/bkp
+            BKP_CONFIRM=n
+            read -q "BKP_CONFIRM?Backup system to $BKP_PART?(y/N)"
+            if [[ $BKP_CONFIRM == y ]]; then
+                sudo mkdir $BKP_MNT 
+                mount $BKP_PART $BKP_MNT
+                sudo rsync -aAXv --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
+                umount $BKP_MNT
+                sudo rmdir $BKP_MNT
+            fi
+        fi
+    fi
+}
+
+# }}}
+
 # Global Aliases {{{
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
-alias -g gvim='nvim-qt'
+alias -g gvim='nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
+
 # }}}
 # File Extensions {{{
-    alias -s html=firefox
-    alias -s conf=vim
-    alias -s lua=vim
-    alias -s xml=vim
-    alias -s txt=vim
-    alias -s xml=vim
-    alias -s css=vim
-    alias -s ini=vim
-    alias -s pdf=zathura
+alias -s html=chromium
+alias -s conf=vim
+alias -s lua=vim
+alias -s xml=vim
+alias -s txt=vim
+alias -s xml=vim
+alias -s css=vim
+alias -s ini=vim
+alias -s stylus=vim
+alias -s sass=vim
+alias -s pug=vim
+alias -s jade=vim
+alias -s js=vim
+alias -s coffee=vim
+alias -s jsx=vim
+alias -s yml=vim
+alias -s json=vim
+alias -s pdf=zathura
+alias -s jpg=feh
+alias -s png=feh
+alias -s gif=feh
+alias -s svg=inkscape
+alias -s psd=inkscape
 # }}}
+
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
