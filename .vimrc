@@ -139,7 +139,7 @@ highlight ColorColumn ctermbg=233
 " }}}
 " Aurocmd on save {{{
 " remove trailing whitespace
-autocmd FileType python,javascript,json,jsx,pug,jade,html,stylus,css,sass,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType python,javascript,json,jsx,coffeescript,jade,pug,html,stylus,css,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " autoformat js follow standard
 autocmd bufwritepost *.js silent !standard-format -w %

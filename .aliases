@@ -129,21 +129,57 @@ start-docker() {
 }
 
 # }}}
-# rsync backup script {{{
+# launching virtualbox {{{
+start-virtualbox() {
+    # TODO: modprobe stuff
+    mount /dev/sdb5 /mnt/hdd
+
+    # TODO: check if exists
+#    if [ -a /dev/sdb6 ]; then
+#        sudo mount /dev/sdb6 /var/lib/docker
+#        sleep 3
+#        sudo systemctl start docker.service
+#    fi
+
+}
+
+# }}}
+# rsync backup scripts {{{
 bkpsync() {
-    if [[ -a ~/.bkp_part ]]; then
-        if [[ -a /dev/sdb6 ]]; then
+    BKP_PART_SET=false
+    if [[ "$1" == '-a' ]]; then
+        if [[ -a ~/.bkp_archive_part ]]; then
+            BKP_PART=$(cat ~/.bkp_archive_part)
+            BKP_PART_SET=true
+        fi
+    elif [[ "$1" == '-h' ]]; then
+        echo "USAGE: bkpsync [-ah]\nbacks up system root to partition, specified in  ~/.bkp_part\n\t-a\tuse partition from ~/.bkp_archive_part and don't remove deleted files from the backup\n\t-h\tprint this message"
+    else
+        if [[ -a ~/.bkp_part ]]; then
             BKP_PART=$(cat ~/.bkp_part)
+            BKP_PART_SET=true
+        fi
+    fi
+    if [[ "$BKP_PART_SET" == true ]]; then
+        if [[ -a $BKP_PART ]]; then
             BKP_MNT=/mnt/bkp
-            BKP_CONFIRM=n
-            read -q "BKP_CONFIRM?Backup system to $BKP_PART?(y/N)"
-            if [[ $BKP_CONFIRM == y ]]; then
-                sudo mkdir $BKP_MNT 
-                mount $BKP_PART $BKP_MNT
-                sudo rsync -aAXv --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
-                umount $BKP_MNT
-                sudo rmdir $BKP_MNT
+            if [[ -a $BKP_MNT ]]; then
+                echo "Can't back up: \"$BKP_MNT\" exists"
+                exit 2
+            else
+                BKP_CONFIRM=n
+                read -q "BKP_CONFIRM?Backup system to $BKP_PART?(y/N)"
+                if [[ $BKP_CONFIRM == y ]]; then
+                    sudo mkdir $BKP_MNT
+                    mount $BKP_PART $BKP_MNT
+                    sudo rsync -aAXv --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
+                    umount $BKP_MNT
+                    sudo rmdir $BKP_MNT
+                fi
             fi
+        else
+            echo "Can't back up: \"$BKP_PART\" not found"
+                exit 3
         fi
     fi
 }
