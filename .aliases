@@ -2,6 +2,13 @@
 alias la='ls -Alh --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
+function lll() {
+    if [ "$1" != "" ]; then
+        sudo du -hs $1/{.,}* | sort -hr
+    else
+        sudo du -hs ./{.,}* | sort -hr
+    fi
+}
 
 # }}}
 # sshuttle {{{
