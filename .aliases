@@ -110,6 +110,7 @@ alias minicom='sudo minicom'
 alias P='sudo pacman -Syu'
 alias y='yaourt'
 alias Y='yaourt -Syu && pkglist && dot'
+alias Yy='yaourt -Syy && Y'
 alias yor='sudo pacman -R $(pacman -Qtdq)'
 
 # }}}

@@ -1,5 +1,5 @@
 [Configuration]
-LastActiveMode=THUNAR_RENAMER_MODE_NAME
+LastActiveMode=THUNAR_RENAMER_MODE_SUFFIX
 LastActiveRenamer=ThunarSbrInsertRenamer
 
 [ThunarSbrReplaceRenamer]
@@ -21,8 +21,8 @@ Start=1001
 Text=
 
 [ThunarSbrInsertRenamer]
-Offset=2
-Mode=THUNAR_SBR_INSERT_MODE_INSERT
+Offset=3
+Mode=THUNAR_SBR_INSERT_MODE_OVERWRITE
 OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-Text=news@
+Text=img
 
