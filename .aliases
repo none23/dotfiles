@@ -110,11 +110,12 @@ alias minicom='sudo minicom'
 
 # }}}
 # package management (yaourt) {{{
-alias P='sudo pacman -Syu'
 alias y='yaourt'
-alias Y='yaourt -Syua && pkglist && dot'
-alias Yy='yaourt -Syy && Y'
-alias yor='sudo pacman -R $(pacman -Qtdq)'
+alias Y='yaourt -Syua && pkglist'
+alias Yy='yaourt -Syy'
+alias Yc='yaourt -Sc'
+alias Ycc='yaourt -Scc'
+alias yor='sudo yaourt -R $(yaourt -Qtdq)'
 
 # }}}
 # resize image function {{{
