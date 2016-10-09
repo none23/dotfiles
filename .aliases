@@ -109,7 +109,7 @@ alias minicom='sudo minicom'
 # package management (yaourt) {{{
 alias P='sudo pacman -Syu'
 alias y='yaourt'
-alias Y='yaourt -Syu && pkglist && dot'
+alias Y='yaourt -Syua && pkglist && dot'
 alias Yy='yaourt -Syy && Y'
 alias yor='sudo pacman -R $(pacman -Qtdq)'
 
