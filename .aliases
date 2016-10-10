@@ -49,7 +49,7 @@ alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0
 alias bfg='java -jar /home/n/builds/bfg.jar'
 
 # }}}
-# wireless stuff {{{
+# wireless {{{
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias wltx='sudo ifconfig wlp7s0 down && sudo iw reg set US && sudo ifconfig wlp7s0 up && sudo iwconfig wlp7s0 txpower 30'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
