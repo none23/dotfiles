@@ -161,9 +161,9 @@ bkpsync() {
                     sudo mkdir $BKP_MNT
                     mount $BKP_PART $BKP_MNT
                     if [[ "$BKP_OPT_DEL" == true ]]; then
-                        sudo rsync -aAXv --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
+                        sudo rsync -aAXv --delete --exclude={"/dev/*","/home/n/.cache/*","/var/lib/docker","/proc/*","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
                     else
-                        sudo rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
+                        sudo rsync -aAXv --exclude={"/dev/*","/home/n/.cache/*","/proc/*","/var/lib/docker","/sys/*","/tmp/*","/mnt/*","/media/*","/lost+found","/run/*"} / $BKP_MNT
                     fi
                     umount $BKP_MNT
                     sudo rmdir $BKP_MNT
