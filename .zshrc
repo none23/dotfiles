@@ -1,48 +1,16 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=45000
+HISTSIZE=16000
+SAVEHIST=64000
 EDITOR=/usr/bin/nvim
 BROWSER=/usr/bin/chromium
 export GTK_OVERLAY_SCROLLING=0
+export QT_QPA_PLATFORMTHEME="qt5ct"
 setopt appendhistory
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/n/.zshrc'
-zstyle ':acceptline' rehash true
-zstyle ':completion:*:*:*:users' ignored-patterns \
-    adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
-    named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
-    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs backup  bind  \
-    dictd  gnats  identd  irc  man  messagebus  postfix  proxy  sys  www-data
-zstyle nocompwarn true
-
-autoload -Uz compinit
-compinit
-
-# End of lines added by compinstall
-# SSH-Agent {{{
-eval $(keychain --eval --quiet id_rsa)
-# }}}
-
-source ~/.aliases
-# Private aliases {{{
-if [[ -a ~/.private_aliases ]]; then
-    source ~/.private_aliases
-fi
-# }}}
-export QT_QPA_PLATFORMTHEME="qt5ct"
 set -o vi
 xrdb ~/.Xresources
-setopt completealiases
 
-autoload -Uz promptinit
-autoload -U colors && colors
-promptinit
-prompt off
-
-# Numeric Keypad {{{
+# numeric keypad {{{
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey -s "^[5~" "Prior"
@@ -52,31 +20,59 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
 # }}}
+# completion zstyle  {{{
+zstyle :compinstall filename '/home/n/.zshrc'
+zstyle ':acceptline' rehash true
+zstyle ':completion:*:*:*:users' ignored-patterns \
+    adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
+    named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
+    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs backup  bind  \
+    dictd  gnats  identd  irc  man  messagebus  postfix  proxy  sys  www-data
+zstyle nocompwarn true
+autoload -Uz compinit
+compinit
+setopt completealiases
+
+# }}}
 # Powerline {{{
+autoload -U colors && colors
+# autoload -Uz promptinit
+# promptinit
+prompt off
  powerline-daemon -q
  . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
-# OFF # Virtualenvwrapper {{{
-# OFF export WORKON_HOME=$HOME/.virtualenvs
-# OFF export PROJECT_HOME=/home/n/projects
-# OFF source /usr/bin/virtualenvwrapper.sh
-# OFF 
-# OFF # }}}
+# SSH-Agent {{{
+eval $(keychain --eval --quiet id_rsa)
+# }}}
+# Virtualenvwrapper {{{
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=/home/n/projects
+source /usr/bin/virtualenvwrapper.sh
+
+# }}}
 # RVM {{{
 export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
-
-# Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # }}}
-# Turn off touchpad {{{
-toff   # defined in ~/.aliases
+# aliases {{{
+source ~/.aliases
 
-# }}}
-# Machine-specific .zshrc
+if [[ -a ~/.private_aliases ]]; then
+    source ~/.private_aliases
+fi
+
 if [[ -a ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
+# }}}
+# automatic startx {{{
+if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
+    exec startx
+fi
+# }}}
+
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0

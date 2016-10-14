@@ -1,39 +1,42 @@
-# listing files {{{
+# ls {{{
 alias la='ls -Alh --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
-function lll() {
+function lll () {
     if [ "$1" != "" ]; then
         sudo du -hs $1/{.,}* | sort -hr
     else
         sudo du -hs ./{.,}* | sort -hr
     fi
 }
-
 # }}}
 # sshuttle {{{
 alias sshide='sshuttle -r aws 0/0 --dns -D'
 alias sshive='sshuttle -r aws 0/0 --dns -v'
 alias sshpotify='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -D'
 alias sshpotivy='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -v'
-
 # }}}
-# touchpad switch {{{
+# touchpad {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias ton='tonn && (sleep 30 && toff) &'
-
 # }}}
-# check ping {{{
+# improved dd {{{
+dd () {
+    if [[ $# -gt 2 ]]; then
+        command dd "$*" bs=128K status=progress
+    else
+        command dd "$*"
+    fi
+}
+# }}}
+# misc {{{
 alias pn='ping -c 10 -i .2 8.8.8.8'
-
-# }}}
-# remove trash files {{{
-alias garb='sudo rm -rv /home/n/.adobe /home/n/.macromedia /home/n/.local/share/Trash /home/n/.local/share/xorg /home/n/gksu.lock'
-
-# }}}
-# ipython {{{
+alias rr='ranger .'
+alias dmesgg='watch "dmesg -e | tail"'
+alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
 alias py='ipython3'
+alias nn='npm run'
 
 # }}}
 # dotfiles and packagelist github {{{
@@ -51,85 +54,54 @@ alias wltx='sudo ifconfig wlp7s0 down && sudo iw reg set US && sudo ifconfig wlp
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
 alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
 alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
-alias silentjam='sudo iwconfig && sudo wifijammer -d --world >> /dev/zero &'
+alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 alias foilhat='sudo rfkill block all'
-
 # }}}
-# matrix wallpaper {{{
-alias matrixwall='xwinwrap -b -fs -sp -fs -nf -ov  -- /usr/lib/xscreensaver/glslideshow -root -window-id WID &'
-
-# }}}
-# screen blanking {{{
-alias wkp='xset dpms force on'
-alias gdrk='xset dpms force off'
-
-# }}}
-# send sms {{{
-alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
-
-# }}}
-# watch dmesg {{{
-alias dmesgg='watch "dmesg -e | tail"'
-
-# }}}
-# ranger fm {{{
-alias rr='ranger .'
-
-# }}}
-# xrandr {{{
-alias xrandr1368x768='xrandr --newmode "1368x768_60.00"  85.86  1368 1440 1584 1800  768 769 772 795  -HSync +Vsync && xrandr --addmode HDMI1 1368x768_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --above LVDS1 --mode 1368x768_60.00'
-alias xrandr1280x1024='xrandr --newmode "1280x1024_60.00"  108.88  1280 1360 1496 1712  1024 1025 1028 1060  -HSync +Vsync && xrandr --addmode HDMI1 1280x1024_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --above LVDS1 --mode 1280x1024_60.00'
-alias xrandr1600x1200='xrandr --newmode "1600x1200_60.00" 160.96 1600 1704 1880 2160 1200 1201 1204 1242 -HSync +Vsync && xrandr --addmode HDMI1 1600x1200_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --above LVDS1 --mode 1600x1200_60.00'
+# X11 {{{
 alias xrandr1080x1920='xrandr --newmode "1080x1920_60.00"  178.35  1080 1168 1288 1496  1920 1921 1924 1987  -HSync +Vsync && xrandr --addmode HDMI1 1080x1920_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --right-of LVDS1 --mode 1080x1920_60.00'
 alias xrandroff='xrandr --output LVDS1 --primary --output HDMI1 --off && xrandr --delmode HDMI1 1368x768_60.00 & xrandr --delmode HDMI1 1280x1024_60.00 & xrandr --delmode HDMI1 1600x1200_60.00 & (sleep 1 && xrandr --rmmode 1368x768_60.00 & xrandr --rmmode 1280x1024_60.00 & xrandr --rmmode 1600x1200_60.00)'
-
+alias wkp='xset dpms force on'
+alias gdrk='xset dpms force off'
 # }}}
 # add sudo {{{
-alias systemctl='sudo systemctl'
-alias ifconfig='sudo ifconfig'
-alias NetworkManager='sudo NetworkManager'
-alias skill='sudo kill'
-alias dd='sudo dd'
-alias du='sudo du'
-alias hdparm='sudo hdparm'
-alias fstrim='sudo fstrim'
-
-alias masscan='sudo masscan'
-alias nmap='sudo nmap'
-
-alias mount='sudo mount'
-alias umount='sudo umount'
-alias fdisk='sudo fdisk'
+alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
+alias du='sudo du'
+alias fdisk='sudo fdisk'
+alias fstrim='sudo fstrim'
 alias gdisk='sudo gdisk'
 alias gparted='sudo gparted'
-alias mkfs.ext4='sudo mkfs.ext4'
-
-alias rfkill='sudo rfkill'
-alias wifite='sudo wifite'
-alias aircheck='sudo aircheck'
-
+alias hdparm='sudo hdparm'
+alias ifconfig='sudo ifconfig'
+alias iwconfig='sudo iwconfig'
+alias masscan='sudo masscan'
 alias minicom='sudo minicom'
-
+alias mkfs.ext4='sudo mkfs.ext4'
+alias mount='sudo mount'
+alias NetworkManager='sudo NetworkManager'
+alias networkmanager='sudo NetworkManager'
+alias nmap='sudo nmap'
+alias rfkill='sudo rfkill'
+alias skill='sudo kill'
+alias skillall='sudo killall'
+alias systemctl='sudo systemctl'
+alias umount='sudo umount'
+alias wifite='sudo wifite'
 # }}}
-# package management (yaourt) {{{
+# yaourt {{{
 alias y='yaourt'
 alias Y='yaourt -Syua && pkglist'
 alias Yy='yaourt -Syy'
 alias Yc='yaourt -Sc'
 alias Ycc='yaourt -Scc'
-alias yor='sudo yaourt -R $(yaourt -Qtdq)'
-
+alias yor='yaourt -Rsc $(yaourt -Qtdq)'
 # }}}
-# resize image function {{{
-smartresize() {
-   mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
-}
-
+# resize image {{{
+smartresize () { mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1 }
 # }}}
 # rsync backup scripts {{{
-bkpsync() {
+bkpsync () {
     BKP_PART_SET=false
     if [[ "$1" == '-a' ]]; then
         if [[ -a ~/.bkp_archive_part ]]; then
@@ -173,7 +145,6 @@ bkpsync() {
 }
 
 # }}}
-
 # Global Aliases {{{
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
@@ -181,7 +152,6 @@ alias -g gvim='nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
-
 # }}}
 # File Extensions {{{
 alias -s html=chromium
