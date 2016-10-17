@@ -69,6 +69,11 @@ if [[ -a ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
 # }}}
+# syntax-highlighting {{{
+if [[ -a  ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+# }}}
 # automatic startx {{{
 if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
     exec startx

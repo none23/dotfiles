@@ -89,6 +89,11 @@ alias systemctl='sudo systemctl'
 alias umount='sudo umount'
 alias wifite='sudo wifite'
 # }}}
+# beta-/git-/bin- packages {{{
+alias firefox='firefox-beta-bin'
+alias google-chrome='google-chrome-unstable'
+alias atom='atom-git'
+# }}}
 # yaourt {{{
 alias y='yaourt'
 alias Y='yaourt -Syua && pkglist'
