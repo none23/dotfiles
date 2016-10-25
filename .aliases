@@ -36,7 +36,7 @@ alias rr='ranger .'
 alias dmesgg='watch "dmesg -e | tail"'
 alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
 alias py='ipython3'
-alias nn='npm run'
+alias nr='npm run'
 alias ni='npm install'
 
 # }}}
