@@ -37,6 +37,7 @@ alias dmesgg='watch "dmesg -e | tail"'
 alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
 alias py='ipython3'
 alias nn='npm run'
+alias ni='npm run'
 
 # }}}
 # dotfiles and packagelist github {{{

@@ -64,7 +64,8 @@ source ~/.aliases
 if [[ -a ~/.private_aliases ]]; then
     source ~/.private_aliases
 fi
-
+# }}}
+# zshrc-local {{{
 if [[ -a ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
