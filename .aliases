@@ -31,7 +31,8 @@ dd () {
 }
 # }}}
 # misc {{{
-alias pn='ping -c 10 -i .2 8.8.8.8'
+alias pn='ping -c 5 -i 0.2 8.8.8.8'
+alias pnn='ping -c 5 -i 0.2 192.168.1.1'
 alias rr='ranger .'
 alias dmesgg='watch "dmesg -e | tail"'
 alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
