@@ -22,13 +22,7 @@ alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias ton='tonn && (sleep 30 && toff) &'
 # }}}
 # improved dd {{{
-dd () {
-    if [[ $# -gt 2 ]]; then
-        command dd "$*" bs=128K status=progress
-    else
-        command dd "$*"
-    fi
-}
+dd () { command sudo dd $* bs=512K status=progress }
 # }}}
 # misc {{{
 alias pn='ping -c 5 -i 0.2 8.8.8.8'
@@ -75,6 +69,9 @@ alias fstrim='sudo fstrim'
 alias gdisk='sudo gdisk'
 alias gparted='sudo gparted'
 alias hdparm='sudo hdparm'
+alias lsmod='sudo lsmod'
+alias modprobe='sudo modprobe'
+alias rmmod='sudo rmmod'
 alias ifconfig='sudo ifconfig'
 alias iwconfig='sudo iwconfig'
 alias masscan='sudo masscan'
