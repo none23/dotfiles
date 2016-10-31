@@ -47,9 +47,10 @@ prompt off
 eval $(keychain --eval --quiet id_rsa)
 # }}}
 # Virtualenvwrapper {{{
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=/home/n/projects
-source /usr/bin/virtualenvwrapper.sh
+
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=/home/n/projects
+# source /usr/bin/virtualenvwrapper.sh
 
 # }}}
 # RVM {{{
