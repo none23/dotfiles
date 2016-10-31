@@ -9,7 +9,7 @@ local drop        = require("scratchdrop")
 local lain        = require("lain")
 local menubar     = require("menubar")
 local scratch     = require("scratchdrop")
-local nlay        = require("nlay") -- my own awesome layout
+local nlay        = require("nlay") -- my layout
 -- }}}
 -- Error handling {{{
 if awesome.startup_errors then
@@ -47,17 +47,16 @@ function run_once(cmd)
       awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-os.setlocale(os.getenv("LANG"))
+-- os.setlocale(os.getenv("LANG"))
 run_once("xcompmgr &")
-awful.util.spawn_with_shell("xscreensaver -nosplash &")
 awful.util.spawn_with_shell("unclutter -idle 1 &")
-awful.util.spawn_with_shell("xrdb -merge /home/$USER/.Xresources")
-awful.util.spawn_with_shell("xmodmap /home/$USER/.Xmodmap")
-awful.util.spawn_with_shell("xset s off")
-awful.util.spawn_with_shell("xset -dpms")
-awful.util.spawn_with_shell("xset r rate 200 60")
-awful.util.spawn_with_shell("source /home/$USER/.aliases")
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lua")
+awful.util.spawn_with_shell("xrdb -merge /home/$USER/.Xresources &")
+awful.util.spawn_with_shell("xmodmap /home/$USER/.Xmodmap &")
+awful.util.spawn_with_shell("xset s off &")
+awful.util.spawn_with_shell("xset -dpms &")
+awful.util.spawn_with_shell("xset r rate 200 60 &")
+awful.util.spawn_with_shell("xscreensaver -nosplash &")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 -- }}}
 -- Aliases {{{
 modkey     = "Mod4"
@@ -144,8 +143,8 @@ require("awful.autofocus")
 -- Wallpaper {{{
 for s = 1, screen.count() do
     if beautiful.wallpaper then
-        --gears.wallpaper.fit(beautiful.wallpaper, s) end end
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+        -- gears.wallpaper.fit(beautiful.wallpaper, s) end end
     end
 end
 -- }}}
@@ -847,8 +846,13 @@ client.connect_signal("focus",
         else
             c.border_color = beautiful.border_focus
         end
-    end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+    end
+)
+client.connect_signal("unfocus",
+    function(c)
+        c.border_color = beautiful.border_normal
+    end
+)
 -- }}}
 -- {{{ Signal handler
 for s = 1, screen.count() do
