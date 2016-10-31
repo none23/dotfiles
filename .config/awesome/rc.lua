@@ -899,11 +899,8 @@ awful.rules.rules = {
       },
       properties = { floating = true }
     },
-    { rule = {class = "Atom"},
-      properties = { opacity = 0.90 }
-    },
     { rule = {class = "konsole"},
-      properties = { opacity = 0.90 }
+      properties = { opacity = 0.85 }
     },
     { rule = {class = "URxvt"},
       properties = {
