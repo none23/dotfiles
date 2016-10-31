@@ -272,7 +272,7 @@
         main_window.h = "750" 
         main_window.maximized = "false" 
         main_window.hdivider_pos = "374" 
-        main_window.vdivider_pos = "85" 
+        main_window.vdivider_pos = "262" 
 
         float_window.x = "784" 
         float_window.y = "0" 
