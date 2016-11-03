@@ -44,6 +44,10 @@ theme.menu_bg_focus                 = "#de5e1e"
 
 theme.widget_greater                = theme.confdir .. "/icons/greater.png"
 theme.widget_less                   = theme.confdir .. "/icons/less.png"
+theme.widget_less_gray              = theme.confdir .. "/icons/less_gray.png"
+theme.widget_triang_left            = theme.confdir .. "/icons/triang_left.png"
+theme.widget_triang_right           = theme.confdir .. "/icons/triang_right.png"
+
 theme.widget_cpu                    = theme.confdir .. "/icons/cpu.png"
 theme.widget_mem                    = theme.confdir .. "/icons/mem.png"
 theme.widget_batt                   = theme.confdir .. "/icons/bat.png"
