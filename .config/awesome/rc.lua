@@ -204,53 +204,72 @@ battimer:start()
 ------------------------------------------------------------------------------
 
 markup = lain.util.markup
--- textclock {{{
-mytextclock = awful.widget.textclock(markup("#999999", "%d-%a ") ..
-                                     markup("#de5e1e", " %H:%M "))
+
+-- memory {{{
+
+memwidget = lain.widgets.mem({
+    settings = function()
+                   widget:set_markup(markup("#de5e1e", mem_now.used .. "-"))
+               end
+    })
+
 -- }}}
 -- cpu {{{
+
 cpuwidget = lain.widgets.cpu({
     settings = function()
-                   widget:set_markup(markup("#999999", cpu_now.usage .. "%  "))
+                   widget:set_markup(markup("#de5e1e", cpu_now.usage ))
                end
     })
--- }}}
--- battery {{{
-batwidget = lain.widgets.bat({
-    settings = function()
-                   if bat_now.perc == "N/A" then
-                       bat_now.perc = bat_now.perc .. "C  "
-                   else
-                       bat_now.perc = bat_now.perc .. "%  "
-                   end
-                   widget:set_markup(markup("#de5e1e", bat_now.perc))
-               end
-    })
-baticon = wibox.widget.imagebox(beautiful.widget_batt)
+
 -- }}}
 -- alsa volume {{{
+
 volumewidget = lain.widgets.alsa({
     settings = function()
                    if volume_now.status == "off" then
                        volume_now.level = volume_now.level .. "M"
                    end
-                   widget:set_markup(markup("#999999",
-                                            volume_now.level .. "%  "))
+                   widget:set_markup(markup("#999999", volume_now.level .. "%"))
                end
     })
+
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 
 -- }}}
--- memory {{{
-memwidget = lain.widgets.mem({
+-- battery {{{
+
+batwidget = lain.widgets.bat({
     settings = function()
-                   widget:set_markup(markup("#999999", " " .. mem_now.used .. "-"))
+                   if bat_now.perc == "N/A" then
+                       bat_now.perc = bat_now.perc .. "C"
+                   else
+                       bat_now.perc = bat_now.perc .. "%"
+                   end
+                   widget:set_markup(markup("#de5e1e", bat_now.perc))
                end
     })
+
+baticon = wibox.widget.imagebox(beautiful.widget_batt)
+
 -- }}}
--- spacers {{{
-spacer = wibox.widget.imagebox(beautiful.widget_less)
-yapacer = wibox.widget.imagebox(beautiful.widget_greater)
+-- date {{{
+
+datewidget = awful.widget.textclock(markup("#999999", "%d-%a"))
+
+-- }}}
+-- clock {{{
+
+clockwidget = awful.widget.textclock(markup("#de5e1e", "%H:%M"))
+
+-- }}}
+-- arrows {{{
+
+arrow_left = wibox.widget.imagebox(beautiful.widget_less)
+arrow_left_gray = wibox.widget.imagebox(beautiful.widget_less_gray)
+arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
+triang_left = wibox.widget.imagebox(beautiful.widget_triang_left)
+
 -- }}}
 
 -- taglist {{{
@@ -319,7 +338,7 @@ for s = 1, screen.count() do
 
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
-    left_layout:add(yapacer)
+    left_layout:add(arrow_right)
 
     -- }}}
     -- Right side {{{
@@ -328,14 +347,20 @@ for s = 1, screen.count() do
 
     if s == 1 then
         right_layout:add(wibox.widget.systray())
-        right_layout:add(spacer)
+        right_layout:add(arrow_left)
         right_layout:add(memwidget)
         right_layout:add(cpuwidget)
+        right_layout:add(arrow_left_gray)
         right_layout:add(volicon)
         right_layout:add(volumewidget)
+        right_layout:add(arrow_left)
         right_layout:add(baticon)
         right_layout:add(batwidget)
-        right_layout:add(mytextclock)
+        right_layout:add(arrow_left_gray)
+        right_layout:add(datewidget)
+        right_layout:add(arrow_left)
+        right_layout:add(clockwidget)
+        right_layout:add(triang_left)
     end
 
     -- }}}
