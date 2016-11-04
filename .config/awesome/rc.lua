@@ -165,7 +165,6 @@ end
 if beautiful.wallpaper then
     for s = 1, screen.count() do
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-        -- gears.wallpaper.fit(beautiful.wallpaper, s) end end
     end
 end
 
@@ -187,8 +186,8 @@ local function bat_notification()
         naughty.notify({
             title = "Battery Warning",
             text = "Battery low! " .. bat_capacity .."%" .. " left!",
-            fg = "#010101",
-            bg = "#FF0000",
+            fg = beautiful.bg,
+            bg = beautiful.danger,
             timeout= 59,
             position   = "top_right"
         })
@@ -202,37 +201,49 @@ battimer:start()
 -- }}}
 -- Wibox Widgets {{{
 ------------------------------------------------------------------------------
+-- style text {{{
 
-markup = lain.util.markup
+function styletext_primary(text)
+    return '<span foreground="' .. tostring(beautiful.primary) .. '">' ..
+                tostring(text) ..
+           '</span>'
+end
 
+function styletext_gray(text)
+    return '<span foreground="' .. tostring(beautiful.gray) .. '">' ..
+                tostring(text) ..
+           '</span>'
+end
+
+-- }}}
 -- memory {{{
 
 memwidget = lain.widgets.mem({
     settings = function()
-                   widget:set_markup(markup("#de5e1e", mem_now.used .. "-"))
-               end
-    })
+        widget:set_markup(styletext_primary(mem_now.used .. "-"))
+    end
+})
 
 -- }}}
 -- cpu {{{
 
 cpuwidget = lain.widgets.cpu({
     settings = function()
-                   widget:set_markup(markup("#de5e1e", cpu_now.usage ))
-               end
-    })
+        widget:set_markup(styletext_primary(cpu_now.usage))
+    end
+})
 
 -- }}}
 -- alsa volume {{{
 
 volumewidget = lain.widgets.alsa({
     settings = function()
-                   if volume_now.status == "off" then
-                       volume_now.level = volume_now.level .. "M"
-                   end
-                   widget:set_markup(markup("#999999", volume_now.level .. "%"))
-               end
-    })
+        if volume_now.status == "off" then
+            volume_now.level = volume_now.level .. "M"
+        end
+        widget:set_markup(styletext_gray(volume_now.level .. "%"))
+    end
+})
 
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 
@@ -241,26 +252,26 @@ volicon = wibox.widget.imagebox(beautiful.widget_vol)
 
 batwidget = lain.widgets.bat({
     settings = function()
-                   if bat_now.perc == "N/A" then
-                       bat_now.perc = bat_now.perc .. "C"
-                   else
-                       bat_now.perc = bat_now.perc .. "%"
-                   end
-                   widget:set_markup(markup("#de5e1e", bat_now.perc))
-               end
-    })
+        if bat_now.perc == "N/A" then
+            bat_now.perc = bat_now.perc .. "C"
+        else
+            bat_now.perc = bat_now.perc .. "%"
+        end
+        widget:set_markup(styletext_primary(bat_now.perc))
+    end
+})
 
 baticon = wibox.widget.imagebox(beautiful.widget_batt)
 
 -- }}}
 -- date {{{
 
-datewidget = awful.widget.textclock(markup("#999999", "%d-%a"))
+datewidget = awful.widget.textclock(styletext_gray("%d-%a"))
 
 -- }}}
 -- clock {{{
 
-clockwidget = awful.widget.textclock(markup("#de5e1e", "%H:%M"))
+clockwidget = awful.widget.textclock(styletext_primary("%H:%M"))
 
 -- }}}
 -- arrows {{{
@@ -268,7 +279,7 @@ clockwidget = awful.widget.textclock(markup("#de5e1e", "%H:%M"))
 arrow_left = wibox.widget.imagebox(beautiful.widget_less)
 arrow_left_gray = wibox.widget.imagebox(beautiful.widget_less_gray)
 arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
-triang_left = wibox.widget.imagebox(beautiful.widget_triang_left)
+spacer = wibox.widget.textbox(" ")
 
 -- }}}
 
@@ -360,7 +371,7 @@ for s = 1, screen.count() do
         right_layout:add(datewidget)
         right_layout:add(arrow_left)
         right_layout:add(clockwidget)
-        right_layout:add(triang_left)
+        right_layout:add(spacer)
     end
 
     -- }}}
