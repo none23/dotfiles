@@ -201,26 +201,11 @@ battimer:start()
 -- }}}
 -- Wibox Widgets {{{
 ------------------------------------------------------------------------------
--- style text {{{
-
-function styletext_primary(text)
-    return '<span foreground="' .. tostring(beautiful.primary) .. '">' ..
-                tostring(text) ..
-           '</span>'
-end
-
-function styletext_gray(text)
-    return '<span foreground="' .. tostring(beautiful.gray) .. '">' ..
-                tostring(text) ..
-           '</span>'
-end
-
--- }}}
 -- memory {{{
 
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_markup(styletext_primary(mem_now.used .. "-"))
+        widget:set_text(mem_now.used .. "-")
     end
 })
 
@@ -229,7 +214,7 @@ memwidget = lain.widgets.mem({
 
 cpuwidget = lain.widgets.cpu({
     settings = function()
-        widget:set_markup(styletext_primary(cpu_now.usage))
+        widget:set_text(cpu_now.usage)
     end
 })
 
@@ -241,11 +226,24 @@ volumewidget = lain.widgets.alsa({
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
         end
-        widget:set_markup(styletext_gray(volume_now.level .. "%"))
+        widget:set_text(volume_now.level .. "%")
     end
 })
 
+
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
+
+volumewidget_margin = wibox.layout.margin()
+    volumewidget_margin:set_widget(volumewidget)
+    volumewidget_margin:set_top(0)
+    volumewidget_margin:set_right(3)
+    volumewidget_margin:set_bottom(1)
+    volumewidget_margin:set_left(9)
+
+volumewidget_wrap = wibox.widget.background()
+    volumewidget_wrap:set_widget(volumewidget_margin)
+    volumewidget_wrap:set_bg(beautiful.tranasparent)
+    volumewidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
 -- battery {{{
@@ -257,35 +255,83 @@ batwidget = lain.widgets.bat({
         else
             bat_now.perc = bat_now.perc .. "%"
         end
-        widget:set_markup(styletext_primary(bat_now.perc))
+        widget:set_text(bat_now.perc)
     end
 })
 
-baticon = wibox.widget.imagebox(beautiful.widget_batt)
+batwidget_margin = wibox.layout.margin()
+    batwidget_margin:set_widget(batwidget)
+    batwidget_margin:set_top(0)
+    batwidget_margin:set_right(3)
+    batwidget_margin:set_bottom(1)
+    batwidget_margin:set_left(9)
+
+batwidget_wrap = wibox.widget.background()
+    batwidget_wrap:set_widget(batwidget_margin)
+    batwidget_wrap:set_bg(beautiful.tranasparent)
+    batwidget_wrap:set_fg(beautiful.primary)
 
 -- }}}
 -- date {{{
 
-datewidget = awful.widget.textclock(styletext_gray("%d-%a"))
+datewidget = awful.widget.textclock(
+    '<span>' ..  tostring("%d-%a") ..  '</span>',
+    100
+)
+datewidget_margin = wibox.layout.margin()
+    datewidget_margin:set_widget(datewidget)
+    datewidget_margin:set_top(0)
+    datewidget_margin:set_right(3)
+    datewidget_margin:set_bottom(1)
+    datewidget_margin:set_left(9)
+
+datewidget_wrap = wibox.widget.background()
+    datewidget_wrap:set_widget(datewidget_margin)
+    datewidget_wrap:set_bg(beautiful.tranasparent)
+    datewidget_wrap:set_bgimage(beautiful.powerline_left_gray_long)
+    datewidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
 -- clock {{{
 
-clockwidget = awful.widget.textclock(styletext_primary("%H:%M"))
+clockwidget = awful.widget.textclock(
+    '<span>' ..  tostring("%H:%M") ..  '</span>',
+    10
+)
+
+clockwidget_margin = wibox.layout.margin()
+    clockwidget_margin:set_widget(clockwidget)
+    clockwidget_margin:set_top(0)
+    clockwidget_margin:set_right(3)
+    clockwidget_margin:set_bottom(2)
+    clockwidget_margin:set_left(9)
+
+clockwidget_wrap = wibox.widget.background()
+    clockwidget_wrap:set_widget(clockwidget_margin)
+    clockwidget_wrap:set_bg(beautiful.midgray_0)
+    clockwidget_wrap:set_bgimage(beautiful.powerline_left_orange_long)
+    clockwidget_wrap:set_fg(beautiful.black)
 
 -- }}}
 -- arrows {{{
 
-arrow_left = wibox.widget.imagebox(beautiful.widget_less)
-arrow_left_gray = wibox.widget.imagebox(beautiful.widget_less_gray)
-arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
-spacer = wibox.widget.textbox(" ")
+--arrow_left = wibox.widget.imagebox(beautiful.widget_less)
+--arrow_left_gray = wibox.widget.imagebox(beautiful.widget_less_gray)
+--arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
 
 -- }}}
 
--- taglist {{{
+-- }}}
+-- Wibox {{{
+------------------------------------------------------------------------------
+
+mywibox = {}
 
 mytaglist = {}
+mypromptbox = {}
+mytasklist = {}
+
+-- buttons {{{
 
 mytaglist.buttons = awful.util.table.join(
     awful.button({},       1, awful.tag.viewonly),
@@ -294,10 +340,6 @@ mytaglist.buttons = awful.util.table.join(
     awful.button({modkey}, 3, awful.client.toggletag)
 )
 
--- }}}
--- tasklist {{{
-
-mytasklist = {}
 
 mytasklist.buttons = awful.util.table.join(
     awful.button({}, 1,
@@ -319,25 +361,28 @@ mytasklist.buttons = awful.util.table.join(
 )
 
 -- }}}
--- }}}
--- Wibox {{{
-------------------------------------------------------------------------------
-
-mywibox = {}
-mypromptbox = {}
 
 for s = 1, screen.count() do
-    mypromptbox[s] = awful.widget.prompt()
+
     mytaglist[s] = awful.widget.taglist(
         s,
         awful.widget.taglist.filter.all,
-        mytaglist.buttons
+        mytaglist.buttons,
+        nil
     )
+
+    local taglist_margin = wibox.layout.margin()
+    taglist_margin:set_widget(mytaglist[s])
+    taglist_margin:set_margins(0)
+
+    mypromptbox[s] = awful.widget.prompt()
+
     mytasklist[s] = awful.widget.tasklist(
         s,
         awful.widget.tasklist.filter.currenttags,
         mytasklist.buttons
     )
+
     mywibox[s] = awful.wibox({
         position = "top",
         screen = s,
@@ -347,41 +392,50 @@ for s = 1, screen.count() do
 
     local left_layout = wibox.layout.fixed.horizontal()
 
-    left_layout:add(mytaglist[s])
-    left_layout:add(mypromptbox[s])
-    left_layout:add(arrow_right)
+
+    local promptbox_margin = wibox.layout.margin()
+    promptbox_margin:set_widget(mypromptbox[s])
+    promptbox_margin:set_margins(0)
+
+    left_layout:add(taglist_margin)
+    left_layout:add(promptbox_margin)
 
     -- }}}
     -- Right side {{{
 
     local right_layout = wibox.layout.fixed.horizontal()
 
+
     if s == 1 then
         right_layout:add(wibox.widget.systray())
-        right_layout:add(arrow_left)
-        right_layout:add(memwidget)
-        right_layout:add(cpuwidget)
-        right_layout:add(arrow_left_gray)
-        right_layout:add(volicon)
-        right_layout:add(volumewidget)
-        right_layout:add(arrow_left)
-        right_layout:add(baticon)
-        right_layout:add(batwidget)
-        right_layout:add(arrow_left_gray)
-        right_layout:add(datewidget)
-        right_layout:add(arrow_left)
-        right_layout:add(clockwidget)
-        right_layout:add(spacer)
     end
+    --right_layout:add(arrow_left)
+    --right_layout:add(memwidget)
+    --right_layout:add(cpuwidget)
+    --right_layout:add(volumewidget_wrap)
+    right_layout:add(batwidget_wrap)
+    right_layout:add(datewidget_wrap)
+    right_layout:add(clockwidget_wrap)
 
     -- }}}
     -- Bring it all together {{{
 
     local layout = wibox.layout.align.horizontal()
+    local layout_margin = wibox.layout.margin()
+    layout_margin:set_widget(layout)
+    layout_margin:set_margins(0)
 
-    layout:set_left(left_layout)
-    layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)
+    local left_layout_margin = wibox.layout.margin()
+          left_layout_margin:set_widget(left_layout)
+          left_layout_margin:set_margins(0)
+
+    local right_layout_margin = wibox.layout.margin()
+          right_layout_margin:set_widget(right_layout)
+          right_layout_margin:set_margins(0)
+
+    layout:set_left(   left_layout_margin  )
+    layout:set_middle( mytasklist[s])
+    layout:set_right(  right_layout_margin )
 
     mywibox[s]:set_widget(layout)
 
