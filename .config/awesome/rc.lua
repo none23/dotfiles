@@ -205,9 +205,22 @@ battimer:start()
 
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_text(mem_now.used .. "-")
+        widget:set_text(mem_now.used .."-")
     end
 })
+
+memwidget_margin = wibox.layout.margin()
+    memwidget_margin:set_widget(memwidget)
+    memwidget_margin:set_top(0)
+    memwidget_margin:set_right(0)
+    memwidget_margin:set_bottom(1)
+    memwidget_margin:set_left(0)
+
+memwidget_wrap = wibox.widget.background()
+    memwidget_wrap:set_widget(memwidget_margin)
+    memwidget_wrap:set_bg(beautiful.tranasparent)
+--    memwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
+    memwidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
 -- cpu {{{
@@ -217,6 +230,20 @@ cpuwidget = lain.widgets.cpu({
         widget:set_text(cpu_now.usage)
     end
 })
+
+cpuwidget_margin = wibox.layout.margin()
+    cpuwidget_margin:set_widget(cpuwidget)
+    cpuwidget_margin:set_top(0)
+    cpuwidget_margin:set_right(4)
+    cpuwidget_margin:set_bottom(1)
+    cpuwidget_margin:set_left(0)
+
+cpuwidget_wrap = wibox.widget.background()
+    cpuwidget_wrap:set_widget(cpuwidget_margin)
+    cpuwidget_wrap:set_bg(beautiful.tranasparent)
+    --cpuwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
+    cpuwidget_wrap:set_fg(beautiful.fg)
+
 
 -- }}}
 -- alsa volume {{{
@@ -316,9 +343,8 @@ clockwidget_wrap = wibox.widget.background()
 -- }}}
 -- arrows {{{
 
---arrow_left = wibox.widget.imagebox(beautiful.widget_less)
---arrow_left_gray = wibox.widget.imagebox(beautiful.widget_less_gray)
---arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
+arrow_left = wibox.widget.imagebox(beautiful.widget_less_gray)
+arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
 
 -- }}}
 
@@ -389,20 +415,19 @@ for s = 1, screen.count() do
         screen = s,
         height = 16
     })
-    -- Left side {{{
-
-    local left_layout = wibox.layout.fixed.horizontal()
-
+    -- Left {{{
 
     local promptbox_margin = wibox.layout.margin()
     promptbox_margin:set_widget(mypromptbox[s])
     promptbox_margin:set_margins(0)
 
+    local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(taglist_margin)
     left_layout:add(promptbox_margin)
+    left_layout:add(arrow_right)
 
     -- }}}
-    -- Right side {{{
+    -- Right {{{
 
     local right_layout = wibox.layout.fixed.horizontal()
 
@@ -410,9 +435,9 @@ for s = 1, screen.count() do
     if s == 1 then
         right_layout:add(wibox.widget.systray())
     end
-    --right_layout:add(arrow_left)
-    --right_layout:add(memwidget)
-    --right_layout:add(load_wrap)
+    right_layout:add(arrow_left)
+    right_layout:add(memwidget_wrap)
+    right_layout:add(cpuwidget_wrap)
     right_layout:add(volumewidget_wrap)
     right_layout:add(batwidget_wrap)
     right_layout:add(datewidget_wrap)
