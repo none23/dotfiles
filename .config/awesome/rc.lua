@@ -117,7 +117,7 @@ local layouts = {
 }
 
 tags = {
-    name = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+    name = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " },
     layout = {
         layouts[4], layouts[1], layouts[1], layouts[1], layouts[1],
         layouts[2], layouts[2], layouts[2], layouts[3]
@@ -337,26 +337,30 @@ clockwidget_wrap = wibox.widget.background()
 -- }}}
 -- arrows {{{
 
-arrow_left = wibox.widget.imagebox(beautiful.widget_less_gray)
-arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
-
 midgray1_to_primary_img  = wibox.widget.imagebox(beautiful.midgray1_to_primary)
-midgray1_to_midgray0_img = wibox.widget.imagebox(beautiful.midgray1_to_midgray0)
-midgray0_to_midgray1_img = wibox.widget.imagebox(beautiful.midgray0_to_midgray1)
-black_to_midgray0_img    = wibox.widget.imagebox(beautiful.black_to_midgray0)
-
 midgray1_to_primary = wibox.layout.margin()
     midgray1_to_primary:set_widget(midgray1_to_primary_img)
     midgray1_to_primary:set_margins(-1)
+
+midgray1_to_midgray0_img = wibox.widget.imagebox(beautiful.midgray1_to_midgray0)
 midgray1_to_midgray0 = wibox.layout.margin() 
     midgray1_to_midgray0:set_widget(midgray1_to_midgray0_img)
     midgray1_to_midgray0:set_margins(-1)
+
+midgray0_to_midgray1_img = wibox.widget.imagebox(beautiful.midgray0_to_midgray1)
 midgray0_to_midgray1 = wibox.layout.margin()
     midgray0_to_midgray1:set_widget(midgray0_to_midgray1_img)
     midgray0_to_midgray1:set_margins(-1)
+
+black_to_midgray0_img    = wibox.widget.imagebox(beautiful.black_to_midgray0)
 black_to_midgray0 = wibox.layout.margin()
     black_to_midgray0:set_widget(black_to_midgray0_img)
     black_to_midgray0:set_margins(-1)
+
+midgray0_to_black_right_img = wibox.widget.imagebox(beautiful.midgray0_to_black_right)
+midgray0_to_black_right = wibox.layout.margin()
+    midgray0_to_black_right:set_widget(midgray0_to_black_right_img)
+    midgray0_to_black_right:set_margins(-1)
 
 -- }}}
 
@@ -411,8 +415,12 @@ for s = 1, screen.count() do
     )
 
     local taglist_margin = wibox.layout.margin()
-    taglist_margin:set_widget(mytaglist[s])
-    taglist_margin:set_margins(0)
+          taglist_margin:set_widget(mytaglist[s])
+          taglist_margin:set_margins(0)
+
+    local taglist_wrap = wibox.widget.background()
+          taglist_wrap:set_widget(taglist_margin)
+          taglist_wrap:set_bg(beautiful.midgray_0)
 
     mypromptbox[s] = awful.widget.prompt()
 
@@ -430,13 +438,17 @@ for s = 1, screen.count() do
     -- Left {{{
 
     local promptbox_margin = wibox.layout.margin()
-    promptbox_margin:set_widget(mypromptbox[s])
-    promptbox_margin:set_margins(0)
+          promptbox_margin:set_widget(mypromptbox[s])
+          promptbox_margin:set_margins(0)
+
+    local promptbox_wrap = wibox.widget.background()
+          promptbox_wrap:set_widget(promptbox_margin)
+          promptbox_wrap:set_bg(beautiful.midgray_0)
 
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(taglist_margin)
-    left_layout:add(promptbox_margin)
-    left_layout:add(arrow_right)
+          left_layout:add(taglist_wrap)
+          left_layout:add(promptbox_wrap)
+          left_layout:add(midgray0_to_black_right)
 
     -- }}}
     -- Right {{{

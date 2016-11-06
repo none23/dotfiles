@@ -46,15 +46,8 @@ theme.border_focus      = theme.primary
 theme.border_marked     = theme.secondary
 theme.gray              = theme.fg
 
--- Icons {{{
+-- Powerline {{{
 
-theme.widget_greater             = theme.confdir .. "/icons/greater.png"
-theme.widget_less                = theme.confdir .. "/icons/less.png"
-theme.widget_less_gray           = theme.confdir .. "/icons/less_gray.png"
-theme.widget_cpu                 = theme.confdir .. "/icons/cpu.png"
-theme.widget_mem                 = theme.confdir .. "/icons/mem.png"
-theme.widget_batt                = theme.confdir .. "/icons/bat.png"
-theme.widget_vol                 = theme.confdir .. "/icons/spkr.png"
 theme.taglist_squares_sel        = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.png"
 
@@ -67,6 +60,16 @@ theme.midgray1_to_primary        = theme.confdir .. "/icons/midgray1_to_primary.
 theme.midgray1_to_midgray0       = theme.confdir .. "/icons/midgray1_to_midgray0.png"
 theme.midgray0_to_midgray1       = theme.confdir .. "/icons/midgray0_to_midgray1.png"
 theme.black_to_midgray0          = theme.confdir .. "/icons/black_to_midgray0.png"
+
+theme.midgray0_to_black_right    = theme.confdir .. "/icons/midgray0_to_black_right.png"
+
+-- }}}
+-- Icons {{{
+
+theme.widget_cpu                 = theme.confdir .. "/icons/cpu.png"
+theme.widget_mem                 = theme.confdir .. "/icons/mem.png"
+theme.widget_batt                = theme.confdir .. "/icons/bat.png"
+theme.widget_vol                 = theme.confdir .. "/icons/spkr.png"
 
 theme.icon_theme                 = nil
 theme.tasklist_disable_icon      = true
