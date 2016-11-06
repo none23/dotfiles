@@ -85,10 +85,11 @@ end
 -- Environment / Settings {{{
 
 run_once("compton -b")
-awful.util.spawn_with_shell("unclutter -idle 1")
-awful.util.spawn_with_shell("xrdb -merge /home/$USER/.Xresources")
-awful.util.spawn_with_shell("xmodmap /home/$USER/.Xmodmap")
-awful.util.spawn_with_shell("xset s off && xset -dpms && xset r rate 200 60")
+run_once("export QT_QPA_PLATFORMTHEME='qt5ct'")
+run_once("unclutter -idle 1")
+run_once("xrdb -merge /home/$USER/.Xresources && xrdb ~/.Xresources")
+run_once("xmodmap /home/$USER/.Xmodmap")
+run_once("xset s off && xset -dpms && xset r rate 200 60")
 run_once("xscreensaver -nosplash &")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
@@ -211,14 +212,12 @@ memwidget = lain.widgets.mem({
 
 memwidget_margin = wibox.layout.margin()
     memwidget_margin:set_widget(memwidget)
-    memwidget_margin:set_top(0)
-    memwidget_margin:set_right(0)
     memwidget_margin:set_bottom(1)
-    memwidget_margin:set_left(0)
+    memwidget_margin:set_left(3)
 
 memwidget_wrap = wibox.widget.background()
     memwidget_wrap:set_widget(memwidget_margin)
-    memwidget_wrap:set_bg(beautiful.tranasparent)
+    memwidget_wrap:set_bg(beautiful.midgray_0)
 --    memwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
     memwidget_wrap:set_fg(beautiful.fg)
 
@@ -233,14 +232,12 @@ cpuwidget = lain.widgets.cpu({
 
 cpuwidget_margin = wibox.layout.margin()
     cpuwidget_margin:set_widget(cpuwidget)
-    cpuwidget_margin:set_top(0)
     cpuwidget_margin:set_right(4)
     cpuwidget_margin:set_bottom(1)
-    cpuwidget_margin:set_left(0)
 
 cpuwidget_wrap = wibox.widget.background()
     cpuwidget_wrap:set_widget(cpuwidget_margin)
-    cpuwidget_wrap:set_bg(beautiful.tranasparent)
+    cpuwidget_wrap:set_bg(beautiful.midgray_0)
     --cpuwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
     cpuwidget_wrap:set_fg(beautiful.fg)
 
@@ -262,15 +259,14 @@ volicon = wibox.widget.imagebox(beautiful.widget_vol)
 
 volumewidget_margin = wibox.layout.margin()
     volumewidget_margin:set_widget(volumewidget)
-    volumewidget_margin:set_top(0)
-    volumewidget_margin:set_right(13)
+    volumewidget_margin:set_right(4)
     volumewidget_margin:set_bottom(1)
-    volumewidget_margin:set_left(9)
+    volumewidget_margin:set_left(3)
 
 volumewidget_wrap = wibox.widget.background()
     volumewidget_wrap:set_widget(volumewidget_margin)
-    volumewidget_wrap:set_bg(beautiful.tranasparent)
-    volumewidget_wrap:set_bgimage(beautiful.powerline_left_gray)
+    volumewidget_wrap:set_bg(beautiful.midgray_1)
+    --volumewidget_wrap:set_bgimage(beautiful.powerline_left_gray)
     volumewidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
@@ -290,13 +286,13 @@ batwidget = lain.widgets.bat({
 batwidget_margin = wibox.layout.margin()
     batwidget_margin:set_widget(batwidget)
     batwidget_margin:set_top(0)
-    batwidget_margin:set_right(3)
+    batwidget_margin:set_right(4)
     batwidget_margin:set_bottom(1)
-    batwidget_margin:set_left(0)
+    batwidget_margin:set_left(3)
 
 batwidget_wrap = wibox.widget.background()
     batwidget_wrap:set_widget(batwidget_margin)
-    batwidget_wrap:set_bg(beautiful.tranasparent)
+    batwidget_wrap:set_bg(beautiful.midgray_0)
     batwidget_wrap:set_fg(beautiful.primary)
 
 -- }}}
@@ -308,15 +304,14 @@ datewidget = awful.widget.textclock(
 )
 datewidget_margin = wibox.layout.margin()
     datewidget_margin:set_widget(datewidget)
-    datewidget_margin:set_top(0)
-    datewidget_margin:set_right(3)
+    datewidget_margin:set_right(4)
     datewidget_margin:set_bottom(1)
-    datewidget_margin:set_left(9)
+    datewidget_margin:set_left(3)
 
 datewidget_wrap = wibox.widget.background()
     datewidget_wrap:set_widget(datewidget_margin)
-    datewidget_wrap:set_bg(beautiful.tranasparent)
-    datewidget_wrap:set_bgimage(beautiful.powerline_left_gray_long)
+    datewidget_wrap:set_bg(beautiful.midgray_1)
+    --datewidget_wrap:set_bgimage(beautiful.powerline_left_gray_long)
     datewidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
@@ -329,15 +324,14 @@ clockwidget = awful.widget.textclock(
 
 clockwidget_margin = wibox.layout.margin()
     clockwidget_margin:set_widget(clockwidget)
-    clockwidget_margin:set_top(0)
-    clockwidget_margin:set_right(3)
+    clockwidget_margin:set_right(4)
     clockwidget_margin:set_bottom(2)
-    clockwidget_margin:set_left(9)
+    clockwidget_margin:set_left(3)
 
 clockwidget_wrap = wibox.widget.background()
     clockwidget_wrap:set_widget(clockwidget_margin)
-    clockwidget_wrap:set_bg(beautiful.midgray_0)
-    clockwidget_wrap:set_bgimage(beautiful.powerline_left_orange_long)
+    clockwidget_wrap:set_bg(beautiful.primary)
+    --clockwidget_wrap:set_bgimage(beautiful.powerline_left_orange_long)
     clockwidget_wrap:set_fg(beautiful.black)
 
 -- }}}
@@ -345,6 +339,24 @@ clockwidget_wrap = wibox.widget.background()
 
 arrow_left = wibox.widget.imagebox(beautiful.widget_less_gray)
 arrow_right = wibox.widget.imagebox(beautiful.widget_greater)
+
+midgray1_to_primary_img  = wibox.widget.imagebox(beautiful.midgray1_to_primary)
+midgray1_to_midgray0_img = wibox.widget.imagebox(beautiful.midgray1_to_midgray0)
+midgray0_to_midgray1_img = wibox.widget.imagebox(beautiful.midgray0_to_midgray1)
+black_to_midgray0_img    = wibox.widget.imagebox(beautiful.black_to_midgray0)
+
+midgray1_to_primary = wibox.layout.margin()
+    midgray1_to_primary:set_widget(midgray1_to_primary_img)
+    midgray1_to_primary:set_margins(-1)
+midgray1_to_midgray0 = wibox.layout.margin() 
+    midgray1_to_midgray0:set_widget(midgray1_to_midgray0_img)
+    midgray1_to_midgray0:set_margins(-1)
+midgray0_to_midgray1 = wibox.layout.margin()
+    midgray0_to_midgray1:set_widget(midgray0_to_midgray1_img)
+    midgray0_to_midgray1:set_margins(-1)
+black_to_midgray0 = wibox.layout.margin()
+    black_to_midgray0:set_widget(black_to_midgray0_img)
+    black_to_midgray0:set_margins(-1)
 
 -- }}}
 
@@ -435,13 +447,24 @@ for s = 1, screen.count() do
     if s == 1 then
         right_layout:add(wibox.widget.systray())
     end
-    right_layout:add(arrow_left)
+    right_layout:add(black_to_midgray0)
     right_layout:add(memwidget_wrap)
     right_layout:add(cpuwidget_wrap)
+
+    right_layout:add(midgray0_to_midgray1)
     right_layout:add(volumewidget_wrap)
+
+    right_layout:add(midgray1_to_midgray0)
     right_layout:add(batwidget_wrap)
+
+    right_layout:add(midgray0_to_midgray1)
     right_layout:add(datewidget_wrap)
+
+    right_layout:add(midgray1_to_primary)
     right_layout:add(clockwidget_wrap)
+
+
+
 
     -- }}}
     -- Bring it all together {{{
