@@ -117,7 +117,7 @@ local layouts = {
 }
 
 tags = {
-    name = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " },
+    name = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
     layout = {
         layouts[4], layouts[1], layouts[1], layouts[1], layouts[1],
         layouts[2], layouts[2], layouts[2], layouts[3]
@@ -255,14 +255,22 @@ volumewidget = lain.widgets.alsa({
 })
 
 
-volicon = wibox.widget.imagebox(beautiful.widget_vol)
+-- volicon_img = wibox.widget.imagebox(beautiful.widget_vol)
+-- volicon_bg = wibox.widget.background()
+--     volicon_bg:set_widget(volicon_img)
+--     volicon_bg:set_bg(beautiful.midgray_1)
+-- volicon_wrap = wibox.layout.margin()
+--     volicon_wrap:set_widget(volicon_bg)
+--     volicon_wrap:set_top(-2)
+--     volicon_wrap:set_right(-2)
+--     volicon_wrap:set_bottom(-1)
+--     volicon_wrap:set_left(-2)
 
 volumewidget_margin = wibox.layout.margin()
     volumewidget_margin:set_widget(volumewidget)
     volumewidget_margin:set_right(4)
     volumewidget_margin:set_bottom(1)
-    volumewidget_margin:set_left(3)
-
+    volumewidget_margin:set_left(2)
 volumewidget_wrap = wibox.widget.background()
     volumewidget_wrap:set_widget(volumewidget_margin)
     volumewidget_wrap:set_bg(beautiful.midgray_1)
@@ -285,15 +293,25 @@ batwidget = lain.widgets.bat({
 
 batwidget_margin = wibox.layout.margin()
     batwidget_margin:set_widget(batwidget)
-    batwidget_margin:set_top(0)
     batwidget_margin:set_right(4)
     batwidget_margin:set_bottom(1)
-    batwidget_margin:set_left(3)
+    batwidget_margin:set_left(2)
 
 batwidget_wrap = wibox.widget.background()
     batwidget_wrap:set_widget(batwidget_margin)
     batwidget_wrap:set_bg(beautiful.midgray_0)
     batwidget_wrap:set_fg(beautiful.primary)
+
+-- baticon_img = wibox.widget.imagebox(beautiful.widget_batt)
+-- baticon_bg = wibox.widget.background()
+--     baticon_bg:set_widget(baticon_img)
+--     baticon_bg:set_bg(beautiful.midgray_0)
+-- baticon_wrap = wibox.layout.margin()
+--     baticon_wrap:set_widget(baticon_bg)
+--     baticon_wrap:set_top(-1)
+--     baticon_wrap:set_right(-2)
+--     baticon_wrap:set_bottom(-1)
+--     baticon_wrap:set_left(-2)
 
 -- }}}
 -- date {{{
@@ -410,8 +428,7 @@ for s = 1, screen.count() do
     mytaglist[s] = awful.widget.taglist(
         s,
         awful.widget.taglist.filter.all,
-        mytaglist.buttons,
-        nil
+        mytaglist.buttons
     )
 
     local taglist_margin = wibox.layout.margin()
@@ -464,9 +481,11 @@ for s = 1, screen.count() do
     right_layout:add(cpuwidget_wrap)
 
     right_layout:add(midgray0_to_midgray1)
+    -- right_layout:add(volicon_wrap)
     right_layout:add(volumewidget_wrap)
 
     right_layout:add(midgray1_to_midgray0)
+    -- right_layout:add(baticon_wrap)
     right_layout:add(batwidget_wrap)
 
     right_layout:add(midgray0_to_midgray1)
