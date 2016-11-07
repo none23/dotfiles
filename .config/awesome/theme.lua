@@ -3,8 +3,7 @@ theme.confdir           = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper         = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font              = "Ubuntu Mono 8"
---theme.font              = "Terminess Powerline 7"
-theme.taglist_font      = theme.font
+--theme.taglist_font      = "Terminess Powerline 7"
 
 theme.fg                = "#999999"
 theme.bg                = "#000000"
