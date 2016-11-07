@@ -104,6 +104,7 @@ alias skillall='sudo killall'
 alias systemctl='sudo systemctl'
 alias umount='sudo umount'
 alias wifite='sudo wifite'
+alias wifijammer='sudo wifijammer'
 
 # }}}
 # beta/unstable apps {{{
