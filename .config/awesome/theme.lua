@@ -34,7 +34,7 @@ theme.taglist_fg_focus  = theme.primary
 
 theme.bg_normal         = theme.bg
 theme.bg_focus          = theme.bg
-theme.bg_urgent         = theme.danger
+theme.bg_urgent         = theme.primary
 theme.menu_bg_normal    = theme.bg
 theme.menu_bg_focus     = theme.bg
 theme.bg_minimize       = theme.bg
