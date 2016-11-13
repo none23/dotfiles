@@ -35,7 +35,7 @@ pronmode    = "firefox-beta --private-window"
 filemgr     = ranger
 filemgr2    = "thunar"
 gvim        = "konsole -e nvim"
-atom        = "atom-git"
+atom        = "atom"
 touchenable = "touchpad_ctrl"
 
 -- }}}
