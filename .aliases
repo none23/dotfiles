@@ -50,7 +50,21 @@ alias nrb='npm run build'
 alias nrw='npm run watch'
 
 # }}}
-# dotfiles and packagelist github {{{
+# git {{{
+
+      Ga () { [[ $* ]] && git add $* || git add . }
+      Gc () { [[ $* ]] && git commit -m "$*" || git commit  . }
+alias Gg='git clone'
+alias Gi='git init'
+alias Gm='git merge'
+      Gl () { [[ $1 ]] && git pull origin $1 || git pull origin master }
+alias Go='git remote add origin'
+      Gp () { [[ $1 ]] && git push origin $1 || git push origin master }
+alias Gr='git rm -rf'
+alias Gs='git status'
+
+# }}}
+# dotfiles,packagelist github {{{
 
 alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
@@ -65,6 +79,7 @@ alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
 alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 alias foilhat='sudo rfkill block all'
+alias N='nmtui'
 
 # }}}
 # X11 {{{
@@ -111,7 +126,6 @@ alias wifijammer='sudo wifijammer'
 
 alias firefox='firefox-beta-bin'
 alias google-chrome='google-chrome-unstable'
-alias atom='atom-git'
 
 # }}}
 # yaourt {{{
