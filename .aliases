@@ -62,6 +62,7 @@ alias Go='git remote add origin'
       Gp () { [[ $1 ]] && git push origin $1 || git push origin master }
 alias Gr='git rm -rf'
 alias Gs='git status'
+alias GG='Ga && Gc && Gp'
 
 # }}}
 # dotfiles,packagelist github {{{
