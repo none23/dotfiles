@@ -1,0 +1,176 @@
+#!/bin/zsh
+
+DOTFILES_PATH=$(pwd)
+
+# vim {{{
+
+[[ -a ~/.config/nvim ]] && mv ~/.config/nvim{,.old}
+ln -s $DOTFILES_PATH/.vim ~/.config/nvim
+ln -s $DOTFILES_PATH/.vimrc ~/.config/nvim/init.vim
+
+[[ -a ~/.vim ]] && mv ~/.vim{,.old}
+ln -s $DOTFILES_PATH/.vim ~/.vim
+
+[[ -a ~/.vimrc ]] && mv ~/.vimrc{,.old}
+ln -s $DOTFILES_PATH/.vimrc ~/.vimrc
+
+# /vim }}}
+# zsh {{{
+
+[[ -a ~/.zshrc ]] && mv ~/.zshrc{,.old}
+ln -s $DOTFILES_PATH/.zshrc ~/.zshrc
+
+[[ -a ~/.aliases ]] && mv ~/.aliases{,.old}
+ln -s $DOTFILES_PATH/.aliases ~/.aliases
+
+[[ -a ~/.zcompdump ]] && mv ~/.zcompdump{,.old}
+ln -s $DOTFILES_PATH/.zcompdump ~/.zcompdump
+
+[[ -a ~/.zdirs ]] && mv ~/.zdirs{,.old}
+ln -s $DOTFILES_PATH/.zdirs ~/.zdirs
+
+[[ -a ~/.zprofile ]] && mv ~/.zprofile{,.old}
+ln -s $DOTFILES_PATH/.zprofile ~/.zprofile
+
+[[ -a ~/.zsh-syntax-highlighting ]] && mv ~/.zsh-syntax-highlighting{,.old}
+ln -s $DOTFILES_PATH/.zsh-syntax-highlighting ~/.zsh-syntax-highlighting
+
+# /zsh }}}
+# bash {{{
+
+[[ -a ~/.bashrc ]] && mv ~/.bashrc{,.old}
+ln -s $DOTFILES_PATH/.bashrc ~/.bashrc
+
+[[ -a ~/.bash_profile ]] && mv ~/.bash_profile{,.old}
+ln -s $DOTFILES_PATH/.bash_profile ~/.bash_profile
+
+# /bash }}}
+# misc {{{
+
+[[ -a ~/.config/awesome ]] && mv ~/.config/awesome{,.old}
+ln -s $DOTFILES_PATH/.config/awesome ~/.config/awesome
+
+[[ -a ~/.dmrc ]] && mv ~/.dmrc{,.old}
+ln -s $DOTFILES_PATH/.dmrc ~/.dmrc
+
+[[ -a ~/.xinitrc ]] && mv ~/.xinitrc{,.old}
+ln -s $DOTFILES_PATH/.xinitrc ~/.xinitrc
+
+[[ -a ~/.Xmodmap ]] && mv ~/.Xmodmap{,.old}
+ln -s $DOTFILES_PATH/.Xmodmap ~/.Xmodmap
+
+[[ -a ~/.Xresources ]] && mv ~/.Xresources{,.old}
+ln -s $DOTFILES_PATH/.Xresources ~/.Xresources
+
+[[ -a ~/.xscreensaver ]] && mv ~/.xscreensaver{,.old}
+ln -s $DOTFILES_PATH/.xscreensaver ~/.xscreensaver
+
+[[ -a ~/.cvimrc ]] && mv ~/.cvimrc{,.old}
+ln -s $DOTFILES_PATH/.cvimrc ~/.cvimrc
+
+[[ -a ~/.fonts ]] && mv ~/.fonts{,.old}
+ln -s $DOTFILES_PATH/.fonts ~/.fonts
+
+[[ -a ~/.gnome2 ]] && mv ~/.gnome2{,.old}
+ln -s $DOTFILES_PATH/.gnome2 ~/.gnome2
+
+[[ -a ~/.gtkrc-2.0 ]] && mv ~/.gtkrc-2.0{,.old}
+ln -s $DOTFILES_PATH/.gtkrc-2.0 ~/.gtkrc-2.0
+
+[[ -a ~/.icons ]] && mv ~/.icons{,.old}
+ln -s $DOTFILES_PATH/.icons ~/.icons
+
+[[ -a ~/.inputrc ]] && mv ~/.inputrc{,.old}
+ln -s $DOTFILES_PATH/.inputrc ~/.inputrc
+
+[[ -a ~/.vimperator ]] && mv ~/.vimperator{,.old}
+ln -s $DOTFILES_PATH/.vimperator ~/.vimperator
+
+[[ -a ~/.vimperatorrc ]] && mv ~/.vimperatorrc{,.old}
+ln -s $DOTFILES_PATH/.vimperatorrc ~/.vimperatorrc
+
+[[ -a ~/.i3 ]] && mv ~/.i3{,.old}
+ln -s $DOTFILES_PATH/.i3 ~/.i3
+
+[[ -a ~/.ipython ]] && mv ~/.ipython{,.old}
+ln -s $DOTFILES_PATH/.ipython ~/.ipython
+
+[[ -a ~/.tmux.conf ]] && mv ~/.tmux.conf{,.old}
+ln -s $DOTFILES_PATH/.tmux.conf ~/.tmux.conf
+
+[[ -a ~/.local/share/konsole ]] && mv ~/.local/share/konsole{,.old}
+ln -s $DOTFILES_PATH/.local/share/konsole ~/.local/share/konsole
+
+[[ -a ~/.config/compton.conf ]] && mv ~/.config/compton.conf{,.old}
+ln -s $DOTFILES_PATH/.config/compton.conf ~/.config/compton.conf
+
+[[ -a ~/.config/cvim ]] && mv ~/.config/cvim{,.old}
+ln -s $DOTFILES_PATH/.config/cvim ~/.config/cvim
+
+[[ -a ~/.config/cvim ]] && mv ~/.config/cvim{,.old}
+ln -s $DOTFILES_PATH/.config/cvim ~/.config/cvim
+
+[[ -a ~/.config/geeqie ]] && mv ~/.config/geeqie{,.old}
+ln -s $DOTFILES_PATH/.config/geeqie ~/.config/geeqie
+
+[[ -a ~/.config/gtk-2.0 ]] && mv ~/.config/gtk-2.0{,.old}
+ln -s $DOTFILES_PATH/.config/gtk-2.0 ~/.config/gtk-2.0
+
+[[ -a ~/.config/gtk-3.0 ]] && mv ~/.config/gtk-3.0{,.old}
+ln -s $DOTFILES_PATH/.config/gtk-3.0 ~/.config/gtk-3.0
+
+[[ -a ~/.config/htop ]] && mv ~/.config/htop{,.old}
+ln -s $DOTFILES_PATH/.config/htop ~/.config/htop
+
+[[ -a ~/.config/konsolerc ]] && mv ~/.config/konsolerc{,.old}
+ln -s $DOTFILES_PATH/.config/konsolerc ~/.config/konsolerc
+
+[[ -a ~/.config/libfm ]] && mv ~/.config/libfm{,.old}
+ln -s $DOTFILES_PATH/.config/libfm ~/.config/libfm
+
+[[ -a ~/.config/libreoffice ]] && mv ~/.config/libreoffice{,.old}
+ln -s $DOTFILES_PATH/.config/libreoffice ~/.config/libreoffice
+
+[[ -a ~/.config/lxterminal ]] && mv ~/.config/lxterminal{,.old}
+ln -s $DOTFILES_PATH/.config/lxterminal ~/.config/lxterminal
+
+[[ -a ~/.config/mimeapps.list ]] && mv ~/.config/mimeapps.list{,.old}
+ln -s $DOTFILES_PATH/.config/mimeapps.list ~/.config/mimeapps.list
+
+[[ -a ~/.config/qt5ct ]] && mv ~/.config/qt5ct{,.old}
+ln -s $DOTFILES_PATH/.config/qt5ct ~/.config/qt5ct
+
+[[ -a ~/.config/ranger ]] && mv ~/.config/ranger{,.old}
+ln -s $DOTFILES_PATH/.config/ranger ~/.config/ranger
+
+[[ -a ~/.config/Thunar ]] && mv ~/.config/Thunar{,.old}
+ln -s $DOTFILES_PATH/.config/Thunar ~/.config/Thunar
+
+[[ -a ~/.config/transmission ]] && mv ~/.config/transmission{,.old}
+ln -s $DOTFILES_PATH/.config/transmission ~/.config/transmission
+
+[[ -a ~/.config/transmission-daemon ]] && mv ~/.config/transmission-daemon{,.old}
+ln -s $DOTFILES_PATH/.config/transmission-daemon ~/.config/transmission-daemon
+
+[[ -a ~/.config/Trolltech.conf ]] && mv ~/.config/Trolltech.conf{,.old}
+ln -s $DOTFILES_PATH/.config/Trolltech.conf ~/.config/Trolltech.conf
+
+[[ -a ~/.config/user-dirs.dirs ]] && mv ~/.config/user-dirs.dirs{,.old}
+ln -s $DOTFILES_PATH/.config/user-dirs.dirs ~/.config/user-dirs.dirs
+
+[[ -a ~/.config/user-dirs.locale ]] && mv ~/.config/user-dirs.locale{,.old}
+ln -s $DOTFILES_PATH/.config/user-dirs.locale ~/.config/user-dirs.locale
+
+[[ -a ~/.config/vlc ]] && mv ~/.config/vlc{,.old}
+ln -s $DOTFILES_PATH/.config/vlc ~/.config/vlc
+
+[[ -a ~/.config/xarchiver ]] && mv ~/.config/xarchiver{,.old}
+ln -s $DOTFILES_PATH/.config/xarchiver ~/.config/xarchiver
+
+[[ -a ~/.config/xfce4 ]] && mv ~/.config/xfce4{,.old}
+ln -s $DOTFILES_PATH/.config/xfce4 ~/.config/xfce4
+
+[[ -a ~/.config/pycharm_settings ]] && mv ~/.config/pycharm_settings{,.old}
+ln -s $DOTFILES_PATH/.config/pycharm_settings ~/.config/pycharm_settings
+
+# /misc }}}
