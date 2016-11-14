@@ -380,6 +380,16 @@ midgray0_to_black_right = wibox.layout.margin()
     midgray0_to_black_right:set_widget(midgray0_to_black_right_img)
     midgray0_to_black_right:set_margins(-1)
 
+volicon_img = wibox.widget.imagebox(beautiful.widget_vol)
+volicon = wibox.layout.margin()
+    volicon:set_widget(volicon_img)
+    volicon:set_margins(-1)
+
+baticon_img = wibox.widget.imagebox(beautiful.widget_bat)
+baticon = wibox.layout.margin()
+    baticon:set_widget(baticon_img)
+    baticon:set_margins(-1)
+
 -- }}}
 
 -- }}}
@@ -481,11 +491,11 @@ for s = 1, screen.count() do
     right_layout:add(cpuwidget_wrap)
 
     right_layout:add(midgray0_to_midgray1)
-    -- right_layout:add(volicon_wrap)
+    right_layout:add(volicon)
     right_layout:add(volumewidget_wrap)
 
     right_layout:add(midgray1_to_midgray0)
-    -- right_layout:add(baticon_wrap)
+    right_layout:add(baticon)
     right_layout:add(batwidget_wrap)
 
     right_layout:add(midgray0_to_midgray1)
