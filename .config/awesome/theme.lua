@@ -67,8 +67,8 @@ theme.midgray0_to_black_right    = theme.confdir .. "/icons/midgray0_to_black_ri
 
 theme.widget_cpu                 = theme.confdir .. "/icons/cpu.png"
 theme.widget_mem                 = theme.confdir .. "/icons/mem.png"
-theme.widget_batt                = theme.confdir .. "/icons/bat.png"
-theme.widget_vol                 = theme.confdir .. "/icons/spkr.png"
+theme.widget_bat                = theme.confdir .. "/icons/baticon.png"
+theme.widget_vol                 = theme.confdir .. "/icons/volicon.png"
 
 theme.icon_theme                 = nil
 theme.tasklist_disable_icon      = true
