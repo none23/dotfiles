@@ -206,7 +206,12 @@ battimer:start()
 
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_text(mem_now.used .."-")
+        if mem_now.used < 1000 then 
+            widget:set_text(' ' .. mem_now.used)
+        else 
+            widget:set_text(mem_now.used) 
+        end
+        
     end
 })
 
@@ -226,7 +231,7 @@ memwidget_wrap = wibox.widget.background()
 
 cpuwidget = lain.widgets.cpu({
     settings = function()
-        widget:set_text(cpu_now.usage)
+        widget:set_text(":" .. cpu_now.usage)
     end
 })
 
@@ -239,7 +244,7 @@ cpuwidget_wrap = wibox.widget.background()
     cpuwidget_wrap:set_widget(cpuwidget_margin)
     cpuwidget_wrap:set_bg(beautiful.midgray_0)
     --cpuwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
-    cpuwidget_wrap:set_fg(beautiful.fg)
+    cpuwidget_wrap:set_fg(beautiful.primary)
 
 
 -- }}}
@@ -390,6 +395,11 @@ baticon = wibox.layout.margin()
     baticon:set_widget(baticon_img)
     baticon:set_margins(-1)
 
+loadicon_img = wibox.widget.imagebox(beautiful.widget_load)
+loadicon = wibox.layout.margin()
+    loadicon:set_widget(loadicon_img)
+    loadicon:set_margins(-1)
+
 -- }}}
 
 -- }}}
@@ -487,6 +497,7 @@ for s = 1, screen.count() do
         right_layout:add(wibox.widget.systray())
     end
     right_layout:add(black_to_midgray0)
+    right_layout:add(loadicon)
     right_layout:add(memwidget_wrap)
     right_layout:add(cpuwidget_wrap)
 

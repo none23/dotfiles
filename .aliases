@@ -42,6 +42,17 @@ alias sendsms='python /home/n/none23/sendsms/sendsms/sendsms.py'
 alias py='ipython3'
 
 # }}}
+# gui apps in bg {{{
+
+thunar      () { command thunar       "$*" & }
+gparted     () { command gparted      "$*" & }
+libreoffice () { command libreoffice  "$*" & }
+feh         () { command feh          "$*" & }
+geeqie      () { command geeqie       "$*" & }
+virtualbox  () { command virtualbox   "$*" & }
+
+
+# }}}
 # npm {{{
 
 alias ni='npm install'
