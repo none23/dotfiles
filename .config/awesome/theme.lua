@@ -69,6 +69,7 @@ theme.widget_cpu                 = theme.confdir .. "/icons/cpu.png"
 theme.widget_mem                 = theme.confdir .. "/icons/mem.png"
 theme.widget_bat                 = theme.confdir .. "/icons/baticon.png"
 theme.widget_vol                 = theme.confdir .. "/icons/newvolicon.png"
+theme.widget_load                = theme.confdir .. "/icons/loadicon.png"
 
 theme.icon_theme                 = nil
 theme.tasklist_disable_icon      = true
