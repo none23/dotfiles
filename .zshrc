@@ -3,6 +3,8 @@ HISTSIZE=32000
 SAVEHIST=128000
 EDITOR=/usr/bin/nvim
 BROWSER=/usr/bin/chromium
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export QT_QPA_PLATFORMTHEME='gtk2'
 setopt appendhistory
 bindkey -v
 set -o vi
