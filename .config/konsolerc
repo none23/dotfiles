@@ -2,7 +2,7 @@
 DefaultProfile=nwsome.profile
 
 [Favorite Profiles]
-Favorites=nwsome.profile,tinyfont.profile
+Favorites=tinyfont.profile
 
 [KonsoleWindow]
 SaveGeometryOnExit=false
@@ -11,7 +11,7 @@ ShowMenuBarByDefault=false
 
 [MainWindow]
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAAAf8AAALuAAAABAAAAAQAAAAIAAAACPwAAAAA
+State=AAAA/wAAAAD9AAAAAAAABVYAAALwAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 
 [TabBar]
