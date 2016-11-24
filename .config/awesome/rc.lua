@@ -206,12 +206,11 @@ battimer:start()
 
 memwidget = lain.widgets.mem({
     settings = function()
-        if mem_now.used < 1000 then 
+        if mem_now.used < 1000 then
             widget:set_text(' ' .. mem_now.used)
-        else 
-            widget:set_text(mem_now.used) 
+        else
+            widget:set_text(mem_now.used)
         end
-        
     end
 })
 
@@ -366,7 +365,7 @@ midgray1_to_primary = wibox.layout.margin()
     midgray1_to_primary:set_margins(-1)
 
 midgray1_to_midgray0_img = wibox.widget.imagebox(beautiful.midgray1_to_midgray0)
-midgray1_to_midgray0 = wibox.layout.margin() 
+midgray1_to_midgray0 = wibox.layout.margin()
     midgray1_to_midgray0:set_widget(midgray1_to_midgray0_img)
     midgray1_to_midgray0:set_margins(-1)
 
