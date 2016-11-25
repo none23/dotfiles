@@ -1068,23 +1068,24 @@ awful.rules.rules = {
     },
 
     { rule = { name = "Page(s) Unresponsive" },
-      properties = { floating = true}
+      properties = { floating = true }
     },
     { rule = { name = "Firefox Preferences" },
-      properties = { floating = true}
+      properties = { floating = true }
     },
     { rule = { name = "Adblock Plus Filter Preferences"},
-      properties = { floating = true}
+      properties = { floating = true }
     },
-    { rule = { class = "chromium" },
+    { rule = { class = "Chromium" },
       properties = {
+          floating = false,
           maximized_horizontal = false,
           maximized_vertical = false,
-          floating = false
+          tag=tags[1][1]
       }
     },
     { rule = {
-        class = "chromium",
+        class = "Chromium",
         name = "Task Manager - Chromium"
       },
       properties = { floating = true }
