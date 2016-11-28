@@ -40,6 +40,7 @@ alias rr='ranger .'
 alias dmesgg='watch "dmesg -e | tail"'
 alias py='ipython3'
 alias df='df -h'
+alias du='sudo du -h'
 
 # }}}
 # gui apps in bg {{{
@@ -108,7 +109,6 @@ alias gdrk='xset dpms force off'
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
-alias du='sudo du'
 alias fdisk='sudo fdisk'
 alias fstrim='sudo fstrim'
 alias gdisk='sudo gdisk'
