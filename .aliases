@@ -93,8 +93,9 @@ alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
 alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 alias foilhat='sudo rfkill block all'
-alias N='nmtui'
-
+# alias nmkill='sudo kill $(NetworkManager 2>&1 | sed -r "s/(NetworkManager\ is\ already\ running\ \(pid\ |\))//g") && echo "NetworkManager killed" || echo "Nothing to kill"'
+alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
+alias N='(nmtui) || (sudo NetworkManager && sleep 1 && nmtui)'
 # }}}
 # X11 {{{
 
