@@ -119,7 +119,7 @@ local layouts = {
 tags = {
     name = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
     layout = {
-        layouts[4], layouts[1], layouts[1], layouts[1], layouts[1],
+        layouts[4], layouts[2], layouts[2], layouts[1], layouts[1],
         layouts[2], layouts[2], layouts[2], layouts[3]
     }
 }
