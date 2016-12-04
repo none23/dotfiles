@@ -67,7 +67,7 @@ alias nrw='npm run watch'
 
       Ga () { [[ $* ]] && git add $* || git add . }
       Gc () { [[ $* ]] && git commit -m "$*" || git commit  . }
-alias Gg='git clone'
+      Gg () { [[ $2 ]] && ( git clone git@github.com:none23/$1 $2 || git clone git@github.com:$1 $2 ) || ( git clone git@github.com:none23/$1 || git clone git@github.com:$1 ) || echo "That didn't work..." }
 alias Gi='git init'
 alias Gm='git merge'
       Gl () { [[ $1 ]] && [[ ! $2 ]] && git pull origin $1 || git pull origin master }
