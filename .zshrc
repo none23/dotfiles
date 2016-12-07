@@ -13,9 +13,7 @@ set -o vi
 eval $(keychain --eval --quiet id_rsa)
 # }}}
 # automatic startx {{{
-if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
-    exec startx
-fi
+# [ [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ] ] && exec startx
 # }}}
 # completion zstyle  {{{
 zstyle :compinstall filename '/home/n/.zshrc'
