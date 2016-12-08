@@ -1,21 +1,21 @@
+# SSH-Agent {{{
+eval $(keychain --eval --quiet id_rsa)
+
+# }}}
+# automatic startx {{{
+[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
+# same, but doesn't exit if X fails
+# [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
+
+# }}}
+# history {{{
 HISTFILE=~/.histfile
 HISTSIZE=32000
 SAVEHIST=128000
-EDITOR=/usr/bin/nvim
-BROWSER=/usr/bin/chromium
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export QT_QPA_PLATFORMTHEME='gtk2'
 setopt appendhistory
-bindkey -v
-set -o vi
 
-# SSH-Agent {{{
-eval $(keychain --eval --quiet id_rsa)
 # }}}
-# automatic startx {{{
-# [ [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ] ] && exec startx
-# }}}
-# completion zstyle  {{{
+# zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
 zstyle ':acceptline' rehash true
 zstyle ':completion:*:*:*:users' ignored-patterns \
@@ -29,6 +29,18 @@ compinit
 setopt completealiases
 
 # }}}
+# misc {{{
+bindkey -v
+set -o vi
+
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=chromium
+
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export QT_QPA_PLATFORMTHEME='gtk2'
+
+# }}}
 # numeric keypad {{{
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
@@ -38,14 +50,17 @@ bindkey -s "^[Oo" "/"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
+
 # }}}
-# Powerline {{{
+# powerline {{{
 autoload -U colors && colors
-# autoload -Uz promptinit
-# promptinit
 prompt off
- powerline-daemon -q
- . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+powerline-daemon -q
+. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# fallback: TODO
+# [[ -a /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]
+# || autoload -Uz promptinit && promptinit && prompt adam1
 
 # }}}
 # aliases {{{
@@ -59,14 +74,15 @@ fi
 if [[ -a ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
+
 # }}}
 # syntax-highlighting {{{
 if [[ -a  ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-# }}}
-# Virtualenvwrapper {{{
 
+# }}}
+# [ OFF ] Virtualenvwrapper {{{
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=/home/n/projects
 # source /usr/bin/virtualenvwrapper.sh
