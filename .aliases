@@ -15,10 +15,10 @@ alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias ton='tonn && (sleep 30 && toff) &'
 # }}}
 # improved dd {{{
-dd () { command sudo dd $* bs=512K status=progress }
+dd () { command sudo dd $* bs=512K status=progress ; }
 # }}}
 # ping {{{
-pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" }
+pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
 # }}}
 # misc {{{
 alias rr='ranger .'
@@ -26,6 +26,7 @@ alias dmesgg='watch "dmesg -e | tail"'
 alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
+alias google-chrome='google-chrome-unstable'
 # }}}
 # gui apps in bg {{{
 thunar      () { command thunar       "$*" & }
@@ -43,17 +44,17 @@ alias nrb='npm run build'
 alias nrw='npm run watch'
 # }}}
 # git {{{
-      Ga () { [[ $* ]] && git add $* || git add . }
-      Gc () { [[ $* ]] && git commit -m "$*" || git commit  . }
-      Gg () { [[ $2 ]] && ( git clone git@github.com:none23/$1 $2 || git clone git@github.com:$1 $2 ) || ( git clone git@github.com:none23/$1 || git clone git@github.com:$1 ) || echo "That didn't work..." }
+      Ga () { [[ $* ]] && git add $* || git add . ; }
+      Gc () { [[ $* ]] && git commit -m "$*" || git commit  . ; }
+      Gg () { [[ $2 ]] && ( git clone git@github.com:none23/$1 $2 || git clone git@github.com:$1 $2 ) || ( git clone git@github.com:none23/$1 || git clone git@github.com:$1 ) || echo "That didn't work..." ; }
 alias Gi='git init'
 alias Gm='git merge'
-      Gl () { [[ $1 ]] && [[ ! $2 ]] && git pull origin $1 || git pull origin master }
-      Go () { [[ $1 ]] && [[ ! $2 ]] && git remote add origin git@github.com:none23/$1 || echo "Please, enter the repo name (e.g. dotfiles)" }
-      Gp () { [[ $1 ]] && git push origin $1 || git push origin master }
+      Gl () { [[ $1 ]] && [[ ! $2 ]] && git pull origin $1 || git pull origin master ; }
+      Go () { [[ $1 ]] && [[ ! $2 ]] && git remote add origin git@github.com:none23/$1 || echo "Please, enter the repo name (e.g. dotfiles)" ; }
+      Gp () { [[ $1 ]] && git push origin $1 || git push origin master ; }
 alias Gr='git rm -rf'
 alias Gs='git status'
-      GG () { Ga && Gc $* && Gp }
+      GG () { Ga && Gc $* && Gp ; }
 # }}}
 # dotfiles,packagelist github {{{
 alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
@@ -77,14 +78,19 @@ alias xrandroff='xrandr --output LVDS1 --primary --output HDMI1 --off && xrandr 
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
 # }}}
+# mount / unmount {{{
+mount ()  { if [ $# -ne 2 ]; then echo   "Two arguments expected: received $#"; else ( mount  "$1" "$2" || sudo mount  "$1" "$2" ); fi ; }
+umount () { if [ $# -ne 1 ]; then echo "Single argument expected: received $#"; else ( umount "$1"      || sudo umount "$1"      ); fi ; }
+# }}}
 # add sudo {{{
 # if needed {{{
-       du () { command du        "$@" || sudo command du        "$@" }
- ifconfig () { command ifconfig  "$@" || sudo command ifconfig  "$@" }
- iwconfig () { command iwconfig  "$@" || sudo command iwconfig  "$@" }
-  masscan () { command masscan   "$@" || sudo command masscan   "$@" }
-     nmap () { command nmap      "$@" || sudo command nmap      "$@" }
-systemctl () { command systemctl "$@" || sudo command systemctl "$@" }
+       du () { command du        "$@" || sudo du        "$@" ; }
+ ifconfig () { command ifconfig  "$@" || sudo ifconfig  "$@" ; }
+ iwconfig () { command iwconfig  "$@" || sudo iwconfig  "$@" ; }
+  masscan () { command masscan   "$@" || sudo masscan   "$@" ; }
+     nmap () { command nmap      "$@" || sudo nmap      "$@" ; }
+systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
+
 # }}}
 # always {{{
 alias aircheck='sudo aircheck'
@@ -99,9 +105,8 @@ alias lsmod='sudo lsmod'
 alias modprobe='sudo modprobe'
 alias minicom='sudo minicom'
 alias mkfs.ext4='sudo mkfs.ext4'
-alias mount='sudo mount'
-alias NetworkManager='sudo NetworkManager'
 alias networkmanager='sudo NetworkManager'
+alias NetworkManager='sudo NetworkManager'
 alias rfkill='sudo rfkill'
 alias rmmod='sudo rmmod'
 alias skill='sudo kill'
@@ -110,10 +115,6 @@ alias umount='sudo umount'
 alias wifite='sudo wifite'
 alias wifijammer='sudo wifijammer'
 # }}}
-# }}}
-# beta/unstable apps {{{
-alias firefox='firefox-beta-bin'
-alias google-chrome='google-chrome-unstable'
 # }}}
 # yaourt {{{
 alias y='yaourt'
