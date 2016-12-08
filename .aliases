@@ -1,70 +1,48 @@
 # ls {{{
-
 alias la='ls -Alh --color=tty'
 alias ll='ls -lh --color=tty'
 alias ls='ls --color=tty'
-function lll () {
-    if [ "$1" != "" ]; then
-        sudo du -hs $1/{.,}* | sort -hr
-    else
-        sudo du -hs ./{.,}* | sort -hr
-    fi
-}
-
 # }}}
 # sshuttle {{{
-
 alias sshide='sshuttle -r aws 0/0 --dns -D'
 alias sshive='sshuttle -r aws 0/0 --dns -v'
 alias sshpotify='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -D'
 alias sshpotivy='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -v'
-
 # }}}
 # touchpad {{{
-
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias ton='tonn && (sleep 30 && toff) &'
-
 # }}}
 # improved dd {{{
-
 dd () { command sudo dd $* bs=512K status=progress }
-
+# }}}
+# ping {{{
+pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" }
 # }}}
 # misc {{{
-
-alias pn='ping -c 5 -i 0.2 8.8.8.8'
-alias pnn='ping -c 5 -i 0.2 192.168.1.1'
 alias rr='ranger .'
 alias dmesgg='watch "dmesg -e | tail"'
 alias py='ipython3'
 alias df='df -h'
-alias du='sudo du -h'
-
+alias du='du -h '
 # }}}
 # gui apps in bg {{{
-
 thunar      () { command thunar       "$*" & }
 gparted     () { command gparted      "$*" & }
 libreoffice () { command libreoffice  "$*" & }
 feh         () { command feh          "$*" & }
 geeqie      () { command geeqie       "$*" & }
 virtualbox  () { command virtualbox   "$*" & }
-
-
 # }}}
 # npm {{{
-
 alias ni='npm install'
 alias nr='npm run'
 alias nv='npm version'
 alias nrb='npm run build'
 alias nrw='npm run watch'
-
 # }}}
 # git {{{
-
       Ga () { [[ $* ]] && git add $* || git add . }
       Gc () { [[ $* ]] && git commit -m "$*" || git commit  . }
       Gg () { [[ $2 ]] && ( git clone git@github.com:none23/$1 $2 || git clone git@github.com:$1 $2 ) || ( git clone git@github.com:none23/$1 || git clone git@github.com:$1 ) || echo "That didn't work..." }
@@ -76,16 +54,12 @@ alias Gm='git merge'
 alias Gr='git rm -rf'
 alias Gs='git status'
       GG () { Ga && Gc $* && Gp }
-
 # }}}
 # dotfiles,packagelist github {{{
-
 alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
-
 # }}}
 # wireless {{{
-
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias wltx='sudo ifconfig wlp7s0 down && sudo iw reg set US && sudo ifconfig wlp7s0 up && sudo iwconfig wlp7s0 txpower 30'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
@@ -98,15 +72,21 @@ alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || ech
 alias N='(nmtui) || (sudo NetworkManager && sleep 1 && nmtui)'
 # }}}
 # X11 {{{
-
 alias xrandr1080x1920='xrandr --newmode "1080x1920_60.00"  178.35  1080 1168 1288 1496  1920 1921 1924 1987  -HSync +Vsync && xrandr --addmode HDMI1 1080x1920_60.00 && xrandr --output LVDS1 --primary --output HDMI1 --right-of LVDS1 --mode 1080x1920_60.00'
 alias xrandroff='xrandr --output LVDS1 --primary --output HDMI1 --off && xrandr --delmode HDMI1 1368x768_60.00 & xrandr --delmode HDMI1 1280x1024_60.00 & xrandr --delmode HDMI1 1600x1200_60.00 & (sleep 1 && xrandr --rmmode 1368x768_60.00 & xrandr --rmmode 1280x1024_60.00 & xrandr --rmmode 1600x1200_60.00)'
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
-
 # }}}
 # add sudo {{{
-
+# if needed {{{
+       du () { command du        "$@" || sudo command du        "$@" }
+ ifconfig () { command ifconfig  "$@" || sudo command ifconfig  "$@" }
+ iwconfig () { command iwconfig  "$@" || sudo command iwconfig  "$@" }
+  masscan () { command masscan   "$@" || sudo command masscan   "$@" }
+     nmap () { command nmap      "$@" || sudo command nmap      "$@" }
+systemctl () { command systemctl "$@" || sudo command systemctl "$@" }
+# }}}
+# always {{{
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
@@ -117,53 +97,41 @@ alias gparted='sudo gparted'
 alias hdparm='sudo hdparm'
 alias lsmod='sudo lsmod'
 alias modprobe='sudo modprobe'
-alias rmmod='sudo rmmod'
-alias ifconfig='sudo ifconfig'
-alias iwconfig='sudo iwconfig'
-alias masscan='sudo masscan'
 alias minicom='sudo minicom'
 alias mkfs.ext4='sudo mkfs.ext4'
 alias mount='sudo mount'
 alias NetworkManager='sudo NetworkManager'
 alias networkmanager='sudo NetworkManager'
-alias nmap='sudo nmap'
 alias rfkill='sudo rfkill'
+alias rmmod='sudo rmmod'
 alias skill='sudo kill'
 alias skillall='sudo killall'
-alias systemctl='sudo systemctl'
 alias umount='sudo umount'
 alias wifite='sudo wifite'
 alias wifijammer='sudo wifijammer'
-
+# }}}
 # }}}
 # beta/unstable apps {{{
-
 alias firefox='firefox-beta-bin'
 alias google-chrome='google-chrome-unstable'
-
 # }}}
 # yaourt {{{
-
 alias y='yaourt'
 alias Y='yaourt -Syua && pkglist'
 alias Yy='yaourt -Syy'
 alias Yc='yaourt -Sc'
 alias Ycc='yaourt -Scc'
 alias yor='yaourt -Rsc $(yaourt -Qtdq)'
-
 # }}}
 # Global Aliases {{{
-
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
 alias -g gvim='nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
-
 # }}}
 # File Extensions {{{
-
 alias -s html=chromium
 alias -s conf=vim
 alias -s lua=vim
@@ -187,7 +155,6 @@ alias -s png=feh
 alias -s gif=feh
 alias -s svg=inkscape
 alias -s psd=inkscape
-
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
