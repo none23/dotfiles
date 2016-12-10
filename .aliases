@@ -118,7 +118,7 @@ alias wifijammer='sudo wifijammer'
 # }}}
 # yaourt {{{
 alias y='yaourt'
-alias Y='yaourt -Syua && pkglist'
+alias Y='yaourt -Syua && npm update -g && pkglist'
 alias Yy='yaourt -Syy'
 alias Yc='yaourt -Sc'
 alias Ycc='yaourt -Scc'
