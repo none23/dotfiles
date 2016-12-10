@@ -1,3 +1,17 @@
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=chromium
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+bindkey -v
+set -o vi
+# history {{{
+HISTFILE=~/.histfile
+HISTSIZE=32000
+SAVEHIST=128000
+setopt appendhistory
+
+# }}}
 # SSH-Agent {{{
 eval $(keychain --eval --quiet id_rsa)
 
@@ -6,13 +20,6 @@ eval $(keychain --eval --quiet id_rsa)
 [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
 # same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
-
-# }}}
-# history {{{
-HISTFILE=~/.histfile
-HISTSIZE=32000
-SAVEHIST=128000
-setopt appendhistory
 
 # }}}
 # zstyle completions {{{
@@ -27,17 +34,6 @@ zstyle nocompwarn true
 autoload -Uz compinit
 compinit
 setopt completealiases
-
-# }}}
-# misc {{{
-bindkey -v
-set -o vi
-
-export EDITOR=nvim
-export VISUAL=nvim
-export BROWSER=chromium
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # }}}
 # numeric keypad {{{
