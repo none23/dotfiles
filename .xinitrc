@@ -10,9 +10,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   done
   unset f
 fi
-xinput --disable SynPS/2\ Synaptics\ TouchPad
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
+xinput --disable SynPS/2\ Synaptics\ TouchPad &
+xmodmap /home/$USER/.Xmodmap &
+xset s off && xset -dpms && xset r rate 200 60 &
+xrdb -merge /home/$USER/.Xresources && xrdb ~/.Xresources &
+compton -b &
+export QT_QPA_PLATFORMTHEME='qt5ct' &
+unclutter -idle 1 &
+xscreensaver -nosplash &
 exec awesome

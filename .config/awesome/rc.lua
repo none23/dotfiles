@@ -84,13 +84,6 @@ end
 
 -- Environment / Settings {{{
 
-run_once("compton -b")
-run_once("export QT_QPA_PLATFORMTHEME='qt5ct'")
-run_once("unclutter -idle 1")
-run_once("xrdb -merge /home/$USER/.Xresources && xrdb ~/.Xresources")
-run_once("xmodmap /home/$USER/.Xmodmap")
-run_once("xset s off && xset -dpms && xset r rate 200 60")
-run_once("xscreensaver -nosplash &")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
 -- }}}
