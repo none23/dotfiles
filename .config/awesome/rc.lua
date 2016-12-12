@@ -82,15 +82,10 @@ function run_once(cmd)
       awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
--- Environment / Settings {{{
-
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
-
--- }}}
--- User Applications {{{
-
 run_once(browser)
 run_once(terminal)
+run_once("xscreensaver -nosplash &")
 
 -- }}}
 -- }}}
