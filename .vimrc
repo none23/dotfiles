@@ -1,89 +1,45 @@
+" Vim Plug {{{
+" Install if not already {{{
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source ~/.vimrc
+endif
+
+" }}}
 set nocompatible
-" Vundle {{{
-filetype off
-" Set up Vundle if not installed {{{
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle..."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
-endif
+call plug#begin('~/.vim/plugged')
+" Plugins {{{
+Plug 'easymotion/vim-easymotion'       " Quickly anywhere without counting words
+Plug 'wavded/vim-stylus'               " Stylus support
+Plug 'digitaltoad/vim-pug'             " Pug (jade) support
+Plug 'vim-airline/vim-airline'         " Airline
+Plug 'vim-airline/vim-airline-themes'  " Airline themes
+Plug 'majutsushi/tagbar'               " Class/module browser
+Plug 'mattn/emmet-vim'                 " Emmet
+Plug 'kien/tabman.vim'                 " Tab list panel
+Plug 'pangloss/vim-javascript'         " Better JS support
+Plug 'ap/vim-css-color'                " CSS colors preview
+Plug 'tpope/vim-haml'                  " Sass support
+Plug 'kchmck/vim-coffee-script'        " CoffeeScript support
+Plug 'ctrlpvim/ctrlp.vim'              " Ctrlp
+Plug 'tpope/vim-surround'              " Surround
+Plug 'terryma/vim-expand-region'       " Expand region
+Plug 'Townk/vim-autoclose'             " Autoclose
+Plug 'michaeljsmith/vim-indent-object' " Indent text object
+Plug 't9md/vim-choosewin'              " Window chooser
+Plug 'scrooloose/syntastic'            " Python and other languages code checker
+Plug 'IndexedSearch'                   " Search results counter
+Plug 'matchit.zip'                     " XML/HTML tags navigation
+Plug 'YankRing.vim'                    " Yank history navigation
+Plug 'ervandew/supertab'               " Completion with TAB
+Plug 'maksimr/vim-jsbeautify'          " Prettify JS 
+Plug 'davidhalter/jedi-vim'            " Jedi-Vim
+Plug 'xolox/vim-misc'                  " Sessions
+Plug 'xolox/vim-session'
 " }}}
-set rtp+=~/.vim/bundle/vundle/
-" Vundle Plugins {{{
-call vundle#rc()
-" let Vundle manage Vundle
-Plugin 'gmarik/vundle'
-" Quickly anywhere without counting words
-Plugin 'easymotion/vim-easymotion'
-" Stylus support
-Plugin 'wavded/vim-stylus'
-" Pug (jade) support
-Plugin 'digitaltoad/vim-pug'
-" Airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-" Class/module browser
-Plugin 'majutsushi/tagbar'
-" Emmet
-Plugin 'mattn/emmet-vim'
-" Tab list panel
-Plugin 'kien/tabman.vim'
-" Better JS support
-Plugin 'pangloss/vim-javascript'
-" CSS colors preview
-Plugin 'ap/vim-css-color'
-" Sass support
-Plugin 'tpope/vim-haml'
-" CoffeeScript support
-Plugin 'kchmck/vim-coffee-script'
-" Ctrlp
-Plugin 'ctrlpvim/ctrlp.vim'
-" Surround
-Plugin 'tpope/vim-surround'
-" Expand region
-Plugin 'terryma/vim-expand-region'
-" Autoclose
-Plugin 'Townk/vim-autoclose'
-" Indent text object
-Plugin 'michaeljsmith/vim-indent-object'
-" Python mode (indentation, doc, refactor, lints, code checking, motion and
-" operators, highlighting, run and ipdb breakpoints)
-Plugin 'klen/python-mode'
-" Better autocompletion
-" Plugin 'Shougo/neocomplete.vim' -- doesn't work in neovim
-" Window chooser
-Plugin 't9md/vim-choosewin'
-" Python and other languages code checker
-Plugin 'scrooloose/syntastic'
-" Search results counter
-Plugin 'IndexedSearch'
-" XML/HTML tags navigation
-Plugin 'matchit.zip'
-" Yank history navigation
-Plugin 'YankRing.vim'
-" Completion with TAB
-Plugin 'ervandew/supertab'
-" Prettify JS 
-Plugin 'maksimr/vim-jsbeautify'
-" Jedi-Vim
-Plugin 'davidhalter/jedi-vim'
-" Restore vim sessions
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-" }}}
-" Install plugins the first time vim runs {{{
-if iCanHazVundle == 0
-    echo "Installing Plugins, please ignore key map error messages"
-    echo ""
-    :PluginInstall
-endif
-" }}}
-filetype plugin on
-filetype indent on
+call plug#end()
+
 " }}}
 " Indentation {{{
 set expandtab
@@ -93,10 +49,16 @@ set shiftwidth=4
 
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType pug setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+set autoindent smartindent
+
 " }}}
-" Misc options {{{
+" Misc {{{
+
 " status bar
 set laststatus=2
 set noshowmode
@@ -111,22 +73,23 @@ set hlsearch
 set foldmethod=marker
 set foldlevel=0
 
-" syntax highlight on
+" syntax highlight
 syntax on
 
-" prevent wrapping
+" prevent wrapping lines
 set textwidth=9999
 set nowrap
 
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=5
+" when scrolling, keep cursor 9 lines away from screen border
+set scrolloff=9
 
 " show line numbers
 set number
 set relativenumber
-set autoindent smartindent
+
 " }}}
 " Colorscheme {{{
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
@@ -136,29 +99,38 @@ set cursorline
 " highlight 79'th column
 set colorcolumn=79
 highlight ColorColumn ctermbg=233
+
 " }}}
 " Aurocmd on save {{{
 " remove trailing whitespace
-autocmd FileType python,javascript,json,jsx,coffeescript,jade,pug,html,stylus,css,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType python,lua,javascript,json,jsx,coffeescript,jade,pug,html,stylus,css,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " autoformat js follow standard
 autocmd bufwritepost *.js silent !standard-format -w %
 set autoread
+
 " }}}
-" Autocompletion  {{{
+" Completion  {{{
 "  " autocomplete first menu item
 " set wildmenu
 " " set completeopt-=preview
 
 " complete only the common part, list the options that match
 set wildmode=list:longest
+
 " }}}
 " Backup, swap and undos storage {{{
-set directory=~/.vim/dirs/tmp     " directory to place swap files in
-set backup                        " make backup files
-set backupdir=~/.vim/dirs/backups " where to put backup files
-set undofile                      " persistent undos - undo after you re-open the file
-set undodir=~/.vim/dirs/undos
+
+set directory=~/.vim/dirs/tmp     " <=== swap files go here
+
+" turn on backups
+set backup                       
+set backupdir=~/.vim/dirs/backups " <=== backup files go here
+
+" turn on undo history
+set undofile                  
+set undodir=~/.vim/dirs/undos     " <=== undo history for every file ever edited go here
+
 set viminfo+=n~/.vim/dirs/viminfo
 
 " store yankring history file there too
@@ -174,6 +146,7 @@ endif
 if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
+
 " }}}
 " }}}
 " Misc mappings {{{
@@ -229,10 +202,16 @@ vmap <F9> "+p
 nmap <F7> "+P
 vmap <F7> "+P
 " }}}
-" MS Office Documents {{{
-" opening read-only and decoding
+" Reading DOC and PDF files 
 autocmd BufReadPre *.doc set ro
+autocmd BufReadPre *.pdf set ro
+
+
 autocmd BufReadPre *.doc set hlsearch!
+autocmd BufReadPost *.doc %!antiword "%"
+
+
+:command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 autocmd BufReadPost *.doc %!antiword "%"
 " }}}
 " Plugins Settings and Mappings {{{
@@ -357,15 +336,6 @@ let g:session_autosave_silent = 1
 let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
 " }}}
-" }}}
-" Neovim-qt Settings {{{
-
-" Neovim-qt Guifont command
-command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
-
-" Set the font
-Guifont Terminess Powerline:h9
-
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
