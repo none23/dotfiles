@@ -57,7 +57,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 set autoindent smartindent
 
 " }}}
-" Misc {{{
+" Misc Settings {{{
 
 " status bar
 set laststatus=2
@@ -110,7 +110,7 @@ autocmd bufwritepost *.js silent !standard-format -w %
 set autoread
 
 " }}}
-" Completion  {{{
+" Command completion  {{{
 "  " autocomplete first menu item
 " set wildmenu
 " " set completeopt-=preview
@@ -166,8 +166,6 @@ noremap ; :
 "clear search results highlighting
 nnoremap <C-L> :nohl<CR><C-L>
 
-" map leader to space
-let mapleader = " "
 " }}}
 " Tab navigation {{{
 map tt :tabnew<CR>
@@ -202,51 +200,32 @@ vmap <F9> "+p
 nmap <F7> "+P
 vmap <F7> "+P
 " }}}
-" Reading DOC and PDF files 
+" Reading DOC and PDF files {{{
 autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.pdf set ro
-
 
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
 
-
-:command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
-autocmd BufReadPost *.doc %!antiword "%"
+" TODO: convert pdf to text on open
+" :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 " }}}
-" Plugins Settings and Mappings {{{
-
-" "  Tagbar (off) {{{
-" " toggle tagbar display
-" map <S-F1> :TagbarToggle<CR>
-" map <S-F13> :TagbarToggle<CR>
-" " autofocus on tagbar open
-" let g:tagbar_autofocus = 0
-" " }}}
-
+" Plugins settings {{{ 
 " EasyMotion {{{
+let mapleader = " "       " map leader to space
 map <Leader> <Plug>(easymotion-prefix)
 
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward))
-" }}}
 
+" }}}
 " ExpandRegion {{{
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
-" }}}
 
-" NERDTree (off) {{{
-"  " toggle nerdtree display
-" map <F3> :NERDTreeToggle<CR>
-"  " open nerdtree with the current file selected
-" nmap ,t :NERDTreeFind<CR>
-"  " don;t show these file types
-" let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 " }}}
-
 " Syntastic {{{
 " show list of errors and warnings on the current file
 nmap ,e :Errors<CR>
@@ -254,11 +233,12 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_javascript_checkers = ['standard']
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['standard']
 
 let g:syntastic_check_on_open = 1
 " don't put icons on the sign column (it hides the vcs status icons of signify)
@@ -269,37 +249,33 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-" }}}
 
-" Python-mode {{{
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-let pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_virtualenv = 1
-nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
-nmap ,o :RopeFindOccurrences<CR>
 " }}}
-
 " TabMan {{{
 " mappings to toggle display, and to focus on it
 let g:tabman_toggle = 'tl'
 let g:tabman_focus  = 'tf'
-" }}}
 
+" }}}
 " Autoclose {{{
 " fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 " }}}
-
-" Window Chooser {{{
+" ChooseWin {{{
 nmap  -  <Plug>(choosewin)
 " show big letters
-let g:choosewin_overlay_enable = 1
-" }}}
+let g:choosewin_overlay_enable = 0
+let g:choosewin_return_on_single_win = 1
 
+" }}}
+" Airline {{{
+let g:airline_powerline_fonts=1
+let g:airline_theme='simple'
+
+" tab line (off)
+let g:airline#extensions#tabline#enabled=0
+
+" }}}
 " Neocomplete {{{
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
@@ -309,23 +285,20 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
 autocmd FileType python setlocal omnifunc=python3complete#Complete
+
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
+
 " }}}
-
-" Airline {{{
-let g:airline_powerline_fonts=1
-let g:airline_theme='simple'
-
-" tab line (off)
-let g:airline#extensions#tabline#enabled=0
-" }}}
-
 "  Vim Session {{{
 " let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
