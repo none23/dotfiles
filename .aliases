@@ -26,7 +26,6 @@ alias dmesgg='watch "dmesg -e | tail"'
 alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
-alias google-chrome='google-chrome-unstable'
 # }}}
 # gui apps in bg {{{
 thunar      () { command thunar       "$*" & }
@@ -35,6 +34,11 @@ libreoffice () { command libreoffice  "$*" & }
 feh         () { command feh          "$*" & }
 geeqie      () { command geeqie       "$*" & }
 virtualbox  () { command virtualbox   "$*" & }
+# }}}
+# virtualbox {{{
+alias vbox_install='yaourt -S virtualbox virtualbox-ext-oracle virtualbox-host-modules-arch'
+alias vbox_uninstall='yaourt -Rsc virtualbox virtualbox-ext-oracle virtualbox-host-modules-arch'
+alias virtualbox='virtualbox | vbox_install'
 # }}}
 # npm {{{
 alias ni='npm install'
