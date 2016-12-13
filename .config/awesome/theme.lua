@@ -2,8 +2,8 @@ theme                     = {}
 theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
-theme.font                = "Inconsolata 8"
---theme.taglist_font        = "Terminess Powerline 7"
+theme.font                = "Inconsolata 10"
+theme.taglist_font        = "Inconsolata 9"
 
 
 -- Colors {{{
