@@ -18,4 +18,5 @@ compton -b &
 export QT_QPA_PLATFORMTHEME='qt5ct' &
 unclutter -idle 1 &
 xscreensaver -nosplash &
+systemd-analyze plot > /tmp/current-boot-plot.svg &
 exec awesome

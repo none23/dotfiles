@@ -7,6 +7,8 @@ local awful       = require("awful")
                     require("awful.autofocus")
 local wibox       = require("wibox")
 local beautiful   = require("beautiful")    -- theme
+      beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
+
 local naughty     = require("naughty")      -- errors
 local drop        = require("scratchdrop")  -- drop-down clients
 local lain        = require("lain")         -- additional widgets
@@ -17,39 +19,24 @@ local nlay        = require("nlay")         -- my layout
 -- Aliases {{{
 ------------------------------------------------------------------------------
 
-modkey      = "Mod4"
-altkey      = "Mod3"
-shift       = "Shift"
-alt         = "Alt"
-ctrl        = "Control"
-
-terminal    = "konsole -e zsh"
-yarminal    = "urxvt"
-tmux        = "konsole -e tmux"
-bash        = "konsole -e bash"
-ranger      = "konsole -e ranger"
-browser     = "chromium"
-browser2    = "firefox-beta"
-kiosked     = "chromium --kiosk"
-pronmode    = "firefox-beta --private-window"
-filemgr     = ranger
-filemgr2    = "thunar"
-gvim        = "konsole -e nvim"
-atom        = "atom"
-touchenable = "touchpad_ctrl"
+Super      = "Mod4"
+Hyper      = "Mod3"
+Shift       = "Shift"
+Cntrl        = "Control"
 
 -- }}}
--- Error Handling {{{
+-- Notifications {{{
 ------------------------------------------------------------------------------
-
+-- startup errors {{{
 if awesome.startup_errors then
     naughty.notify({
-        preset = naughty.config.presets.critical,
-        title = "Oops, you're out of luck, buddy!",
-        text = awesome.startup_errors
+      preset = naughty.config.presets.critical,
+      title = "Oops, you're out of luck, buddy!",
+      text = awesome.startup_errors
     })
 end
-
+-- }}}
+-- runtime errors {{{
 do
     local in_error = false
     awesome.connect_signal(
@@ -61,7 +48,7 @@ do
             in_error = true
             naughty.notify({
                 preset = naughty.config.presets.critical,
-                title = "Oops, an error happened!",
+                title = "Looks like you fucked it up!",
                 text = err
             })
             in_error = false
@@ -70,7 +57,56 @@ do
 end
 
 -- }}}
--- Autostart applications {{{
+-- batttery warnings {{{
+local function trim(s)
+    return s:find'^%s*$' and '' or s:match'^%s*(.*%S)'
+end
+
+local function bat_notification()
+    local f_capacity = assert(io.open("/sys/class/power_supply/BAT1/capacity", "r"))
+    local f_status = assert(io.open("/sys/class/power_supply/BAT1/status", "r"))
+    local bat_capacity = tonumber(f_capacity:read("*all"))
+    local bat_status = trim(f_status:read("*all"))
+
+    if (bat_capacity <= 10 and bat_status == "Discharging") then
+      naughty.notify({ title = "I'm dying!"
+                     , text =  bat_status .."% left! Click to suspend"
+                     , fg = beautiful.bg
+                     , bg = beautiful.danger
+                     , timeout = 60
+                     , position = "top_right"
+                     , run = function(_) awful.util.spawn_with_shell("systemctl suspend") end
+                     })
+    elseif (bat_capacity <= 40 and bat_status == "Discharging") then
+        naughty.notify({ title = "Hey, the battery is halfway dead"
+                       , text = bat_capacity .."% left! But you know how crappy the battery is..."
+                       , fg = beautiful.bg
+                       , bg = beautiful.danger
+                       , timeout= 5
+                       , position   = "top_right"
+                       })
+    end
+end
+
+battimer = timer({timeout = 60})
+battimer:connect_signal("timeout", bat_notification)
+battimer:start()
+
+-- }}}
+-- boot time {{{
+local function startup_time_notification ()
+  os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
+  local f_boot_time_info = assert(io.open("/tmp/startup-time")):read("*all")
+  naughty.notify({ title = "Welcome back"
+                 , text = f_boot_time_info
+                 , preset = naughty.config.presets.low
+                 , timeout = 5
+                 , position = "top_right"
+                 })
+end
+-- }}}
+-- }}}
+-- Autostart {{{
 ------------------------------------------------------------------------------
 
 function run_once(cmd)
@@ -82,12 +118,12 @@ function run_once(cmd)
       awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
-run_once(browser)
-run_once(terminal)
-run_once("xscreensaver -nosplash &")
 
--- }}}
+run_once("chromium")
+run_once("konsole -e zsh")
+run_once("xscreensaver -nosplash &")
+startup_time_notification()
+
 -- }}}
 -- Layouts & Tags Table {{{
 ------------------------------------------------------------------------------
@@ -156,36 +192,6 @@ if beautiful.wallpaper then
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     end
 end
-
--- }}}
--- Batttery Warning {{{
-------------------------------------------------------------------------------
-
-local function trim(s)
-    return s:find'^%s*$' and '' or s:match'^%s*(.*%S)'
-end
-
-local function bat_notification()
-    local f_capacity = assert(io.open("/sys/class/power_supply/BAT1/capacity", "r"))
-    local f_status = assert(io.open("/sys/class/power_supply/BAT1/status", "r"))
-    local bat_capacity = tonumber(f_capacity:read("*all"))
-    local bat_status = trim(f_status:read("*all"))
-
-    if (bat_capacity <= 20 and bat_status == "Discharging") then
-        naughty.notify({
-            title = "Battery Warning",
-            text = "Battery low! " .. bat_capacity .."%" .. " left!",
-            fg = beautiful.bg,
-            bg = beautiful.danger,
-            timeout= 59,
-            position   = "top_right"
-        })
-    end
-end
-
-battimer = timer({timeout = 60})
-battimer:connect_signal("timeout", bat_notification)
-battimer:start()
 
 -- }}}
 -- Wibox Widgets {{{
@@ -392,7 +398,6 @@ loadicon = wibox.layout.margin()
 -- }}}
 -- Wibox {{{
 ------------------------------------------------------------------------------
-
 mywibox = {}
 
 mytaglist = {}
@@ -404,8 +409,8 @@ mytasklist = {}
 mytaglist.buttons = awful.util.table.join(
     awful.button({},       1, awful.tag.viewonly),
     awful.button({},       3, awful.tag.viewtoggle),
-    awful.button({modkey}, 1, awful.client.movetotag),
-    awful.button({modkey}, 3, awful.client.toggletag)
+    awful.button({ Super }, 1, awful.client.movetotag),
+    awful.button({ Super }, 3, awful.client.toggletag)
 )
 
 
@@ -540,7 +545,7 @@ globalkeys = awful.util.table.join(
     -- focus clients {{{
 
     awful.key(
-        {modkey}, "j",
+        { Super }, "j",
         function()
             awful.client.focus.global_bydirection("down")
             if client.focus
@@ -550,7 +555,7 @@ globalkeys = awful.util.table.join(
     ),
 
     awful.key(
-        {modkey}, "k",
+        { Super }, "k",
         function()
             awful.client.focus.global_bydirection("up")
             if client.focus
@@ -560,7 +565,7 @@ globalkeys = awful.util.table.join(
     ),
 
     awful.key(
-        {modkey}, "h",
+        { Super }, "h",
         function()
             awful.client.focus.global_bydirection("left")
             if client.focus
@@ -570,7 +575,7 @@ globalkeys = awful.util.table.join(
     ),
 
     awful.key(
-        {modkey}, "l",
+        { Super }, "l",
         function()
             awful.client.focus.global_bydirection("right")
             if client.focus
@@ -580,7 +585,7 @@ globalkeys = awful.util.table.join(
     ),
 
     awful.key(
-        {modkey}, "w",
+        { Super }, "w",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus
@@ -590,7 +595,7 @@ globalkeys = awful.util.table.join(
     ),
 
     awful.key(
-        {modkey}, "b",
+        { Super }, "b",
         function ()
             awful.client.focus.history.previous()
             if client.focus
@@ -603,22 +608,22 @@ globalkeys = awful.util.table.join(
   -- swap clients {{{
 
     awful.key(
-        {modkey, shift}, "j",
+        { Super, Shift }, "j",
         function () awful.client.swap.global_bydirection("down") end
     ),
 
     awful.key(
-        {modkey, shift}, "k",
+        { Super, Shift }, "k",
         function () awful.client.swap.global_bydirection("up") end
     ),
 
     awful.key(
-        {modkey, shift}, "h",
+        { Super, Shift }, "h",
         function () awful.client.swap.global_bydirection("left") end
     ),
 
     awful.key(
-        {modkey, shift}, "l",
+        { Super, Shift }, "l",
         function () awful.client.swap.global_bydirection("right") end
     ),
 
@@ -626,7 +631,7 @@ globalkeys = awful.util.table.join(
     -- restore minimized {{{
 
     awful.key(
-        {modkey}, "a",
+        { Super }, "a",
         function () awful.client.restore() end
     ),
 
@@ -634,47 +639,47 @@ globalkeys = awful.util.table.join(
     -- manual layout manipulation {{{
 
     awful.key(
-        {modkey}, "space",
+        { Super }, "space",
         function () awful.layout.inc(layouts,  1) end
     ),
 
     awful.key(
-        {modkey}, "period",
+        { Super }, "period",
         function () awful.tag.incncol(1) end
     ),
 
     awful.key(
-        {modkey}, "comma",
+        { Super }, "comma",
         function () awful.tag.incncol(-1) end
     ),
 
     awful.key(
-        {modkey}, "Down",
+        { Super }, "Down",
         function () awful.tag.incnmaster(-1) end
     ),
 
     awful.key(
-        {modkey}, "Up",
+        { Super }, "Up",
         function () awful.tag.incnmaster(1) end
     ),
 
     awful.key(
-        {modkey}, "Right",
+        { Super }, "Right",
         function () awful.tag.incmwfact(0.01) end
     ),
 
     awful.key(
-        {modkey}, "Left",
+        { Super }, "Left",
         function () awful.tag.incmwfact(-0.01) end
     ),
 
     awful.key(
-        {modkey, shift}, "Right",
+        { Super, Shift }, "Right",
         function () awful.tag.incmwfact(0.05) end
     ),
 
     awful.key(
-        {modkey, shift}, "Left",
+        { Super, Shift }, "Left",
         function () awful.tag.incmwfact(-0.05) end
     ),
 
@@ -682,12 +687,12 @@ globalkeys = awful.util.table.join(
     -- focus (nonempty) tags {{{
 
     awful.key(
-        {modkey}, "Next",
+        { Super }, "Next",
         function () lain.util.tag_view_nonempty(1) end
     ),
 
     awful.key(
-        {modkey}, "Prior",
+        { Super }, "Prior",
         function () lain.util.tag_view_nonempty(-1) end
     ),
 
@@ -695,17 +700,17 @@ globalkeys = awful.util.table.join(
     -- focus screens {{{
 
     awful.key(
-        {modkey}, "F1",
+        { Super }, "F1",
         function () awful.screen.focus(1) end
     ),
 
     awful.key(
-        {modkey}, "F2",
+        { Super }, "F2",
         function () awful.screen.focus(2) end
     ),
 
     awful.key(
-        {modkey}, "F3",
+        { Super }, "F3",
         function () awful.screen.focus(3) end
     ),
 
@@ -713,12 +718,12 @@ globalkeys = awful.util.table.join(
     -- menus and similar {{{
 
     awful.key(
-        {modkey}, "z",
+        { Super }, "z",
         function () menubar.show() end
     ),
 
     awful.key(
-        {modkey}, "x",
+        { Super }, "x",
         function () mypromptbox[mouse.screen]:run() end
     ),
 
@@ -726,82 +731,83 @@ globalkeys = awful.util.table.join(
     -- applications {{{
 
     awful.key(
-        {modkey}, "Return",
-        function () awful.util.spawn(terminal) end
+        { Super }, "Return",
+        function () awful.util.spawn("konsole -e zsh") end
     ),
 
     awful.key(
-        {modkey}, "KP_Enter",
-        function () awful.util.spawn_with_shell(yarminal) end
+        { Super }, "KP_Enter",
+        function () awful.util.spawn_with_shell("urxvt") end
     ),
 
     awful.key(
-        {altkey}, "grave",
-        function () awful.util.spawn(gvim) end
+        { Hyper }, "grave",
+        function () awful.util.spawn("konsole -e nvim") end
     ),
 
     awful.key(
-        {altkey}, "1",
-        function () awful.util.spawn(browser) end
+        { Hyper }, "1",
+        function () awful.util.spawn("chromium") end
     ),
 
     awful.key(
-        {altkey, ctrl}, "1",
+        { Hyper, Cntrl }, "1",
         function () awful.util.spawn("tor-browser-en") end
     ),
 
     awful.key(
-        {altkey}, "2",
-        function () awful.util.spawn(browser2) end
+        { Hyper }, "2",
+        function () awful.util.spawn("firefox") end
     ),
 
     awful.key(
-        {altkey, ctrl}, "2",
-        function () awful.util.spawn(kiosked) end
+        { Hyper, Cntrl }, "2",
+
+        function () awful.util.spawn("chromium --kiosk") end
     ),
 
     awful.key(
-        {altkey}, "3",
-        function () awful.util.spawn(atom) end
+        { Hyper }, "3",
+        function () awful.util.spawn("atom") end
     ),
 
     awful.key(
-        {altkey}, "4",
+        { Hyper }, "4",
         function () awful.util.spawn("inkscape") end
     ),
 
     awful.key(
-        {altkey}, "5",
+        { Hyper }, "5",
         function () awful.util.spawn("gimp") end
     ),
 
     awful.key(
-        {altkey}, "6",
-        function () awful.util.spawn(bash) end
+        { Hyper }, "6",
+        function () awful.util.spawn("konsole -e bash") end
     ),
 
     awful.key(
-        {altkey}, "7",
-        function () awful.util.spawn(arandr) end
+        { Hyper }, "7",
+        function () awful.util.spawn("arandr") end
     ),
 
     awful.key(
-        {altkey}, "8",
+        { Hyper }, "8",
         function () awful.util.spawn("transset-df 1") end
     ),
 
     awful.key(
-        {altkey, ctrl}, "8",
+        { Hyper, Cntrl }, "8",
         function () awful.util.spawn("transset-df .8") end
     ),
 
     awful.key(
-        {altkey}, "9",
+        { Hyper }, "9",
         function () awful.util.spawn("transset-df .65") end
     ),
 
     awful.key(
-        {altkey, ctrl}, "9",
+        { Hyper, Cntrl }, "9",
         function () awful.util.spawn("transset-df .4") end
     ),
 
@@ -809,59 +815,59 @@ globalkeys = awful.util.table.join(
     -- scratchdrop applications {{{
 
     awful.key(
-        {modkey}, "grave",
-        function () drop(terminal) end
+        { Super }, "grave",
+        function () drop("konsole -e zsh") end
     ),
 
     awful.key(
-        {modkey}, "Tab" ,
-        function () drop(ranger) end
+        { Super }, "Tab" ,
+        function () drop("konsole -e ranger") end
     ),
 
     awful.key(
-        {modkey}, "KP_Subtract",
-        function () drop(pronmode) end
+        { Super }, "KP_Subtract",
+        function () drop("firefox --private-window") end
     ),
 
     awful.key(
-        {modkey}, "KP_Divide",
+        { Super }, "KP_Divide",
         function () drop(gvim) end
     ),
 
     awful.key(
-        {modkey}, "KP_Multiply",
-        function () drop(tmux) end
+        { Super }, "KP_Multiply",
+        function () drop("konsole -e tmux") end
     ),
 
     -- }}}
     -- actions {{{
 
     awful.key(
-        {modkey, ctrl}, "r",
+        { Super, Cntrl }, "r",
         awesome.restart
     ),
 
 
     awful.key(
-        {modkey, ctrl}, "q",
+        { Super, Cntrl }, "q",
         awesome.quit
     ),
 
 
     awful.key(
-        {modkey}, "F10",
-        function () awful.util.spawn(touchenable) end
+        { Super }, "F10",
+        function () awful.util.spawn("touchpad_ctrl") end
     ),
 
 
     awful.key(
-        {modkey}, "F12",
+        { Super }, "F12",
         function () awful.util.spawn("xscreensaver-command -lock") end
     ),
 
 
     awful.key(
-        {modkey}, "c",
+        { Super }, "c",
         function () os.execute("xsel -p -o | xsel -i -b") end
     ),
 
@@ -900,67 +906,67 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
 
     awful.key(
-        {modkey, shift}, "F1",
+        { Super, Shift }, "F1",
         function(c) awful.client.movetoscreen(c, 1) end
     ),
 
     awful.key(
-        {modkey, shift}, "F2",
+        { Super, Shift }, "F2",
         function(c) awful.client.movetoscreen(c, 2) end
     ),
 
     awful.key(
-        {modkey, shift}, "F3",
+        { Super, Shift }, "F3",
         function(c) awful.client.movetoscreen(c, 3) end
     ),
 
     awful.key(
-        {modkey}, "slash",
+        { Super }, "slash",
         function (c) c:swap(awful.client.getmaster()) end
     ),
 
     awful.key(
-        {modkey}, "Escape",
+        { Super }, "Escape",
         function (c) c:kill() end
     ),
 
     awful.key(
-        {modkey}, "n",
+        { Super }, "n",
         function (c) c.minimized = true end
     ),
 
     awful.key(
-        {modkey}, "y",
+        { Super }, "y",
         function (c) c.sticky = not c.sticky end
     ),
 
     awful.key(
-        {modkey}, "g",
+        { Super }, "g",
         function (c) awful.client.floating.toggle() end
     ),
 
     awful.key(
-        {modkey}, "t",
+        { Super }, "t",
         function (c) c.ontop = not c.ontop end
     ),
 
     awful.key(
-        {modkey}, "u",
+        { Super }, "u",
         function (c) c.below = not c.below end
     ),
 
     awful.key(
-        {modkey}, "d",
+        { Super }, "d",
         function (c) c.size_hints_honor = not c.size_hints_honor end
     ),
 
     awful.key(
-        {modkey}, "i",
+        { Super }, "i",
         function (c) c.above = not c.above end
     ),
 
     awful.key(
-        {modkey}, "m",
+        { Super }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
@@ -968,12 +974,12 @@ clientkeys = awful.util.table.join(
     ),
 
     awful.key(
-        {modkey}, "minus",
+        { Super }, "minus",
         function (c) c.maximized_horizontal = not c.maximized_horizontal end
     ),
 
     awful.key(
-        {modkey}, "backslash",
+        { Super }, "backslash",
         function (c) c.maximized_vertical = not c.maximized_vertical end
     )
 )
@@ -986,7 +992,7 @@ for i = 1, 9 do
         globalkeys,
 
         awful.key(
-            {modkey}, "#"..i + 9,
+            { Super }, "#"..i + 9,
             function ()
                 for s = 1, screen.count() do
                     local ss = screen.count() + 1 - s
@@ -1000,7 +1006,7 @@ for i = 1, 9 do
         ),
 
         awful.key(
-            {modkey, shift}, "#"..i + 9,
+            { Super, Shift }, "#"..i + 9,
             function ()
                 local tag = awful.tag.gettags(client.focus.screen)[i]
 
@@ -1026,12 +1032,12 @@ clientbuttons = awful.util.table.join(
     ),
 
     awful.button(
-        {modkey}, 1,
+        {Super }, 1,
         awful.mouse.client.move
     ),
 
     awful.button(
-        {modkey}, 3,
+        {Super }, 3,
         awful.mouse.client.resize
     )
 )
