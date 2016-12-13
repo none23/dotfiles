@@ -7,28 +7,35 @@ LineSpacing=0
 
 [Cursor Options]
 CursorShape=0
-CustomCursorColor=255,85,0
-UseCustomCursorColor=false
+CustomCursorColor=255,96,0
+UseCustomCursorColor=true
 
 [General]
 Command=/bin/zsh
 Environment=TERM=konsole-256color,
+Icon=/home/n/none23/newcoolavatar.png
 Name=nwsome
 Parent=FALLBACK/
 SilenceSeconds=30
 
 [Interaction Options]
+MiddleClickPasteMode=1
+MouseWheelZoomEnabled=false
+OpenLinksByDirectClickEnabled=true
 TrimTrailingSpacesInSelectedText=true
 TripleClickMode=0
+UnderlineLinksEnabled=true
 
 [Keyboard]
 KeyBindings=nwsome
 
 [Scrolling]
-HistoryMode=1
-HistorySize=10000
+HistoryMode=2
+HistorySize=100000
 ScrollBarPosition=2
 
 [Terminal Features]
+BidiRenderingEnabled=false
 BlinkingCursorEnabled=true
+EnableUrlHints=true
 FlowControlEnabled=false
