@@ -26,7 +26,6 @@ Plug 'xolox/vim-misc'                 " sessions dependency
 Plug 'xolox/vim-session'              " sessions
 Plug 'scrooloose/syntastic'           " linter
 Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
-Plug 'Yggdroot/indentLine'            " vertical indentation guides
 
 " Language-specific
 Plug 'mattn/emmet-vim'     " emmet
@@ -348,10 +347,6 @@ let g:session_autosave_silent = 1
 let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
 " }}}
-let g:indentLine_enabled = 1
-let g:indentLine_color_term = 237
-let g:indentLine_color_gui = '#3a3a3a'
-let g:indentLine_char = '┆'
 
 let g:deoplete#enable_at_startup = 1
 " }}}

@@ -94,16 +94,16 @@ battimer:start()
 
 -- }}}
 -- boot time {{{
-local function startup_time_notification ()
-  os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
-  local f_boot_time_info = assert(io.open("/tmp/startup-time")):read("*all")
-  naughty.notify({ title = "Welcome back"
-                 , text = f_boot_time_info
-                 , preset = naughty.config.presets.low
-                 , timeout = 5
-                 , position = "top_right"
-                 })
-end
+--local function startup_time_notification ()
+--  os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
+--  local f_boot_time_info = assert(io.open("/tmp/startup-time")):read("*all")
+--  naughty.notify({ title = "Welcome back"
+--                 , text = f_boot_time_info
+--                 , preset = naughty.config.presets.low
+--                 , timeout = 5
+--                 , position = "top_right"
+--                 })
+--end
 -- }}}
 -- }}}
 -- Autostart {{{
@@ -121,8 +121,7 @@ end
 
 run_once("chromium")
 run_once("konsole -e zsh")
-run_once("xscreensaver -nosplash &")
-startup_time_notification()
+--startup_time_notification()
 
 -- }}}
 -- Layouts & Tags Table {{{
@@ -341,7 +340,7 @@ clockwidget = awful.widget.textclock(
 clockwidget_margin = wibox.layout.margin()
     clockwidget_margin:set_widget(clockwidget)
     clockwidget_margin:set_right(4)
-    clockwidget_margin:set_bottom(2)
+    clockwidget_margin:set_bottom(1)
     clockwidget_margin:set_left(3)
 
 clockwidget_wrap = wibox.widget.background()
@@ -1101,13 +1100,13 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
                       , properties = { opacity = 0.90 }
                       }
                     , { rule = { class = "URxvt"       }, properties = { size_hints_honor = false } }
-                    , { rule = { class = "Chromium"    }, properties = { tag = "1" } }
-                    , { rule = { class = "Firefox"     }, properties = { tag = "2" } }
-                    , { rule = { class = "Inkscape"    }, properties = { tag = "4" } }
-                    , { rule = { class = "Gimp"        }, properties = { tag = "5" } }
-                    , { rule = { class = "Tor Browser" }, properties = { tag = "6" } }
-                    , { rule = { class = "Arandr"      }, properties = { tag = "8" } }
-                    , { rule = { class = "Spotify"     }, properties = { tag = "9" } }
+                    , { rule = { class = "Chromium"    }, properties = { tag = tags[1][1] } }
+                    , { rule = { class = "Firefox"     }, properties = { tag = tags[1][2] } }
+                    , { rule = { class = "Inkscape"    }, properties = { tag = tags[1][4] } }
+                    , { rule = { class = "Gimp"        }, properties = { tag = tags[1][5] } }
+                    , { rule = { class = "Tor Browser" }, properties = { tag = tags[1][6] } }
+                    , { rule = { class = "Arandr"      }, properties = { tag = tags[1][8] } }
+                    , { rule = { class = "Spotify"     }, properties = { tag = tags[1][9] } }
                     }
 -- }}}
 -- Signals {{{
@@ -1190,5 +1189,3 @@ end
 
 -- }}}
 -- }}}
-
--- vim:foldmethod=marker:foldlevel=0
