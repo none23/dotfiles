@@ -1047,78 +1047,68 @@ root.keys(globalkeys)
 -- }}}
 -- Rules {{{
 ------------------------------------------------------------------------------
-awful.rules.rules = {
-    { rule = {},
-      callback = awful.client.setslave
-    },
-    { rule = {},
-      properties = {
-          border_width = beautiful.border_width,
-          focus = awful.client.focus.filter,
-          keys = clientkeys,
-          buttons = clientbuttons,
-          size_hints_honor = true,
-      },
-    },
-
-    { rule = { name = "Page(s) Unresponsive" },
-      properties = { floating = true }
-    },
-    { rule = { name = "Firefox Preferences" },
-      properties = { floating = true }
-    },
-    { rule = { name = "Adblock Plus Filter Preferences"},
-      properties = { floating = true }
-    },
-    { rule = { class = "Chromium" },
-      properties = {
-          floating = false,
-          maximized_horizontal = false,
-          maximized_vertical = false,
-          tag=tags[1][1]
-      }
-    },
-    { rule = {
-        class = "Chromium",
-        name = "Task Manager - Chromium"
-      },
-      properties = { floating = true }
-    },
-    { rule = {class = "konsole"},
-      properties = { opacity = 0.85 }
-    },
-    { rule = {class = "URxvt"},
-      properties = {
-          opacity = 0.90,
-          size_hints_honor = false
-      }
-    },
-    { rule = {class = "Zathura"},
-      properties = { opacity = 0.90}
-    },
-    { rule = {class = "feh"},
-      properties = { floating = true}
-    },
-    { rule = { role = "gimp-image-window"},
-      properties = {
-          tag = tags[1][5],
-          maximized_horizontal = true,
-          maximized_vertical = true
-      }
-    },
-    { rule = {class = "Inkscape"},
-      properties = { tag = tags[1][4]}
-    },
-    { rule = {class = "Tor Browser"},
-      properties = { tag = tags[1][6]}
-    },
-    { rule = {class = "Arandr"},
-      properties = { tag = tags[1][8]}
-    },
-    { rule = {class = "Vlc"},
-      properties = { floating = true}
-    }
-}
+awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
+                    , { rule = { }, properties = { border_width = beautiful.border_width
+                                                 , border_color = beautiful.border_normal
+                                                 , focus = awful.client.focus.filter
+                                                 , raise = true
+                                                 , keys = clientkeys
+                                                 , buttons = clientbuttons
+                                                 , titlebars_enabled = false
+                                                 , placement = awful.placement.no_offscreen
+                                                 }
+                      }
+                    , { rule_any = { class = { "Chromium"
+                                             , "Firefox"
+                                             }
+                                   }
+                      , properties = { floating = false
+                                     , maximized_horizontal = false
+                                     , maximized_vertical = false
+                                     }
+                      }
+                    , { rule_any = { instance = { "DTA"
+                                                , "copyq"
+                                                }
+                                   , class = { "Arandr"
+                                             , "Gpick"
+                                             , "feh"
+                                             , "Kruler"
+                                             , "Sxiv"
+                                             , "MessageWin"
+                                             , "Wpa_gui"
+                                             , "pinentry"
+                                             , "veromix"
+                                             , "xtightvncviewer"
+                                             }
+                                   , name = { "Event Tester"
+                                            , "Page(s) Unresponsive"
+                                            , "Firefox Preferences"
+                                            , "Adblock Plus Filter Preferences"
+                                            , "Task Manager - Chromium"
+                                            }
+                                   , role = { "AlarmWindow"
+                                            , "pop-up"
+                                            }
+                                   }
+                      , properties = { floating = true }
+                      }
+                    , { rule_any = { class = { "konsole"
+                                             , "URxvt"
+                                             , "Zathura"
+                                             }
+                                   }
+                      , properties = { opacity = 0.90 }
+                      }
+                    , { rule = { class = "URxvt"       }, properties = { size_hints_honor = false } }
+                    , { rule = { class = "Chromium"    }, properties = { tag = "1" } }
+                    , { rule = { class = "Firefox"     }, properties = { tag = "2" } }
+                    , { rule = { class = "Inkscape"    }, properties = { tag = "4" } }
+                    , { rule = { class = "Gimp"        }, properties = { tag = "5" } }
+                    , { rule = { class = "Tor Browser" }, properties = { tag = "6" } }
+                    , { rule = { class = "Arandr"      }, properties = { tag = "8" } }
+                    , { rule = { class = "Spotify"     }, properties = { tag = "9" } }
+                    }
 -- }}}
 -- Signals {{{
 ------------------------------------------------------------------------------

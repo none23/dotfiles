@@ -2,7 +2,7 @@
 " Install if not already {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall | source ~/.vimrc
 endif
 
@@ -10,35 +10,44 @@ endif
 set nocompatible
 call plug#begin('~/.vim/plugged')
 " Plugins {{{
-Plug 'easymotion/vim-easymotion'       " Quickly anywhere without counting words
-Plug 'wavded/vim-stylus'               " Stylus support
-Plug 'digitaltoad/vim-pug'             " Pug (jade) support
-Plug 'vim-airline/vim-airline'         " Airline
-Plug 'vim-airline/vim-airline-themes'  " Airline themes
-Plug 'majutsushi/tagbar'               " Class/module browser
-Plug 'mattn/emmet-vim'                 " Emmet
-Plug 'kien/tabman.vim'                 " Tab list panel
-Plug 'pangloss/vim-javascript'         " Better JS support
-Plug 'ap/vim-css-color'                " CSS colors preview
-Plug 'tpope/vim-haml'                  " Sass support
-Plug 'kchmck/vim-coffee-script'        " CoffeeScript support
-Plug 'ctrlpvim/ctrlp.vim'              " Ctrlp
-Plug 'tpope/vim-surround'              " Surround
-Plug 'terryma/vim-expand-region'       " Expand region
-Plug 'Townk/vim-autoclose'             " Autoclose
-Plug 'michaeljsmith/vim-indent-object' " Indent text object
-Plug 't9md/vim-choosewin'              " Window chooser
-Plug 'scrooloose/syntastic'            " Python and other languages code checker
-Plug 'IndexedSearch'                   " Search results counter
-Plug 'matchit.zip'                     " XML/HTML tags navigation
-Plug 'YankRing.vim'                    " Yank history navigation
-Plug 'ervandew/supertab'               " Completion with TAB
-Plug 'maksimr/vim-jsbeautify'          " Prettify JS 
-Plug 'davidhalter/jedi-vim'            " Jedi-Vim
-Plug 'xolox/vim-misc'                  " Sessions
-Plug 'xolox/vim-session'
+" General
+Plug 'easymotion/vim-easymotion'      " quickly anywhere without counting words
+Plug 'vim-airline/vim-airline'        " airline
+Plug 'vim-airline/vim-airline-themes' " airline themes
+Plug 'kien/tabman.vim'                " tab list side-panel
+Plug 'tpope/vim-surround'             " surround
+Plug 'terryma/vim-expand-region'      " expand region
+Plug 'Townk/vim-autoclose'            " autoclose
+Plug 't9md/vim-choosewin'             " window chooser
+Plug 'ervandew/supertab'              " completion with <TAB>
+Plug 'YankRing.vim'                   " yank history navigation
+Plug 'IndexedSearch'                  " search results counter
+Plug 'xolox/vim-misc'                 " sessions dependency
+Plug 'xolox/vim-session'              " sessions
+Plug 'scrooloose/syntastic'           " linter
+Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
+Plug 'Yggdroot/indentLine'            " vertical indentation guides
+
+" Language-specific
+Plug 'mattn/emmet-vim'     " emmet
+Plug 'digitaltoad/vim-pug' " pug (jade) support
+
+Plug 'wavded/vim-stylus'   " stylus support
+Plug 'tpope/vim-haml'      " sass support
+Plug 'ap/vim-css-color'    " css colors preview
+
+Plug 'pangloss/vim-javascript'                                " better js support
+Plug 'kchmck/vim-coffee-script'                               " coffeescript support
+Plug 'maksimr/vim-jsbeautify'                                 " un-minify js
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " js code completion
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }           " js code-analysis
+Plug 'elzr/vim-json'                                          " json
+
 " }}}
 call plug#end()
+
+" Easy plugin updates
+command! PU PlugUpdate | PlugUpgrade
 
 " }}}
 " Indentation {{{
@@ -54,7 +63,8 @@ autocmd FileType pug setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-set autoindent smartindent
+" TODO: language-specific indentation
+set autoindent
 
 " }}}
 " Misc Settings {{{
@@ -66,14 +76,38 @@ set noshowmode
 " incremental search
 set incsearch
 
+" case insensitive search
+set ignorecase
+set smartcase
+
+" mouse support
+set mouse=a
+
 " highlighted search results
 set hlsearch
 
 " marker folding
 set foldmethod=marker
 set foldlevel=0
+autocmd FileType javascript setlocal foldmethod=syntax
+
+" enable concealing
+set conceallevel=1
+" let g:javascript_conceal_function             = "ƒ"
+" let g:javascript_conceal_null                 = "ø"
+" let g:javascript_conceal_this                 = "@"
+" let g:javascript_conceal_return               = "⇚"
+" let g:javascript_conceal_undefined            = "¿"
+" let g:javascript_conceal_NaN                  = "ℕ"
+" let g:javascript_conceal_prototype            = "¶"
+" let g:javascript_conceal_static               = "•"
+" let g:javascript_conceal_super                = "Ω"
+" let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_conceal_noarg_arrow_function = "🞅"
+" let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 " syntax highlight
+filetype indent plugin on
 syntax on
 
 " prevent wrapping lines
@@ -86,6 +120,9 @@ set scrolloff=9
 " show line numbers
 set number
 set relativenumber
+
+" ask confirmation instead of failing
+set confirm
 
 " }}}
 " Colorscheme {{{
@@ -124,11 +161,11 @@ set wildmode=list:longest
 set directory=~/.vim/dirs/tmp     " <=== swap files go here
 
 " turn on backups
-set backup                       
+set backup
 set backupdir=~/.vim/dirs/backups " <=== backup files go here
 
 " turn on undo history
-set undofile                  
+set undofile
 set undodir=~/.vim/dirs/undos     " <=== undo history for every file ever edited go here
 
 set viminfo+=n~/.vim/dirs/viminfo
@@ -151,9 +188,9 @@ endif
 " }}}
 " Misc mappings {{{
 " save with sudo
- ca w!! w !sudo tee "%"
+ca w!! w !sudo tee "%"
 
- " save with C-s
+" save with C-s
 nnoremap <C-s> :w<CR>
 
 " indent without loosing focus
@@ -165,6 +202,12 @@ noremap ; :
 
 "clear search results highlighting
 nnoremap <C-L> :nohl<CR><C-L>
+
+" map leader to space
+let mapleader = " "
+
+" toggle concealing
+map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " }}}
 " Tab navigation {{{
@@ -210,9 +253,8 @@ autocmd BufReadPost *.doc %!antiword "%"
 " TODO: convert pdf to text on open
 " :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 " }}}
-" Plugins settings {{{ 
+" Plugins settings {{{
 " EasyMotion {{{
-let mapleader = " "       " map leader to space
 map <Leader> <Plug>(easymotion-prefix)
 
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -239,12 +281,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_wq = 1
-
 let g:syntastic_check_on_open = 1
-" don't put icons on the sign column (it hides the vcs status icons of signify)
 let g:syntastic_enable_signs = 1
-" custom icons (enable them if you use a patched font, and enable the previous
-" setting)
+
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
@@ -265,7 +304,7 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 nmap  -  <Plug>(choosewin)
 " show big letters
 let g:choosewin_overlay_enable = 0
-let g:choosewin_return_on_single_win = 1
+let g:choosewin_return_on_single_win = 0
 
 " }}}
 " Airline {{{
@@ -295,20 +334,26 @@ autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+    let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
 " }}}
 "  Vim Session {{{
 " let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
-"  automatically (silently) save current working session every 5 minutes 
+"  automatically (silently) save current working session every 5 minutes
 let g:session_autosave_periodic = 5
 let g:session_autosave_silent = 1
 " when prompting do not include instructions on disabling prompting
 let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
 " }}}
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 237
+let g:indentLine_color_gui = '#3a3a3a'
+let g:indentLine_char = '┆'
+
+let g:deoplete#enable_at_startup = 1
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
+
