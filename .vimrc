@@ -31,17 +31,18 @@ Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
 Plug 'mattn/emmet-vim'     " emmet
 Plug 'digitaltoad/vim-pug' " pug (jade) support
 
-Plug 'wavded/vim-stylus'   " stylus support
 Plug 'tpope/vim-haml'      " sass support
 Plug 'ap/vim-css-color'    " css colors preview
+Plug 'wavded/vim-stylus', { 'for': ['styl'] }                 " Stylus support
 
-Plug 'pangloss/vim-javascript'                                " better js support
-Plug 'kchmck/vim-coffee-script'                               " coffeescript support
-Plug 'maksimr/vim-jsbeautify'                                 " un-minify js
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " js code completion
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }           " js code-analysis
-Plug 'elzr/vim-json'                                          " json
-
+Plug 'pangloss/vim-javascript'                                " Better JS support
+Plug 'maksimr/vim-jsbeautify'                                 " Un-minify JS
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " JS code completion
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }           " JS code-analysis
+Plug 'elzr/vim-json'                                          " JSON
+Plug 'othree/jspc.vim'                                        " Parameter completion e.g., .on('cli<tab>
+Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }        " CoffeScript support
 " }}}
 call plug#end()
 
@@ -68,6 +69,12 @@ set autoindent
 " }}}
 " Misc Settings {{{
 
+" utf-8
+scriptencoding utf-8
+
+" [experimental] keep the cursor on the same column
+set nostartofline
+
 " status bar
 set laststatus=2
 set noshowmode
@@ -75,15 +82,28 @@ set noshowmode
 " incremental search
 set incsearch
 
+" remove excessive whitespace wthen joining indended lines 
+set nojoinspaces
+
 " case insensitive search
 set ignorecase
 set smartcase
+set infercase
 
 " mouse support
 set mouse=a
 
 " highlighted search results
 set hlsearch
+
+" Don't redraw screen durring macros
+set lazyredraw
+
+" Cursor can move to spaces with no real character in vblock mode.
+set virtualedit=block
+set synmaxcol=800
+set splitbelow
+set splitright
 
 " marker folding
 set foldmethod=marker
@@ -92,18 +112,31 @@ autocmd FileType javascript setlocal foldmethod=syntax
 
 " enable concealing
 set conceallevel=1
-" let g:javascript_conceal_function             = "ƒ"
-" let g:javascript_conceal_null                 = "ø"
-" let g:javascript_conceal_this                 = "@"
-" let g:javascript_conceal_return               = "⇚"
-" let g:javascript_conceal_undefined            = "¿"
-" let g:javascript_conceal_NaN                  = "ℕ"
-" let g:javascript_conceal_prototype            = "¶"
-" let g:javascript_conceal_static               = "•"
-" let g:javascript_conceal_super                = "Ω"
-" let g:javascript_conceal_arrow_function       = "⇒"
+
+" vim-javascript conceal settings.
+let g:javascript_conceal_function = 'Î»'
+let g:javascript_conceal_this = '@'
+let g:javascript_conceal_return = '<'
+let g:javascript_conceal_prototype = '#'
+" let g:javascript_conceal_function = "ƒ"
+" let g:javascript_conceal_null = "ø"
+" let g:javascript_conceal_this = "@"
+" let g:javascript_conceal_return = "⇚"
+" let g:javascript_conceal_undefined = "¿"
+" let g:javascript_conceal_NaN = "ℕ"
+" let g:javascript_conceal_prototype = "¶"
+" let g:javascript_conceal_static = "•"
+" let g:javascript_conceal_super = "Ω"
+" let g:javascript_conceal_arrow_function = "⇒"
 " let g:javascript_conceal_noarg_arrow_function = "🞅"
 " let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+" Remove trailing spaces in insert mode
+augroup Trailing
+  au!
+  au InsertEnter * :set listchars-=trail:Â·
+  au InsertLeave * :set listchars+=trail:Â·
+augroup END
 
 " syntax highlight
 filetype indent plugin on
