@@ -27,19 +27,19 @@ Plug 'IndexedSearch'                  " search results counter
 Plug 'xolox/vim-misc'                 " sessions dependency
 Plug 'xolox/vim-session'              " sessions
 Plug 'scrooloose/syntastic'           " linter
-Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
+" Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
 Plug 'yggdroot/indentline'            " vertical guides for indent levels
 Plug 'sheerun/vim-polyglot'           " Syntax highlighting
-" Plug 'elzr/vim-json'                                          " JSON
-" Plug 'digitaltoad/vim-pug' " pug (jade) support
-" Plug 'tpope/vim-haml'      " sass support
-" Plug 'wavded/vim-stylus', { 'for': ['styl'] }                 " Stylus support
-" Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }        " CoffeScript support
-Plug 'neomake/neomake', { 'on': 'Neomake' } 
+Plug 'neomake/neomake'
+
+Plug 'elzr/vim-json'                                   " JSON
+Plug 'digitaltoad/vim-pug'                             " Pug (Jade)
+Plug 'tpope/vim-haml'                                  " Sass
+Plug 'wavded/vim-stylus', { 'for': ['styl'] }          " Stylus
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] } " CoffeScript
 
 " Language-specific
 Plug 'mattn/emmet-vim'     " emmet
-
 Plug 'ap/vim-css-color'    " css colors preview
 
 Plug 'maksimr/vim-jsbeautify'                                 " Un-minify JS
@@ -49,6 +49,7 @@ Plug 'othree/jspc.vim'                                        " Parameter comple
 Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
 " }}}
 call plug#end()
+let g:polyglot_disabled = ['stylus', 'jade', 'pug', 'javascript', 'json', 'sass', 'scss', 'css', 'coffeescript']
 
 " Easy plugin updates
 command! PU PlugUpdate | PlugUpgrade
@@ -66,9 +67,15 @@ autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " TODO: language-specific indentation
 set autoindent
+set nocopyindent
+set nopreserveindent
+set nosmartindent
+set nocindent
 
 " }}}
 " Misc Settings {{{
@@ -133,6 +140,11 @@ let g:javascript_conceal_prototype = '#'
 " let g:javascript_conceal_static = "•"
 " let g:javascript_conceal_super = "Ω"
 
+set fillchars+=diff:⣿
+set diffopt=vertical                  " Use in vertical diff mode
+set diffopt+=filler                   " blank lines to keep sides aligned
+set diffopt+=iwhite                   " Ignore whitespace changes
+
 " syntax highlight
 filetype indent plugin on
 syntax on
@@ -141,8 +153,12 @@ syntax on
 set textwidth=9999
 set nowrap
 
-" when scrolling, keep cursor 9 lines away from screen border
+" when scrolling, keep cursor this many lines away from screen border
 set scrolloff=9
+set sidescrolloff=16
+
+" don't syntax highlight long lines
+set synmaxcol=200
 
 " show line numbers
 set number
@@ -150,6 +166,9 @@ set relativenumber
 
 " ask confirmation instead of failing
 set confirm
+
+set fileformats=unix,mac,dos
+set fileformat=unix
 
 " }}}
 " Colorscheme {{{
@@ -176,13 +195,31 @@ set autoread
 
 " }}}
 " Command completion  {{{
-"  " autocomplete first menu item
+set browsedir=buffer           " browse files in same dir as open file
 set wildmenu
-set completeopt-=preview
+set wildmode=list:longest,full
+set wildignorecase
 
-" complete only the common part, list the options that match
-set wildmode=longest,list:full
+" Ignore these files for completion
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.jar,*.pyc,*.rbc,*.class
+set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+set wildignore+=*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm
+set wildignore+=*.eot,*.otf,*.ttf,*.woff
+set wildignore+=*.docx
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=.sass-cache
+set wildignore+=.sass-cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
+set wildignore+=*.*~,*~
+set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
+ 
+set isfname-==
 
+set complete-=i                       " don't complete includes
+set complete-=t                       " don't complete tags
+set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
+set completeopt+=menu,menuone         " show PUM, even for one thing
 " }}}
 " Backup, swap and undos storage {{{
 
@@ -345,22 +382,18 @@ let g:airline#extensions#tabline#enabled=0
 " }}}
 " Neocomplete {{{
 let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#sources#syntax#min_keyword_length = 3
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
 
 " }}}
 " Vim Session {{{
@@ -377,12 +410,11 @@ let g:session_verbose_messages = 0
 
 " }}}
 " IndentLune {{{
-let g:indentLine_color_gui = '#de1e1e'
+let g:indentLine_color_gui = '#232323'
 let g:indentLine_char = ':'
 let g:indentLine_setConceal = 0
 " }}}
 
-let g:deoplete#enable_at_startup = 1
 " }}}
 
 

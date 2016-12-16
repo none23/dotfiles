@@ -1,59 +1,53 @@
 -- Requirements {{{
 ------------------------------------------------------------------------------
 
-local gears       = require("gears")        -- for wallpaper
-local awful       = require("awful")
-      awful.rules = require("awful.rules")
-                    require("awful.autofocus")
-local wibox       = require("wibox")
-local beautiful   = require("beautiful")    -- theme
+local gears     = require("gears")        -- for wallpaper
+local awful     = require("awful")
+  awful.rules   = require("awful.rules")
+                  require("awful.autofocus")
+local wibox     = require("wibox")
+local naughty   = require("naughty")      -- errors
+local drop      = require("scratchdrop")  -- drop-down clients
+local lain      = require("lain")         -- additional widgets
+local menubar   = require("menubar")      -- dmenu
+local nlay      = require("nlay")         -- my layout
+local beautiful = require("beautiful")    -- theme
       beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
-local naughty     = require("naughty")      -- errors
-local drop        = require("scratchdrop")  -- drop-down clients
-local lain        = require("lain")         -- additional widgets
-local menubar     = require("menubar")      -- dmenu
-local nlay        = require("nlay")         -- my layout
 
 -- }}}
 -- Aliases {{{
 ------------------------------------------------------------------------------
 
-Super      = "Mod4"
-Hyper      = "Mod3"
-Shift       = "Shift"
-Cntrl        = "Control"
+Super = "Mod4"
+Hyper = "Mod3"
+Shift = "Shift"
+Cntrl = "Control"
 
 -- }}}
 -- Notifications {{{
-------------------------------------------------------------------------------
 -- startup errors {{{
 if awesome.startup_errors then
-    naughty.notify({
-      preset = naughty.config.presets.critical,
-      title = "Oops, you're out of luck, buddy!",
-      text = awesome.startup_errors
-    })
+    naughty.notify({ preset = naughty.config.presets.critical
+                   , title = "Oops, you're out of luck, buddy!"
+                   , text = awesome.startup_errors
+                   })
 end
 -- }}}
 -- runtime errors {{{
 do
     local in_error = false
-    awesome.connect_signal(
-        "debug::error",
-        function (err)
-            if in_error then
-                return
-            end
-            in_error = true
-            naughty.notify({
-                preset = naughty.config.presets.critical,
-                title = "Looks like you fucked it up!",
-                text = err
-            })
-            in_error = false
-        end
-    )
+    awesome.connect_signal( "debug::error"
+                          , function (err)
+                                if in_error then return end
+                                in_error = true
+                                naughty.notify({ preset = naughty.config.presets.critical
+                                               , title = "Looks like you fucked it up!"
+                                               , text = err
+                                               })
+                                in_error = false
+                            end
+                          )
 end
 
 -- }}}
@@ -94,58 +88,52 @@ battimer:start()
 
 -- }}}
 -- boot time {{{
---local function startup_time_notification ()
---  os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
---  local f_boot_time_info = assert(io.open("/tmp/startup-time")):read("*all")
---  naughty.notify({ title = "Welcome back"
---                 , text = f_boot_time_info
---                 , preset = naughty.config.presets.low
---                 , timeout = 5
---                 , position = "top_right"
---                 })
---end
+local function startup_time_notification ()
+  os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
+  local f_boot_time_info = assert(io.open("/tmp/startup-time")):read("*all")
+  naughty.notify({ title = "Welcome back"
+                 , text = f_boot_time_info
+                 , preset = naughty.config.presets.low
+                 , timeout = 5
+                 , position = "top_right"
+                 })
+end
 -- }}}
 -- }}}
 -- Autostart {{{
 ------------------------------------------------------------------------------
 
 function run_once(cmd)
-      findme = cmd
-      firstspace = cmd:find(" ")
-      if firstspace then
-          findme = cmd:sub(0, firstspace-1)
-      end
-      awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+  findme = cmd
+  firstspace = cmd:find(" ")
+  if firstspace then
+      findme = cmd:sub(0, firstspace-1)
+  end
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
 
 run_once("chromium")
 run_once("konsole -e zsh")
---startup_time_notification()
+startup_time_notification()
 
 -- }}}
 -- Layouts & Tags Table {{{
 ------------------------------------------------------------------------------
 -- Create {{{
 
-local layouts = {
-    nlay,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top
-    -- awful.layout.suit.fair,fair
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-}
+local layouts = { nlay
+                , awful.layout.suit.tile
+                , awful.layout.suit.tile.bottom
+                , awful.layout.suit.tile.top
+                , awful.layout.suit.fair,fair
+                }
 
-tags = {
-    name = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
-    layout = {
-        layouts[4], layouts[2], layouts[2], layouts[1], layouts[1],
-        layouts[2], layouts[2], layouts[2], layouts[3]
-    }
-}
+tags = { name = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+       , layout = { layouts[4], layouts[2], layouts[2], layouts[1], layouts[1]
+                  , layouts[2], layouts[2], layouts[2], layouts[3]
+                  }
+       }
 
 for s = 1, screen.count() do
     tags[s] = awful.tag(tags.name, s, tags.layout)
@@ -198,44 +186,40 @@ end
 -- memory {{{
 
 memwidget = lain.widgets.mem({
-    settings = function()
-        if mem_now.used < 1000 then
-            widget:set_text(' ' .. mem_now.used)
-        else
-            widget:set_text(mem_now.used)
-        end
+  settings = function()
+    if mem_now.used < 1000 then
+      widget:set_text(' ' .. mem_now.used)
+    else
+      widget:set_text(mem_now.used)
     end
+  end
 })
-
 memwidget_margin = wibox.layout.margin()
-    memwidget_margin:set_widget(memwidget)
-    memwidget_margin:set_bottom(1)
-    memwidget_margin:set_left(3)
+  memwidget_margin:set_widget(memwidget)
+  memwidget_margin:set_bottom(1)
+  memwidget_margin:set_left(3)
 
-memwidget_wrap = wibox.widget.background()
+  memwidget_wrap = wibox.widget.background()
     memwidget_wrap:set_widget(memwidget_margin)
     memwidget_wrap:set_bg(beautiful.midgray_0)
---    memwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
     memwidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
 -- cpu {{{
 
-cpuwidget = lain.widgets.cpu({
-    settings = function()
-        widget:set_text(":" .. cpu_now.usage)
-    end
-})
+cpuwidget = lain.widgets.cpu({ settings = function()
+                                             widget:set_text(":" .. cpu_now.usage)
+                                          end
+                             })
 
 cpuwidget_margin = wibox.layout.margin()
-    cpuwidget_margin:set_widget(cpuwidget)
-    cpuwidget_margin:set_right(4)
-    cpuwidget_margin:set_bottom(1)
+  cpuwidget_margin:set_widget(cpuwidget)
+  cpuwidget_margin:set_right(4)
+  cpuwidget_margin:set_bottom(1)
 
-cpuwidget_wrap = wibox.widget.background()
+  cpuwidget_wrap = wibox.widget.background()
     cpuwidget_wrap:set_widget(cpuwidget_margin)
     cpuwidget_wrap:set_bg(beautiful.midgray_0)
-    --cpuwidget_wrap:set_bgimage(beautiful.powerline_left_gray)
     cpuwidget_wrap:set_fg(beautiful.primary)
 
 
@@ -251,42 +235,29 @@ volumewidget = lain.widgets.alsa({
     end
 })
 
-
--- volicon_img = wibox.widget.imagebox(beautiful.widget_vol)
--- volicon_bg = wibox.widget.background()
---     volicon_bg:set_widget(volicon_img)
---     volicon_bg:set_bg(beautiful.midgray_1)
--- volicon_wrap = wibox.layout.margin()
---     volicon_wrap:set_widget(volicon_bg)
---     volicon_wrap:set_top(-2)
---     volicon_wrap:set_right(-2)
---     volicon_wrap:set_bottom(-1)
---     volicon_wrap:set_left(-2)
-
 volumewidget_margin = wibox.layout.margin()
-    volumewidget_margin:set_widget(volumewidget)
-    volumewidget_margin:set_right(4)
-    volumewidget_margin:set_bottom(1)
-    volumewidget_margin:set_left(2)
-volumewidget_wrap = wibox.widget.background()
+  volumewidget_margin:set_widget(volumewidget)
+  volumewidget_margin:set_right(4)
+  volumewidget_margin:set_bottom(1)
+  volumewidget_margin:set_left(2)
+
+  volumewidget_wrap = wibox.widget.background()
     volumewidget_wrap:set_widget(volumewidget_margin)
     volumewidget_wrap:set_bg(beautiful.midgray_1)
-    --volumewidget_wrap:set_bgimage(beautiful.powerline_left_gray)
     volumewidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
 -- battery {{{
 
-batwidget = lain.widgets.bat({
-    settings = function()
-        if bat_now.perc == "N/A" then
-            bat_now.perc = bat_now.perc .. "C"
-        else
-            bat_now.perc = bat_now.perc .. "%"
-        end
-        widget:set_text(bat_now.perc)
-    end
-})
+batwidget = lain.widgets.bat({ settings = function()
+                                              if bat_now.perc == "N/A" then
+                                                  bat_now.perc = bat_now.perc .. "C"
+                                              else
+                                                  bat_now.perc = bat_now.perc .. "%"
+                                              end
+                                              widget:set_text(bat_now.perc)
+                                          end
+                             })
 
 batwidget_margin = wibox.layout.margin()
     batwidget_margin:set_widget(batwidget)
@@ -313,40 +284,31 @@ batwidget_wrap = wibox.widget.background()
 -- }}}
 -- date {{{
 
-datewidget = awful.widget.textclock(
-    '<span>' ..  tostring("%d-%a") ..  '</span>',
-    100
-)
+datewidget = awful.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
 datewidget_margin = wibox.layout.margin()
-    datewidget_margin:set_widget(datewidget)
-    datewidget_margin:set_right(4)
-    datewidget_margin:set_bottom(1)
-    datewidget_margin:set_left(3)
+  datewidget_margin:set_widget(datewidget)
+  datewidget_margin:set_right(4)
+  datewidget_margin:set_bottom(1)
+  datewidget_margin:set_left(3)
 
-datewidget_wrap = wibox.widget.background()
+  datewidget_wrap = wibox.widget.background()
     datewidget_wrap:set_widget(datewidget_margin)
     datewidget_wrap:set_bg(beautiful.midgray_1)
-    --datewidget_wrap:set_bgimage(beautiful.powerline_left_gray_long)
     datewidget_wrap:set_fg(beautiful.fg)
 
 -- }}}
 -- clock {{{
 
-clockwidget = awful.widget.textclock(
-    '<span>' ..  tostring("%H:%M") ..  '</span>',
-    10
-)
-
+clockwidget = awful.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
 clockwidget_margin = wibox.layout.margin()
-    clockwidget_margin:set_widget(clockwidget)
-    clockwidget_margin:set_right(4)
-    clockwidget_margin:set_bottom(1)
-    clockwidget_margin:set_left(3)
+  clockwidget_margin:set_widget(clockwidget)
+  clockwidget_margin:set_right(4)
+  clockwidget_margin:set_bottom(1)
+  clockwidget_margin:set_left(3)
 
-clockwidget_wrap = wibox.widget.background()
+  clockwidget_wrap = wibox.widget.background()
     clockwidget_wrap:set_widget(clockwidget_margin)
     clockwidget_wrap:set_bg(beautiful.primary)
-    --clockwidget_wrap:set_bgimage(beautiful.powerline_left_orange_long)
     clockwidget_wrap:set_fg(beautiful.black)
 
 -- }}}
@@ -354,43 +316,36 @@ clockwidget_wrap = wibox.widget.background()
 
 midgray1_to_primary_img  = wibox.widget.imagebox(beautiful.midgray1_to_primary)
 midgray1_to_primary = wibox.layout.margin()
-    midgray1_to_primary:set_widget(midgray1_to_primary_img)
-    midgray1_to_primary:set_margins(-1)
-
+  midgray1_to_primary:set_widget(midgray1_to_primary_img)
+  midgray1_to_primary:set_margins(-1)
 midgray1_to_midgray0_img = wibox.widget.imagebox(beautiful.midgray1_to_midgray0)
 midgray1_to_midgray0 = wibox.layout.margin()
-    midgray1_to_midgray0:set_widget(midgray1_to_midgray0_img)
-    midgray1_to_midgray0:set_margins(-1)
-
+  midgray1_to_midgray0:set_widget(midgray1_to_midgray0_img)
+  midgray1_to_midgray0:set_margins(-1)
 midgray0_to_midgray1_img = wibox.widget.imagebox(beautiful.midgray0_to_midgray1)
 midgray0_to_midgray1 = wibox.layout.margin()
-    midgray0_to_midgray1:set_widget(midgray0_to_midgray1_img)
-    midgray0_to_midgray1:set_margins(-1)
-
+  midgray0_to_midgray1:set_widget(midgray0_to_midgray1_img)
+  midgray0_to_midgray1:set_margins(-1)
 black_to_midgray0_img    = wibox.widget.imagebox(beautiful.black_to_midgray0)
 black_to_midgray0 = wibox.layout.margin()
-    black_to_midgray0:set_widget(black_to_midgray0_img)
-    black_to_midgray0:set_margins(-1)
-
+  black_to_midgray0:set_widget(black_to_midgray0_img)
+  black_to_midgray0:set_margins(-1)
 midgray0_to_black_right_img = wibox.widget.imagebox(beautiful.midgray0_to_black_right)
 midgray0_to_black_right = wibox.layout.margin()
-    midgray0_to_black_right:set_widget(midgray0_to_black_right_img)
-    midgray0_to_black_right:set_margins(-1)
-
+  midgray0_to_black_right:set_widget(midgray0_to_black_right_img)
+  midgray0_to_black_right:set_margins(-1)
 volicon_img = wibox.widget.imagebox(beautiful.widget_vol)
 volicon = wibox.layout.margin()
-    volicon:set_widget(volicon_img)
-    volicon:set_margins(-1)
-
+  volicon:set_widget(volicon_img)
+  volicon:set_margins(-1)
 baticon_img = wibox.widget.imagebox(beautiful.widget_bat)
 baticon = wibox.layout.margin()
-    baticon:set_widget(baticon_img)
-    baticon:set_margins(-1)
-
+  baticon:set_widget(baticon_img)
+  baticon:set_margins(-1)
 loadicon_img = wibox.widget.imagebox(beautiful.widget_load)
 loadicon = wibox.layout.margin()
-    loadicon:set_widget(loadicon_img)
-    loadicon:set_margins(-1)
+  loadicon:set_widget(loadicon_img)
+  loadicon:set_margins(-1)
 
 -- }}}
 
@@ -398,7 +353,6 @@ loadicon = wibox.layout.margin()
 -- Wibox {{{
 ------------------------------------------------------------------------------
 mywibox = {}
-
 mytaglist = {}
 mypromptbox = {}
 mytasklist = {}
@@ -436,11 +390,10 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
 
-    mytaglist[s] = awful.widget.taglist(
-        s,
-        awful.widget.taglist.filter.all,
-        mytaglist.buttons
-    )
+    mytaglist[s] = awful.widget.taglist( s
+                                       , awful.widget.taglist.filter.all
+                                       , mytaglist.buttons
+                                       )
 
     local taglist_margin = wibox.layout.margin()
           taglist_margin:set_widget(mytaglist[s])
@@ -452,17 +405,15 @@ for s = 1, screen.count() do
 
     mypromptbox[s] = awful.widget.prompt()
 
-    mytasklist[s] = awful.widget.tasklist(
-        s,
-        awful.widget.tasklist.filter.currenttags,
-        mytasklist.buttons
-    )
+    mytasklist[s] = awful.widget.tasklist( s
+                                         , awful.widget.tasklist.filter.currenttags
+                                         , mytasklist.buttons
+                                         )
 
-    mywibox[s] = awful.wibox({
-        position = "top",
-        screen = s,
-        height = 16
-    })
+    mywibox[s] = awful.wibox({ position = "top"
+                             , screen = s
+                             , height = 16
+                             })
     -- Left {{{
 
     local promptbox_margin = wibox.layout.margin()
@@ -541,364 +492,63 @@ end
 -- Global keybindings {{{
 ------------------------------------------------------------------------------
 globalkeys = awful.util.table.join(
-    -- focus clients {{{
-
-    awful.key(
-        { Super }, "j",
-        function()
-            awful.client.focus.global_bydirection("down")
-            if client.focus
-                then client.focus:raise()
-            end
-        end
-    ),
-
-    awful.key(
-        { Super }, "k",
-        function()
-            awful.client.focus.global_bydirection("up")
-            if client.focus
-                then client.focus:raise()
-            end
-        end
-    ),
-
-    awful.key(
-        { Super }, "h",
-        function()
-            awful.client.focus.global_bydirection("left")
-            if client.focus
-                then client.focus:raise()
-            end
-        end
-    ),
-
-    awful.key(
-        { Super }, "l",
-        function()
-            awful.client.focus.global_bydirection("right")
-            if client.focus
-                then client.focus:raise()
-            end
-        end
-    ),
-
-    awful.key(
-        { Super }, "w",
-        function ()
-            awful.client.focus.byidx( 1)
-            if client.focus
-                then client.focus:raise()
-            end
-        end
-    ),
-
-    awful.key(
-        { Super }, "b",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus
-                then client.focus:raise()
-            end
-        end
-    ),
-
-    --}}}
-  -- swap clients {{{
-
-    awful.key(
-        { Super, Shift }, "j",
-        function () awful.client.swap.global_bydirection("down") end
-    ),
-
-    awful.key(
-        { Super, Shift }, "k",
-        function () awful.client.swap.global_bydirection("up") end
-    ),
-
-    awful.key(
-        { Super, Shift }, "h",
-        function () awful.client.swap.global_bydirection("left") end
-    ),
-
-    awful.key(
-        { Super, Shift }, "l",
-        function () awful.client.swap.global_bydirection("right") end
-    ),
-
-    --}}}
-    -- restore minimized {{{
-
-    awful.key(
-        { Super }, "a",
-        function () awful.client.restore() end
-    ),
-
-    -- }}}
-    -- manual layout manipulation {{{
-
-    awful.key(
-        { Super }, "space",
-        function () awful.layout.inc(layouts,  1) end
-    ),
-
-    awful.key(
-        { Super }, "period",
-        function () awful.tag.incncol(1) end
-    ),
-
-    awful.key(
-        { Super }, "comma",
-        function () awful.tag.incncol(-1) end
-    ),
-
-    awful.key(
-        { Super }, "Down",
-        function () awful.tag.incnmaster(-1) end
-    ),
-
-    awful.key(
-        { Super }, "Up",
-        function () awful.tag.incnmaster(1) end
-    ),
-
-    awful.key(
-        { Super }, "Right",
-        function () awful.tag.incmwfact(0.01) end
-    ),
-
-    awful.key(
-        { Super }, "Left",
-        function () awful.tag.incmwfact(-0.01) end
-    ),
-
-    awful.key(
-        { Super, Shift }, "Right",
-        function () awful.tag.incmwfact(0.05) end
-    ),
-
-    awful.key(
-        { Super, Shift }, "Left",
-        function () awful.tag.incmwfact(-0.05) end
-    ),
-
-    -- }}}
-    -- focus (nonempty) tags {{{
-
-    awful.key(
-        { Super }, "Next",
-        function () lain.util.tag_view_nonempty(1) end
-    ),
-
-    awful.key(
-        { Super }, "Prior",
-        function () lain.util.tag_view_nonempty(-1) end
-    ),
-
-    -- }}}
-    -- focus screens {{{
-
-    awful.key(
-        { Super }, "F1",
-        function () awful.screen.focus(1) end
-    ),
-
-    awful.key(
-        { Super }, "F2",
-        function () awful.screen.focus(2) end
-    ),
-
-    awful.key(
-        { Super }, "F3",
-        function () awful.screen.focus(3) end
-    ),
-
-    -- }}}
-    -- menus and similar {{{
-
-    awful.key(
-        { Super }, "z",
-        function () menubar.show() end
-    ),
-
-    awful.key(
-        { Super }, "x",
-        function () mypromptbox[mouse.screen]:run() end
-    ),
-
-    -- }}}
-    -- applications {{{
-
-    awful.key(
-        { Super }, "Return",
-        function () awful.util.spawn("konsole -e zsh") end
-    ),
-
-    awful.key(
-        { Super }, "KP_Enter",
-        function () awful.util.spawn_with_shell("urxvt") end
-    ),
-
-    awful.key(
-        { Hyper }, "grave",
-        function () awful.util.spawn("konsole -e nvim") end
-    ),
-
-    awful.key(
-        { Hyper }, "1",
-        function () awful.util.spawn("chromium") end
-    ),
-
-    awful.key(
-        { Hyper, Cntrl }, "1",
-        function () awful.util.spawn("tor-browser-en") end
-    ),
-
-    awful.key(
-        { Hyper }, "2",
-        function () awful.util.spawn("firefox") end
-    ),
-
-    awful.key(
-        { Hyper, Cntrl }, "2",
-
-        function () awful.util.spawn("chromium --kiosk") end
-    ),
-
-    awful.key(
-        { Hyper }, "3",
-        function () awful.util.spawn("atom") end
-    ),
-
-    awful.key(
-        { Hyper }, "4",
-        function () awful.util.spawn("inkscape") end
-    ),
-
-    awful.key(
-        { Hyper }, "5",
-        function () awful.util.spawn("gimp") end
-    ),
-
-    awful.key(
-        { Hyper }, "6",
-        function () awful.util.spawn("konsole -e bash") end
-    ),
-
-    awful.key(
-        { Hyper }, "7",
-        function () awful.util.spawn("arandr") end
-    ),
-
-    awful.key(
-        { Hyper }, "8",
-        function () awful.util.spawn("transset-df 1") end
-    ),
-
-    awful.key(
-        { Hyper, Cntrl }, "8",
-        function () awful.util.spawn("transset-df .8") end
-    ),
-
-    awful.key(
-        { Hyper }, "9",
-        function () awful.util.spawn("transset-df .65") end
-    ),
-
-    awful.key(
-        { Hyper, Cntrl }, "9",
-        function () awful.util.spawn("transset-df .4") end
-    ),
-
-    -- }}}
-    -- scratchdrop applications {{{
-
-    awful.key(
-        { Super }, "grave",
-        function () drop("konsole -e zsh") end
-    ),
-
-    awful.key(
-        { Super }, "Tab" ,
-        function () drop("konsole -e ranger") end
-    ),
-
-    awful.key(
-        { Super }, "KP_Subtract",
-        function () drop("firefox --private-window") end
-    ),
-
-    awful.key(
-        { Super }, "KP_Divide",
-        function () drop(gvim) end
-    ),
-
-    awful.key(
-        { Super }, "KP_Multiply",
-        function () drop("konsole -e tmux") end
-    ),
-
-    -- }}}
-    -- actions {{{
-
-    awful.key(
-        { Super, Cntrl }, "r",
-        awesome.restart
-    ),
-
-
-    awful.key(
-        { Super, Cntrl }, "q",
-        awesome.quit
-    ),
-
-
-    awful.key(
-        { Super }, "F10",
-        function () awful.util.spawn("touchpad_ctrl") end
-    ),
-
-
-    awful.key(
-        { Super }, "F12",
-        function () awful.util.spawn("xscreensaver-command -lock") end
-    ),
-
-
-    awful.key(
-        { Super }, "c",
-        function () os.execute("xsel -p -o | xsel -i -b") end
-    ),
-
-
-    awful.key(
-        {}, "XF86AudioRaiseVolume",
-        function ()
-            awful.util.spawn("amixer -q set Master 5%+")
-            volumewidget.update()
-        end
-    ),
-
-
-    awful.key(
-        {}, "XF86AudioLowerVolume",
-        function ()
-            awful.util.spawn("amixer -q set Master 5%-")
-            volumewidget.update()
-        end
-    ),
-
-
-    awful.key(
-        {}, "XF86AudioMute",
-        function ()
-            awful.util.spawn("amixer -q set Master playback toggle")
-            volumewidget.update()
-        end
+      awful.key( { Super        }, "j", function() awful.client.focus.global_bydirection("down") if client.focus then client.focus:raise() end end)
+    , awful.key( { Super        }, "k", function() awful.client.focus.global_bydirection("up") if client.focus then client.focus:raise() end end)
+    , awful.key( { Super        }, "h", function() awful.client.focus.global_bydirection("left") if client.focus then client.focus:raise() end end)
+    , awful.key( { Super        }, "l", function() awful.client.focus.global_bydirection("right") if client.focus then client.focus:raise() end end)
+    , awful.key( { Super        }, "w", function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end)
+    , awful.key( { Super        }, "b", function () awful.client.focus.history.previous() if client.focus then client.focus:raise() end end)
+    , awful.key( { Super, Shift }, "j", function () awful.client.swap.global_bydirection("down") end)
+    , awful.key( { Super, Shift }, "k", function () awful.client.swap.global_bydirection("up") end)
+    , awful.key( { Super, Shift }, "h", function () awful.client.swap.global_bydirection("left") end)
+    , awful.key( { Super, Shift }, "l", function () awful.client.swap.global_bydirection("right") end)
+    , awful.key( { Super        }, "a", function () awful.client.restore() end)
+    , awful.key( { Super        }, "space", function () awful.layout.inc(layouts,  1) end)
+    , awful.key( { Super        }, "period", function () awful.tag.incncol(1) end)
+    , awful.key( { Super        }, "comma", function () awful.tag.incncol(-1) end)
+    , awful.key( { Super        }, "Down", function () awful.tag.incnmaster(-1) end)
+    , awful.key( { Super        }, "Up", function () awful.tag.incnmaster(1) end)
+    , awful.key( { Super        }, "Right", function () awful.tag.incmwfact(0.01) end)
+    , awful.key( { Super        }, "Left", function () awful.tag.incmwfact(-0.01) end)
+    , awful.key( { Super, Shift }, "Right", function () awful.tag.incmwfact(0.05) end)
+    , awful.key( { Super, Shift }, "Left", function () awful.tag.incmwfact(-0.05) end)
+    , awful.key( { Super        }, "Next", function () lain.util.tag_view_nonempty(1) end)
+    , awful.key( { Super        }, "Prior", function () lain.util.tag_view_nonempty(-1) end)
+    , awful.key( { Super        }, "F1", function () awful.screen.focus(1) end)
+    , awful.key( { Super        }, "F2", function () awful.screen.focus(2) end)
+    , awful.key( { Super        }, "F3", function () awful.screen.focus(3) end)
+    , awful.key( { Super        }, "z", function () menubar.show() end)
+    , awful.key( { Super        }, "x", function () mypromptbox[mouse.screen]:run() end)
+    , awful.key( { Super        }, "Return", function () awful.util.spawn("konsole -e zsh") end)
+    , awful.key( { Super        }, "KP_Enter", function () awful.util.spawn_with_shell("urxvt") end)
+    , awful.key( { Hyper        }, "grave", function () awful.util.spawn("konsole -e nvim") end)
+    , awful.key( { Hyper        }, "1", function () awful.util.spawn("chromium") end)
+    , awful.key( { Hyper, Cntrl }, "1", function () awful.util.spawn("tor-browser-en") end)
+    , awful.key( { Hyper        }, "2", function () awful.util.spawn("firefox") end)
+    , awful.key( { Hyper, Cntrl }, "2", function () awful.util.spawn("chromium --kiosk") end)
+    , awful.key( { Hyper        }, "3", function () awful.util.spawn("atom") end)
+    , awful.key( { Hyper        }, "4", function () awful.util.spawn("inkscape") end)
+    , awful.key( { Hyper        }, "5", function () awful.util.spawn("gimp") end)
+    , awful.key( { Hyper        }, "6", function () awful.util.spawn("konsole -e bash") end)
+    , awful.key( { Hyper        }, "7", function () awful.util.spawn("arandr") end)
+    , awful.key( { Hyper        }, "8", function () awful.util.spawn("transset-df 1") end)
+    , awful.key( { Hyper, Cntrl }, "8", function () awful.util.spawn("transset-df .8") end)
+    , awful.key( { Hyper        }, "9", function () awful.util.spawn("transset-df .65") end)
+    , awful.key( { Hyper, Cntrl }, "9", function () awful.util.spawn("transset-df .4") end)
+    , awful.key( { Super        }, "grave", function () drop("konsole -e zsh") end)
+    , awful.key( { Super        }, "Tab" , function () drop("konsole -e ranger") end)
+    , awful.key( { Super        }, "KP_Subtract", function () drop("firefox --private-window") end)
+    , awful.key( { Super        }, "KP_Divide", function () drop(gvim) end)
+    , awful.key( { Super        }, "KP_Multiply", function () drop("konsole -e tmux") end)
+    , awful.key( { Super, Cntrl }, "r", awesome.restart)
+    , awful.key( { Super, Cntrl }, "q", awesome.quit)
+    , awful.key( { Super        }, "F10", function () awful.util.spawn("touchpad_ctrl") end)
+    , awful.key( { Super        }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end)
+    , awful.key( { Super        }, "c", function () os.execute("xsel -p -o | xsel -i -b") end)
+    , awful.key( {              }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 5%+"); volumewidget.update() end )
+    , awful.key( {              }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 5%-"); volumewidget.update() end )
+    , awful.key( {              }, "XF86AudioMute", function () awful.util.spawn("amixer -q set Master playback toggle"); volumewidget.update() end )
     )
-
-    -- }}}
-)
 -- }}}
 -- Client keybindings {{{
 ------------------------------------------------------------------------------
