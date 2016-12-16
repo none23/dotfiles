@@ -1,4 +1,6 @@
 " Vim Plug {{{
+scriptencoding utf-8
+set encoding=utf-8
 " Install if not already {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
@@ -26,23 +28,24 @@ Plug 'xolox/vim-misc'                 " sessions dependency
 Plug 'xolox/vim-session'              " sessions
 Plug 'scrooloose/syntastic'           " linter
 Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
+Plug 'yggdroot/indentline'            " vertical guides for indent levels
+Plug 'sheerun/vim-polyglot'           " Syntax highlighting
+" Plug 'elzr/vim-json'                                          " JSON
+" Plug 'digitaltoad/vim-pug' " pug (jade) support
+" Plug 'tpope/vim-haml'      " sass support
+" Plug 'wavded/vim-stylus', { 'for': ['styl'] }                 " Stylus support
+" Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }        " CoffeScript support
 
 " Language-specific
 Plug 'mattn/emmet-vim'     " emmet
-Plug 'digitaltoad/vim-pug' " pug (jade) support
 
-Plug 'tpope/vim-haml'      " sass support
 Plug 'ap/vim-css-color'    " css colors preview
-Plug 'wavded/vim-stylus', { 'for': ['styl'] }                 " Stylus support
 
-Plug 'pangloss/vim-javascript'                                " Better JS support
 Plug 'maksimr/vim-jsbeautify'                                 " Un-minify JS
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " JS code completion
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }           " JS code-analysis
-Plug 'elzr/vim-json'                                          " JSON
 Plug 'othree/jspc.vim'                                        " Parameter completion e.g., .on('cli<tab>
 Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }        " CoffeScript support
 " }}}
 call plug#end()
 
@@ -69,22 +72,24 @@ set autoindent
 " }}}
 " Misc Settings {{{
 
-" utf-8
-scriptencoding utf-8
-
 " [experimental] keep the cursor on the same column
 set nostartofline
+
+" keep splits equal width / height
+set equalalways
 
 " status bar
 set laststatus=2
 set noshowmode
 
+" substitute with 'g' flag
+set gdefault
+
 " incremental search
 set incsearch
 
-" remove excessive whitespace wthen joining indended lines 
+" no excessive whitespace wthen joining lines 
 set nojoinspaces
-
 " case insensitive search
 set ignorecase
 set smartcase
@@ -96,8 +101,8 @@ set mouse=a
 " highlighted search results
 set hlsearch
 
-" Don't redraw screen durring macros
-set lazyredraw
+"  " Don't redraw screen durring macros
+" set lazyredraw
 
 " Cursor can move to spaces with no real character in vblock mode.
 set virtualedit=block
@@ -114,29 +119,18 @@ autocmd FileType javascript setlocal foldmethod=syntax
 set conceallevel=1
 
 " vim-javascript conceal settings.
-let g:javascript_conceal_function = 'Î»'
+let g:javascript_conceal_function = 'ƒ'
+let g:javascript_conceal_arrow_function = "⇒"
+let g:javascript_conceal_return = '⇚'
 let g:javascript_conceal_this = '@'
-let g:javascript_conceal_return = '<'
 let g:javascript_conceal_prototype = '#'
 " let g:javascript_conceal_function = "ƒ"
 " let g:javascript_conceal_null = "ø"
-" let g:javascript_conceal_this = "@"
-" let g:javascript_conceal_return = "⇚"
 " let g:javascript_conceal_undefined = "¿"
 " let g:javascript_conceal_NaN = "ℕ"
 " let g:javascript_conceal_prototype = "¶"
 " let g:javascript_conceal_static = "•"
 " let g:javascript_conceal_super = "Ω"
-" let g:javascript_conceal_arrow_function = "⇒"
-" let g:javascript_conceal_noarg_arrow_function = "🞅"
-" let g:javascript_conceal_underscore_arrow_function = "🞅"
-
-" Remove trailing spaces in insert mode
-augroup Trailing
-  au!
-  au InsertEnter * :set listchars-=trail:Â·
-  au InsertLeave * :set listchars+=trail:Â·
-augroup END
 
 " syntax highlight
 filetype indent plugin on
@@ -159,11 +153,12 @@ set confirm
 " }}}
 " Colorscheme {{{
 
+set cursorcolumn
+set cursorline
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
 colorscheme nwsome
-set cursorline
 
 " highlight 79'th column
 set colorcolumn=79
@@ -370,15 +365,23 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 " }}}
-"  Vim Session {{{
-" let g:session_autoload = 'no'
+" Vim Session {{{
 let g:session_autosave = 'yes'
-"  automatically (silently) save current working session every 5 minutes
+" let g:session_autoload = 'no'
+
+" automatically (silently) save current working session every 5 minutes
 let g:session_autosave_periodic = 5
 let g:session_autosave_silent = 1
+
 " when prompting do not include instructions on disabling prompting
 let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
+
+" }}}
+" IndentLune {{{
+let g:indentLine_color_gui = '#de1e1e'
+let g:indentLine_char = ':'
+let g:indentLine_setConceal = 0
 " }}}
 
 let g:deoplete#enable_at_startup = 1

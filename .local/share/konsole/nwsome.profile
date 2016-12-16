@@ -2,13 +2,14 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Linux
-Font=Terminess Powerline,8,-1,5,75,0,0,0,0,0
+Font=Terminess Powerline,9,-1,5,75,0,0,0,0,0
 LineSpacing=0
+UseFontLineChararacters=false
 
 [Cursor Options]
 CursorShape=0
 CustomCursorColor=255,96,0
-UseCustomCursorColor=true
+UseCustomCursorColor=false
 
 [General]
 Command=/bin/zsh
@@ -19,6 +20,7 @@ Parent=FALLBACK/
 SilenceSeconds=30
 
 [Interaction Options]
+AutoCopySelectedText=true
 MiddleClickPasteMode=1
 MouseWheelZoomEnabled=false
 OpenLinksByDirectClickEnabled=true
@@ -37,5 +39,5 @@ ScrollBarPosition=2
 [Terminal Features]
 BidiRenderingEnabled=false
 BlinkingCursorEnabled=true
-EnableUrlHints=true
+EnableUrlHints=false
 FlowControlEnabled=false

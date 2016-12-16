@@ -80,15 +80,15 @@ Color=178,178,178
 Color=255,255,255
 
 [Foreground]
-Color=238,238,238
+Color=190,190,190
 
 [ForegroundFaint]
-Color=238,238,238
+Color=170,170,170
 
 [ForegroundIntense]
 Color=255,255,255
 
 [General]
-Description=Linux Colors
-Opacity=0.8
+Description=nwsomeColors
+Opacity=0.85
 Wallpaper=

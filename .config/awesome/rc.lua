@@ -1073,6 +1073,7 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
                                              , "Gpick"
                                              , "feh"
                                              , "Kruler"
+                                             , "qt5ct"
                                              , "Sxiv"
                                              , "MessageWin"
                                              , "Wpa_gui"
@@ -1092,14 +1093,22 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
                                    }
                       , properties = { floating = true }
                       }
+
                     , { rule_any = { class = { "konsole"
                                              , "URxvt"
                                              , "Zathura"
                                              }
                                    }
-                      , properties = { opacity = 0.90 }
+                      , properties = { opacity = 1 } --[[ disabled for now ]]
                       }
-                    , { rule = { class = "URxvt"       }, properties = { size_hints_honor = false } }
+
+                    , { rule_any = { class = { "URxvt"
+                                             , "XTerm"
+                                             }
+                                   }
+                      , properties = { size_hints_honor = false }
+                      }
+
                     , { rule = { class = "Chromium"    }, properties = { tag = tags[1][1] } }
                     , { rule = { class = "Firefox"     }, properties = { tag = tags[1][2] } }
                     , { rule = { class = "Inkscape"    }, properties = { tag = tags[1][4] } }
