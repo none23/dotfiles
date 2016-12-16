@@ -35,6 +35,7 @@ Plug 'sheerun/vim-polyglot'           " Syntax highlighting
 " Plug 'tpope/vim-haml'      " sass support
 " Plug 'wavded/vim-stylus', { 'for': ['styl'] }                 " Stylus support
 " Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }        " CoffeScript support
+Plug 'neomake/neomake', { 'on': 'Neomake' } 
 
 " Language-specific
 Plug 'mattn/emmet-vim'     " emmet
@@ -176,11 +177,11 @@ set autoread
 " }}}
 " Command completion  {{{
 "  " autocomplete first menu item
-" set wildmenu
-" " set completeopt-=preview
+set wildmenu
+set completeopt-=preview
 
 " complete only the common part, list the options that match
-set wildmode=list:longest
+set wildmode=longest,list:full
 
 " }}}
 " Backup, swap and undos storage {{{
@@ -353,11 +354,8 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
 autocmd FileType python setlocal omnifunc=python3complete#Complete
-
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 if !exists('g:neocomplete#sources#omni#input_patterns')

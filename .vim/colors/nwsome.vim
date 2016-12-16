@@ -47,6 +47,7 @@ hi TabLineSel      gui=none       guibg=#de5e1e  guifg=#000000
 hi IncSearch       gui=none       guibg=#de1e1e  guifg=#232323
 hi Search          gui=none       guibg=#6e1ede  guifg=#000000
 hi Substitute      gui=none       guibg=#000000  guifg=#5e1ede
+hi WildMenu                       guibg=#de5e1e  guifg=#111111
 
 " Specials
 hi Todo            gui=none       guibg=#000000  guifg=#eb1d14

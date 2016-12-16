@@ -39,5 +39,4 @@ ScrollBarPosition=2
 [Terminal Features]
 BidiRenderingEnabled=false
 BlinkingCursorEnabled=true
-EnableUrlHints=false
 FlowControlEnabled=false
