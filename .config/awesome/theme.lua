@@ -58,18 +58,14 @@ theme.border_marked       = theme.secondary
 theme.gray                = theme.fg
 
 -- }}}
--- Powerline {{{
 theme.taglist_squares_sel        = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.png"
-theme.powerline_left_orange      = theme.confdir .. "/icons/powerline_left_orange.png"
-theme.powerline_left_orange_long = theme.confdir .. "/icons/powerline_left_orange_long.png"
-theme.powerline_left_gray        = theme.confdir .. "/icons/powerline_left_gray.png"
-theme.powerline_left_gray_long   = theme.confdir .. "/icons/powerline_left_gray_long.png"
-theme.midgray1_to_primary        = theme.confdir .. "/icons/midgray1_to_primary.png"
-theme.midgray1_to_midgray0       = theme.confdir .. "/icons/midgray1_to_midgray0.png"
-theme.midgray0_to_midgray1       = theme.confdir .. "/icons/midgray0_to_midgray1.png"
-theme.black_to_midgray0          = theme.confdir .. "/icons/black_to_midgray0.png"
-theme.midgray0_to_black_right    = theme.confdir .. "/icons/midgray0_to_black_right.png"
+-- Powerline {{{
+theme.arrow_2L3  = theme.confdir .. "/icons/midgray1_to_primary.png"
+theme.arrow_2L1  = theme.confdir .. "/icons/midgray1_to_midgray0.png"
+theme.arrow_1L2  = theme.confdir .. "/icons/midgray0_to_midgray1.png"
+theme.arrow_0L1  = theme.confdir .. "/icons/black_to_midgray0.png"
+theme.arrow_1R0  = theme.confdir .. "/icons/midgray0_to_black_right.png"
 -- }}}
 -- Icons {{{
 theme.widget_cpu                 = theme.confdir .. "/icons/cpu.png"
