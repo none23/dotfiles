@@ -4,14 +4,18 @@ DefaultProfile=nwsome.profile
 [Favorite Profiles]
 Favorites=tinyfont.profile,nwsome.profile
 
+[FileLocation]
+scrollbackUseCacheLocation=true
+scrollbackUseSystemLocation=false
+
 [KonsoleWindow]
 SaveGeometryOnExit=false
 ShowAppNameOnTitleBar=false
 ShowMenuBarByDefault=false
 
 [MainWindow]
-MenuBar=Enabled
-State=AAAA/wAAAAD9AAAAAAAAAf8AAALdAAAABAAAAAQAAAAIAAAACPwAAAAA
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABVQAAAJ9AAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 
 [TabBar]
