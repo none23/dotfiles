@@ -410,9 +410,9 @@ let g:session_verbose_messages = 0
 
 " }}}
 " IndentLune {{{
-let g:indentLine_color_gui = '#232323'
+let g:indentLine_color_gui = '#5e231e'
 let g:indentLine_char = ':'
-let g:indentLine_setConceal = 0
+let g:indentLine_setConceal = 
 " }}}
 
 " }}}
