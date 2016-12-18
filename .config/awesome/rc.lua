@@ -605,62 +605,41 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
 -- }}}
 -- Signals {{{
 -- signal function to execute when a new client appears {{{
-client.connect_signal(
-    "manage",
-    function (c, startup)
-        if not startup and
-           not c.size_hints.user_position and
-           not c.size_hints.program_position then
-              awful.placement.no_overlap(c)
-              awful.placement.no_offscreen(c)
-        end
-    end
-)
+client.connect_signal( "manage", function (c, startup)
+  if not startup and not c.size_hints.user_position and not c.size_hints.program_position then
+    awful.placement.no_overlap(c)
+    awful.placement.no_offscreen(c)
+  end
+end )
 --}}}
 -- no border for maximized clients {{{
-client.connect_signal(
-    "focus",
-    function(c)
-        if c.maximized_horizontal == true and
-           c.maximized_vertical == true then
-               c.border_color = beautiful.border_normal
-        else
-            c.border_color = beautiful.border_focus
-        end
-    end
-)
-client.connect_signal(
-    "unfocus",
-    function(c)
-        c.border_color = beautiful.border_normal
-    end
-)
+client.connect_signal( "focus", function(c)
+  if c.maximized_horizontal == true and c.maximized_vertical == true then
+    c.border_color = beautiful.border_normal
+  else
+    c.border_color = beautiful.border_focus
+  end
+end )
+client.connect_signal( "unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 -- signal handler {{{
 for s = 1, screen.count() do
-    screen[s]:connect_signal(
-        "arrange",
-        function ()
-            local clients = awful.client.visible(s)
-            local layout  = awful.layout.getname(awful.layout.get(s))
-            if #clients > 0 then
-                for _, c in pairs(clients) do
-                    -- disable fullscreen
-                    if c.fullscreen == true then
-                        c.fullscreen = false
-                    end
-                    -- borders
-                    if awful.client.floating.get(c) or layout == "floating" then
-                        c.border_width = beautiful.border_width -- floaters always have a boarder
-                    elseif #clients == 1 then
-                        clients[1].border_width = 0 -- no border for the only client
-                    else
-                        c.border_width = beautiful.border_width
-                    end
-                end
-            end
+  screen[s]:connect_signal( "arrange", function ()
+    local clients = awful.client.visible(s)
+    local layout  = awful.layout.getname(awful.layout.get(s))
+    if #clients > 0 then
+      for _, c in pairs(clients) do
+        if c.fullscreen == true then c.fullscreen = false end               -- disable fullscreen
+        if awful.client.floating.get(c) or layout == "floating" then
+          c.border_width = beautiful.border_width                         -- floaters always have a boarder
+        elseif #clients == 1 then
+          clients[1].border_width = 0                                     -- no border for the only client
+        else
+          c.border_width = beautiful.border_width
         end
-    )
+      end
+    end
+  end )
 end
 -- }}}
 -- }}}

@@ -108,3 +108,15 @@ xscreensaver.passwd.thermometer.background:  #000000
 xscreensaver.passwd.thermometer.width:       8
 xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 xscreensaver.newLoginCommand: 
+Gdraw.Foreground: #ffffff
+Gdraw.Background: #101010
+Gdraw.GGadget.Box.BorderBrightest: #131313
+Gdraw.GGadget.Box.BorderBrighter: #171717
+Gdraw.GGadget.Box.BorderDarker: #232323
+Gdraw.GGadget.Box.BorderDarkest: #272727
+Gdraw.GGadget.Box.DisabledForeground: #999999
+Gdraw.GGadget.Box.DisabledBackground: #333333
+Gdraw.GGadget.Box.PressedBackground: #de4400
+fontforge.CharView.WidthColor: #ffffff
+fontforge.CharView.TransformOriginColor: #ffffff
+fontforge.CharView.ForegroundOutlineColor: #ffffff
