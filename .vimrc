@@ -31,6 +31,7 @@ Plug 'scrooloose/syntastic'           " linter
 Plug 'yggdroot/indentline'            " vertical guides for indent levels
 Plug 'sheerun/vim-polyglot'           " Syntax highlighting
 Plug 'neomake/neomake'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'elzr/vim-json'                                   " JSON
 Plug 'digitaltoad/vim-pug'                             " Pug (Jade)
@@ -412,9 +413,15 @@ let g:session_verbose_messages = 0
 " IndentLune {{{
 let g:indentLine_color_gui = '#5e231e'
 let g:indentLine_char = ':'
-let g:indentLine_setConceal = 
+let g:indentLine_setConceal = 1
 " }}}
+" EasyAlign {{{
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
 
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }}}
 " }}}
 
 

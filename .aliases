@@ -1,6 +1,6 @@
 # ls {{{
-alias la='ls -Alh --color=tty'
-alias ll='ls -lh --color=tty'
+alias la='ls -AFlh --color=tty'
+alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
 # }}}
 # sshuttle {{{
@@ -21,7 +21,8 @@ dd () { command sudo dd $* bs=512K status=progress ; }
 pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
 # }}}
 # misc {{{
-alias rr='ranger .'
+      rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
+      gui () { [[ $1 ]] && thunar "$*" || thunar $(pwd) & }
 alias dmesgg='watch "dmesg -e | tail"'
 alias py='ipython3'
 alias df='df -h'
