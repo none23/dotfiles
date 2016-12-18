@@ -58,7 +58,7 @@ let g:airline#themes#dark#palette.replace.airline_a = [ s:I2[0]   , '#af0000' , 
 let g:airline#themes#dark#palette.replace_modified = g:airline#themes#dark#palette.insert_modified
 
 
-let s:V1 = [ '#000000' , '#00aa00' , 232 , 214 ]
+let s:V1 = [ '#000000' , '#007700' , 232 , 214 ]
 let s:V2 = [ '#000000' , '#202020' , 232 , 202 ]
 let s:V3 = [ '#55ff00' , '#000000' , 15  , 52  ]
 let g:airline#themes#dark#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
@@ -99,4 +99,3 @@ let g:airline#themes#dark#palette.ctrlp = airline#extensions#ctrlp#generate_colo
       \ [ '#d7d7ff' , '#5f00af' , 189 , 55  , ''     ],
       \ [ '#ffffff' , '#875fd7' , 231 , 98  , ''     ],
       \ [ '#5f00af' , '#ffffff' , 55  , 231 , 'bold' ])
-
