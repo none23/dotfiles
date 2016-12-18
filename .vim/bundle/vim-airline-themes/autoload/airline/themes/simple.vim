@@ -30,7 +30,7 @@ let g:airline#themes#simple#palette.replace = {
 let g:airline#themes#simple#palette.replace_modified = copy(g:airline#themes#simple#palette.normal_modified)
 
 
-let s:V1 = [ s:guibg, '#00ff00' , s:termbg , 40 ]
+let s:V1 = [ s:guibg, '#6b2800' , s:termbg , 160 ]
 let s:V2 = [ '#ff5500' , s:guibg2, 202 , s:termbg2 ]
 let s:V3 = [ '#767676' , s:guibg, 240 , s:termbg ]
 let g:airline#themes#simple#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
@@ -43,4 +43,3 @@ let g:airline#themes#simple#palette.inactive = airline#themes#generate_color_map
 let g:airline#themes#simple#palette.inactive_modified = {
       \ 'airline_c': [ '#df0000', '', 160, '', '' ] ,
       \ }
-

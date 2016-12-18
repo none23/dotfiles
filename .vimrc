@@ -3,8 +3,7 @@ scriptencoding utf-8
 set encoding=utf-8
 " Install if not already {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall | source ~/.vimrc
 endif
 
@@ -378,8 +377,8 @@ let g:choosewin_return_on_single_win = 0
 let g:airline_powerline_fonts=1
 let g:airline_theme='simple'
 
-" tab line (off)
-let g:airline#extensions#tabline#enabled=0
+" tab line
+let g:airline#extensions#tabline#enabled = 1
 
 " }}}
 " Deoplete {{{
@@ -428,13 +427,16 @@ let g:indentLine_setConceal = 1
 " }}}
 " EasyAlign {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
+let g:easy_align_interactive_modes = ['l', 'r']
+let g:easy_align_bang_interactive_modes = ['c', 'r']
+
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 "
 " <bar> is `|` i.e. <S-backslash>
- nmap <bar> gaip
+ nmap <bar> gaip:
 " }}}
 " }}}
 
