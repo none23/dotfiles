@@ -45,7 +45,8 @@ Plug 'ap/vim-css-color'    " css colors preview
 
 Plug 'maksimr/vim-jsbeautify'                                 " Un-minify JS
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " JS code completion
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }           " JS code-analysis
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim'                                        " Parameter completion e.g., .on('cli<tab>
 Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
 " }}}
@@ -381,15 +382,25 @@ let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled=0
 
 " }}}
-" Neocomplete {{{
-let g:acp_enableAtStartup = 0
+" Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni' ] 
+set completeopt=longest,menuone,preview
+let g:deoplete#sources = {}
+let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -421,6 +432,9 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+"
+" <bar> is `|` i.e. <S-backslash>
+ nmap <bar> gaip
 " }}}
 " }}}
 
