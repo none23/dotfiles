@@ -420,7 +420,7 @@ let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
 
 " }}}
-" IndentLune {{{
+" IndentLine {{{
 let g:indentLine_color_gui = '#5e231e'
 let g:indentLine_char = ':'
 let g:indentLine_setConceal = 1
