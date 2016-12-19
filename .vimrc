@@ -48,6 +48,12 @@ Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim'                                        " Parameter completion e.g., .on('cli<tab>
 Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
+
+
+" " Lint as you type. (off)
+" Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+" g:neomake_autolint_sign_column_always 
+
 " }}}
 call plug#end()
 let g:polyglot_disabled = ['stylus', 'jade', 'pug', 'javascript', 'json', 'sass', 'scss', 'css', 'coffeescript']
