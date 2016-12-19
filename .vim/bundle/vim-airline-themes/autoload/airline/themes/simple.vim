@@ -5,17 +5,17 @@ let s:guibg2 = '#101010'
 let s:termbg = 0
 let s:termbg2= 232
 
-let s:N1 = [ s:guibg , '#ff5500' , s:termbg , 202 ]
-let s:N2 = [ '#ff5500' , s:guibg2, 202 , s:termbg2 ]
+let s:N1 = [ s:guibg , '#de5e1e' , s:termbg , 202 ]
+let s:N2 = [ '#de5e1e' , s:guibg2, 202 , s:termbg2 ]
 let s:N3 = [ '#767676' , s:guibg, 240 , s:termbg]
 let g:airline#themes#simple#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 let g:airline#themes#simple#palette.normal_modified = {
-      \ 'airline_c': [ 'ff5500' , s:guibg, 202     , s:termbg    , ''     ] ,
+      \ 'airline_c': [ '#de5e1e' , s:guibg, 202     , s:termbg    , ''     ] ,
       \ }
 
 
-let s:I1 = [ s:guibg, '#0055ff' , s:termbg , 27 ]
-let s:I2 = [ '#0055ff' , s:guibg2, 27 , s:termbg2 ]
+let s:I1 = [ s:guibg, '#eb1d14' , s:termbg , 27 ]
+let s:I2 = [ '#eb1d14' , s:guibg2, 27 , s:termbg2 ]
 let s:I3 = [ '#767676' , s:guibg, 240 , s:termbg ]
 let g:airline#themes#simple#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 let g:airline#themes#simple#palette.insert_paste = copy(g:airline#themes#simple#palette.normal_modified)
@@ -31,7 +31,7 @@ let g:airline#themes#simple#palette.replace_modified = copy(g:airline#themes#sim
 
 
 let s:V1 = [ s:guibg, '#6b2800' , s:termbg , 160 ]
-let s:V2 = [ '#ff5500' , s:guibg2, 202 , s:termbg2 ]
+let s:V2 = [ '#de5e1e' , s:guibg2, 202 , s:termbg2 ]
 let s:V3 = [ '#767676' , s:guibg, 240 , s:termbg ]
 let g:airline#themes#simple#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
 let g:airline#themes#simple#palette.visual_modified = copy(g:airline#themes#simple#palette.normal_modified)
