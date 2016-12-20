@@ -22,7 +22,7 @@ hi LineNr                         guibg=#000000  guifg=#de5e1e
 
 hi Cursor                         guibg=#999999  guifg=#000000
 hi CursorLine                     guibg=#320800
-hi CursorColumn    gui=none       guibg=#240600
+hi CursorColumn    gui=none       guibg=#340600
 hi CursorLineNr                   guibg=#171717  guifg=#ff6600
 
 " Window Elements
