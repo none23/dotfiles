@@ -26,7 +26,6 @@ Plug 'IndexedSearch'                  " search results counter
 Plug 'xolox/vim-misc'                 " sessions dependency
 Plug 'xolox/vim-session'              " sessions
 Plug 'scrooloose/syntastic'           " linter
-" Plug 'matchit.zip'                    " extend '%' to xml/html tags navigation
 Plug 'yggdroot/indentline'            " vertical guides for indent levels
 Plug 'sheerun/vim-polyglot'           " Syntax highlighting
 Plug 'neomake/neomake'
@@ -117,7 +116,7 @@ set mouse=a
 set hlsearch
 
 "  " Don't redraw screen durring macros
-" set lazyredraw
+set lazyredraw
 
 " Cursor can move to spaces with no real character in vblock mode.
 set virtualedit=block
@@ -162,7 +161,7 @@ set nowrap
 
 " when scrolling, keep cursor this many lines away from screen border
 set scrolloff=9
-set sidescrolloff=16
+set sidescrolloff=9
 
 " don't syntax highlight long lines
 set synmaxcol=200
@@ -197,7 +196,7 @@ highlight ColorColumn ctermbg=233
 autocmd FileType python,lua,javascript,json,jsx,coffeescript,jade,pug,html,stylus,css,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " autoformat js follow standard
-autocmd bufwritepost *.js silent !standard-format -w %
+" autocmd bufwritepost *.js silent !standard-format -w %
 set autoread
 
 " }}}
@@ -347,7 +346,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
@@ -430,12 +429,17 @@ let g:session_verbose_messages = 0
 let g:indentLine_color_gui = '#5e231e'
 let g:indentLine_char = ':'
 let g:indentLine_setConceal = 1
+let g:indentLine_fileType = ['python', 'sass', 'scss', 'stylus', 'jade', 'pug']
+let g:indentLine_faster = 1
+let g:indentLine_faster = 0
+
 " }}}
 " EasyAlign {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 let g:easy_align_interactive_modes = ['l', 'r']
 let g:easy_align_bang_interactive_modes = ['c', 'r']
 
+nmap <bar> gaip:
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
