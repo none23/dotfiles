@@ -10,7 +10,6 @@ endif
 " }}}
 set nocompatible
 call plug#begin('~/.vim/plugged')
-" Plugins {{{
 " General
 Plug 'easymotion/vim-easymotion'      " quickly anywhere without counting words
 Plug 'vim-airline/vim-airline'        " airline
@@ -31,13 +30,13 @@ Plug 'sheerun/vim-polyglot'           " Syntax highlighting
 Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
 
+" Language-specific
 Plug 'elzr/vim-json'                                   " JSON
 Plug 'digitaltoad/vim-pug'                             " Pug (Jade)
 Plug 'tpope/vim-haml'                                  " Sass
 Plug 'wavded/vim-stylus', { 'for': ['styl'] }          " Stylus
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] } " CoffeScript
 
-" Language-specific
 Plug 'mattn/emmet-vim'     " emmet
 Plug 'ap/vim-css-color'    " css colors preview
 
@@ -48,12 +47,10 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim'                                        " Parameter completion e.g., .on('cli<tab>
 Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
 
-
 " " Lint as you type. (off)
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 " g:neomake_autolint_sign_column_always 
 
-" }}}
 call plug#end()
 let g:polyglot_disabled = ['stylus', 'jade', 'pug', 'javascript', 'json', 'sass', 'scss', 'css', 'coffeescript']
 
@@ -184,11 +181,10 @@ set cursorline
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
-colorscheme nwsome
+colorscheme nwsomest
 
 " highlight 79'th column
 set colorcolumn=79
-highlight ColorColumn ctermbg=233
 
 " }}}
 " Aurocmd on save {{{
@@ -281,10 +277,17 @@ let mapleader = " "
 map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " }}}
-" Tab navigation {{{
+" Buffer navigation {{{
 map tN  :bnext<CR>
-map tP  :bprev<CR>
+map tP  :bNext<CR>
 
+map <C-S-Up> :bnext<CR>
+map <C-S-Down> :bNext<CR>
+
+map tL  :s<CR>
+
+" }}}
+" Tab navigation {{{
 map tt :tabnew<CR>
 map tcq :tabc<CR>
 map tn :tabn<CR>
@@ -451,5 +454,4 @@ nmap ga <Plug>(EasyAlign)
  nmap <bar> gaip:
 " }}}
 " }}}
-
 

@@ -20,10 +20,11 @@ hi ErrorMsg                       guibg=#eb1d14  guifg=#000000
 hi SpellBad        gui=underline  guibg=#eb1d14
 hi LineNr                         guibg=#000000  guifg=#de5e1e
 
+hi ColorColumn                    guibg=#880000
 hi Cursor                         guibg=#999999  guifg=#000000
-hi CursorLine                     guibg=#320800
-hi CursorColumn    gui=none       guibg=#340600
-hi CursorLineNr                   guibg=#171717  guifg=#ff6600
+hi CursorLine                     guibg=#430000
+hi CursorColumn    gui=none       guibg=#430000
+hi CursorLineNr                   guibg=#330000  guifg=#fade11
 
 " Window Elements
 hi StatusLine      gui=none       guibg=#171717  guifg=#bbbbbb

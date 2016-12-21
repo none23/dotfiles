@@ -1,6 +1,6 @@
 [Appearance]
 AntiAliasFonts=true
-BoldIntense=true
+BoldIntense=false
 ColorScheme=Linux
 Font=Terminess Powerline,9,-1,5,75,0,0,0,0,0
 LineSpacing=0
