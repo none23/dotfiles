@@ -4,7 +4,7 @@ hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="molokai"
+"let g:colors_name="molokai"
 "--------------------------------------------------------------------
 set fillchars=vert:\│,fold:_,diff:-
 " Default Colors
@@ -27,7 +27,7 @@ hi CursorLineNr                   guibg=#171717  guifg=#ff6600
 
 " Window Elements
 hi StatusLine      gui=none       guibg=#171717  guifg=#bbbbbb
-hi StatusLineNC    gui=none       guibg=#070707  guifg=#444444
+hi StatusLineNC    gui=none       guibg=#333333  guifg=#444444
 hi VertSplit       gui=none       guibg=#232323  guifg=#232323
 hi Folded                         guibg=#171717  guifg=#de5e1e
 hi Visual                         guibg=#ff6600  guifg=#111111
