@@ -282,18 +282,20 @@ map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<
 
 " }}}
 " Tab navigation {{{
+map tN  :bnext<CR>
+map tP  :bprev<CR>
+
 map tt :tabnew<CR>
 map tcq :tabc<CR>
-
 map tn :tabn<CR>
 map tp :tabp<CR>
+
+map tm0 :tabm0<CR>
+map tmm :tabm<CR>
 map <C-S-Right> :tabn<CR>
 map <C-S-Left> :tabp<CR>
 imap <C-S-Right> <Esc>:tabn<CR>
 imap <C-S-Left> <Esc>:tabp<CR>
-
-map tm0 :tabm0<CR>
-map tmm :tabm<CR>
 " }}}
 " Splits navigation {{{
 map <F2> :below 10sp term://$SHELL<CR>i
