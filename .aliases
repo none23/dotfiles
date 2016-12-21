@@ -27,6 +27,7 @@ alias dmesgg='watch "dmesg -e | tail"'
 alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
+alias vtop='vtop -t nwsome '
 # }}}
 # gui apps in bg {{{
 thunar      () { command thunar       "$*" & }
