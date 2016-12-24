@@ -457,7 +457,7 @@ globalkeys = awful.util.table.join(
 , awful.key( { Hyper        }, "3",        function () awful.util.spawn("atom")                                                                     end )
 , awful.key( { Hyper        }, "4",        function () awful.util.spawn("inkscape")                                                                 end )
 , awful.key( { Hyper        }, "5",        function () awful.util.spawn("gimp")                                                                     end )
-, awful.key( { Hyper        }, "6",        function () awful.util.spawn("konsole -e bash")                                                          end )
+, awful.key( { Hyper        }, "6",        function () awful.util.spawn("blender")                                                                  end )
 , awful.key( { Hyper        }, "7",        function () awful.util.spawn("arandr")                                                                   end )
 , awful.key( { Hyper        }, "8",        function () awful.util.spawn("transset-df 1")                                                            end )
 , awful.key( { Hyper, Cntrl }, "8",        function () awful.util.spawn("transset-df .8")                                                           end )
