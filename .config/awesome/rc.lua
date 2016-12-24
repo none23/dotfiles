@@ -555,6 +555,7 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
                                                 , "copyq"
                                                 }
                                    , class = { "Arandr"
+                                             , "Blender"
                                              , "Gpick"
                                              , "feh"
                                              , "Kruler"
@@ -596,6 +597,7 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
 
                     , { rule = { class = "Chromium"    }, properties = { tag = tags[1][1] } }
                     , { rule = { class = "Firefox"     }, properties = { tag = tags[1][2] } }
+                    , { rule = { class = "Blender"     }, properties = { tag = tags[1][3] } }
                     , { rule = { class = "Inkscape"    }, properties = { tag = tags[1][4] } }
                     , { rule = { class = "Gimp"        }, properties = { tag = tags[1][5] } }
                     , { rule = { class = "Tor Browser" }, properties = { tag = tags[1][6] } }
