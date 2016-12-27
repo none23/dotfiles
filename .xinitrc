@@ -14,9 +14,13 @@ xinput --disable SynPS/2\ Synaptics\ TouchPad &
 xmodmap /home/$USER/.Xmodmap &
 xset s off && xset -dpms && xset r rate 200 60 &
 xrdb -merge /home/$USER/.Xresources && xrdb ~/.Xresources
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
-# xrandr --dpi 96
+
+# {{{ nvidia 
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --dpi 96
+# nvidia }}} 
+
 compton -b 
 export QT_QPA_PLATFORMTHEME='qt5ct'
 unclutter -idle 1 &
