@@ -229,18 +229,19 @@ end
                                , 4
                                ) -- }}}
 -- alsa volume {{{
-  volumewidget_wrap = wrap_widget ( lain.widgets.alsa({ settings = function()
-                                                                    if volume_now.status == "off" then
-                                                                      volume_now.level = volume_now.level .. "M"
-                                                                    end
-                                                                    widget:set_text(volume_now.level .. "%")
-                                                                  end
-                                                     })
-                                 , (beautiful.midgray_1)
-                                 , (beautiful.fg)
-                                 , 2
-                                 , 4
-                                 ) -- }}}
+  volumewidget = lain.widgets.alsa({ settings = function()
+                                                  if volume_now.status == "off" then
+                                                    volume_now.level = volume_now.level .. "M"
+                                                  end
+                                                  widget:set_text(volume_now.level .. "%")
+                                                end })
+
+  volumewidget_wrap = wrap_widget ( volumewidget
+                                  , (beautiful.midgray_1)
+                                  , (beautiful.fg)
+                                  , 2
+                                  , 4
+                                  ) -- }}}
 -- battery {{{
 batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                                                                if bat_now.perc == "N/A" then
