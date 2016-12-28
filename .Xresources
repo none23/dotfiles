@@ -8,9 +8,9 @@ urxvt*saveLines: 30000
 urxvt*cursorBlink: true
 urxvt*urgentOnBell: true
 urxvt*matcher.button:  1
-URxvt*font: xft:Inconsolata:pixelsize=9,xft:Terminess\ Powerline:pixelsize=8
-URxvt*faceName:Inconsolata:style=Regular:size=9
-urxvt*faceName:Inconsolata:style=Regular:size=9
+URxvt*font: xft:Terminus:pixelsize=9,xft:Terminess\ Powerline:pixelsize=9
+URxvt*faceName:Terminus:style=Regular:size=9
+urxvt*faceName:Terminus:style=Regular:size=9
 urxvt*.colorUL:    #ffffff
 URxvt*.foreground: #F2F1F0
 URxvt*.cursorColor: #F67730
