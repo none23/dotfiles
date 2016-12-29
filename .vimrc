@@ -25,7 +25,6 @@ Plug 'IndexedSearch'                  " search results counter
 Plug 'xolox/vim-misc'                 " sessions dependency
 Plug 'xolox/vim-session'              " sessions
 Plug 'scrooloose/syntastic'           " linter
-Plug 'yggdroot/indentline'            " vertical guides for indent levels
 Plug 'sheerun/vim-polyglot'           " Syntax highlighting
 Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
@@ -431,15 +430,6 @@ let g:session_autosave_silent = 1
 " when prompting do not include instructions on disabling prompting
 let g:session_verbose_messages = 0
 " let g:session_autosave = 'no'
-
-" }}}
-" IndentLine {{{
-let g:indentLine_color_gui = '#5e231e'
-let g:indentLine_char = ':'
-let g:indentLine_setConceal = 1
-let g:indentLine_fileType = ['python', 'sass', 'scss', 'stylus', 'jade', 'pug']
-let g:indentLine_faster = 1
-let g:indentLine_faster = 0
 
 " }}}
 " EasyAlign {{{
