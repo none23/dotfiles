@@ -26,32 +26,30 @@ Plug 'xolox/vim-misc'                 " sessions dependency
 Plug 'xolox/vim-session'              " sessions
 Plug 'scrooloose/syntastic'           " linter
 Plug 'sheerun/vim-polyglot'           " Syntax highlighting
-Plug 'neomake/neomake'
-Plug 'junegunn/vim-easy-align'
-
-" Language-specific
-Plug 'elzr/vim-json'                                   " JSON
-Plug 'digitaltoad/vim-pug'                             " Pug (Jade)
-Plug 'tpope/vim-haml'                                  " Sass
-Plug 'wavded/vim-stylus', { 'for': ['styl'] }          " Stylus
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] } " CoffeScript
-
-Plug 'mattn/emmet-vim'     " emmet
-Plug 'ap/vim-css-color'    " css colors preview
-
-Plug 'maksimr/vim-jsbeautify'                                 " Un-minify JS
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " JS code completion
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim'                                        " Parameter completion e.g., .on('cli<tab>
-Plug 'moll/vim-node', { 'for': 'javascript' }                 " Open node modules with gf
+Plug 'neomake/neomake'                " async linters and builders
+Plug 'junegunn/vim-easy-align'        " easy alignment
+Plug 'airblade/vim-gitgutter'         " highlight git changes
+Plug 'elzr/vim-json'                                                         " JSON
+Plug 'digitaltoad/vim-pug'                                                   " Pug (Jade)
+Plug 'tpope/vim-haml'                                                        " Sass
+Plug 'wavded/vim-stylus', { 'for': ['styl'] }                                " Stylus
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                       " CoffeScript
+Plug 'mattn/emmet-vim'                                                       " emmet
+Plug 'ap/vim-css-color'                                                      " css colors preview
+Plug 'maksimr/vim-jsbeautify'                                                " Un-minify JS
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                " JS code completion
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }      " ternjs
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] } " tern + deoplete
+Plug 'othree/jspc.vim'                                                       " Parameter completion e.g., .on('cli<tab>
+Plug 'moll/vim-node', { 'for': 'javascript' }                                " Open node modules with gf
 
 " " Lint as you type. (off)
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 " g:neomake_autolint_sign_column_always 
 
-call plug#end()
 let g:polyglot_disabled = ['stylus', 'jade', 'pug', 'javascript', 'json', 'sass', 'scss', 'css', 'coffeescript']
+
+call plug#end()
 
 " Easy plugin updates
 command! PU PlugUpdate | PlugUpgrade
@@ -125,7 +123,7 @@ set foldmethod=marker
 set foldlevel=0
 autocmd FileType javascript setlocal foldmethod=syntax
 
-" enable concealing
+" enable concealment
 set conceallevel=1
 
 " vim-javascript conceal settings.
@@ -150,6 +148,9 @@ set diffopt+=iwhite                   " Ignore whitespace changes
 " syntax highlight
 filetype indent plugin on
 syntax on
+
+" hide some files by default in netrw
+let g:netrw_list_hide='\..*,Gemfile.lock,README,LICENSE,node_modules'
 
 " prevent wrapping lines
 set textwidth=9999
@@ -193,6 +194,15 @@ autocmd FileType python,lua,javascript,json,jsx,coffeescript,jade,pug,html,stylu
 " autoformat js follow standard
 " autocmd bufwritepost *.js silent !standard-format -w %
 set autoread
+
+" }}}
+" Run macro on selected lines {{{
+
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
 " }}}
 " Command completion  {{{
@@ -274,6 +284,12 @@ let mapleader = " "
 
 " toggle concealing
 map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+
+" sort lines
+map <leader>o vv:sort<CR>
+
+" comma-last to comma-first 
+map <leader>q $i<CR><Esc>J
 
 " }}}
 " Buffer navigation {{{
@@ -374,6 +390,13 @@ let g:tabman_focus  = 'tf'
 " Autoclose {{{
 " fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+" }}}
+" TernJS {{{
+let g:tern_map_keys=1
+let g:tern_show_argument_hints='on_hold'
+" }}}
+" VimJSON {{{
+let g:vim_json_syntax_conceal=1
 " }}}
 " ChooseWin {{{
 nmap  -  <Plug>(choosewin)
