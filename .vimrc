@@ -45,7 +45,7 @@ Plug 'moll/vim-node', { 'for': 'javascript' }                                " O
 
 " " Lint as you type. (off)
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-" g:neomake_autolint_sign_column_always 
+" g:neomake_autolint_sign_column_always
 
 let g:polyglot_disabled = ['stylus', 'jade', 'pug', 'javascript', 'json', 'sass', 'scss', 'css', 'coffeescript']
 
@@ -96,7 +96,7 @@ set gdefault
 " incremental search
 set incsearch
 
-" no excessive whitespace wthen joining lines 
+" no excessive whitespace wthen joining lines
 set nojoinspaces
 " case insensitive search
 set ignorecase
@@ -150,7 +150,7 @@ filetype indent plugin on
 syntax on
 
 " hide some files by default in netrw
-let g:netrw_list_hide='\..*,Gemfile.lock,README,LICENSE,node_modules'
+let g:netrw_list_hide='\.*,Gemfile.lock,README,LICENSE,node_modules'
 
 " prevent wrapping lines
 set textwidth=9999
@@ -224,7 +224,7 @@ set wildignore+=.sass-cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
 set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
- 
+
 set isfname-==
 
 set complete-=i                       " don't complete includes
@@ -288,7 +288,7 @@ map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<
 " sort lines
 map <leader>o vv:sort<CR>
 
-" comma-last to comma-first 
+" comma-last to comma-first
 map <leader>q $i<CR><Esc>J
 
 " }}}
@@ -422,7 +422,7 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3
 
 let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni' ] 
+let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni' ]
 set completeopt=longest,menuone,preview
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
