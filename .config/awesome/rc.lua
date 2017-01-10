@@ -152,7 +152,7 @@ awful.tag.setmwfact(0.85, tags[1][1])
 for t = 2, 8 do
     awful.tag.setnmaster(1, tags[1][t])
     awful.tag.setncol(1, tags[1][t])
-    awful.tag.setmwfact(0.625, tags[1][t])
+    awful.tag.setmwfact(0.75, tags[1][t])
 end
 
 -- tag 9

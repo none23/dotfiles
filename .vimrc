@@ -47,8 +47,6 @@ Plug 'moll/vim-node', { 'for': 'javascript' }                                " O
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 " g:neomake_autolint_sign_column_always
 
-let g:polyglot_disabled = ['stylus', 'jade', 'pug', 'javascript', 'json', 'sass', 'scss', 'css', 'coffeescript']
-
 call plug#end()
 
 " Easy plugin updates

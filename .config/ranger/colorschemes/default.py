@@ -104,7 +104,6 @@ class Default(ColorScheme):
             if context.loaded:
                 bg = 166
 
-
         if context.text:
             if context.highlight:
                 attr |= reverse
