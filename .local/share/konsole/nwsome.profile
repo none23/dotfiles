@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=Linux
-Font=Terminess Powerline,9,-1,5,50,0,0,0,0,0
+Font=xos4 Terminus,9,-1,5,50,0,0,0,0,0
 LineSpacing=0
 UseFontLineChararacters=false
 
