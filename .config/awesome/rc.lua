@@ -561,6 +561,7 @@ awful.rules.rules = { { rule = { }, callback = awful.client.setslave }
                                              , "feh"
                                              , "Kruler"
                                              , "qt5ct"
+                                             , "Octave"
                                              , "Sxiv"
                                              , "MessageWin"
                                              , "Wpa_gui"
