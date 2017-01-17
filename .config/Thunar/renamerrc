@@ -1,28 +1,28 @@
 [Configuration]
 LastActiveMode=THUNAR_RENAMER_MODE_NAME
-LastActiveRenamer=ThunarSbrRemoveRenamer
-
-[ThunarSbrReplaceRenamer]
-Regexp=FALSE
-Replacement=pug
-CaseSensitive=FALSE
-Pattern=jade
-
-[ThunarSbrNumberRenamer]
-TextMode=THUNAR_SBR_TEXT_MODE_NT
-Mode=THUNAR_SBR_NUMBER_MODE_123
-Start=1001
-Text=
+LastActiveRenamer=ThunarSbrReplaceRenamer
 
 [ThunarSbrInsertRenamer]
-Offset=3
-Mode=THUNAR_SBR_INSERT_MODE_OVERWRITE
+Offset=1
+Mode=THUNAR_SBR_INSERT_MODE_INSERT
 OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-Text=img
+Text=0
 
 [ThunarSbrRemoveRenamer]
 EndOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-StartOffset=5
+StartOffset=3
 EndOffset=0
 StartOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
+[ThunarSbrNumberRenamer]
+TextMode=THUNAR_SBR_TEXT_MODE_TN
+Mode=THUNAR_SBR_NUMBER_MODE_010203
+Start=1
+Text=lect-10-
+
+[ThunarSbrReplaceRenamer]
+Regexp=FALSE
+Replacement=-
+CaseSensitive=FALSE
+Pattern=-00
 

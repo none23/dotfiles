@@ -28,6 +28,7 @@ alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
 alias vtop='vtop -t nwsome '
+alias octave=octave-cli
 # }}}
 # gui apps in bg {{{
 thunar      () { command thunar       "$*" & }

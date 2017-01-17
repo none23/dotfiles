@@ -31,12 +31,12 @@ hi StatusLine      gui=none       guibg=#171717  guifg=#bbbbbb
 hi StatusLineNC    gui=none       guibg=#333333  guifg=#444444
 hi VertSplit       gui=none       guibg=#232323  guifg=#232323
 hi Folded                         guibg=#171717  guifg=#de5e1e
-hi Visual                         guibg=#ff6600  guifg=#111111
+hi Visual                         guibg=#de5e1e  guifg=#001e2e
 hi EndOfBuffer                    guibg=#070707  guifg=#070707
 
 " Completion Popups
 hi Pmenu           gui=none       guibg=#232323  guifg=#999999
-hi PmenuSel        gui=none       guibg=#232323  guifg=#ff6600
+hi PmenuSel        gui=none       guibg=#232323  guifg=#de5e1e
 hi PmenuSbar                      guibg=#121212
 hi PmenuThumb                     guibg=#232323
 
@@ -54,9 +54,12 @@ hi WildMenu                       guibg=#de5e1e  guifg=#111111
 hi Todo            gui=none       guibg=#000000  guifg=#eb1d14
 hi Title           gui=none       guibg=#171717  guifg=#bbbbbb
 
+" Conceal
+hi Conceal                        guibg=#000000  guifg=#ff5415  
+
 " Syntax
-hi Constant                                      guifg=#ff6600  
-hi Number                                        guifg=#ff541e
+hi Constant                                      guifg=#ff5415  
+hi Number                                        guifg=#ff5415
 hi Boolean                                       guifg=#dddd00
 hi cDefine                                       guifg=#dddd00
 hi cInclude                                      guifg=#bbbbbb
@@ -71,7 +74,7 @@ hi NonText                        guibg=#000000  guifg=#ffaa55
 hi Operator        gui=none                      guifg=#696969
 hi PreProc         gui=none                      guifg=#bbbbbb
 hi Statement       gui=bold                      guifg=#de5e1e
-hi String          gui=none                      guifg=#d13800
+hi String          gui=none                      guifg=#d14510
 hi Type            gui=none                      guifg=#bbbbbb
 
 " Diff
@@ -79,6 +82,7 @@ hi DiffAdd                        guibg=#272727  guifg=#93de1e
 hi DiffChange                     guibg=#272727  guifg=#de5e1e
 hi DiffDelete                     guibg=#272727  guifg=#eb1d14
 hi DiffText                       guibg=#272727  guifg=#bbbbbb
+
 
 "- end of colorscheme -----------------------------------------------  
 
