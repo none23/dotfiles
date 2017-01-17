@@ -149,6 +149,7 @@ syntax on
 
 " hide some files by default in netrw
 let g:netrw_list_hide='\.*,Gemfile.lock,README,LICENSE,node_modules'
+let g:netrw_hide=1
 
 " prevent wrapping lines
 set textwidth=9999
