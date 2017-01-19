@@ -37,11 +37,6 @@ libreoffice () { command libreoffice  "$*" & }
 feh         () { command feh          "$*" & }
 geeqie      () { command geeqie       "$*" & }
 # }}}
-# virtualbox {{{
-alias vbox_install='yaourt -S virtualbox virtualbox-ext-oracle virtualbox-host-modules-arch'
-alias vbox_uninstall='yaourt -Rsc virtualbox virtualbox-ext-oracle virtualbox-host-modules-arch'
-alias virtualbox='virtualbox | vbox_install && virtualbox'
-# }}}
 # npm {{{
 alias ni='npm install'
 alias nr='npm run'
