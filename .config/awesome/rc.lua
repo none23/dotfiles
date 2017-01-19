@@ -69,7 +69,7 @@ local function bat_notification()
                      , bg = beautiful.danger
                      , timeout = 60
                      , position = "top_right"
-                     , run = function(_) awful.util.spawn_with_shell("systemctl suspend") end
+                     , run = function(_) awful.util.spawn.with_shell("systemctl suspend") end
                      })
     elseif (bat_capacity <= 40 and bat_status == "Discharging") then
         naughty.notify({ title = "Hey, the battery is halfway dead"
@@ -83,6 +83,7 @@ local function bat_notification()
 end
 
 battimer = timer({timeout = 60})
+--battimer = gears.timer({timeout = 60})
 battimer:connect_signal("timeout", bat_notification)
 battimer:start()
 
@@ -109,7 +110,7 @@ function run_once(cmd)
   if firstspace then
       findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+  awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
 
@@ -141,33 +142,31 @@ end
 
 -- }}}
 -- Config {{{
+awful.screen.connect_for_each_screen(function(s)
+                                       -- secondary screens
+                                       for t = 1, 9 do
+                                         s.tags[t].master_count = 1
+                                         s.tags[t].column_count = 1
+                                         s.tags[t].master_width_factor = 0.625
+                                       end
 
--- primary screen
--- tag 1
-awful.tag.setnmaster(1, tags[1][1])
-awful.tag.setncol(1, tags[1][1])
-awful.tag.setmwfact(0.85, tags[1][1])
+                                       -- primary screen
+                                       if s.index == 1 then
+                                         s.tags[1].master_count = 1
+                                         s.tags[1].column_count = 1
+                                         s.tags[1].master_width_factor = 0.85
 
--- tags 2-8
-for t = 2, 8 do
-    awful.tag.setnmaster(1, tags[1][t])
-    awful.tag.setncol(1, tags[1][t])
-    awful.tag.setmwfact(0.75, tags[1][t])
-end
+                                         s.tags[9].master_count = 3
+                                         s.tags[9].column_count = 1
+                                         s.tags[9].master_width_factor = 0.5
 
--- tag 9
-awful.tag.setnmaster(3, tags[1][9])
-awful.tag.setncol(1, tags[1][9])
-awful.tag.setmwfact(0.5, tags[1][9])
-
--- secondary screens
-for s = 2, screen.count() do
-    for t = 1, 9 do
-        awful.tag.setnmaster(1, tags[s][t])
-        awful.tag.setncol(1, tags[s][t])
-        awful.tag.setmwfact(0.625, tags[s][t])
-    end
-end
+                                         for t = 2, 8 do
+                                           s.tags[t].master_count = 1
+                                           s.tags[t].column_count = 1
+                                           s.tags[t].master_width_factor = 0.75
+                                         end
+                                       end
+                                     end)
 
 -- }}}
 -- }}}
@@ -184,14 +183,14 @@ end
 -- Wibox Widgets {{{
 ------------------------------------------------------------------------------
 local function wrap_widget (target_widget, target_bg, target_fg, margin_left, margin_right )
-  local wrapped_inner = wibox.layout.margin()
+  local wrapped_inner = wibox.container.margin()
     wrapped_inner:set_top(1)
     wrapped_inner:set_right(margin_right)
     wrapped_inner:set_bottom(1)
     wrapped_inner:set_left(margin_left)
     wrapped_inner:set_widget(target_widget)
 
-  local wrapped_widget = wibox.widget.background()
+  local wrapped_widget = wibox.container.background()
     wrapped_widget:set_widget(wrapped_inner)
     wrapped_widget:set_bg(target_bg)
     wrapped_widget:set_fg(target_fg)
@@ -200,7 +199,7 @@ local function wrap_widget (target_widget, target_bg, target_fg, margin_left, ma
 end
 
 local function wrap_icon (image)
-  local wrapped_icon = wibox.layout.margin()
+  local wrapped_icon = wibox.container.margin()
     wrapped_icon:set_widget(wibox.widget.imagebox(image))
     wrapped_icon:set_margins(-1)
   return wrapped_icon
@@ -258,14 +257,14 @@ batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                              , 4
                              ) -- }}}
 -- date {{{
-  datewidget_wrap = wrap_widget ( awful.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
+  datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
                                 , beautiful.midgray_1
                                 , beautiful.fg
                                 , 3
                                 , 4
                                 ) -- }}}
 -- clock {{{
-  clockwidget_wrap = wrap_widget ( awful.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
+  clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
                                  , beautiful.primary
                                  , beautiful.black
                                  , 3
@@ -290,23 +289,25 @@ baticon   = wrap_icon(beautiful.widget_bat)
 loadicon  = wrap_icon(beautiful.widget_load)
 
 -- }}}
-
+-- promptbox {{{
+local mypromptbox = awful.prompt.run { prompt = "Run:"
+                                     , exe_callback = function (input)
+                                                        if not input or #input == 0 then return end
+                                                        awful.spawn.with_shell(input)
+                                                      end
+                                     }
+-- }}}
 -- }}}
 -- Wibox {{{
-mywibox = {}
-mytaglist = {}
-mypromptbox = {}
-mytasklist = {}
-
 -- buttons {{{
 
-mytaglist.buttons = awful.util.table.join( awful.button({ },       1, awful.tag.viewonly)
+mytaglist_buttons = awful.util.table.join( awful.button({ },       1, awful.tag.viewonly)
                                          , awful.button({ },       3, awful.tag.viewtoggle)
                                          , awful.button({ Super }, 1, awful.client.movetotag)
                                          , awful.button({ Super }, 3, awful.client.toggletag)
                                          )
 
-mytasklist.buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
+mytasklist_buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
                                                                      if c == client.focus then
                                                                        c.minimized = true
                                                                      else
@@ -322,101 +323,101 @@ mytasklist.buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
                                           )
 
 -- }}}
+awful.screen.connect_for_each_screen(function(s)
 
-for s = 1, screen.count() do
-    mytaglist[s] = awful.widget.taglist( s
-                                       , awful.widget.taglist.filter.all
-                                       , mytaglist.buttons
-                                       )
+  s.mypromptbox = awful.widget.prompt()
+  s.mytaglist = awful.widget.taglist( s
+                                    , awful.widget.taglist.filter.all
+                                    , mytaglist_buttons
+                                    )
 
-    local taglist_margin = wibox.layout.margin()
-      taglist_margin:set_widget(mytaglist[s])
-      taglist_margin:set_margins(0)
+  s.taglist_margin = wibox.container.margin()
+      s.taglist_margin:set_widget(s.mytaglist)
+      s.taglist_margin:set_margins(0)
 
-    local taglist_wrap = wibox.widget.background()
-      taglist_wrap:set_widget(taglist_margin)
-      taglist_wrap:set_bg(beautiful.midgray_0)
+  s.taglist_wrap = wibox.container.background()
+      s.taglist_wrap:set_widget(s.taglist_margin)
+      s.taglist_wrap:set_bg(beautiful.midgray_0)
 
-    mypromptbox[s] = awful.widget.prompt()
 
-    mytasklist[s] = awful.widget.tasklist( s
-                                         , awful.widget.tasklist.filter.currenttags
-                                         , mytasklist.buttons
-                                         )
+  s.mytasklist = awful.widget.tasklist( s
+                                      , awful.widget.tasklist.filter.currenttags
+                                      , mytasklist_buttons
+                                      )
 
-    mywibox[s] = awful.wibox({ position = "top"
-                             , screen = s
-                             , height = 16
-                             })
-    -- Left {{{
-    local promptbox_margin = wibox.layout.margin()
-      promptbox_margin:set_widget(mypromptbox[s])
-      promptbox_margin:set_margins(0)
+  s.mywibox = awful.wibar({ position = "top"
+                          , screen = s
+                          , height = 16
+                          })
+  -- Left {{{
+  s.promptbox_margin = wibox.container.margin()
+      s.promptbox_margin:set_widget(s.mypromptbox)
+      s.promptbox_margin:set_margins(0)
 
-    local promptbox_wrap = wibox.widget.background()
-      promptbox_wrap:set_widget(promptbox_margin)
-      promptbox_wrap:set_bg(beautiful.midgray_0)
+  s.promptbox_wrap = wibox.container.background()
+      s.promptbox_wrap:set_widget(s.promptbox_margin)
+      s.promptbox_wrap:set_bg(beautiful.midgray_0)
 
-    local left_layout = wibox.layout.fixed.horizontal()
-      left_layout:add(taglist_wrap)
-      left_layout:add(promptbox_wrap)
-      left_layout:add(arrow_1R0)
+  s.left_layout = wibox.layout.fixed.horizontal()
+      s.left_layout:add(s.taglist_wrap)
+      s.left_layout:add(s.promptbox_wrap)
+      s.left_layout:add(arrow_1R0)
 
     -- }}}
     -- Right {{{
-    local right_layout = wibox.layout.fixed.horizontal()
+    s.right_layout = wibox.layout.fixed.horizontal()
 
     -- systray
-    right_layout:add(wibox.widget.systray())
+    s.right_layout:add(wibox.widget.systray())
 
     -- mem / cpu state
-    right_layout:add(arrow_0L1)
-    right_layout:add(loadicon)
-    right_layout:add(memwidget_wrap)
-    right_layout:add(cpuwidget_wrap)
+    s.right_layout:add(arrow_0L1)
+    s.right_layout:add(loadicon)
+    s.right_layout:add(memwidget_wrap)
+    s.right_layout:add(cpuwidget_wrap)
 
     -- volume
-    right_layout:add(arrow_1L2)
-    right_layout:add(volicon)
-    right_layout:add(volumewidget_wrap)
+    s.right_layout:add(arrow_1L2)
+    s.right_layout:add(volicon)
+    s.right_layout:add(volumewidget_wrap)
 
     -- battery
-    right_layout:add(arrow_2L1)
-    right_layout:add(baticon)
-    right_layout:add(batwidget_wrap)
+    s.right_layout:add(arrow_2L1)
+    s.right_layout:add(baticon)
+    s.right_layout:add(batwidget_wrap)
 
     -- date
-    right_layout:add(arrow_1L2)
-    right_layout:add(datewidget_wrap)
+    s.right_layout:add(arrow_1L2)
+    s.right_layout:add(datewidget_wrap)
 
     -- time
-    right_layout:add(arrow_2L3)
-    right_layout:add(clockwidget_wrap)
+    s.right_layout:add(arrow_2L3)
+    s.right_layout:add(clockwidget_wrap)
 
     -- }}}
     -- Bring it all together {{{
 
-    local layout = wibox.layout.align.horizontal()
-      local layout_margin = wibox.layout.margin()
-        layout_margin:set_widget(layout)
-        layout_margin:set_margins(0)
+   s.layout = wibox.layout.align.horizontal()
+      s.layout_margin = wibox.container.margin()
+        s.layout_margin:set_widget(s.layout)
+        s.layout_margin:set_margins(0)
 
-      local left_layout_margin = wibox.layout.margin()
-        left_layout_margin:set_widget(left_layout)
-        left_layout_margin:set_margins(0)
+      s.left_layout_margin = wibox.container.margin()
+        s.left_layout_margin:set_widget(s.left_layout)
+        s.left_layout_margin:set_margins(0)
 
-      local right_layout_margin = wibox.layout.margin()
-        right_layout_margin:set_widget(right_layout)
-        right_layout_margin:set_margins(0)
+      s.right_layout_margin = wibox.container.margin()
+        s.right_layout_margin:set_widget(s.right_layout)
+        s.right_layout_margin:set_margins(0)
 
-      layout:set_left( left_layout_margin )
-      layout:set_middle( mytasklist[s] )
-      layout:set_right( right_layout_margin )
+      s.layout:set_left( s.left_layout_margin )
+      s.layout:set_middle( s.mytasklist )
+      s.layout:set_right( s.right_layout_margin )
 
-    mywibox[s]:set_widget(layout)
+    s.mywibox:set_widget(s.layout)
 
     -- }}}
-end
+end)
 -- }}}
 -- Keybindings {{{
 -- Global keybindings {{{
@@ -446,10 +447,10 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "F1",       function () awful.screen.focus(1)                                                                        end )
 , awful.key( { Super        }, "F2",       function () awful.screen.focus(2)                                                                        end )
 , awful.key( { Super        }, "F3",       function () awful.screen.focus(3)                                                                        end )
+, awful.key( { Super        }, "x",        function () awful.screen.focused().mypromptbox:run()                                                     end )
 , awful.key( { Super        }, "z",        function () menubar.show()                                                                               end )
-, awful.key( { Super        }, "x",        function () mypromptbox[mouse.screen]:run()                                                              end )
 , awful.key( { Super        }, "Return",   function () awful.util.spawn("konsole -e zsh")                                                           end )
-, awful.key( { Super        }, "KP_Enter", function () awful.util.spawn_with_shell("urxvt")                                                         end )
+, awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("urxvt")                                                         end )
 , awful.key( { Hyper        }, "grave",    function () awful.util.spawn("konsole -e nvim")                                                          end )
 , awful.key( { Hyper        }, "1",        function () awful.util.spawn("chromium")                                                                 end )
 , awful.key( { Hyper, Cntrl }, "1",        function () awful.util.spawn("tor-browser-en")                                                           end )
@@ -498,27 +499,32 @@ clientkeys = awful.util.table.join(
 -- }}}
 -- Tags manipulation {{{
 for i = 1, 9 do
-  globalkeys = awful.util.table.join( globalkeys
-                                    , awful.key( { Super }, "#"..i + 9
-                                               , function ()
-                                                   for s = 1, screen.count() do
-                                                     local ss = screen.count() + 1 - s
-                                                     local tag = awful.tag.gettags(ss)[i]
-                                                     if tag then
-                                                       awful.tag.viewonly(tag)
-                                                     end
-                                                   end
+  globalkeys = awful.util.table.join(
+    globalkeys
+  , awful.key( { Super }, "#"..i + 9, function ()
+                                        local tag = awful.screen.focused().tags[i]
+                                        if tag then
+                                          tag:view_only()
+                                        end
+                                      end )
+
+  , awful.key( { Super, Shift }, "#"..i + 9, function ()
+                                               local tag = awful.screen.focused().tags[i]
+                                               if awful.client.focus and tag then
+                                                 awful.client.toggletag(tag)
+                                               end
+                                             end )
+
+  , awful.key( { Super, Shift, Cntrl }, "#"..i + 9, function ()
+                                               local all_clients = awful.screen.focused().selected_tag:clients()
+                                               local tag = awful.screen.focused().tags[i]
+                                               if all_clients then
+                                                 for _, a_client in ipairs(all_clients) do
+                                                   a_client:tags({tag})
                                                  end
-                                               )
-                                    , awful.key( { Super, Shift }, "#"..i + 9
-                                               , function ()
-                                                   local tag = awful.tag.gettags(client.focus.screen)[i]
-                                                   if client.focus and tag then
-                                                     awful.client.toggletag(tag)
-                                                   end
-                                                 end
-                                               )
-                                    )
+                                               end
+                                             end )
+  )
 end
 
 -- }}}
