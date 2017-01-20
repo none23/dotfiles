@@ -203,9 +203,9 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                                                                widget:set_font(icon_font)
                                                                if bat_now.ac_status == 1 then
                                                                  widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) > 80 then
+                                                               elseif tonumber(bat_now.perc) >= 80 then
                                                                  widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) > 30 then
+                                                               elseif tonumber(bat_now.perc) >= 30 then
                                                                  widget:set_text("")
                                                                else
                                                                  widget:set_text("")
