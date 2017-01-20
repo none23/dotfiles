@@ -9,12 +9,14 @@
 local debug  = require("debug")
 
 local assert = assert
-local capi   = { timer = (type(timer) == 'table' and timer or require ("gears.timer")) }
+local capi   = { timer = require("gears.timer") }
 local io     = { open  = io.open,
                  lines = io.lines,
                  popen = io.popen }
 local rawget = rawget
 local table  = { sort   = table.sort }
+
+local wibox  = require("wibox")
 
 -- Lain helper functions for internal use
 -- lain.helpers
@@ -106,12 +108,22 @@ end
 
 -- {{{ Pipe operations
 
--- read the full output of a pipe (command)
+-- read the full output of a command output
 function helpers.read_pipe(cmd)
    local f = assert(io.popen(cmd))
    local output = f:read("*all")
    f:close()
    return output
+end
+
+-- return line iterator of a command output
+function helpers.pipelines(...)
+    local f = assert(io.popen(...))
+    return function () -- iterator
+        local data = f:read()
+        if data == nil then f:close() end
+        return data
+    end
 end
 
 -- }}}
@@ -130,7 +142,19 @@ end
 
 -- }}}
 
---{{{ Iterate over table of records sorted by keys
+-- {{{ Misc
+
+-- check if an element exist on a table
+function helpers.element_in_table(element, tbl)
+    for _, i in pairs(tbl) do
+        if i == element then
+            return true
+        end
+    end
+    return false
+end
+
+-- iterate over table of records sorted by keys
 function helpers.spairs(t)
     -- collect the keys
     local keys = {}
@@ -147,6 +171,15 @@ function helpers.spairs(t)
         end
     end
 end
---}}}
+
+-- create a lain textbox widget
+function helpers.make_widget_textbox()
+    local w = wibox.widget.textbox('')
+    local t = wibox.widget.base.make_widget(w)
+    t.widget = w
+    return t
+end
+
+-- }}}
 
 return helpers

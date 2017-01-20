@@ -11,12 +11,12 @@
 local helpers      = require("lain.helpers")
 
 local beautiful    = require("beautiful")
+local focused      = require("awful.screen").focused
 local wibox        = require("wibox")
 local naughty      = require("naughty")
 
 local io           = { popen  = io.popen }
 local pairs        = pairs
-local mouse        = mouse
 local string       = { match  = string.match,
                        format = string.format }
 local tonumber     = tonumber
@@ -28,26 +28,29 @@ local setmetatable = setmetatable
 local fs = {}
 local fs_notification  = nil
 
-function fs:hide()
+function fs.hide()
     if fs_notification ~= nil then
         naughty.destroy(fs_notification)
         fs_notification = nil
     end
 end
 
-function fs:show(t_out)
-    fs:hide()
+function fs.show(seconds, scr)
+    fs.hide()
 
-    local ws = helpers.read_pipe(helpers.scripts_dir .. "dfs"):gsub("\n*$", "")
+    local cmd = (fs.options and string.format("dfs %s", fs.options)) or "dfs"
+    local ws = helpers.read_pipe(helpers.scripts_dir .. cmd):gsub("\n*$", "")
 
-    if fs.followmouse then
-        fs.notification_preset.screen = mouse.screen
+    if fs.followtag then
+        fs.notification_preset.screen = focused()
+    elseif scr then
+        fs.notification_preset.screen = scr
     end
 
     fs_notification = naughty.notify({
         preset  = fs.notification_preset,
         text    = ws,
-        timeout = t_out
+        timeout = seconds or 5
     })
 end
 
@@ -62,7 +65,8 @@ local function worker(args)
     local notify           = args.notify or "on"
     local settings         = args.settings or function() end
 
-    fs.followmouse         = args.followmouse or false
+    fs.options             = args.options
+    fs.followtag           = args.followtag or false
     fs.notification_preset = args.notification_preset or { fg = beautiful.fg_normal }
 
     fs.widget = wibox.widget.textbox('')
@@ -82,6 +86,8 @@ local function worker(args)
             if u and m then -- Handle 1st line and broken regexp
                 fs_info[m .. " size_mb"]  = string.format("%.1f", tonumber(s) / unit["mb"])
                 fs_info[m .. " size_gb"]  = string.format("%.1f", tonumber(s) / unit["gb"])
+                fs_info[m .. " used_mb"]  = string.format("%.1f", tonumber(u) / unit["mb"])
+                fs_info[m .. " used_gb"]  = string.format("%.1f", tonumber(u) / unit["gb"])
                 fs_info[m .. " used_p"]   = tonumber(p)
                 fs_info[m .. " avail_p"]  = 100 - tonumber(p)
             end
@@ -89,10 +95,12 @@ local function worker(args)
 
         f:close()
 
-        fs_now.used      = tonumber(fs_info[partition .. " used_p"])  or 0
         fs_now.available = tonumber(fs_info[partition .. " avail_p"]) or 0
         fs_now.size_mb   = tonumber(fs_info[partition .. " size_mb"]) or 0
         fs_now.size_gb   = tonumber(fs_info[partition .. " size_gb"]) or 0
+        fs_now.used      = tonumber(fs_info[partition .. " used_p"])  or 0
+        fs_now.used_mb   = tonumber(fs_info[partition .. " used_mb"]) or 0
+        fs_now.used_gb   = tonumber(fs_info[partition .. " used_gb"]) or 0
 
         notification_preset = fs.notification_preset
         widget = fs.widget
@@ -114,8 +122,8 @@ local function worker(args)
     end
 
     if showpopup == "on" then
-        fs.widget:connect_signal('mouse::enter', function () fs:show(0) end)
-        fs.widget:connect_signal('mouse::leave', function () fs:hide() end)
+       fs.widget:connect_signal('mouse::enter', function () fs.show(0) end)
+       fs.widget:connect_signal('mouse::leave', function () fs.hide() end)
     end
 
     helpers.newtimer(partition, timeout, update)

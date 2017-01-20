@@ -30,20 +30,20 @@ function findLast(haystack, needle)
     if i==nil then return nil else return i-1 end
 end
 
-function task:hide()
+function task.hide()
     if task_notification ~= nil then
         naughty.destroy(task_notification)
         task_notification = nil
     end
 end
 
-function task:show(scr_pos)
-    task:hide()
+function task.show(scr_pos)
+    task.hide()
 
     local f, c_text, scrp
 
-    if task.followmouse then
-        scrp = mouse.screen
+    if task.followtag then
+        scrp = awful.screen.focused()
     else
         scrp = scr_pos or task.scr_pos
     end
@@ -67,9 +67,9 @@ function task:show(scr_pos)
                                      })
 end
 
-function task:prompt_add()
+function task.prompt_add()
   awful.prompt.run({ prompt = "Add task: " },
-      mypromptbox[mouse.screen].widget,
+      mypromptbox[awful.screen.focused()].widget,
       function (...)
           local f = io.popen("task add " .. ...)
           c_text = "\n<span font='"
@@ -92,9 +92,9 @@ function task:prompt_add()
       awful.util.getdir("cache") .. "/history_task_add")
 end
 
-function task:prompt_search()
+function task.prompt_search()
   awful.prompt.run({ prompt = "Search task: " },
-      mypromptbox[mouse.screen].widget,
+      mypromptbox[awful.screen.focused()].widget,
       function (...)
           local f = io.popen("task " .. ...)
           c_text = f:read("*all"):gsub(" \n*$", "")
@@ -119,14 +119,14 @@ function task:prompt_search()
               fg       = task.fg,
               bg       = task.bg,
               timeout  = task.timeout,
-              screen   = mouse.screen
+              screen   = awful.screen.focused()
           })
       end,
       nil,
       awful.util.getdir("cache") .. "/history_task")
 end
 
-function task:attach(widget, args)
+function task.attach(widget, args)
     local args       = args or {}
 
     task.font_size   = tonumber(args.font_size) or 12
@@ -137,14 +137,14 @@ function task:attach(widget, args)
     task.position    = args.position or "top_right"
     task.timeout     = args.timeout or 7
     task.scr_pos     = args.scr_pos or 1
-    task.followmouse = args.followmouse or false
+    task.followtag   = args.followtag or false
     task.cmdline     = args.cmdline or "next"
 
     task.notify_icon = icons_dir .. "/taskwarrior/task.png"
     task.notify_icon_small = icons_dir .. "/taskwarrior/tasksmall.png"
 
-    widget:connect_signal("mouse::enter", function () task:show(task.scr_pos) end)
-    widget:connect_signal("mouse::leave", function () task:hide() end)
+    widget:connect_signal("mouse::enter", function () task.show(task.scr_pos) end)
+    widget:connect_signal("mouse::leave", function () task.hide() end)
 end
 
 return setmetatable(task, { __call = function(_, ...) return create(...) end })

@@ -13,6 +13,7 @@ local read_pipe    = require("lain.helpers").read_pipe
 local awful        = require("awful")
 local beautiful    = require("beautiful")
 local naughty      = require("naughty")
+local wibox        = require("wibox")
 
 local math         = { modf   = math.modf }
 local mouse        = mouse
@@ -23,10 +24,11 @@ local tonumber     = tonumber
 
 local setmetatable = setmetatable
 
--- ALSA volume bar
+-- Pulseaudio volume bar
 -- lain.widgets.pulsebar
 local pulsebar = {
     sink = 0,
+    step = "1%",
 
     colors = {
         background = beautiful.bg_normal,
@@ -39,9 +41,7 @@ local pulsebar = {
     notifications = {
         font      = beautiful.font:sub(beautiful.font:find(""), beautiful.font:find(" ")),
         font_size = "11",
-        color     = beautiful.fg_normal,
-        bar_size  = 18,
-        screen    = 1
+        color     = beautiful.fg_normal
     },
 
     _current_level = 0,
@@ -55,27 +55,24 @@ function pulsebar.notify()
         title   = "",
         text    = "",
         timeout = 5,
-        screen  = pulsebar.notifications.screen,
-        font    = pulsebar.notifications.font .. " " ..
-                  pulsebar.notifications.font_size,
+        font    = string.format("%s %s", pulsebar.notifications.font,
+                  pulsebar.notifications.font_size),
         fg      = pulsebar.notifications.color
     }
 
     if pulsebar._muted
     then
-        preset.title = "Sink " .. pulsebar.sink .. " - Muted"
+        preset.title = string.format("Sink %s - Muted", pulsebar.sink)
     else
-        preset.title = "Sink " .. pulsebar.sink .. " - " .. pulsebar._current_level .. "%"
+        preset.title = string.format("%s - %s%%", pulsebar.sink, pulsebar._current_level)
     end
 
-    int = math.modf((pulsebar._current_level / 100) * pulsebar.notifications.bar_size)
-    preset.text = "["
-                .. string.rep("|", int)
-                .. string.rep(" ", pulsebar.notifications.bar_size - int)
-                .. "]"
+    int = math.modf((pulsebar._current_level / 100) * awful.screen.focused().mywibox.height)
+    preset.text = string.format("[%s%s]", string.rep("|", int),
+                  string.rep(" ", awful.screen.focused().mywibox.height - int))
 
-    if pulsebar.followmouse then
-        preset.screen = mouse.screen
+    if pulsebar.followtag then
+        preset.screen = awful.screen.focused()
     end
 
     if pulsebar._notify ~= nil then
@@ -105,18 +102,23 @@ local function worker(args)
     pulsebar.colors        = args.colors or pulsebar.colors
     pulsebar.notifications = args.notifications or pulsebar.notifications
     pulsebar.sink          = args.sink or 0
-    pulsebar.followmouse   = args.followmouse or false
+    pulsebar.step          = args.step or pulsebar.step
+    pulsebar.followtag   = args.followtag or false
 
-    pulsebar.bar = awful.widget.progressbar()
+    pulsebar.bar = wibox.widget {
+        forced_height    = height,
+        forced_width     = width,
+        color            = pulsebar.colors.unmute,
+        background_color = pulsebar.colors.background,
+        margins          = 1,
+        paddings         = 1,
+        ticks            = ticks,
+        ticks_size       = ticks_size,
+        widget           = wibox.widget.progressbar,
+        layout           = vertical and wibox.container.rotate
+    }
 
-    pulsebar.bar:set_background_color(pulsebar.colors.background)
-    pulsebar.bar:set_color(pulsebar.colors.unmute)
     pulsebar.tooltip = awful.tooltip({ objects = { pulsebar.bar } })
-    pulsebar.bar:set_width(width)
-    pulsebar.bar:set_height(height)
-    pulsebar.bar:set_ticks(ticks)
-    pulsebar.bar:set_ticks_size(ticks_size)
-    pulsebar.bar:set_vertical(vertical)
 
     function pulsebar.update()
         if scallback then pulseaudio.cmd = scallback() end
@@ -134,24 +136,40 @@ local function worker(args)
         then
             pulsebar._current_level = volu
             pulsebar.bar:set_value(pulsebar._current_level / 100)
-            if not mute and volu == 0 or mute == "yes"
+            if (not mute and volu == 0) or mute == "yes"
             then
                 pulsebar._muted = true
-                pulsebar.tooltip:set_text (" [Muted] ")
-                pulsebar.bar:set_color(pulsebar.colors.mute)
+                pulsebar.tooltip:set_text ("[Muted]")
+                pulsebar.bar.color = pulsebar.colors.mute
             else
                 pulsebar._muted = false
-                pulsebar.tooltip:set_text(string.format(" %s:%s ", pulsebar.sink, volu))
-                pulsebar.bar:set_color(pulsebar.colors.unmute)
+                pulsebar.tooltip:set_text(string.format("%s: %s", pulsebar.sink, volu))
+                pulsebar.bar.color = pulsebar.colors.unmute
             end
             settings()
         end
     end
 
-    pulsebar.bar:buttons (awful.util.table.join (
-          awful.button ({}, 1, function()
+    pulsebar.bar:buttons(awful.util.table.join (
+          awful.button({}, 1, function()
             awful.util.spawn(pulsebar.mixer)
-          end)
+          end),
+          awful.button({}, 2, function()
+						awful.util.spawn(string.format("pactl set-sink-volume %d 100%%", pulsebar.sink))
+            pulsebar.update()
+          end),
+          awful.button({}, 3, function()
+						awful.util.spawn(string.format("pactl set-sink-mute %d toggle", pulsebar.sink))
+            pulsebar.update()
+          end),
+          awful.button({}, 4, function()
+						awful.util.spawn(string.format("pactl set-sink-volume %d +%s", pulsebar.sink, pulsebar.step))
+            pulsebar.update()
+          end),
+          awful.button({}, 5, function()
+						awful.util.spawn(string.format("pactl set-sink-volume %d -%s", pulsebar.sink, pulsebar.step))
+            pulsebar.update()
+					end)
     ))
 
     timer_id = string.format("pulsebar-%s", pulsebar.sink)
