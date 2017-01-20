@@ -161,6 +161,10 @@ local function wrap_widget (target_widget, target_bg, target_fg, margin_left, ma
   return wrapped_widget
 end
 
+
+-- icons {{{
+local icon_font = beautiful.icon_font
+
 local function wrap_icon (image)
   local wrapped_icon = wibox.container.margin()
     wrapped_icon:set_widget(wibox.widget.imagebox(image))
@@ -168,15 +172,51 @@ local function wrap_icon (image)
   return wrapped_icon
 end
 
--- memory / cpu {{{
 memicon = wibox.widget.textbox("")
-memicon:set_font('Ionicons 10')
+memicon:set_font(icon_font)
 memicon_wrap = wrap_widget ( memicon
-                             , beautiful.midgray_0  --[[ bg ]]
+                           , beautiful.midgray_0  --[[ bg ]]
+                           , beautiful.fg         --[[ fg ]]
+                           , 2                    --[[ margin-left ]]
+                           , 2                    --[[ margin-right ]]
+                           )
+
+
+volumicon_wrap = wrap_widget ( lain.widgets.alsicon({ settings = function()
+                                                                   widget:set_font(icon_font)
+                                                                   if volume_now.status == "off" then
+                                                                     widget:set_text("")
+                                                                   elseif tonumber(volume_now.level) > 50 then
+                                                                     widget:set_text("")
+                                                                   elseif tonumber(volume_now.level) > 15  then
+                                                                     widget:set_text("")
+                                                                   else
+                                                                     widget:set_text("")
+                                                                   end
+                                                                 end })
+                             , beautiful.midgray_1  --[[ bg ]]
                              , beautiful.fg         --[[ fg ]]
                              , 2                    --[[ margin-left ]]
                              , 2                    --[[ margin-right ]]
                              )
+bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
+                                                               widget:set_font(icon_font)
+                                                               if bat_now.ac_status == 1 then
+                                                                 widget:set_text("")
+                                                               elseif tonumber(bat_now.perc) > 80 then
+                                                                 widget:set_text("")
+                                                               elseif tonumber(bat_now.perc) > 30 then
+                                                                 widget:set_text("")
+                                                               else
+                                                                 widget:set_text("")
+                                                               end
+                                                             end })
+                             , beautiful.midgray_0  --[[ bg ]]
+                             , beautiful.primary    --[[ fg ]]
+                             , 4                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
+                             ) -- }}}
+-- memory / cpu {{{
 memwidget_wrap = wrap_widget ( lain.widgets.mem({ settings = function()
                                                                widget:set_text(mem_now.used)
                                                              end
@@ -202,33 +242,12 @@ cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
                              ) -- }}}
 -- alsa volume {{{
 
-volumewidget_wrap = wrap_widget ( lain.widgets.alsa({ settings = function()
-                                                                   widget:set_text(volume_now.level .. "%")
-                                                                 end })
+volumewidget_wrap = wrap_widget ( lain.widgets.alsa({ settings = function() widget:set_text(volume_now.level .. "%") end })
                                 , beautiful.midgray_1  --[[ bg ]]
                                 , beautiful.fg         --[[ fg ]]
                                 , 2                    --[[ margin-left ]]
                                 , 4                    --[[ margin-right ]]
-                                )
-
-
-volumicon_wrap = wrap_widget ( lain.widgets.alsicon({ settings = function()
-                                                                   widget:set_font("Ionicons 10")
-                                                                   if volume_now.status == "off" then
-                                                                     widget:set_text("")
-                                                                   elseif tonumber(volume_now.level) > 50 then
-                                                                     widget:set_text("")
-                                                                   elseif tonumber(volume_now.level) > 15  then
-                                                                     widget:set_text("")
-                                                                   else
-                                                                     widget:set_text("")
-                                                                   end
-                                                                 end })
-                             , beautiful.midgray_1  --[[ bg ]]
-                             , beautiful.fg         --[[ fg ]]
-                             , 2                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
-                             ) -- }}}
+                                ) -- }}}
 -- battery {{{
 batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                                                                widget:set_text(bat_now.perc .. "%")
@@ -237,23 +256,6 @@ batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                              , beautiful.primary    --[[ fg ]]
                              , 2                    --[[ margin-left ]]
                              , 4                    --[[ margin-right ]]
-                             )
-bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
-                                                               widget:set_font("Ionicons 10")
-                                                               if bat_now.ac_status == 1 then
-                                                                 widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) > 80 then
-                                                                 widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) > 30 then
-                                                                 widget:set_text("")
-                                                               else
-                                                                 widget:set_text("")
-                                                               end
-                                                             end })
-                             , beautiful.midgray_0  --[[ bg ]]
-                             , beautiful.primary    --[[ fg ]]
-                             , 4                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
                              ) -- }}}
 -- date {{{
 datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
@@ -269,17 +271,17 @@ clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("
                                , 2                    --[[ margin-left ]]
                                , 2                    --[[ margin-right ]]
                                ) -- }}}
--- icons {{{
------------------------ ARROW SEPARATORS NAMING: --------------------------------
----                                     │                                     ---
----         ╭―――― points left           │        ╭―――― points right           ---
----         ▼                           │        ▼                            ---
----  arrow_1L2                          │ arrow_0R1                           ---
----        ▲ ▲                          │       ▲ ▲                           ---
----        │ ╰――― right half is color'2'│       │ ╰――― right half is color '1'---
----        ╰――――― left half is '1'      │       ╰――――― left half is color '0' ---
----                                     │                                     ---
----------------------------------------------------------------------------------
+-- arrows {{{
+--[[---------------- ARROW SEPARATORS NAMING: ------------------------------#
+│                                     │                                     │
+│         ╭―――― points left           │        ╭―――― points right           │
+│         ▼                           │        ▼                            │
+│  arrow_1L2                          │ arrow_0R1                           │
+│        ▲ ▲                          │       ▲ ▲                           │
+│        │ ╰――― right half is color'2'│       │ ╰――― right half is color '1'│
+│        ╰――――― left half is '1'      │       ╰――――― left half is color '0' │
+│                                     │                                     │
+#-------------------------------------#------------------------------------]]
 
 arrow_2L3 = wrap_icon(beautiful.arrow_2L3)
 arrow_2L1 = wrap_icon(beautiful.arrow_2L1)
@@ -289,12 +291,10 @@ arrow_1R0 = wrap_icon(beautiful.arrow_1R0)
 
 -- }}}
 -- promptbox {{{
-local mypromptbox = awful.prompt.run { prompt = "Run:"
-                                     , exe_callback = function (input)
-                                                        if not input or #input == 0 then return end
-                                                        awful.spawn.with_shell(input)
-                                                      end
-                                     }
+local mypromptbox = awful.prompt.run { prompt = "Run:", exe_callback = function (input)
+                                                                         if not input or #input == 0 then return end
+                                                                         awful.spawn.with_shell(input)
+                                                                       end }
 -- }}}
 -- }}}
 -- Wibox {{{
@@ -330,13 +330,9 @@ awful.screen.connect_for_each_screen(function(s)
                                     , mytaglist_buttons
                                     )
 
-  s.taglist_margin = wibox.container.margin()
-      s.taglist_margin:set_widget(s.mytaglist)
-      s.taglist_margin:set_margins(0)
-
   s.taglist_wrap = wibox.container.background()
-      s.taglist_wrap:set_widget(s.taglist_margin)
-      s.taglist_wrap:set_bg(beautiful.midgray_0)
+    s.taglist_wrap:set_widget(s.mytaglist)
+    s.taglist_wrap:set_bg(beautiful.midgray_0)
 
 
   s.mytasklist = awful.widget.tasklist( s
@@ -349,70 +345,55 @@ awful.screen.connect_for_each_screen(function(s)
                           , height = 16
                           })
   -- Left {{{
-  s.promptbox_margin = wibox.container.margin()
-      s.promptbox_margin:set_widget(s.mypromptbox)
-      s.promptbox_margin:set_margins(0)
-
   s.promptbox_wrap = wibox.container.background()
-      s.promptbox_wrap:set_widget(s.promptbox_margin)
-      s.promptbox_wrap:set_bg(beautiful.midgray_0)
+    s.promptbox_wrap:set_widget(s.mypromptbox)
+    s.promptbox_wrap:set_bg(beautiful.midgray_0)
 
   s.left_layout = wibox.layout.fixed.horizontal()
-      s.left_layout:add(s.taglist_wrap)
-      s.left_layout:add(s.promptbox_wrap)
-      s.left_layout:add(arrow_1R0)
+    s.left_layout:add(s.taglist_wrap)
+    s.left_layout:add(s.promptbox_wrap)
+    s.left_layout:add(arrow_1R0)
 
     -- }}}
     -- Right {{{
     s.right_layout = wibox.layout.fixed.horizontal()
 
-    -- systray
-    s.right_layout:add(wibox.widget.systray())
+      -- systray
+      s.right_layout:add(wibox.widget.systray())
 
-    -- mem / cpu state
-    s.right_layout:add(arrow_0L1)
-    s.right_layout:add(memicon_wrap)
-    s.right_layout:add(memwidget_wrap)
-    s.right_layout:add(cpuwidget_sep)
-    s.right_layout:add(cpuwidget_wrap)
+      -- mem / cpu state
+      s.right_layout:add(arrow_0L1)
+      s.right_layout:add(memicon_wrap)
+      s.right_layout:add(memwidget_wrap)
+      s.right_layout:add(cpuwidget_sep)
+      s.right_layout:add(cpuwidget_wrap)
 
-    -- volume
-    s.right_layout:add(arrow_1L2)
-    s.right_layout:add(volumicon_wrap)
-    s.right_layout:add(volumewidget_wrap)
+      -- volume
+      s.right_layout:add(arrow_1L2)
+      s.right_layout:add(volumicon_wrap)
+      s.right_layout:add(volumewidget_wrap)
 
-    -- battery
-    s.right_layout:add(arrow_2L1)
-    s.right_layout:add(bataricon_wrap)
-    s.right_layout:add(batwidget_wrap)
+      -- battery
+      s.right_layout:add(arrow_2L1)
+      s.right_layout:add(bataricon_wrap)
+      s.right_layout:add(batwidget_wrap)
 
-    -- date
-    s.right_layout:add(arrow_1L2)
-    s.right_layout:add(datewidget_wrap)
+      -- date
+      s.right_layout:add(arrow_1L2)
+      s.right_layout:add(datewidget_wrap)
 
-    -- time
-    s.right_layout:add(arrow_2L3)
-    s.right_layout:add(clockwidget_wrap)
+      -- time
+      s.right_layout:add(arrow_2L3)
+      s.right_layout:add(clockwidget_wrap)
 
     -- }}}
     -- Bring it all together {{{
 
    s.layout = wibox.layout.align.horizontal()
-      s.layout_margin = wibox.container.margin()
-        s.layout_margin:set_widget(s.layout)
-        s.layout_margin:set_margins(0)
 
-      s.left_layout_margin = wibox.container.margin()
-        s.left_layout_margin:set_widget(s.left_layout)
-        s.left_layout_margin:set_margins(0)
-
-      s.right_layout_margin = wibox.container.margin()
-        s.right_layout_margin:set_widget(s.right_layout)
-        s.right_layout_margin:set_margins(0)
-
-      s.layout:set_left( s.left_layout_margin )
+      s.layout:set_left( s.left_layout)
       s.layout:set_middle( s.mytasklist )
-      s.layout:set_right( s.right_layout_margin )
+      s.layout:set_right( s.right_layout)
 
     s.mywibox:set_widget(s.layout)
 
@@ -450,7 +431,7 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "x",        function () awful.screen.focused().mypromptbox:run()                                                     end )
 , awful.key( { Super        }, "z",        function () menubar.show()                                                                               end )
 , awful.key( { Super        }, "Return",   function () awful.util.spawn("konsole -e zsh")                                                           end )
-, awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("urxvt")                                                         end )
+, awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("urxvt")                                                                    end )
 , awful.key( { Hyper        }, "grave",    function () awful.util.spawn("konsole -e nvim")                                                          end )
 , awful.key( { Hyper        }, "1",        function () awful.util.spawn("chromium")                                                                 end )
 , awful.key( { Hyper, Cntrl }, "1",        function () awful.util.spawn("tor-browser-en")                                                           end )

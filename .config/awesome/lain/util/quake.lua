@@ -1,10 +1,10 @@
 
 --[[
-                                                   
-     Licensed under GNU General Public License v2  
-      * (c) 2016, Luke Bonham                      
-      * (c) 2015, unknown                          
-                                                   
+
+     Licensed under GNU General Public License v2
+      * (c) 2016, Luke Bonham
+      * (c) 2015, unknown
+
 --]]
 
 local awful        = require("awful")
@@ -119,13 +119,13 @@ end
 function quake:new(config)
     local conf = config or {}
 
-    conf.app        = conf.app       or "xterm"    -- application to spawn
-    conf.name       = conf.name      or "QuakeDD"  -- window name
+    conf.app        = conf.app       or "konsole -e zsh"    -- application to spawn
+    conf.name       = conf.name      or "QuakeTerm"  -- window name
     conf.argname    = conf.argname   or "-name %s" -- how to specify window name
     conf.extra      = conf.extra     or ""         -- extra arguments
     conf.border     = conf.border    or 1          -- client border width
     conf.visible    = conf.visible   or false      -- initially not visible
-    conf.followtag  = conf.followtag or false      -- spawn on currently focused screen
+    conf.followtag  = conf.followtag or true      -- spawn on currently focused screen
     conf.overlap    = conf.overlap   or false      -- overlap wibox
     conf.screen     = conf.screen    or awful.screen.focused()
 
