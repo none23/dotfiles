@@ -44,9 +44,9 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
     vert   = vert   or "top"
     horiz  = horiz  or "center"
     width  = width  or 1
-    height = height or 0.5
-    sticky = sticky or false
-    screen = screen or capi.mouse.screen
+    height = height or 0.25
+    sticky = sticky or true
+    screen = screen or awful.screen.focused()
 
     -- Determine signal usage in this version of awesome
     local attach_signal = capi.client.connect_signal    or capi.client.add_signal
@@ -87,7 +87,7 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
             else   y =  screengeom.y - screengeom.y end
 
             -- Client properties
-            c:geometry({ x = x, y = y + mywibox[mouse.screen].height, width = width - 2, height = height })
+            c:geometry({ x = x, y = y + awful.screen.focused().mywibox.height, width = width - 2, height = height })
             c.ontop = true
             c.above = true
             c.skip_taskbar = true
