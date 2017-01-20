@@ -1,10 +1,10 @@
 
 --[[
-                                                  
-     Licensed under GNU General Public License v2 
-      * (c) 2015, worron                          
-      * (c) 2013, Alexander Yakushev              
-                                                  
+
+     Licensed under GNU General Public License v2
+      * (c) 2015, worron
+      * (c) 2013, Alexander Yakushev
+
 --]]
 
 -- Asynchronous io.popen for Awesome WM.
@@ -15,7 +15,7 @@
 local awful = require('awful')
 
 -- Avoid discrepancies across multiple shells
-awful.util.shell = '/bin/sh'
+awful.util.shell = '/bin/zsh'
 
 -- Initialize tables for module
 asyncshell = { request_table = {}, id_counter = 0 }

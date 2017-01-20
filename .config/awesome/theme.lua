@@ -3,7 +3,7 @@ theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font                = "Inconsolata 9"
---theme.taglist_font        = "Inconsolata 9"
+theme.icon_font           = "Ionicons 9"
 
 
 -- Colors {{{
