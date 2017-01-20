@@ -51,43 +51,6 @@ do
 end
 
 -- }}}
--- batttery warnings {{{
-local function trim(s)
-    return s:find'^%s*$' and '' or s:match'^%s*(.*%S)'
-end
-
-local function bat_notification()
-    local f_capacity = assert(io.open("/sys/class/power_supply/BAT1/capacity", "r"))
-    local f_status = assert(io.open("/sys/class/power_supply/BAT1/status", "r"))
-    local bat_capacity = tonumber(f_capacity:read("*all"))
-    local bat_status = trim(f_status:read("*all"))
-
-    if (bat_capacity <= 10 and bat_status == "Discharging") then
-      naughty.notify({ title = "I'm dying!"
-                     , text =  bat_status .."% left! Click to suspend"
-                     , fg = beautiful.bg
-                     , bg = beautiful.danger
-                     , timeout = 60
-                     , position = "top_right"
-                     , run = function(_) awful.util.spawn.with_shell("systemctl suspend") end
-                     })
-    elseif (bat_capacity <= 40 and bat_status == "Discharging") then
-        naughty.notify({ title = "Hey, the battery is halfway dead"
-                       , text = bat_capacity .."% left! But you know how crappy the battery is..."
-                       , fg = beautiful.bg
-                       , bg = beautiful.danger
-                       , timeout= 5
-                       , position   = "top_right"
-                       })
-    end
-end
-
-battimer = timer({timeout = 60})
---battimer = gears.timer({timeout = 60})
-battimer:connect_signal("timeout", bat_notification)
-battimer:start()
-
--- }}}
 -- boot time {{{
 local function startup_time_notification ()
   os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
@@ -205,88 +168,130 @@ local function wrap_icon (image)
   return wrapped_icon
 end
 
--- memory {{{
-  memwidget_wrap = wrap_widget ( lain.widgets.mem({ settings = function()
-                                                                 if mem_now.used < 1000 then
-                                                                   widget:set_text(' ' .. mem_now.used)
-                                                                 else
-                                                                   widget:set_text(mem_now.used)
-                                                                 end
-                                                               end
-                                                  })
-                               , beautiful.midgray_0
-                               , beautiful.fg
-                               , 3
-                               , 0
-                               ) --}}}
--- cpu {{{
-
-  cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function() widget:set_text(":" .. cpu_now.usage) end })
-                               , beautiful.midgray_0
-                               , beautiful.primary
-                               , 0
-                               , 4
-                               ) -- }}}
--- alsa volume {{{
-  volumewidget = lain.widgets.alsa({ settings = function()
-                                                  if volume_now.status == "off" then
-                                                    volume_now.level = volume_now.level .. "M"
-                                                  end
-                                                  widget:set_text(volume_now.level .. "%")
-                                                end })
-
-  volumewidget_wrap = wrap_widget ( volumewidget
-                                  , (beautiful.midgray_1)
-                                  , (beautiful.fg)
-                                  , 2
-                                  , 4
-                                  ) -- }}}
--- battery {{{
-batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
-                                                               if bat_now.perc == "N/A" then
-                                                                   bat_now.perc = bat_now.perc .. "C"
-                                                               else
-                                                                   bat_now.perc = bat_now.perc .. "%"
-                                                               end
-                                                               widget:set_text(bat_now.perc)
+-- memory / cpu {{{
+--
+--
+memicon = wibox.widget.textbox("")
+memicon:set_font('Ionicons 10')
+memicon_wrap = wrap_widget ( memicon
+                             , beautiful.midgray_0  --[[ bg ]]
+                             , beautiful.fg         --[[ fg ]]
+                             , 2                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
+                             )
+memwidget_wrap = wrap_widget ( lain.widgets.mem({ settings = function()
+                                                               widget:set_text(mem_now.used)
                                                              end
                                                 })
-                             , beautiful.midgray_0
-                             , beautiful.primary
-                             , 2
-                             , 4
+                             , beautiful.midgray_0  --[[ bg ]]
+                             , beautiful.fg         --[[ fg ]]
+                             , 2                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
+                             )
+cpuwidget_sep = wrap_widget ( wibox.widget.textbox(":")
+                            , beautiful.midgray_0  --[[ bg ]]
+                            , beautiful.primary    --[[ fg ]]
+                            , 2                    --[[ margin-left ]]
+                            , 2                    --[[ margin-right ]]
+                            )
+cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
+                                                               widget:set_text(cpu_now.usage)
+                                                             end })
+                             , beautiful.midgray_0  --[[ bg ]]
+                             , beautiful.primary    --[[ fg ]]
+                             , 2                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
+                             ) -- }}}
+-- alsa volume {{{
+volumewidget = lain.widgets.alsa({ settings = function()
+                                                widget:set_text(volume_now.level .. "%")
+                                              end })
+
+volumewidget_wrap = wrap_widget ( volumewidget
+                                , beautiful.midgray_1  --[[ bg ]]
+                                , beautiful.fg         --[[ fg ]]
+                                , 2                    --[[ margin-left ]]
+                                , 4                    --[[ margin-right ]]
+                                )
+
+volumicon = lain.widgets.alsicon({ settings = function()
+                                             widget:set_font("Ionicons 10")
+                                             if volume_now.status == "off" then
+                                               widget:set_text("")
+                                             elseif tonumber(volume_now.level) > 50 then
+                                               widget:set_text("")
+                                             elseif tonumber(volume_now.level) > 15  then
+                                               widget:set_text("")
+                                             else
+                                               widget:set_text("")
+                                             end
+                                           end })
+
+volumicon_wrap = wrap_widget ( volumicon
+                             , beautiful.midgray_1  --[[ bg ]]
+                             , beautiful.fg         --[[ fg ]]
+                             , 2                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
+                             ) -- }}}
+-- battery {{{
+batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
+                                                               widget:set_text(bat_now.perc .. "%")
+                                                             end
+                                                })
+                             , beautiful.midgray_0  --[[ bg ]]
+                             , beautiful.primary    --[[ fg ]]
+                             , 2                    --[[ margin-left ]]
+                             , 4                    --[[ margin-right ]]
+                             )
+bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
+                                                               widget:set_font("Ionicons 10")
+                                                               if bat_now.ac_status == 1 then
+                                                                 widget:set_text("")
+                                                               elseif tonumber(bat_now.perc) > 80 then
+                                                                 widget:set_text("")
+                                                               elseif tonumber(bat_now.perc) > 30 then
+                                                                 widget:set_text("")
+                                                               else
+                                                                 widget:set_text("")
+                                                               end
+                                                             end
+                                                })
+                           , beautiful.midgray_0  --[[ bg ]]
+                           , beautiful.primary    --[[ fg ]]
+                           , 4                    --[[ margin-left ]]
+                           , 2                    --[[ margin-right ]]
                              ) -- }}}
 -- date {{{
-  datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
-                                , beautiful.midgray_1
-                                , beautiful.fg
-                                , 3
-                                , 4
-                                ) -- }}}
+datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
+                              , beautiful.midgray_1  --[[ bg ]]
+                              , beautiful.fg         --[[ fg ]]
+                              , 3                    --[[ margin-left ]]
+                              , 2                    --[[ margin-right ]]
+                              ) -- }}}
 -- clock {{{
-  clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
-                                 , beautiful.primary
-                                 , beautiful.black
-                                 , 3
-                                 , 4
-                                 ) -- }}}
+clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
+                               , beautiful.primary    --[[ bg ]]
+                               , beautiful.black      --[[ fg ]]
+                               , 2                    --[[ margin-left ]]
+                               , 2                    --[[ margin-right ]]
+                               ) -- }}}
 -- icons {{{
---[[ arrow separators naming: {{{
----         ╭―――― points left           │        ╭―――― points right
----         ▼                           │        ▼
----  arrow_1L2                          │ arrow_0R1
----        ▲ ▲                          │       ▲ ▲
----        │ ╰――― right half is color'2'│       │ ╰――― right half is color '1'
----        ╰――――― left half is '1'      │       ╰――――― left half is color '0'
---}}} ]]
+----------------------- ARROW SEPARATORS NAMING: --------------------------------
+---                                     │                                     ---
+---         ╭―――― points left           │        ╭―――― points right           ---
+---         ▼                           │        ▼                            ---
+---  arrow_1L2                          │ arrow_0R1                           ---
+---        ▲ ▲                          │       ▲ ▲                           ---
+---        │ ╰――― right half is color'2'│       │ ╰――― right half is color '1'---
+---        ╰――――― left half is '1'      │       ╰――――― left half is color '0' ---
+---                                     │                                     ---
+---------------------------------------------------------------------------------
+
 arrow_2L3 = wrap_icon(beautiful.arrow_2L3)
 arrow_2L1 = wrap_icon(beautiful.arrow_2L1)
 arrow_1L2 = wrap_icon(beautiful.arrow_1L2)
 arrow_0L1 = wrap_icon(beautiful.arrow_0L1)
 arrow_1R0 = wrap_icon(beautiful.arrow_1R0)
-volicon   = wrap_icon(beautiful.widget_vol)
-baticon   = wrap_icon(beautiful.widget_bat)
-loadicon  = wrap_icon(beautiful.widget_load)
 
 -- }}}
 -- promptbox {{{
@@ -372,18 +377,19 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- mem / cpu state
     s.right_layout:add(arrow_0L1)
-    s.right_layout:add(loadicon)
+    s.right_layout:add(memicon_wrap)
     s.right_layout:add(memwidget_wrap)
+    s.right_layout:add(cpuwidget_sep)
     s.right_layout:add(cpuwidget_wrap)
 
     -- volume
     s.right_layout:add(arrow_1L2)
-    s.right_layout:add(volicon)
+    s.right_layout:add(volumicon_wrap)
     s.right_layout:add(volumewidget_wrap)
 
     -- battery
     s.right_layout:add(arrow_2L1)
-    s.right_layout:add(baticon)
+    s.right_layout:add(bataricon_wrap)
     s.right_layout:add(batwidget_wrap)
 
     -- date
@@ -520,7 +526,9 @@ for i = 1, 9 do
                                                local tag = awful.screen.focused().tags[i]
                                                if all_clients then
                                                  for _, a_client in ipairs(all_clients) do
-                                                   a_client:tags({tag})
+                                                   local tagset = a_client:tags()
+                                                   table.insert(tagset, tag)
+                                                   a_client:tags(tagset)
                                                  end
                                                end
                                              end )

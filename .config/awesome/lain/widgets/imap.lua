@@ -12,7 +12,6 @@ local async        = require("lain.asyncshell")
 local naughty      = require("naughty")
 local wibox        = require("wibox")
 
-local mouse        = mouse
 local string       = { format = string.format,
                        gsub   = string.gsub }
 local tonumber     = tonumber
@@ -33,7 +32,7 @@ local function worker(args)
     local port        = args.port or 993
     local timeout     = args.timeout or 60
     local is_plain    = args.is_plain or false
-    local followmouse = args.followmouse or false
+    local followtag   = args.followtag or false
     local settings    = args.settings or function() end
 
     local head_command  = "curl --connect-timeout 3 -fsm 3"
@@ -41,8 +40,7 @@ local function worker(args)
 
     helpers.set_map(mail, 0)
 
-    if not is_plain
-    then
+    if not is_plain then
         password = helpers.read_pipe(password):gsub("\n", "")
     end
 
@@ -54,8 +52,8 @@ local function worker(args)
             position = "top_left"
         }
 
-        if followmouse then
-            mail_notification_preset.screen = mouse.screen
+        if followtag then
+            mail_notification_preset.screen = awful.screen.focused()
         end
 
         curl = string.format("%s --url imaps://%s:%s/INBOX -u %s:%q %s -k",
