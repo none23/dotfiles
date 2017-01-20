@@ -527,8 +527,18 @@ for i = 1, 9 do
                                                if all_clients then
                                                  for _, a_client in ipairs(all_clients) do
                                                    local tagset = a_client:tags()
-                                                   table.insert(tagset, tag)
-                                                   a_client:tags(tagset)
+                                                   local toggled = false
+                                                   for tag_index, tag_key in ipairs(tagset) do
+                                                     if tag_key == tag then
+                                                       table.remove(tagset, tag_index)
+                                                       a_client:tags(tagset)
+                                                       toggled = true
+                                                     end
+                                                   end
+                                                   if not toggled then
+                                                     table.insert(tagset, tag)
+                                                     a_client:tags(tagset)
+                                                   end
                                                  end
                                                end
                                              end )
