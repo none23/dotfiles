@@ -21,9 +21,10 @@ dd () { command sudo dd $* bs=512K status=progress ; }
 pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
 # }}}
 # misc {{{
-      rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
-      gui () { [[ $1 ]] && thunar "$*" || thunar $(pwd) & }
+rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
+gui () { [[ $1 ]] && thunar "$*" || thunar $(pwd) & }
 alias dmesgg='watch "dmesg -e | tail"'
+zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
 alias py='ipython3'
 alias df='df -h'
 alias du='du -h '

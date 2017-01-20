@@ -242,7 +242,9 @@ cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
                              ) -- }}}
 -- alsa volume {{{
 
-volumewidget_wrap = wrap_widget ( lain.widgets.alsa({ settings = function() widget:set_text(volume_now.level .. "%") end })
+volumewidget = lain.widgets.alsa({ settings = function() widget:set_text(volume_now.level .. "%") end })
+
+volumewidget_wrap = wrap_widget ( volumewidget
                                 , beautiful.midgray_1  --[[ bg ]]
                                 , beautiful.fg         --[[ fg ]]
                                 , 2                    --[[ margin-left ]]
