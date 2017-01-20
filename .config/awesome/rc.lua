@@ -485,9 +485,11 @@ for i = 1, 9 do
   globalkeys = awful.util.table.join(
     globalkeys
   , awful.key( { Super }, "#"..i + 9, function ()
-                                        local tag = awful.screen.focused().tags[i]
-                                        if tag then
-                                          tag:view_only()
+                                        for a_screen in screen do
+                                          local tag = a_screen.tags[i]
+                                          if tag then
+                                            tag:view_only()
+                                          end
                                         end
                                       end )
 
