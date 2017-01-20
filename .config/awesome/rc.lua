@@ -169,8 +169,6 @@ local function wrap_icon (image)
 end
 
 -- memory / cpu {{{
---
---
 memicon = wibox.widget.textbox("")
 memicon:set_font('Ionicons 10')
 memicon_wrap = wrap_widget ( memicon
@@ -191,8 +189,8 @@ memwidget_wrap = wrap_widget ( lain.widgets.mem({ settings = function()
 cpuwidget_sep = wrap_widget ( wibox.widget.textbox(":")
                             , beautiful.midgray_0  --[[ bg ]]
                             , beautiful.primary    --[[ fg ]]
-                            , 2                    --[[ margin-left ]]
-                            , 2                    --[[ margin-right ]]
+                            , 0                    --[[ margin-left ]]
+                            , 0                    --[[ margin-right ]]
                             )
 cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
                                                                widget:set_text(cpu_now.usage)
@@ -200,34 +198,32 @@ cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
                              , beautiful.midgray_0  --[[ bg ]]
                              , beautiful.primary    --[[ fg ]]
                              , 2                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
+                             , 4                    --[[ margin-right ]]
                              ) -- }}}
 -- alsa volume {{{
-volumewidget = lain.widgets.alsa({ settings = function()
-                                                widget:set_text(volume_now.level .. "%")
-                                              end })
 
-volumewidget_wrap = wrap_widget ( volumewidget
+volumewidget_wrap = wrap_widget ( lain.widgets.alsa({ settings = function()
+                                                                   widget:set_text(volume_now.level .. "%")
+                                                                 end })
                                 , beautiful.midgray_1  --[[ bg ]]
                                 , beautiful.fg         --[[ fg ]]
                                 , 2                    --[[ margin-left ]]
                                 , 4                    --[[ margin-right ]]
                                 )
 
-volumicon = lain.widgets.alsicon({ settings = function()
-                                             widget:set_font("Ionicons 10")
-                                             if volume_now.status == "off" then
-                                               widget:set_text("")
-                                             elseif tonumber(volume_now.level) > 50 then
-                                               widget:set_text("")
-                                             elseif tonumber(volume_now.level) > 15  then
-                                               widget:set_text("")
-                                             else
-                                               widget:set_text("")
-                                             end
-                                           end })
 
-volumicon_wrap = wrap_widget ( volumicon
+volumicon_wrap = wrap_widget ( lain.widgets.alsicon({ settings = function()
+                                                                   widget:set_font("Ionicons 10")
+                                                                   if volume_now.status == "off" then
+                                                                     widget:set_text("")
+                                                                   elseif tonumber(volume_now.level) > 50 then
+                                                                     widget:set_text("")
+                                                                   elseif tonumber(volume_now.level) > 15  then
+                                                                     widget:set_text("")
+                                                                   else
+                                                                     widget:set_text("")
+                                                                   end
+                                                                 end })
                              , beautiful.midgray_1  --[[ bg ]]
                              , beautiful.fg         --[[ fg ]]
                              , 2                    --[[ margin-left ]]
@@ -236,8 +232,7 @@ volumicon_wrap = wrap_widget ( volumicon
 -- battery {{{
 batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                                                                widget:set_text(bat_now.perc .. "%")
-                                                             end
-                                                })
+                                                             end })
                              , beautiful.midgray_0  --[[ bg ]]
                              , beautiful.primary    --[[ fg ]]
                              , 2                    --[[ margin-left ]]
@@ -254,12 +249,11 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                                                                else
                                                                  widget:set_text("")
                                                                end
-                                                             end
-                                                })
-                           , beautiful.midgray_0  --[[ bg ]]
-                           , beautiful.primary    --[[ fg ]]
-                           , 4                    --[[ margin-left ]]
-                           , 2                    --[[ margin-right ]]
+                                                             end })
+                             , beautiful.midgray_0  --[[ bg ]]
+                             , beautiful.primary    --[[ fg ]]
+                             , 4                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
                              ) -- }}}
 -- date {{{
 datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
