@@ -264,7 +264,7 @@ datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%
                               , beautiful.midgray_1  --[[ bg ]]
                               , beautiful.fg         --[[ fg ]]
                               , 3                    --[[ margin-left ]]
-                              , 2                    --[[ margin-right ]]
+                              , 5                    --[[ margin-right ]]
                               ) -- }}}
 -- clock {{{
 clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
