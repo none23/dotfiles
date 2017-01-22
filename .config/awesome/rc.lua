@@ -161,7 +161,6 @@ local function wrap_widget (target_widget, target_bg, target_fg, margin_left, ma
   return wrapped_widget
 end
 
-
 -- icons {{{
 local icon_font = beautiful.icon_font
 
@@ -216,11 +215,9 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                              , 4                    --[[ margin-left ]]
                              , 2                    --[[ margin-right ]]
                              ) -- }}}
+awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'",5)
 -- memory / cpu {{{
-memwidget_wrap = wrap_widget ( lain.widgets.mem({ settings = function()
-                                                               widget:set_text(mem_now.used)
-                                                             end
-                                                })
+memwidget_wrap = wrap_widget ( awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'", 10)
                              , beautiful.midgray_0  --[[ bg ]]
                              , beautiful.fg         --[[ fg ]]
                              , 2                    --[[ margin-left ]]
@@ -232,6 +229,45 @@ cpuwidget_sep = wrap_widget ( wibox.widget.textbox(":")
                             , 0                    --[[ margin-left ]]
                             , 0                    --[[ margin-right ]]
                             )
+--[[function cpudata()
+        local times = lines_match("cpu","/proc/stat")[1]
+
+        for index,time in pairs(times) do
+            local coreid = index - 1
+            local core   = cpu.core[coreid] or
+                           { last_active = 0 , last_total = 0, usage = 0 }
+            local at     = 1
+            local idle   = 0
+            local total  = 0
+
+            for field in string.gmatch(time, "[%s]+([^%s]+)") do
+                -- 4 = idle, 5 = ioWait. Essentially, the CPUs have done
+                -- nothing during these times.
+                if at == 4 or at == 5 then
+                    idle = idle + field
+                end
+                total = total + field
+                at = at + 1
+            end
+
+            local active = total - idle
+
+            if core.last_active ~= active or core.last_total ~= total then
+                -- Read current data and calculate relative values.
+                local dactive = active - core.last_active
+                local dtotal  = total - core.last_total
+                local usage   = math.ceil((dactive / dtotal) * 100)
+
+                core.last_active = active
+                core.last_total  = total
+                core.usage       = usage
+
+                -- Save current data for the next run.
+                cpu.core[coreid] = core
+            end
+        end
+end]]
+
 cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
                                                                widget:set_text(cpu_now.usage)
                                                              end })
