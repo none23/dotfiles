@@ -4,10 +4,8 @@ alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
 # }}}
 # sshuttle {{{
-alias sshide='sshuttle -r aws 0/0 --dns -D'
+alias sshide='sshuttle -r aws 0/0 --dns -D --pidfile /tmp/sshuttle.pid'
 alias sshive='sshuttle -r aws 0/0 --dns -v'
-alias sshpotify='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -D'
-alias sshpotivy='sshuttle -r aws 78.31.8.0/21 216.58.217.142/24 193.182.8.0/21 95.215.60.0/22 --dns -v'
 # }}}
 # touchpad {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
