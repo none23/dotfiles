@@ -525,7 +525,7 @@ clientkeys = awful.util.table.join(
 -- Tags manipulation {{{
 for i = 1, 9 do
   globalkeys = awful.util.table.join( globalkeys
-                                    , awful.key( { Super }, "#"..i + 9
+                                    , awful.key( { Super, Cntrl }, "#"..i + 9
                                                , function ()
                                                    local tag = awful.screen.focused().tags[i]
                                                    if tag then
@@ -534,7 +534,7 @@ for i = 1, 9 do
                                                  end
                                                )
 
-                                    , awful.key( { Super, Cntrl }, "#"..i + 9
+                                    , awful.key( { Super }, "#"..i + 9
                                                , function ()
                                                    for a_screen in screen do
                                                      local tag = a_screen.tags[i]
