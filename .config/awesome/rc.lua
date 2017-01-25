@@ -441,17 +441,20 @@ end)
 -- Keybindings {{{
 -- Global keybindings {{{
 globalkeys = awful.util.table.join(
-  awful.key( { Super        }, "j",        function () awful.client.focus.global_bydirection("down") if client.focus then client.focus:raise() end  end )
+  awful.key( { Super        }, "h",        function () awful.client.focus.global_bydirection("left") if client.focus then client.focus:raise() end  end )
+, awful.key( { Super        }, "j",        function () awful.client.focus.global_bydirection("down") if client.focus then client.focus:raise() end  end )
 , awful.key( { Super        }, "k",        function () awful.client.focus.global_bydirection("up") if client.focus then client.focus:raise() end    end )
-, awful.key( { Super        }, "h",        function () awful.client.focus.global_bydirection("left") if client.focus then client.focus:raise() end  end )
 , awful.key( { Super        }, "l",        function () awful.client.focus.global_bydirection("right") if client.focus then client.focus:raise() end end )
-, awful.key( { Super        }, "w",        function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end                   end )
+, awful.key( { Super        }, "w",        function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end                    end )
+, awful.key( { Super, Cntrl }, "w",        function () awful.client.cycle({clockwise=true})                                                         end )
 , awful.key( { Super        }, "b",        function () awful.client.focus.history.previous() if client.focus then client.focus:raise() end          end )
 , awful.key( { Super, Shift }, "j",        function () awful.client.swap.global_bydirection("down")                                                 end )
 , awful.key( { Super, Shift }, "k",        function () awful.client.swap.global_bydirection("up")                                                   end )
 , awful.key( { Super, Shift }, "h",        function () awful.client.swap.global_bydirection("left")                                                 end )
 , awful.key( { Super, Shift }, "l",        function () awful.client.swap.global_bydirection("right")                                                end )
 , awful.key( { Super        }, "a",        function () awful.client.restore()                                                                       end )
+, awful.key( { Super        }, "x",        function () awful.screen.focused().mypromptbox:run()                                                     end )
+, awful.key( { Super        }, "z",        function () menubar.show()                                                                               end )
 , awful.key( { Super        }, "space",    function () awful.layout.inc(layouts,  1)                                                                end )
 , awful.key( { Super        }, "period",   function () awful.tag.incncol(1)                                                                         end )
 , awful.key( { Super        }, "comma",    function () awful.tag.incncol(-1)                                                                        end )
@@ -466,10 +469,11 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "F1",       function () awful.screen.focus(1)                                                                        end )
 , awful.key( { Super        }, "F2",       function () awful.screen.focus(2)                                                                        end )
 , awful.key( { Super        }, "F3",       function () awful.screen.focus(3)                                                                        end )
-, awful.key( { Super        }, "x",        function () awful.screen.focused().mypromptbox:run()                                                     end )
-, awful.key( { Super        }, "z",        function () menubar.show()                                                                               end )
 , awful.key( { Super        }, "Return",   function () awful.util.spawn("konsole -e zsh")                                                           end )
-, awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("urxvt")                                                                    end )
+, awful.key( { Super, Cntrl }, "Return",   function () awful.util.spawn("urxvt")                                                                    end )
+, awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("konsole -e zsh")                                                           end )
+, awful.key( { Super, Cntrl }, "KP_Enter", function () awful.util.spawn("urxvt")                                                                    end )
+
 , awful.key( { Hyper        }, "grave",    function () awful.util.spawn("konsole -e nvim")                                                          end )
 , awful.key( { Hyper        }, "1",        function () awful.util.spawn("chromium")                                                                 end )
 , awful.key( { Hyper, Cntrl }, "1",        function () awful.util.spawn("tor-browser-en")                                                           end )
@@ -489,8 +493,10 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "F10",      function () awful.util.spawn("touchpad_ctrl")                                                            end )
 , awful.key( { Super        }, "F12",      function () awful.util.spawn("xscreensaver-command -lock")                                               end )
 , awful.key( { Super        }, "c",        function () os.execute("xsel -p -o | xsel -i -b")                                                        end )
+
 , awful.key( { Super, Cntrl }, "r",        awesome.restart                                                                                              )
 , awful.key( { Super, Cntrl }, "q",        awesome.quit                                                                                                 )
+
 , awful.key( { }, "XF86AudioRaiseVolume",  function () awful.util.spawn("amixer -q set Master 5%+"); volumewidget.update()                          end )
 , awful.key( { }, "XF86AudioLowerVolume",  function () awful.util.spawn("amixer -q set Master 5%-"); volumewidget.update()                          end )
 , awful.key( { }, "XF86AudioMute",         function () awful.util.spawn("amixer -q set Master playback toggle"); volumewidget.update()              end )
@@ -518,46 +524,60 @@ clientkeys = awful.util.table.join(
 -- }}}
 -- Tags manipulation {{{
 for i = 1, 9 do
-  globalkeys = awful.util.table.join(
-    globalkeys
-  , awful.key( { Super }, "#"..i + 9, function ()
-                                        for a_screen in screen do
-                                          local tag = a_screen.tags[i]
-                                          if tag then
-                                            tag:view_only()
-                                          end
-                                        end
-                                      end )
-
-  , awful.key( { Super, Shift }, "#"..i + 9, function ()
-                                               local tag = awful.screen.focused().tags[i]
-                                               if awful.client.focus and tag then
-                                                 awful.client.toggletag(tag)
-                                               end
-                                             end )
-
-  , awful.key( { Super, Shift, Cntrl }, "#"..i + 9, function ()
-                                               local all_clients = awful.screen.focused().selected_tag:clients()
-                                               local tag = awful.screen.focused().tags[i]
-                                               if all_clients then
-                                                 for _, a_client in ipairs(all_clients) do
-                                                   local tagset = a_client:tags()
-                                                   local toggled = false
-                                                   for tag_index, tag_key in ipairs(tagset) do
-                                                     if tag_key == tag then
-                                                       table.remove(tagset, tag_index)
-                                                       a_client:tags(tagset)
-                                                       toggled = true
-                                                     end
-                                                   end
-                                                   if not toggled then
-                                                     table.insert(tagset, tag)
-                                                     a_client:tags(tagset)
+  globalkeys = awful.util.table.join( globalkeys
+                                    , awful.key( { Super }, "#"..i + 9
+                                               , function ()
+                                                   local tag = awful.screen.focused().tags[i]
+                                                   if tag then
+                                                     tag:view_only()
                                                    end
                                                  end
-                                               end
-                                             end )
-  )
+                                               )
+
+                                    , awful.key( { Super, Cntrl }, "#"..i + 9
+                                               , function ()
+                                                   for a_screen in screen do
+                                                     local tag = a_screen.tags[i]
+                                                     if tag then
+                                                       tag:view_only()
+                                                     end
+                                                   end
+                                                 end
+                                               )
+
+                                    , awful.key( { Super, Shift }, "#"..i + 9
+                                               , function ()
+                                                   local tag = awful.screen.focused().tags[i]
+                                                   if awful.client.focus and tag then
+                                                     awful.client.toggletag(tag)
+                                                   end
+                                                 end
+                                               )
+
+                                    , awful.key( { Super, Shift, Cntrl }, "#"..i + 9
+                                               , function ()
+                                                   local all_clients = awful.screen.focused().selected_tag:clients()
+                                                   local tag = awful.screen.focused().tags[i]
+                                                   if all_clients then
+                                                     for _, a_client in ipairs(all_clients) do
+                                                       local tagset = a_client:tags()
+                                                       local toggled = false
+                                                       for tag_index, tag_key in ipairs(tagset) do
+                                                         if tag_key == tag then
+                                                           table.remove(tagset, tag_index)
+                                                           a_client:tags(tagset)
+                                                           toggled = true
+                                                         end
+                                                       end
+                                                       if not toggled then
+                                                         table.insert(tagset, tag)
+                                                         a_client:tags(tagset)
+                                                       end
+                                                     end
+                                                   end
+                                                 end
+                                               )
+                                    )
 end
 
 -- }}}

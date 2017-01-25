@@ -19,85 +19,42 @@ color15:    #ffffff
 colorBD:    #ffcfaf
 colorUL:    #ccdc90
 colorIT:    #80d4aa
-Xft*dpi: 96
-urxvt*termName: rxvt-unicode-256color
-URxvt*termName: rxvt-unicode-256color
-urxvt*scrollBar: false
-URxvt*scrollTtyOutput: false
-URxvt*scrollTtyKeypress: true
-urxvt*secondaryScroll: true
-urxvt*saveLines: 30000
-urxvt*cursorBlink: true
-urxvt*urgentOnBell: true
-urxvt*matcher.button:  1
-URxvt*font: xft:Terminus:pixelsize=9,xft:Terminess\ Powerline:pixelsize=9
-URxvt*faceName:Terminus:style=Regular:size=9
-urxvt*faceName:Terminus:style=Regular:size=9
-urxvt*.colorUL:    #ffffff
-URxvt*.foreground: #F2F1F0
+Xft.dpi: 96
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+URxvt.scrollBar: false
+URxvt.scrollTtyOutput: false
+URxvt.scrollTtyKeypress: true
+URxvt.secondaryScroll: true
+URxvt.saveLines: 30000
+URxvt.cursorBlink: true
+URxvt*Font: xft:Inconsolata:pixelsize=9,xft:Terminus:pixelsize=9
 URxvt*.cursorColor: #F67730
-#define _color0        #000d18
-#define _color1        #ff6C6C
-#define _color2        #6CD96C
-#define _color3        #de5e1e
-#define _color4        #6C6CD9
-#define _color5        #d96cd9
-#define _color6        #6cd9d9
-#define _color7        #ffffff
-#define _color8        #000d18
-#define _color9        #ff6C6C
-#define _color10       #6CD96C
-#define _color11       #de5e1e
-#define _color12       #6C6CD9
-#define _color13       #d96cd9
-#define _color14       #6cd9d9
-#define _color15       #ffffff
-#define _colorBD       #ffcfaf
-#define _colorUL       #ccdc90
-#define _colorIT       #80d4aa
-#define _foreground    #ffffff
-#define _background    #000000
-#define _cursorColor   #8faf9f
-URxvt*color0         : _color0
-URxvt*color1         : _color1
-URxvt*color2         : _color2
-URxvt*color3         : _color3
-URxvt*color4         : _color4
-URxvt*color5         : _color5
-URxvt*color6         : _color6
-URxvt*color7         : _color7
-URxvt*color8         : _color8
-URxvt*color9         : _color9
-URxvt*color10        : _color10
-URxvt*color11        : _color11
-URxvt*color12        : _color12
-URxvt*color13        : _color13
-URxvt*color14        : _color14
-URxvt*color15        : _color15
-URxvt*colorBD        : _colorBD
-URxvt*colorIT        : _colorIT
-URxvt*background     : _background
-XTerm*color0         : _color0
-XTerm*color1         : _color1
-XTerm*color2         : _color2
-XTerm*color3         : _color3
-XTerm*color4         : _color4
-XTerm*color5         : _color5
-XTerm*color6         : _color6
-XTerm*color7         : _color7
-XTerm*color8         : _color8
-XTerm*color9         : _color9
-XTerm*color10        : _color10
-XTerm*color11        : _color11
-XTerm*color12        : _color12
-XTerm*color13        : _color13
-XTerm*color14        : _color14
-XTerm*color15        : _color15
-XTerm*colorBD        : _colorBD
-XTerm*colorIT        : _colorIT
-XTerm*foreground     : _foreground
-XTerm*background     : _background
-XTerm*cursorColor    : _cursorColor
+URxvt*foreground: #aaa
+URxvt*background: #000000
+URxvt*color0:     #000d18
+URxvt*color1:     #ff6C6C
+URxvt*color2:     #6CD96C
+URxvt*color3:     #de5e1e
+URxvt*color4:     #6C6CD9
+URxvt*color5:     #d96cd9
+URxvt*color6:     #6cd9d9
+URxvt*color7:     #ffffff
+URxvt*color8:     #000d18
+URxvt*color9:     #ff6C6C
+URxvt*color10:    #6CD96C
+URxvt*color11:    #de5e1e
+URxvt*color12:    #6C6CD9
+URxvt*color13:    #d96cd9
+URxvt*color14:    #6cd9d9
+URxvt*color15:    #ffffff
+URxvt*colorBD:    #ffcfaf
+URxvt*colorUL:    #ccdc90
+URxvt*colorIT:    #80d4aa
 URxvt.keysym.KP_Add: +
 URxvt.keysym.KP_Subtract: -
 URxvt.keysym.KP_Multiply: *

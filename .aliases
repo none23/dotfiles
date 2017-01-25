@@ -74,12 +74,15 @@ alias foilhat='sudo rfkill block all'
 alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
 alias N='(nmtui) || (sudo NetworkManager && sleep 1 && nmtui)'
 # }}}
-# multiple screens {{{
+# multi-screen {{{
 alias xrandr1080x1920='xrandr --newmode "1080x1920_60.00" 178.35 1080 1168 1288 1496  1920 1921 1924 1987 -HSync +Vsync && xrandr --addmode HDMI-1-1 1080x1920_60.00'
 alias xrandr1600x1200='xrandr --newmode "1600x1200_60.00" 160.96 1600 1704 1880 2160  1200 1201 1204 1242 -HSync +Vsync && xrandr --addmode HDMI-1-1 1600x1200_60.00'
 alias xrandr1360x1024='xrandr --newmode "1360x1024_60.00" 116.01 1360 1448 1592 1824  1024 1025 1028 1060 -HSync +Vsync && xrandr --addmode HDMI-1-1 1360x1024_60.00'
 alias  xrandr1360x768='xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync && xrandr --addmode HDMI-1-1 1360x768_60.00'
-
+alias arandr='xrandr1080x1920 && xrandr1600x1200 && xrandr1360x1024 && xrandr1360x768 && arandr'
+alias qrandr='xrandr --output LVDS-1-1 --primary --preferred --mode 1366x768 --pos 0x768 --rotate normal --output DP-1-1 --off --output VGA-1-1 --off --output HDMI-1-1 --mode 1360x768_60.00 --pos 0x0 --rotate normal'
+# }}}
+# dpms {{{
 alias wkp='xset dpms force on'
 alias gdrk='xset dpms force off'
 # }}}
@@ -87,7 +90,7 @@ alias gdrk='xset dpms force off'
 mount ()  { if [ $# -ne 2 ]; then echo   "Two arguments expected: received $#"; else ( mount  "$1" "$2" || sudo mount  "$1" "$2" ); fi ; }
 umount () { if [ $# -ne 1 ]; then echo "Single argument expected: received $#"; else ( umount "$1"      || sudo umount "$1"      ); fi ; }
 # }}}
-# add sudo {{{
+# sudo {{{
 # if needed {{{
        du () { command du        "$@" || sudo du        "$@" ; }
  ifconfig () { command ifconfig  "$@" || sudo ifconfig  "$@" ; }
@@ -95,7 +98,6 @@ umount () { if [ $# -ne 1 ]; then echo "Single argument expected: received $#"; 
   masscan () { command masscan   "$@" || sudo masscan   "$@" ; }
      nmap () { command nmap      "$@" || sudo nmap      "$@" ; }
 systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
-
 # }}}
 # always {{{
 alias aircheck='sudo aircheck'
@@ -132,33 +134,33 @@ alias yor='yaourt -Rsc $(yaourt -Qtdq)'
 # Global Aliases {{{
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
-alias -g gvim='nvim'
+alias -g gvim='konsole -e nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 # }}}
 # File Extensions {{{
 alias -s html=chromium
-alias -s conf=vim
-alias -s lua=vim
-alias -s xml=vim
-alias -s txt=vim
-alias -s xml=vim
-alias -s css=vim
-alias -s ini=vim
-alias -s stylus=vim
-alias -s sass=vim
-alias -s pug=vim
-alias -s jade=vim
-alias -s js=vim
-alias -s coffee=vim
-alias -s jsx=vim
-alias -s yml=vim
-alias -s json=vim
+alias -s conf=nvim
+alias -s lua=nvim
+alias -s xml=nvim
+alias -s txt=nvim
+alias -s xml=nvim
+alias -s css=nvim
+alias -s ini=nvim
+alias -s stylus=nvim
+alias -s sass=nvim
+alias -s pug=nvim
+alias -s jade=nvim
+alias -s js=nvim
+alias -s coffee=nvim
+alias -s jsx=nvim
+alias -s yml=nvim
+alias -s json=nvim
 alias -s pdf=zathura
-alias -s jpg=feh
-alias -s png=feh
-alias -s gif=feh
+alias -s jpg=geeqie
+alias -s png=geeqie
+alias -s gif=geeqie
 alias -s svg=inkscape
 alias -s psd=inkscape
 # }}}
