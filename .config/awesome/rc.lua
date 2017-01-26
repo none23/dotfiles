@@ -1,7 +1,7 @@
 -- Requirements {{{
 ------------------------------------------------------------------------------
 
-local gears     = require("gears")        -- for wallpaper
+local gears     = require("gears")
 local awful     = require("awful")
   awful.rules   = require("awful.rules")
                   require("awful.autofocus")

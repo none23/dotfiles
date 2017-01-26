@@ -1,11 +1,20 @@
+local awful     = require("awful")
+local gears     = require("gears")
+local wibox     = require("wibox")
+
 theme                     = {}
 theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font                = "Inconsolata 9"
-theme.icon_font           = "Ionicons 9"
+theme.icon_font           = "Ionicons 10"
 
-
+theme.taglist_shape_border_width = "8"
+--[[{{{
+theme.taglist_shape = function(cr, width, height)
+    gears.shape.losange(cr, width, height)
+end
+--}}}]]
 -- Colors {{{
 theme.fg                  = "#999999"
 theme.bg                  = "#000000"
@@ -45,6 +54,14 @@ theme.bg_systray          = theme.bg
 theme.menu_width          = "120"
 theme.menu_height         = "15"
 theme.menu_border_width   = "0"
+
+-- }}}
+-- Snapping {{{
+theme.snap_bg   = theme.primary
+theme.snap_border_width   = "2"
+theme.snap_shape = function(cr, width, height)
+    gears.shape.rectangle(cr, width, height)
+end
 
 -- }}}
 -- Borders {{{
