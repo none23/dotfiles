@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function getstat() {
+    grep 'cpu ' /proc/stat | sed -e 's/  */x/g' -e 's/^cpux//'
+}
+
+function extract() {
+    echo $1 | cut -d 'x' -f $2
+}
+
+function change() {
+    local e=$(extract $ENDSTAT $1)
+    local b=$(extract $STARTSTAT $1)
+    local diff=$(( $e - $b ))
+    echo $diff
+}
+
+STARTSTAT=$(getstat)
+sleep 1
+ENDSTAT=$(getstat)
+
+USR=$(change 1)
+SYS=$(change 3)
+IDLE=$(change 4)
+IOW=$(change 5)
+
+#echo USR $USR SYS $SYS IDLE $IDLE IOW $IOW
+
+echo $(( ( $USR + $SYS + $IOW ) * 100 / ( $USR + $SYS + $IOW + $IDLE )))

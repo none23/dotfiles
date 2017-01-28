@@ -6,13 +6,12 @@ local awful     = require("awful")
   awful.rules   = require("awful.rules")
                   require("awful.autofocus")
 local wibox     = require("wibox")
-local naughty   = require("naughty")      -- errors
+local naughty   = require("naughty")
 local drop      = require("scratchdrop")  -- drop-down clients
 local lain      = require("lain")         -- additional widgets
 local menubar   = require("menubar")      -- dmenu
-local nlay      = require("nlay")         -- my layout
 local beautiful = require("beautiful")    -- theme
-      beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
+  beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
 
 -- }}}
@@ -86,16 +85,15 @@ startup_time_notification()
 ------------------------------------------------------------------------------
 -- Create {{{
 
-local layouts = { nlay
-                , awful.layout.suit.tile
+local layouts = { awful.layout.suit.tile
                 , awful.layout.suit.tile.bottom
                 , awful.layout.suit.tile.top
                 , awful.layout.suit.fair,fair
                 }
 
 tags = { name = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
-       , layout = { layouts[4], layouts[2], layouts[2], layouts[1], layouts[1]
-                  , layouts[2], layouts[2], layouts[2], layouts[3]
+       , layout = { layouts[3], layouts[1], layouts[1], layouts[1], layouts[1]
+                  , layouts[1], layouts[1], layouts[1], layouts[3]
                   }
        }
 
@@ -202,9 +200,9 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                                                                widget:set_font(icon_font)
                                                                if bat_now.ac_status == 1 then
                                                                  widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) >= 80 then
+                                                               elseif tonumber(bat_now.perc) > 80 then
                                                                  widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) >= 30 then
+                                                               elseif tonumber(bat_now.perc) > 30 then
                                                                  widget:set_text("")
                                                                else
                                                                  widget:set_text("")
