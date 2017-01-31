@@ -10,10 +10,6 @@ theme.font                = "Inconsolata 9"
 theme.tasklist_font       = "Fira Sans 8"
 theme.icon_font           = "Ionicons 10"
 
-theme.taglist_spacing     = "2"
-theme.taglist_shape_border_width = "8"
-
-theme.tasklist_align = "center"
 --[[{{{
 --theme.tasklist_spacing    = "6"
 theme.taglist_shape = function(cr, width, height)
@@ -53,6 +49,9 @@ theme.menu_bg_normal      = theme.bg
 theme.menu_bg_focus       = theme.bg
 theme.bg_minimize         = theme.bg
 theme.bg_systray          = theme.bg
+theme.prompt_fg = theme.bg
+theme.prompt_bg = theme.primary
+
 
 -- }}}
 -- Menu {{{
@@ -80,8 +79,12 @@ theme.border_marked       = theme.secondary
 theme.gray                = theme.fg
 
 -- }}}
+theme.taglist_spacing     = "2"
+theme.taglist_shape_border_width = "8"
 theme.taglist_squares_sel        = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.png"
+
+theme.tasklist_align = "center"
 -- Powerline {{{
 theme.arrow_2L3  = theme.confdir .. "/icons/midgray1_to_primary.png"
 theme.arrow_2L1  = theme.confdir .. "/icons/midgray1_to_midgray0.png"
