@@ -7,10 +7,15 @@ theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font                = "Inconsolata 9"
+theme.tasklist_font       = "Fira Sans 8"
 theme.icon_font           = "Ionicons 10"
 
+theme.taglist_spacing     = "2"
 theme.taglist_shape_border_width = "8"
+
+theme.tasklist_align = "center"
 --[[{{{
+--theme.tasklist_spacing    = "6"
 theme.taglist_shape = function(cr, width, height)
     gears.shape.losange(cr, width, height)
 end
