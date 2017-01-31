@@ -30,6 +30,7 @@ if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical
                    , title = "Oops, you're out of luck, buddy!"
                    , text = awesome.startup_errors
+                   , position = "bottom_left"
                    })
 end
 -- }}}
@@ -43,6 +44,7 @@ do
                                 naughty.notify({ preset = naughty.config.presets.critical
                                                , title = "Looks like you fucked it up!"
                                                , text = err
+                                               , position = "bottom_left"
                                                })
                                 in_error = false
                             end
@@ -58,7 +60,7 @@ local function startup_time_notification ()
                  , text = f_boot_time_info
                  , preset = naughty.config.presets.low
                  , timeout = 5
-                 , position = "top_right"
+                 , position = "bottom_left"
                  })
 end
 -- }}}
