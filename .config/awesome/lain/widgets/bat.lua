@@ -26,7 +26,7 @@ local ps = io.popen("ls /sys/class/power_supply/")
 for power_source in ps:lines() do
   if string.match(power_source, "BAT") then
     battery = power_source
-  elseif string.match(power_source, "AC") then
+  elseif string.match(power_source, "AC") or string.match(power_source, "ADP") then
     local ac = power_source
   end
 
