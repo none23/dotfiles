@@ -425,7 +425,7 @@ let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni' ]
 set completeopt=longest,menuone,preview
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-let g:tern#command = ['tern']
+let g:tern#command = ['/home/n/.npm-global/bin/tern']
 let g:tern#arguments = ['--persistent']
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"

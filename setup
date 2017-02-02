@@ -45,6 +45,12 @@ ln -s $DOTFILES_PATH/.bashrc ~/.bashrc
 ln -s $DOTFILES_PATH/.bash_profile ~/.bash_profile
 
 # /bash }}}
+# profile {{{
+
+[[ -a ~/.profile ]] && mv ~/.profile{,.old}
+ln -s $DOTFILES_PATH/.profile ~/.profile
+
+# /profile }}}
 # misc {{{
 
 [[ -a ~/.config/awesome ]] && mv ~/.config/awesome{,.old}
