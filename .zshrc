@@ -10,17 +10,14 @@ HISTFILE=~/.histfile
 HISTSIZE=32000
 SAVEHIST=128000
 setopt appendhistory
-
 # }}}
 # SSH-Agent {{{
 eval $(keychain --eval --quiet id_rsa)
-
 # }}}
 # automatic startx {{{
 [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
 # same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
-
 # }}}
 # zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
@@ -34,7 +31,6 @@ zstyle nocompwarn true
 autoload -Uz compinit
 compinit
 setopt completealiases
-
 # }}}
 # numeric keypad {{{
 bindkey "^[OH" beginning-of-line
@@ -45,14 +41,12 @@ bindkey -s "^[Oo" "/"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
-
 # }}}
 # powerline {{{
 autoload -U colors && colors
 prompt off
 powerline-daemon -q
 . /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-
 # fallback: TODO
 # [[ -a /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]
 # || autoload -Uz promptinit && promptinit && prompt adam1
@@ -69,29 +63,21 @@ fi
 if [[ -a ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
-
 # }}}
 # syntax-highlighting {{{
 if [[ -a  ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-
 # }}}
 # [ OFF ] Virtualenvwrapper {{{
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=/home/n/projects
 # source /usr/bin/virtualenvwrapper.sh
-
 # }}}
-# RVM {{{
-export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# }}}
-# npm {{{
-[[ -d ~/.npm-global ]] && [[ -d ~/.npm-global/bin ]] || mkdir -p ~/.npm-global/bin
-export PATH="$HOME/.npm-global/bin:$PATH"
+# Profile {{{
+if [[ -a ~/.profile ]]; then
+    source ~/.profile
+fi
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
