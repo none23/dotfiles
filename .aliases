@@ -3,6 +3,9 @@ alias la='ls -AFlh --color=tty'
 alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
 # }}}
+# myip {{{
+alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
+# }}}
 # sshuttle {{{
 alias sshide='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid'
 alias sshide-dl='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid --no-latency-control'
