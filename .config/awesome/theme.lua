@@ -7,6 +7,7 @@ theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font                = "Inconsolata 9"
+theme.font_small          = "Inconsolata 7.5"
 theme.tasklist_font       = "Fira Sans 8"
 theme.icon_font           = "Ionicons 10"
 
@@ -18,6 +19,7 @@ end
 --}}}]]
 -- Colors {{{
 theme.fg                  = "#999999"
+theme.fg_muted            = "#666666"
 theme.bg                  = "#000000"
 theme.primary             = "#de5e1e"
 theme.primary2            = "#ff6000"
@@ -27,7 +29,7 @@ theme.black               = "#000000"
 theme.tranasparent        = "#00000000"
 theme.midgray_0           = "#121212"
 theme.midgray_1           = "#232323"
-theme.midgray_2           = "#474747"
+theme.midgray_2           = "#171717"
 
 theme.popup_fg            = "#12121288"
 theme.popup_bg            = theme.primary
@@ -86,18 +88,17 @@ theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.png"
 
 theme.tasklist_align = "center"
 -- Powerline {{{
-theme.arrow_2L3  = theme.confdir .. "/icons/midgray1_to_primary.png"
-theme.arrow_2L1  = theme.confdir .. "/icons/midgray1_to_midgray0.png"
-theme.arrow_1L2  = theme.confdir .. "/icons/midgray0_to_midgray1.png"
-theme.arrow_0L1  = theme.confdir .. "/icons/black_to_midgray0.png"
-theme.arrow_1R0  = theme.confdir .. "/icons/midgray0_to_black_right.png"
+theme.arrow_2L3  = theme.confdir .. "/icons/midgray1_to_primary.svg"
+theme.arrow_2L1  = theme.confdir .. "/icons/midgray1_to_midgray0.svg"
+theme.arrow_1L2  = theme.confdir .. "/icons/midgray0_to_midgray1.svg"
+theme.arrow_0L0  = theme.confdir .. "/icons/black_to_black.svg"
+theme.arrow_0L1  = theme.confdir .. "/icons/black_to_midgray0.svg"
+theme.arrow_0L2  = theme.confdir .. "/icons/black_to_midgray1.svg"
+theme.arrow_0L4  = theme.confdir .. "/icons/black_to_midgray2.svg"
+theme.arrow_4L1  = theme.confdir .. "/icons/midgray2_to_midgray0.svg"
+theme.arrow_1R0  = theme.confdir .. "/icons/midgray0_to_black_right.svg"
 -- }}}
 -- Icons {{{
-theme.widget_cpu                 = theme.confdir .. "/icons/cpu.png"
-theme.widget_mem                 = theme.confdir .. "/icons/mem.png"
-theme.widget_bat                 = theme.confdir .. "/icons/baticon.png"
-theme.widget_vol                 = theme.confdir .. "/icons/newvolicon.png"
-theme.widget_load                = theme.confdir .. "/icons/loadicon.png"
 theme.icon_theme                 = nil
 theme.tasklist_disable_icon      = true
 
