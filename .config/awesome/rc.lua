@@ -145,7 +145,7 @@ end
 -- }}}
 -- Wibox Widgets {{{
 ------------------------------------------------------------------------------
-local function wrap_widget (target_widget, target_bg, target_fg, margin_left, margin_right )
+local function wrap_widget( target_widget, target_bg, target_fg, margin_left, margin_right )
   local wrapped_inner = wibox.container.margin()
     wrapped_inner:set_top(1)
     wrapped_inner:set_right(margin_right)
@@ -216,19 +216,28 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                              , 2                    --[[ margin-right ]]
                              ) -- }}}
 awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'",5)
+-- ip address {{{
+ipwidget = awful.widget.watch("zsh -c 'curl -s https://httpbin.org/ip | jq -r \".origin\"'", 10)
+  ipwidget:set_font(beautiful.font_small)
+ipwidget_wrap = wrap_widget( ipwidget
+                           , beautiful.black      --[[ bg ]]
+                           , beautiful.fg_muted   --[[ fg ]]
+                           , 4                    --[[ margin-left ]]
+                           , 4                    --[[ margin-right ]]
+                           ) -- }}}
 -- memory / cpu {{{
-memwidget_wrap = wrap_widget ( awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'", 10)
-                             , beautiful.midgray_0  --[[ bg ]]
-                             , beautiful.fg         --[[ fg ]]
-                             , 2                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
-                             )
-cpuwidget_sep = wrap_widget ( wibox.widget.textbox(":")
+memwidget_wrap = wrap_widget( awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'", 10)
                             , beautiful.midgray_0  --[[ bg ]]
-                            , beautiful.primary    --[[ fg ]]
-                            , 0                    --[[ margin-left ]]
-                            , 0                    --[[ margin-right ]]
+                            , beautiful.fg         --[[ fg ]]
+                            , 2                    --[[ margin-left ]]
+                            , 2                    --[[ margin-right ]]
                             )
+cpuwidget_sep = wrap_widget( wibox.widget.textbox(":")
+                           , beautiful.midgray_0  --[[ bg ]]
+                           , beautiful.primary    --[[ fg ]]
+                           , 0                    --[[ margin-left ]]
+                           , 0                    --[[ margin-right ]]
+                           )
 --[[function cpudata()
         local times = lines_match("cpu","/proc/stat")[1]
 
@@ -268,47 +277,47 @@ cpuwidget_sep = wrap_widget ( wibox.widget.textbox(":")
         end
 end]]
 
-cpuwidget_wrap = wrap_widget ( lain.widgets.cpu({ settings = function()
-                                                               widget:set_text(cpu_now.usage)
-                                                             end })
-                             , beautiful.midgray_0  --[[ bg ]]
-                             , beautiful.primary    --[[ fg ]]
-                             , 2                    --[[ margin-left ]]
-                             , 4                    --[[ margin-right ]]
-                             ) -- }}}
+cpuwidget_wrap = wrap_widget( lain.widgets.cpu({ settings = function()
+                                                              widget:set_text(cpu_now.usage)
+                                                            end })
+                            , beautiful.midgray_0  --[[ bg ]]
+                            , beautiful.primary    --[[ fg ]]
+                            , 2                    --[[ margin-left ]]
+                            , 4                    --[[ margin-right ]]
+                            ) -- }}}
 -- alsa volume {{{
 
 volumewidget = lain.widgets.alsa({ settings = function() widget:set_text(volume_now.level .. "%") end })
 
-volumewidget_wrap = wrap_widget ( volumewidget
-                                , beautiful.midgray_1  --[[ bg ]]
-                                , beautiful.fg         --[[ fg ]]
-                                , 2                    --[[ margin-left ]]
-                                , 4                    --[[ margin-right ]]
-                                ) -- }}}
--- battery {{{
-batwidget_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
-                                                               widget:set_text(bat_now.perc .. "%")
-                                                             end })
-                             , beautiful.midgray_0  --[[ bg ]]
-                             , beautiful.primary    --[[ fg ]]
-                             , 2                    --[[ margin-left ]]
-                             , 4                    --[[ margin-right ]]
-                             ) -- }}}
--- date {{{
-datewidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
-                              , beautiful.midgray_1  --[[ bg ]]
-                              , beautiful.fg         --[[ fg ]]
-                              , 3                    --[[ margin-left ]]
-                              , 2                    --[[ margin-right ]]
-                              ) -- }}}
--- clock {{{
-clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
-                               , beautiful.primary    --[[ bg ]]
-                               , beautiful.black      --[[ fg ]]
+volumewidget_wrap = wrap_widget( volumewidget
+                               , beautiful.midgray_1  --[[ bg ]]
+                               , beautiful.fg         --[[ fg ]]
                                , 2                    --[[ margin-left ]]
-                               , 5                    --[[ margin-right ]]
+                               , 4                    --[[ margin-right ]]
                                ) -- }}}
+-- battery {{{
+batwidget_wrap = wrap_widget( lain.widgets.bat({ settings = function()
+                                                              widget:set_text(bat_now.perc .. "%")
+                                                            end })
+                            , beautiful.midgray_0  --[[ bg ]]
+                            , beautiful.primary    --[[ fg ]]
+                            , 2                    --[[ margin-left ]]
+                            , 4                    --[[ margin-right ]]
+                            ) -- }}}
+-- date {{{
+datewidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
+                             , beautiful.midgray_1  --[[ bg ]]
+                             , beautiful.fg         --[[ fg ]]
+                             , 3                    --[[ margin-left ]]
+                             , 2                    --[[ margin-right ]]
+                             ) -- }}}
+-- clock {{{
+clockwidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
+                              , beautiful.primary    --[[ bg ]]
+                              , beautiful.black      --[[ fg ]]
+                              , 2                    --[[ margin-left ]]
+                              , 5                    --[[ margin-right ]]
+                              ) -- }}}
 -- arrows {{{
 --[[---------------- ARROW SEPARATORS NAMING: ------------------------------#
 │                                     │                                     │
@@ -324,15 +333,19 @@ clockwidget_wrap = wrap_widget ( wibox.widget.textclock( '<span>' ..  tostring("
 arrow_2L3 = wrap_icon(beautiful.arrow_2L3)
 arrow_2L1 = wrap_icon(beautiful.arrow_2L1)
 arrow_1L2 = wrap_icon(beautiful.arrow_1L2)
+arrow_0L0 = wrap_icon(beautiful.arrow_0L0)
 arrow_0L1 = wrap_icon(beautiful.arrow_0L1)
+arrow_0L2 = wrap_icon(beautiful.arrow_0L2)
+arrow_0L4 = wrap_icon(beautiful.arrow_0L4)
 arrow_1R0 = wrap_icon(beautiful.arrow_1R0)
+arrow_4L1 = wrap_icon(beautiful.arrow_4L1)
 
 -- }}}
 -- promptbox {{{
-local mypromptbox = awful.prompt.run { prompt = "Run:", exe_callback = function (input)
-                                                                         if not input or #input == 0 then return end
-                                                                         awful.spawn.with_shell(input)
-                                                                       end }
+local mypromptbox = awful.prompt.run{ prompt = "Run:", exe_callback = function (input)
+                                                                        if not input or #input == 0 then return end
+                                                                        awful.spawn.with_shell(input)
+                                                                      end }
 -- }}}
 -- }}}
 -- Wibox {{{
@@ -398,6 +411,10 @@ awful.screen.connect_for_each_screen(function(s)
 
       -- systray
       s.right_layout:add(wibox.widget.systray())
+
+      -- mem / cpu state
+      s.right_layout:add(arrow_0L0)
+      s.right_layout:add(ipwidget_wrap)
 
       -- mem / cpu state
       s.right_layout:add(arrow_0L1)
