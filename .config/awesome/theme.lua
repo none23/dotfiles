@@ -19,7 +19,7 @@ end
 --}}}]]
 -- Colors {{{
 theme.fg                  = "#999999"
-theme.fg_muted            = "#666666"
+theme.fg_muted            = "#777777"
 theme.bg                  = "#000000"
 theme.primary             = "#de5e1e"
 theme.primary2            = "#ff6000"

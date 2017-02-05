@@ -169,8 +169,8 @@ ipicon = awful.widget.watch("zsh -c '[[ -n $(myip) ]] && echo \"\" || echo \"
   ipicon:set_font(beautiful.icon_font)
 ipicon_wrap = wrap_widget( ipicon
                          , beautiful.black      --[[ bg ]]
-                         --, beautiful.fg_muted   --[[ fg ]]
-                         , beautiful.fg         --[[ fg ]]
+                         , beautiful.fg_muted   --[[ fg ]]
+                         --, beautiful.fg         --[[ fg ]]
                          , 4                    --[[ margin-left ]]
                          , 2                    --[[ margin-right ]]
                          )
@@ -224,8 +224,8 @@ ipwidget = awful.widget.watch("zsh -c 'echo $(curl -s https://httpbin.org/ip | j
   ipwidget:set_font(beautiful.font_small)
 ipwidget_wrap = wrap_widget( ipwidget
                            , beautiful.black      --[[ bg ]]
-                           --, beautiful.fg_muted   --[[ fg ]]
-                           , beautiful.fg         --[[ fg ]]
+                           , beautiful.fg_muted   --[[ fg ]]
+                           --, beautiful.fg         --[[ fg ]]
                            , 2                    --[[ margin-left ]]
                            , 6                    --[[ margin-right ]]
                            ) -- }}}
