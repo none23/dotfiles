@@ -27,7 +27,7 @@ theme.secondary           = "#1e9dde"
 theme.danger              = "#de1e1e"
 theme.black               = "#000000"
 theme.tranasparent        = "#00000000"
-theme.midgray_0           = "#121212"
+theme.midgray_0           = "#141414"
 theme.midgray_1           = "#232323"
 theme.midgray_2           = "#171717"
 
