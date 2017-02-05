@@ -165,9 +165,12 @@ end
 local icon_font = beautiful.icon_font
 
 
-ipicon = awful.widget.watch("zsh -c '[[ -n $(myip) ]] && echo \"\" || echo \"\" '", 10)
+ipicon = awful.widget.watch("zsh -c '[[ -n $(myip) ]] && echo \"\" || echo \"\" '", 10)
   ipicon:set_font(beautiful.icon_font)
-ipicon_wrap = wrap_widget( ipicon
+ipicon_wrap = wrap_widget( wibox.container{ widget = wibox.container.rotate
+                                          , direction = "south"
+                                          , ipicon
+                                          }
                          , beautiful.black      --[[ bg ]]
                          , beautiful.fg_muted   --[[ fg ]]
                          , 4                    --[[ margin-left ]]
