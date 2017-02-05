@@ -6,10 +6,11 @@ theme                     = {}
 theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
-theme.font                = "Inconsolata 9"
+theme.font                = "Inconsolata 8.5"
 theme.font_small          = "Inconsolata 7.5"
 theme.tasklist_font       = "Fira Sans 8"
 theme.icon_font           = "Ionicons 10"
+theme.useless_gap         = "0"
 
 --[[{{{
 --theme.tasklist_spacing    = "6"
@@ -74,17 +75,15 @@ end
 theme.border_width        = "1"
 theme.wibox_border_width  = "0"
 theme.widget_border_width = "0"
-
 theme.border_normal       = theme.midgray_1
 theme.border_focus        = theme.primary
 theme.border_marked       = theme.secondary
 theme.gray                = theme.fg
-
 -- }}}
 theme.taglist_spacing     = "2"
 theme.taglist_shape_border_width = "8"
-theme.taglist_squares_sel        = theme.confdir .. "/icons/square_a.png"
-theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.png"
+theme.taglist_squares_sel        = theme.confdir .. "/icons/square_a.svg"
+theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.svg"
 
 theme.tasklist_align = "center"
 -- Powerline {{{
