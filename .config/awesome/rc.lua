@@ -164,15 +164,19 @@ end
 -- icons {{{
 local icon_font = beautiful.icon_font
 
-local function wrap_icon (image)
-  local wrapped_icon = wibox.container.margin()
-    wrapped_icon:set_widget(wibox.widget.imagebox(image))
-    wrapped_icon:set_margins(-1)
-  return wrapped_icon
-end
+
+ipicon = awful.widget.watch("zsh -c '[[ -n $(myip) ]] && echo \"\" || echo \"\" '", 10)
+  ipicon:set_font(beautiful.icon_font)
+ipicon_wrap = wrap_widget( ipicon
+                         , beautiful.black      --[[ bg ]]
+                         --, beautiful.fg_muted   --[[ fg ]]
+                         , beautiful.fg         --[[ fg ]]
+                         , 4                    --[[ margin-left ]]
+                         , 2                    --[[ margin-right ]]
+                         )
 
 memicon = wibox.widget.textbox("")
-memicon:set_font(icon_font)
+  memicon:set_font(icon_font)
 memicon_wrap = wrap_widget ( memicon
                            , beautiful.midgray_0  --[[ bg ]]
                            , beautiful.fg         --[[ fg ]]
@@ -215,15 +219,15 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                              , 4                    --[[ margin-left ]]
                              , 2                    --[[ margin-right ]]
                              ) -- }}}
-awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'",5)
 -- ip address {{{
-ipwidget = awful.widget.watch("zsh -c 'curl -s https://httpbin.org/ip | jq -r \".origin\"'", 10)
+ipwidget = awful.widget.watch("zsh -c 'echo $(curl -s https://httpbin.org/ip | jq -r \".origin\")'", 10)
   ipwidget:set_font(beautiful.font_small)
 ipwidget_wrap = wrap_widget( ipwidget
                            , beautiful.black      --[[ bg ]]
-                           , beautiful.fg_muted   --[[ fg ]]
-                           , 4                    --[[ margin-left ]]
-                           , 4                    --[[ margin-right ]]
+                           --, beautiful.fg_muted   --[[ fg ]]
+                           , beautiful.fg         --[[ fg ]]
+                           , 2                    --[[ margin-left ]]
+                           , 6                    --[[ margin-right ]]
                            ) -- }}}
 -- memory / cpu {{{
 memwidget_wrap = wrap_widget( awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'", 10)
@@ -330,15 +334,22 @@ clockwidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%
 │                                     │                                     │
 #-------------------------------------#------------------------------------]]
 
-arrow_2L3 = wrap_icon(beautiful.arrow_2L3)
-arrow_2L1 = wrap_icon(beautiful.arrow_2L1)
-arrow_1L2 = wrap_icon(beautiful.arrow_1L2)
-arrow_0L0 = wrap_icon(beautiful.arrow_0L0)
-arrow_0L1 = wrap_icon(beautiful.arrow_0L1)
-arrow_0L2 = wrap_icon(beautiful.arrow_0L2)
-arrow_0L4 = wrap_icon(beautiful.arrow_0L4)
-arrow_1R0 = wrap_icon(beautiful.arrow_1R0)
-arrow_4L1 = wrap_icon(beautiful.arrow_4L1)
+local function wrap_arrow (image)
+  local wrapped_icon = wibox.container.margin()
+    wrapped_icon:set_widget(wibox.widget.imagebox(image))
+    wrapped_icon:set_margins(-1)
+  return wrapped_icon
+end
+
+arrow_2L3 = wrap_arrow(beautiful.arrow_2L3)
+arrow_2L1 = wrap_arrow(beautiful.arrow_2L1)
+arrow_1L2 = wrap_arrow(beautiful.arrow_1L2)
+arrow_0L0 = wrap_arrow(beautiful.arrow_0L0)
+arrow_0L1 = wrap_arrow(beautiful.arrow_0L1)
+arrow_0L2 = wrap_arrow(beautiful.arrow_0L2)
+arrow_0L4 = wrap_arrow(beautiful.arrow_0L4)
+arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
+arrow_4L1 = wrap_arrow(beautiful.arrow_4L1)
 
 -- }}}
 -- promptbox {{{
@@ -414,6 +425,7 @@ awful.screen.connect_for_each_screen(function(s)
 
       -- mem / cpu state
       s.right_layout:add(arrow_0L0)
+      s.right_layout:add(ipicon_wrap)
       s.right_layout:add(ipwidget_wrap)
 
       -- mem / cpu state

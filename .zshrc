@@ -52,11 +52,9 @@ powerline-daemon -q
 # || autoload -Uz promptinit && promptinit && prompt adam1
 
 # }}}
-# aliases {{{
-source ~/.aliases
-
-if [[ -a ~/.private_aliases ]]; then
-    source ~/.private_aliases
+# profile {{{
+if [[ -a ~/.profile ]]; then
+    source ~/.profile
 fi
 # }}}
 # zshrc-local {{{
@@ -69,15 +67,10 @@ if [[ -a  ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 # }}}
-# [ OFF ] Virtualenvwrapper {{{
+# [OFF] virtualenvwrapper {{{
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=/home/n/projects
 # source /usr/bin/virtualenvwrapper.sh
-# }}}
-# Profile {{{
-if [[ -a ~/.profile ]]; then
-    source ~/.profile
-fi
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
