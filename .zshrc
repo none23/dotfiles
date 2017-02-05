@@ -57,11 +57,6 @@ if [[ -a ~/.profile ]]; then
     source ~/.profile
 fi
 # }}}
-# zshrc-local {{{
-if [[ -a ~/.zshrc_local ]]; then
-    source ~/.zshrc_local
-fi
-# }}}
 # syntax-highlighting {{{
 if [[ -a  ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -71,6 +66,11 @@ fi
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=/home/n/projects
 # source /usr/bin/virtualenvwrapper.sh
+# }}}
+# zshrc-local {{{
+if [[ -a ~/.zshrc_local ]]; then
+    source ~/.zshrc_local
+fi
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
