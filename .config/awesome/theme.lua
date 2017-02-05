@@ -20,8 +20,7 @@ theme.taglist_shape = function(cr, width, height)
 end
 --}}}]]
 -- Colors {{{
-theme.fg                  = "#999999"
-theme.fg_muted            = "#777777"
+theme.fg                  = "#aaaaaa"
 theme.bg                  = "#000000"
 theme.primary             = "#de5e1e"
 theme.primary2            = "#ff6000"
