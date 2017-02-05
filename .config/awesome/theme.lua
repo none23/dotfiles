@@ -6,11 +6,12 @@ theme                     = {}
 theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
-theme.font                = "Inconsolata 8.5"
-theme.font_small          = "Inconsolata 7.5"
+theme.font                = "Inconsolata 9"
+theme.font_small          = "Inconsolata 6"
 theme.tasklist_font       = "Fira Sans 8"
 theme.icon_font           = "Ionicons 10"
 theme.useless_gap         = "0"
+theme.wibar_height        = "16"
 
 --[[{{{
 --theme.tasklist_spacing    = "6"

@@ -172,7 +172,7 @@ ipicon_wrap = wrap_widget( wibox.container{ widget = wibox.container.rotate
                                           , ipicon
                                           }
                          , beautiful.black      --[[ bg ]]
-                         , beautiful.fg_muted   --[[ fg ]]
+                         , beautiful.fg         --[[ fg ]]
                          , 4                    --[[ margin-left ]]
                          , 2                    --[[ margin-right ]]
                          )
@@ -222,11 +222,16 @@ bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
                              , 2                    --[[ margin-right ]]
                              ) -- }}}
 -- ip address {{{
-ipwidget = awful.widget.watch("zsh -c 'echo $(curl -s https://httpbin.org/ip | jq -r \".origin\")'", 10)
-  ipwidget:set_font(beautiful.font_small)
-ipwidget_wrap = wrap_widget( ipwidget
+ipextwidget = awful.widget.watch("zsh -c 'echo $(myip)'", 10)
+  ipextwidget:set_font(beautiful.font_small)
+iplocwidget = awful.widget.watch("zsh -c 'myipl'", 10)
+  iplocwidget:set_font(beautiful.font_small)
+ipwidget_wrap = wrap_widget( wibox.layout{ layout = wibox.layout.flex.vertical
+                                         , ipextwidget
+                                         , iplocwidget
+                                         }
                            , beautiful.black      --[[ bg ]]
-                           , beautiful.fg_muted   --[[ fg ]]
+                           , beautiful.fg         --[[ fg ]]
                            , 2                    --[[ margin-left ]]
                            , 6                    --[[ margin-right ]]
                            ) -- }}}
@@ -405,7 +410,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   s.mywibox = awful.wibar({ position = "top"
                           , screen = s
-                          , height = 16
+                          , height = beautiful.wibar_height
                           })
   -- Left {{{
   s.promptbox_wrap = wibox.container.background()
