@@ -83,7 +83,7 @@ alias xrandr1600x1200='xrandr --newmode "1600x1200_60.00" 160.96 1600 1704 1880 
 alias xrandr1360x1024='xrandr --newmode "1360x1024_60.00" 116.01 1360 1448 1592 1824  1024 1025 1028 1060 -HSync +Vsync && xrandr --addmode HDMI-1-1 1360x1024_60.00'
 alias  xrandr1360x768='xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync && xrandr --addmode HDMI-1-1 1360x768_60.00'
 _prerandr () { xrandr1080x1920 && xrandr1600x1200 && xrandr1360x1024 && xrandr1360x768 && $1 || $1 }
-_qrandr () 'xrandr --output LVDS-1-1 --primary --preferred --mode 1366x768 --pos 0x768 --rotate normal --output DP-1-1 --off --output VGA-1-1 --off --output HDMI-1-1 --mode 1360x768_60.00 --pos 0x0 --rotate normal'
+_qrandr () { xrandr --output LVDS-1-1 --primary --preferred --mode 1366x768 --pos 0x768 --rotate normal --output DP-1-1 --off --output VGA-1-1 --off --output HDMI-1-1 --mode 1360x768_60.00 --pos 0x0 --rotate normal }
 alias arandr='_prerandr arandr'
 alias qrandr='_prerandr _qrandr'
 # }}}
@@ -95,13 +95,21 @@ alias gdrk='xset dpms force off'
 mount ()  { if [ $# -ne 2 ]; then echo   "Two arguments expected: received $#"; else ( mount  "$1" "$2" || sudo mount  "$1" "$2" ); fi ; }
 umount () { if [ $# -ne 1 ]; then echo "Single argument expected: received $#"; else ( umount "$1"      || sudo umount "$1"      ); fi ; }
 # }}}
+# yaourt {{{
+alias y='yaourt'
+alias Y='yaourt -Syua && npm update -g && pkglist'
+alias Yy='yaourt -Syy'
+alias Yc='yaourt -Sc'
+alias Ycc='yaourt -Scc'
+alias yor='yaourt -Rsc $(yaourt -Qtdq)'
+# }}}
+
 # sudo {{{
 # if needed {{{
-       du () { command du        "$@" || sudo du        "$@" ; }
- ifconfig () { command ifconfig  "$@" || sudo ifconfig  "$@" ; }
- iwconfig () { command iwconfig  "$@" || sudo iwconfig  "$@" ; }
-  masscan () { command masscan   "$@" || sudo masscan   "$@" ; }
-     nmap () { command nmap      "$@" || sudo nmap      "$@" ; }
+du () { command du "$@" || sudo du "$@" ; }
+ifconfig () { command ifconfig "$@" || sudo ifconfig "$@" ; }
+iwconfig () { command iwconfig "$@" || sudo iwconfig "$@" ; }
+nmap () { command nmap "$@" || sudo nmap "$@" ; }
 systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
 # }}}
 # always {{{
@@ -114,6 +122,7 @@ alias gdisk='sudo gdisk'
 alias gparted='sudo gparted'
 alias hdparm='sudo hdparm'
 alias lsmod='sudo lsmod'
+alias masscan='sudo masscan'
 alias modprobe='sudo modprobe'
 alias minicom='sudo minicom'
 alias mkfs.ext4='sudo mkfs.ext4'
@@ -127,14 +136,6 @@ alias umount='sudo umount'
 alias wifite='sudo wifite'
 alias wifijammer='sudo wifijammer'
 # }}}
-# }}}
-# yaourt {{{
-alias y='yaourt'
-alias Y='yaourt -Syua && npm update -g && pkglist'
-alias Yy='yaourt -Syy'
-alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc'
-alias yor='yaourt -Rsc $(yaourt -Qtdq)'
 # }}}
 # Global Aliases {{{
 alias -g vim='nvim'
