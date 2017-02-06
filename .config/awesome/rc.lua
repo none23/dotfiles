@@ -180,17 +180,19 @@ local ipicon_wrap = wrap_widget( ipicon
                                )
 local ipext= awful.widget.watch("zsh -c " .. scripts_path .. "ipext", 10)
   ipext:set_font(beautiful.font_small)
+  ipext:set_align("right")
 local iploc= awful.widget.watch("zsh -c " .. scripts_path .. "iploc", 10)
   iploc:set_font(beautiful.font_small)
+  iploc:set_align("right")
 local ipwidget = wibox.layout{ layout = wibox.layout.flex.vertical
-                             , ipext
                              , iploc
+                             , ipext
                              }
 local ipwidget_wrap = wrap_widget( ipwidget
                                  , beautiful.midgray_1 --[[ bg ]]
                                  , beautiful.fg        --[[ fg ]]
                                  , 2                   --[[ margin-left ]]
-                                 , 2                   --[[ margin-right ]]
+                                 , 3                   --[[ margin-right ]]
                                  ) -- }}}
 -- memory / cpu {{{
 local memicon = wibox.widget.textbox("")
