@@ -1,5 +1,5 @@
 [Appearance]
-AntiAliasFonts=true
+AntiAliasFonts=false
 BoldIntense=false
 ColorScheme=Linux
 Font=xos4 Terminus,9,-1,5,50,0,0,0,0,0
