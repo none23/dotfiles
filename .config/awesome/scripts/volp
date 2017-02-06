@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+local STS=${${$(print ${$(amixer get 'Master')[23]})##"["}%%"]"}
+local LVL=${${$(print ${$(amixer get 'Master')[21]})##"["}%%"%]"}
+
+if [ "$STS" = "off" ] ; then
+    echo $LVL"M"
+else
+    echo $LVL"%"
+fi

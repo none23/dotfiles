@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+local STS=${${$(print ${$(amixer get 'Master')[23]})##"["}%%"]"}
+local LVL=${${$(print ${$(amixer get 'Master')[21]})##"["}%%"%]"}
+
+if [ "$STS" = "off" ] ; then
+    echo ''
+elif [ "$LVL" -gt "50" ] ; then
+    echo ''
+elif [ "$LVL" -gt "15" ] ; then
+    echo ''
+else
+    echo ''
+fi
