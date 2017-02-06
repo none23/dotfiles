@@ -8,7 +8,7 @@ local awful     = require("awful")
 local wibox     = require("wibox")
 local naughty   = require("naughty")
 local drop      = require("scratchdrop")  -- drop-down clients
-local lain      = require("lain")         -- additional widgets
+--local lain      = require("lain")         -- additional widgets
 local menubar   = require("menubar")      -- dmenu
 local beautiful = require("beautiful")    -- theme
   beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
@@ -55,7 +55,9 @@ end
 -- boot time {{{
 local function startup_time_notification ()
   os.execute("/usr/local/bin/startup-time > /tmp/startup-time")
-  local f_boot_time_info = assert(io.open("/tmp/startup-time")):read("*all")
+  local f = assert(io.open("/tmp/startup-time"))
+  local f_boot_time_info = f:read("*all")
+  f:close()
   naughty.notify({ title = "Welcome back"
                  , text = f_boot_time_info
                  , preset = naughty.config.presets.low
@@ -145,6 +147,9 @@ end
 -- }}}
 -- Wibox Widgets {{{
 ------------------------------------------------------------------------------
+local scripts_path = beautiful.confdir .. "/scripts/"
+local icon_font = beautiful.icon_font
+
 local function wrap_widget( target_widget, target_bg, target_fg, margin_left, margin_right )
   local wrapped_inner = wibox.container.margin()
     wrapped_inner:set_top(1)
@@ -152,182 +157,123 @@ local function wrap_widget( target_widget, target_bg, target_fg, margin_left, ma
     wrapped_inner:set_bottom(1)
     wrapped_inner:set_left(margin_left)
     wrapped_inner:set_widget(target_widget)
-
   local wrapped_widget = wibox.container.background()
     wrapped_widget:set_widget(wrapped_inner)
     wrapped_widget:set_bg(target_bg)
     wrapped_widget:set_fg(target_fg)
-
   return wrapped_widget
 end
 
--- icons {{{
-local icon_font = beautiful.icon_font
+local function read_pipe(cmd)
+ local f = assert(io.popen(cmd))
+ local output = f:read("*all")
+ f:close()
+ return output
+end
 
-
-ipicon = awful.widget.watch("zsh -c '[[ -n $(myip) ]] && echo \"\" || echo \"\" '", 10)
-  ipicon:set_font(beautiful.icon_font)
-ipicon_wrap = wrap_widget( wibox.container{ widget = wibox.container.rotate
-                                          , direction = "south"
-                                          , ipicon
-                                          }
-                         , beautiful.black      --[[ bg ]]
-                         , beautiful.fg         --[[ fg ]]
-                         , 4                    --[[ margin-left ]]
-                         , 2                    --[[ margin-right ]]
-                         )
-
-memicon = wibox.widget.textbox("")
-  memicon:set_font(icon_font)
-memicon_wrap = wrap_widget ( memicon
-                           , beautiful.midgray_0  --[[ bg ]]
-                           , beautiful.fg         --[[ fg ]]
-                           , 2                    --[[ margin-left ]]
-                           , 2                    --[[ margin-right ]]
-                           )
-
-
-volumicon_wrap = wrap_widget ( lain.widgets.alsicon({ settings = function()
-                                                                   widget:set_font(icon_font)
-                                                                   if volume_now.status == "off" then
-                                                                     widget:set_text("")
-                                                                   elseif tonumber(volume_now.level) > 50 then
-                                                                     widget:set_text("")
-                                                                   elseif tonumber(volume_now.level) > 15  then
-                                                                     widget:set_text("")
-                                                                   else
-                                                                     widget:set_text("")
-                                                                   end
-                                                                 end })
-                             , beautiful.midgray_1  --[[ bg ]]
-                             , beautiful.fg         --[[ fg ]]
-                             , 2                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
-                             )
-bataricon_wrap = wrap_widget ( lain.widgets.bat({ settings = function()
-                                                               widget:set_font(icon_font)
-                                                               if bat_now.ac_status == 1 then
-                                                                 widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) > 80 then
-                                                                 widget:set_text("")
-                                                               elseif tonumber(bat_now.perc) > 30 then
-                                                                 widget:set_text("")
-                                                               else
-                                                                 widget:set_text("")
-                                                               end
-                                                             end })
-                             , beautiful.midgray_0  --[[ bg ]]
-                             , beautiful.primary    --[[ fg ]]
-                             , 4                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
-                             ) -- }}}
 -- ip address {{{
-ipextwidget = awful.widget.watch("zsh -c 'echo $(myip)'", 10)
-  ipextwidget:set_font(beautiful.font_small)
-iplocwidget = awful.widget.watch("zsh -c 'myipl'", 10)
-  iplocwidget:set_font(beautiful.font_small)
-ipwidget_wrap = wrap_widget( wibox.layout{ layout = wibox.layout.flex.vertical
-                                         , ipextwidget
-                                         , iplocwidget
-                                         }
-                           , beautiful.black      --[[ bg ]]
-                           , beautiful.fg         --[[ fg ]]
-                           , 2                    --[[ margin-left ]]
-                           , 6                    --[[ margin-right ]]
-                           ) -- }}}
--- memory / cpu {{{
-memwidget_wrap = wrap_widget( awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'", 10)
-                            , beautiful.midgray_0  --[[ bg ]]
-                            , beautiful.fg         --[[ fg ]]
-                            , 2                    --[[ margin-left ]]
-                            , 2                    --[[ margin-right ]]
-                            )
-cpuwidget_sep = wrap_widget( wibox.widget.textbox(":")
-                           , beautiful.midgray_0  --[[ bg ]]
-                           , beautiful.primary    --[[ fg ]]
-                           , 0                    --[[ margin-left ]]
-                           , 0                    --[[ margin-right ]]
-                           )
---[[function cpudata()
-        local times = lines_match("cpu","/proc/stat")[1]
-
-        for index,time in pairs(times) do
-            local coreid = index - 1
-            local core   = cpu.core[coreid] or
-                           { last_active = 0 , last_total = 0, usage = 0 }
-            local at     = 1
-            local idle   = 0
-            local total  = 0
-
-            for field in string.gmatch(time, "[%s]+([^%s]+)") do
-                -- 4 = idle, 5 = ioWait. Essentially, the CPUs have done
-                -- nothing during these times.
-                if at == 4 or at == 5 then
-                    idle = idle + field
-                end
-                total = total + field
-                at = at + 1
-            end
-
-            local active = total - idle
-
-            if core.last_active ~= active or core.last_total ~= total then
-                -- Read current data and calculate relative values.
-                local dactive = active - core.last_active
-                local dtotal  = total - core.last_total
-                local usage   = math.ceil((dactive / dtotal) * 100)
-
-                core.last_active = active
-                core.last_total  = total
-                core.usage       = usage
-
-                -- Save current data for the next run.
-                cpu.core[coreid] = core
-            end
-        end
-end]]
-
-cpuwidget_wrap = wrap_widget( lain.widgets.cpu({ settings = function()
-                                                              widget:set_text(cpu_now.usage)
-                                                            end })
-                            , beautiful.midgray_0  --[[ bg ]]
-                            , beautiful.primary    --[[ fg ]]
-                            , 2                    --[[ margin-left ]]
-                            , 4                    --[[ margin-right ]]
-                            ) -- }}}
--- alsa volume {{{
-
-volumewidget = lain.widgets.alsa({ settings = function() widget:set_text(volume_now.level .. "%") end })
-
-volumewidget_wrap = wrap_widget( volumewidget
-                               , beautiful.midgray_1  --[[ bg ]]
+local ipicon = awful.widget.watch("zsh -c '[[ -n $(" .. scripts_path .. "ipext) ]] && echo \"\" || echo \"\" '", 10)
+  ipicon:set_font(icon_font)
+local ipicon_wrap = wrap_widget( ipicon
+                               , beautiful.black      --[[ bg ]]
                                , beautiful.fg         --[[ fg ]]
-                               , 2                    --[[ margin-left ]]
-                               , 4                    --[[ margin-right ]]
-                               ) -- }}}
--- battery {{{
-batwidget_wrap = wrap_widget( lain.widgets.bat({ settings = function()
-                                                              widget:set_text(bat_now.perc .. "%")
-                                                            end })
-                            , beautiful.midgray_0  --[[ bg ]]
-                            , beautiful.primary    --[[ fg ]]
-                            , 2                    --[[ margin-left ]]
-                            , 4                    --[[ margin-right ]]
-                            ) -- }}}
+                               , 4                    --[[ margin-left ]]
+                               , 2                    --[[ margin-right ]]
+                               )
+local ipext= awful.widget.watch("zsh -c " .. scripts_path .. "ipext", 10)
+  ipext:set_font(beautiful.font_small)
+local iploc= awful.widget.watch("zsh -c " .. scripts_path .. "iploc", 10)
+  iploc:set_font(beautiful.font_small)
+local ipwidget = wibox.layout{ layout = wibox.layout.flex.vertical
+                             , forced_height = 8
+                             , ipext
+                             , iploc
+                             }
+local ipwidget_wrap = wrap_widget( ipwidget
+                                 , beautiful.black --[[ bg ]]
+                                 , beautiful.fg    --[[ fg ]]
+                                 , 2               --[[ margin-left ]]
+                                 , 6               --[[ margin-right ]]
+                                 ) -- }}}
+-- memory / cpu {{{
+local memicon = wibox.widget.textbox("")
+  memicon:set_font(icon_font)
+local memicon_wrap = wrap_widget( memicon
+                                , beautiful.midgray_0  --[[ bg ]]
+                                , beautiful.fg         --[[ fg ]]
+                                , 2                    --[[ margin-left ]]
+                                , 2                    --[[ margin-right ]]
+                                )
+local memwidget_wrap = wrap_widget( awful.widget.watch("zsh -c 'print ${$(free --mega)[9]}'", 10)
+                                  , beautiful.midgray_0 --[[ bg ]]
+                                  , beautiful.fg        --[[ fg ]]
+                                  , 2                   --[[ margin-left ]]
+                                  , 2                   --[[ margin-right ]]
+                                  )
+local cpuwidget_sep = wrap_widget( wibox.widget.textbox(":")
+                                 , beautiful.midgray_0 --[[ bg ]]
+                                 , beautiful.primary   --[[ fg ]]
+                                 , 0                   --[[ margin-left ]]
+                                 , 0                   --[[ margin-right ]]
+                                 )
+local cpuwidget_wrap = wrap_widget( awful.widget.watch("zsh -c " .. scripts_path .. "cpu", 5)
+                                  , beautiful.midgray_0 --[[ bg ]]
+                                  , beautiful.primary   --[[ fg ]]
+                                  , 2                   --[[ margin-left ]]
+                                  , 4                   --[[ margin-right ]]
+                                  ) -- }}}
+-- volume {{{
+local vol_i_cmd = "zsh -c " .. scripts_path .. "voli"
+local vol_p_cmd = "zsh -c " .. scripts_path .. "volp"
+local volicon = awful.widget.watch(vol_i_cmd, 60)
+  volicon:set_font(icon_font)
+local volicon_wrap = wrap_widget( volicon
+                                 , beautiful.midgray_1  --[[ bg ]]
+                                 , beautiful.fg         --[[ fg ]]
+                                 , 2                    --[[ margin-left ]]
+                                 , 2                    --[[ margin-right ]]
+                                 )
+local volperc = awful.widget.watch(vol_p_cmd, 60)
+local volperc_wrap = wrap_widget( volperc
+                                 , beautiful.midgray_1  --[[ bg ]]
+                                 , beautiful.fg         --[[ fg ]]
+                                 , 2                    --[[ margin-left ]]
+                                 , 4                    --[[ margin-right ]]
+                                 )
+local function volupdate ()
+  volicon:set_text(read_pipe(vol_i_cmd))
+  volperc:set_text(read_pipe(vol_p_cmd))
+end -- }}}
+-- power {{{
+local pwricon = awful.widget.watch("zsh -c " .. scripts_path .. "pwri", 10)
+  pwricon:set_font(icon_font)
+local pwricon_wrap = wrap_widget( pwricon
+                                , beautiful.midgray_0  --[[ bg ]]
+                                , beautiful.primary    --[[ fg ]]
+                                , 4                    --[[ margin-left ]]
+                                , 2                    --[[ margin-right ]]
+                                )
+local pwrperc = awful.widget.watch("zsh -c " .. scripts_path .. "pwrp", 30)
+local pwrperc_wrap = wrap_widget( pwrperc
+                                , beautiful.midgray_0  --[[ bg ]]
+                                , beautiful.primary    --[[ fg ]]
+                                , 2                    --[[ margin-left ]]
+                                , 4                    --[[ margin-right ]]
+                                ) -- }}}
 -- date {{{
-datewidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
-                             , beautiful.midgray_1  --[[ bg ]]
-                             , beautiful.fg         --[[ fg ]]
-                             , 3                    --[[ margin-left ]]
-                             , 2                    --[[ margin-right ]]
-                             ) -- }}}
+local datewidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%d-%a") ..  '</span>', 100)
+                                   , beautiful.midgray_1  --[[ bg ]]
+                                   , beautiful.fg         --[[ fg ]]
+                                   , 3                    --[[ margin-left ]]
+                                   , 2                    --[[ margin-right ]]
+                                   ) -- }}}
 -- clock {{{
-clockwidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
-                              , beautiful.primary    --[[ bg ]]
-                              , beautiful.black      --[[ fg ]]
-                              , 2                    --[[ margin-left ]]
-                              , 5                    --[[ margin-right ]]
-                              ) -- }}}
+local clockwidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostring("%H:%M") ..  '</span>', 10)
+                                    , beautiful.primary    --[[ bg ]]
+                                    , beautiful.black      --[[ fg ]]
+                                    , 2                    --[[ margin-left ]]
+                                    , 5                    --[[ margin-right ]]
+                                    ) -- }}}
 -- arrows {{{
 --[[---------------- ARROW SEPARATORS NAMING: ------------------------------#
 │                                     │                                     │
@@ -347,49 +293,45 @@ local function wrap_arrow (image)
   return wrapped_icon
 end
 
-arrow_2L3 = wrap_arrow(beautiful.arrow_2L3)
-arrow_2L1 = wrap_arrow(beautiful.arrow_2L1)
-arrow_1L2 = wrap_arrow(beautiful.arrow_1L2)
-arrow_0L0 = wrap_arrow(beautiful.arrow_0L0)
-arrow_0L1 = wrap_arrow(beautiful.arrow_0L1)
-arrow_0L2 = wrap_arrow(beautiful.arrow_0L2)
-arrow_0L4 = wrap_arrow(beautiful.arrow_0L4)
-arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
-arrow_4L1 = wrap_arrow(beautiful.arrow_4L1)
+local arrow_2L3 = wrap_arrow(beautiful.arrow_2L3)
+local arrow_2L1 = wrap_arrow(beautiful.arrow_2L1)
+local arrow_1L2 = wrap_arrow(beautiful.arrow_1L2)
+local arrow_0L0 = wrap_arrow(beautiful.arrow_0L0)
+local arrow_0L1 = wrap_arrow(beautiful.arrow_0L1)
+local arrow_0L2 = wrap_arrow(beautiful.arrow_0L2)
+local arrow_0L4 = wrap_arrow(beautiful.arrow_0L4)
+local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
+local arrow_4L1 = wrap_arrow(beautiful.arrow_4L1)
 
 -- }}}
 -- promptbox {{{
 local mypromptbox = awful.prompt.run{ prompt = "Run:", exe_callback = function (input)
                                                                         if not input or #input == 0 then return end
                                                                         awful.spawn.with_shell(input)
-                                                                      end }
--- }}}
+                                                                      end } -- }}}
+-- buttons {{{
+local mytaglist_buttons = awful.util.table.join( awful.button({ },       1, awful.tag.viewonly)
+                                               , awful.button({ },       3, awful.tag.viewtoggle)
+                                               , awful.button({ Super }, 1, awful.client.movetotag)
+                                               , awful.button({ Super }, 3, awful.client.toggletag)
+                                               )
+
+local mytasklist_buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
+                                                                           if c == client.focus then
+                                                                             c.minimized = true
+                                                                           else
+                                                                             c.minimized = false
+                                                                             if not c:isvisible() then
+                                                                               awful.tag.viewonly(c:tags()[1])
+                                                                             end
+                                                                             client.focus = c
+                                                                             c:raise()
+                                                                           end
+                                                                         end
+                                                              )
+                                                ) -- }}}
 -- }}}
 -- Wibox {{{
--- buttons {{{
-
-mytaglist_buttons = awful.util.table.join( awful.button({ },       1, awful.tag.viewonly)
-                                         , awful.button({ },       3, awful.tag.viewtoggle)
-                                         , awful.button({ Super }, 1, awful.client.movetotag)
-                                         , awful.button({ Super }, 3, awful.client.toggletag)
-                                         )
-
-mytasklist_buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
-                                                                     if c == client.focus then
-                                                                       c.minimized = true
-                                                                     else
-                                                                       c.minimized = false
-                                                                       if not c:isvisible() then
-                                                                         awful.tag.viewonly(c:tags()[1])
-                                                                       end
-                                                                       client.focus = c
-                                                                       c:raise()
-                                                                     end
-                                                                   end
-                                                        )
-                                          )
-
--- }}}
 awful.screen.connect_for_each_screen(function(s)
 
   s.mypromptbox = awful.widget.prompt()
@@ -443,13 +385,13 @@ awful.screen.connect_for_each_screen(function(s)
 
       -- volume
       s.right_layout:add(arrow_1L2)
-      s.right_layout:add(volumicon_wrap)
-      s.right_layout:add(volumewidget_wrap)
+      s.right_layout:add(volicon_wrap)
+      s.right_layout:add(volperc_wrap)
 
       -- battery
       s.right_layout:add(arrow_2L1)
-      s.right_layout:add(bataricon_wrap)
-      s.right_layout:add(batwidget_wrap)
+      s.right_layout:add(pwricon_wrap)
+      s.right_layout:add(pwrperc_wrap)
 
       -- date
       s.right_layout:add(arrow_1L2)
@@ -499,8 +441,6 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "Left",     function () awful.tag.incmwfact(-0.01)                                                                   end )
 , awful.key( { Super, Shift }, "Right",    function () awful.tag.incmwfact(0.05)                                                                    end )
 , awful.key( { Super, Shift }, "Left",     function () awful.tag.incmwfact(-0.05)                                                                   end )
-, awful.key( { Super        }, "Next",     function () lain.util.tag_view_nonempty(1)                                                               end )
-, awful.key( { Super        }, "Prior",    function () lain.util.tag_view_nonempty(-1)                                                              end )
 , awful.key( { Super        }, "F1",       function () awful.screen.focus(1)                                                                        end )
 , awful.key( { Super        }, "F2",       function () awful.screen.focus(2)                                                                        end )
 , awful.key( { Super        }, "F3",       function () awful.screen.focus(3)                                                                        end )
@@ -532,9 +472,9 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super, Cntrl }, "r",        awesome.restart                                                                                              )
 , awful.key( { Super, Cntrl }, "q",        awesome.quit                                                                                                 )
 
-, awful.key( { }, "XF86AudioRaiseVolume",  function () awful.util.spawn("amixer -q set Master 5%+"); volumewidget.update()                          end )
-, awful.key( { }, "XF86AudioLowerVolume",  function () awful.util.spawn("amixer -q set Master 5%-"); volumewidget.update()                          end )
-, awful.key( { }, "XF86AudioMute",         function () awful.util.spawn("amixer -q set Master playback toggle"); volumewidget.update()              end )
+, awful.key( { }, "XF86AudioRaiseVolume",  function () awful.util.spawn("amixer -q set Master 5%+"); volupdate()                          end )
+, awful.key( { }, "XF86AudioLowerVolume",  function () awful.util.spawn("amixer -q set Master 5%-"); volupdate()                          end )
+, awful.key( { }, "XF86AudioMute",         function () awful.util.spawn("amixer -q set Master playback toggle"); volupdate()              end )
 )
 -- }}}
 -- Client keybindings {{{

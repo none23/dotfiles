@@ -7,7 +7,7 @@ theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font                = "Inconsolata 9"
-theme.font_small          = "Inconsolata 6"
+theme.font_small          = "Inconsolata 7"
 theme.tasklist_font       = "Fira Sans 8"
 theme.icon_font           = "Ionicons 10"
 theme.useless_gap         = "0"
