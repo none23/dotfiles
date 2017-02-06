@@ -306,6 +306,8 @@ local arrow_1L0 = wrap_arrow(beautiful.arrow_1L0)
 local arrow_1L4 = wrap_arrow(beautiful.arrow_1L4)
 local arrow_4L1 = wrap_arrow(beautiful.arrow_4L1)
 local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
+local arrow_1R2 = wrap_arrow(beautiful.arrow_1R2)
+local arrow_2R0 = wrap_arrow(beautiful.arrow_2R0)
 
 -- }}}
 -- promptbox {{{
@@ -368,7 +370,8 @@ awful.screen.connect_for_each_screen(function(s)
   s.left_layout = wibox.layout.fixed.horizontal()
     s.left_layout:add(s.taglist_wrap)
     s.left_layout:add(s.promptbox_wrap)
-    s.left_layout:add(arrow_1R0)
+    s.left_layout:add(arrow_1R2)
+    s.left_layout:add(arrow_2R0)
 
     -- }}}
     -- Right {{{

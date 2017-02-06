@@ -106,6 +106,8 @@ theme.arrow_2L4  = theme.confdir .. "/icons/midgray1_to_midgray2.svg"
 theme.arrow_4L1  = theme.confdir .. "/icons/midgray2_to_midgray0.svg"
 
 theme.arrow_1R0  = theme.confdir .. "/icons/midgray0_to_black_right.svg"
+theme.arrow_1R2  = theme.confdir .. "/icons/midgray0_to_midgray1_right.svg"
+theme.arrow_2R0  = theme.confdir .. "/icons/midgray1_to_black_right.svg"
 -- }}}
 -- Icons {{{
 theme.icon_theme                 = nil
