@@ -7,8 +7,8 @@ theme.confdir             = os.getenv("HOME") .. "/.config/awesome"
 
 theme.wallpaper           = theme.confdir .. "/wallpapers/Thing.jpg"
 theme.font                = "Inconsolata 9"
-theme.font_small          = "Inconsolata 7"
-theme.tasklist_font       = "Fira Sans 8"
+theme.font_small          = "Inconsolata 6"
+theme.tasklist_font       = "Inconsolata 9"
 theme.icon_font           = "Ionicons 10"
 theme.useless_gap         = "0"
 theme.wibar_height        = "16"
@@ -20,7 +20,7 @@ theme.taglist_shape = function(cr, width, height)
 end
 --}}}]]
 -- Colors {{{
-theme.fg                  = "#aaaaaa"
+theme.fg                  = "#999999"
 theme.bg                  = "#000000"
 theme.primary             = "#de5e1e"
 theme.primary2            = "#ff6000"
@@ -81,7 +81,7 @@ theme.border_marked       = theme.secondary
 theme.gray                = theme.fg
 -- }}}
 theme.taglist_spacing     = "2"
-theme.taglist_shape_border_width = "8"
+--theme.taglist_shape_border_width = "8"
 theme.taglist_squares_sel        = theme.confdir .. "/icons/square_a.svg"
 theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.svg"
 
