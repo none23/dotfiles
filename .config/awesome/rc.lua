@@ -145,10 +145,10 @@ if beautiful.wallpaper then
 end
 
 -- }}}
--- Wibox Widgets {{{
+-- Wibox {{{
 ------------------------------------------------------------------------------
+-- utility functions {{{
 local scripts_path = beautiful.confdir .. "/scripts/"
-local icon_font = beautiful.icon_font
 
 local function wrap_widget( target_widget, target_bg, target_fg, margin_left, margin_right )
   local wrapped_inner = wibox.container.margin()
@@ -169,9 +169,62 @@ local function read_pipe(cmd)
  return output
 end
 
+local function wrap_arrow (image)
+  local wrapped_icon = wibox.container.margin()
+    wrapped_icon:set_widget(wibox.widget.imagebox(image))
+    wrapped_icon:set_margins(-1)
+  return wrapped_icon
+end  -- }}}
+-- buttons {{{
+local mytaglist_buttons = awful.util.table.join( awful.button({ },       1, awful.tag.viewonly)
+                                               , awful.button({ },       3, awful.tag.viewtoggle)
+                                               , awful.button({ Super }, 1, awful.client.movetotag)
+                                               , awful.button({ Super }, 3, awful.client.toggletag)
+                                               )
+
+local mytasklist_buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
+                                                                           if c == client.focus then
+                                                                             c.minimized = true
+                                                                           else
+                                                                             c.minimized = false
+                                                                             if not c:isvisible() then
+                                                                               awful.tag.viewonly(c:tags()[1])
+                                                                             end
+                                                                             client.focus = c
+                                                                             c:raise()
+                                                                           end
+                                                                         end
+                                                              )
+                                                ) -- }}}
+-- arrows {{{
+-- pointing left {{{
+local arrow_0L0 = wrap_arrow(beautiful.arrow_0L0)
+local arrow_0L1 = wrap_arrow(beautiful.arrow_0L1)
+local arrow_0L2 = wrap_arrow(beautiful.arrow_0L2)
+local arrow_0L3 = wrap_arrow(beautiful.arrow_0L3)
+local arrow_0L4 = wrap_arrow(beautiful.arrow_0L4)
+
+local arrow_1L0 = wrap_arrow(beautiful.arrow_1L0)
+local arrow_1L2 = wrap_arrow(beautiful.arrow_1L2)
+local arrow_1L3 = wrap_arrow(beautiful.arrow_1L3)
+local arrow_1L4 = wrap_arrow(beautiful.arrow_1L4)
+
+local arrow_2L0 = wrap_arrow(beautiful.arrow_2L0)
+local arrow_2L1 = wrap_arrow(beautiful.arrow_2L1)
+local arrow_2L3 = wrap_arrow(beautiful.arrow_2L3)
+local arrow_2L4 = wrap_arrow(beautiful.arrow_2L4)
+
+local arrow_4L1 = wrap_arrow(beautiful.arrow_4L1) -- }}}
+-- pointing right {{{
+local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
+local arrow_1R2 = wrap_arrow(beautiful.arrow_1R2)
+local arrow_2R0 = wrap_arrow(beautiful.arrow_2R0) -- }}}
+-- }}}
+
+-- Widgets {{{
 -- ip address {{{
 local ipicon = awful.widget.watch("zsh -c '[[ -n $(" .. scripts_path .. "ipext) ]] && echo \"\" || echo \"\" '", 10)
-  ipicon:set_font(icon_font)
+  ipicon:set_font(beautiful.icon_font)
 local ipicon_wrap = wrap_widget( ipicon
                                , beautiful.midgray_1  --[[ bg ]]
                                , beautiful.fg         --[[ fg ]]
@@ -196,7 +249,7 @@ local ipwidget_wrap = wrap_widget( ipwidget
                                  ) -- }}}
 -- memory / cpu {{{
 local memicon = wibox.widget.textbox("")
-  memicon:set_font(icon_font)
+  memicon:set_font(beautiful.icon_font)
 local memicon_wrap = wrap_widget( memicon
                                 , beautiful.midgray_0  --[[ bg ]]
                                 , beautiful.fg         --[[ fg ]]
@@ -227,7 +280,7 @@ local cpuwidget_wrap = wrap_widget( cpuwidget
 local vol_i_cmd = "zsh -c " .. scripts_path .. "voli"
 local vol_p_cmd = "zsh -c " .. scripts_path .. "volp"
 local volicon = awful.widget.watch(vol_i_cmd, 60)
-  volicon:set_font(icon_font)
+  volicon:set_font(beautiful.icon_font)
 local volicon_wrap = wrap_widget( volicon
                                 , beautiful.midgray_1  --[[ bg ]]
                                 , beautiful.fg         --[[ fg ]]
@@ -247,7 +300,7 @@ local function volupdate ()
 end -- }}}
 -- power {{{
 local pwricon = awful.widget.watch("zsh -c " .. scripts_path .. "pwri", 10)
-  pwricon:set_font(icon_font)
+  pwricon:set_font(beautiful.icon_font)
 local pwricon_wrap = wrap_widget( pwricon
                                 , beautiful.midgray_0  --[[ bg ]]
                                 , beautiful.primary    --[[ fg ]]
@@ -275,152 +328,79 @@ local clockwidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostr
                                     , 2                    --[[ margin-left ]]
                                     , 5                    --[[ margin-right ]]
                                     ) -- }}}
--- arrows {{{
---[[---------------- ARROW SEPARATORS NAMING: ------------------------------#
-│                                     │                                     │
-│         ╭―――― points left           │        ╭―――― points right           │
-│         ▼                           │        ▼                            │
-│  arrow_1L2                          │ arrow_0R1                           │
-│        ▲ ▲                          │       ▲ ▲                           │
-│        │ ╰――― right half is color'2'│       │ ╰――― right half is color '1'│
-│        ╰――――― left half is '1'      │       ╰――――― left half is color '0' │
-│                                     │                                     │
-#-------------------------------------#------------------------------------]]
 
-local function wrap_arrow (image)
-  local wrapped_icon = wibox.container.margin()
-    wrapped_icon:set_widget(wibox.widget.imagebox(image))
-    wrapped_icon:set_margins(-1)
-  return wrapped_icon
-end
-
-local arrow_2L3 = wrap_arrow(beautiful.arrow_2L3)
-local arrow_2L1 = wrap_arrow(beautiful.arrow_2L1)
-local arrow_1L2 = wrap_arrow(beautiful.arrow_1L2)
-local arrow_0L0 = wrap_arrow(beautiful.arrow_0L0)
-local arrow_0L1 = wrap_arrow(beautiful.arrow_0L1)
-local arrow_0L2 = wrap_arrow(beautiful.arrow_0L2)
-local arrow_2L0 = wrap_arrow(beautiful.arrow_2L0)
-local arrow_0L4 = wrap_arrow(beautiful.arrow_0L4)
-local arrow_1L0 = wrap_arrow(beautiful.arrow_1L0)
-local arrow_1L4 = wrap_arrow(beautiful.arrow_1L4)
-local arrow_4L1 = wrap_arrow(beautiful.arrow_4L1)
-local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
-local arrow_1R2 = wrap_arrow(beautiful.arrow_1R2)
-local arrow_2R0 = wrap_arrow(beautiful.arrow_2R0)
-
--- }}}
--- promptbox {{{
-local mypromptbox = awful.prompt.run{ prompt = "Run:", exe_callback = function (input)
-                                                                        if not input or #input == 0 then return end
-                                                                        awful.spawn.with_shell(input)
-                                                                      end } -- }}}
--- buttons {{{
-local mytaglist_buttons = awful.util.table.join( awful.button({ },       1, awful.tag.viewonly)
-                                               , awful.button({ },       3, awful.tag.viewtoggle)
-                                               , awful.button({ Super }, 1, awful.client.movetotag)
-                                               , awful.button({ Super }, 3, awful.client.toggletag)
-                                               )
-
-local mytasklist_buttons = awful.util.table.join( awful.button( { }, 1 , function (c)
-                                                                           if c == client.focus then
-                                                                             c.minimized = true
-                                                                           else
-                                                                             c.minimized = false
-                                                                             if not c:isvisible() then
-                                                                               awful.tag.viewonly(c:tags()[1])
-                                                                             end
-                                                                             client.focus = c
-                                                                             c:raise()
-                                                                           end
-                                                                         end
-                                                              )
-                                                ) -- }}}
--- }}}
--- Wibox {{{
 awful.screen.connect_for_each_screen(function(s)
-
+  -- promptbox {{{
   s.mypromptbox = awful.widget.prompt()
+  s.promptbox_wrap = wrap_widget( s.mypromptbox
+                                , beautiful.midgray_1 --[[ bg ]]
+                                , beautiful.fg        --[[ fg ]]
+                                , 4                   --[[ margin-left ]]
+                                , 1                   --[[ margin-right ]]
+                                ) -- }}}
+  -- taglist {{{
   s.mytaglist = awful.widget.taglist( s
                                     , awful.widget.taglist.filter.all
                                     , mytaglist_buttons
                                     )
-
   s.taglist_wrap = wrap_widget( s.mytaglist
                               , beautiful.midgray_0  --[[ bg ]]
                               , beautiful.fg         --[[ fg ]]
                               , 1                    --[[ margin-left ]]
                               , 6                    --[[ margin-right ]]
-                              )
-
+                              ) -- }}}
+  -- tasklist {{{
   s.mytasklist = awful.widget.tasklist( s
                                       , awful.widget.tasklist.filter.currenttags
                                       , mytasklist_buttons
-                                      )
+                                      ) -- }}}
+-- }}}
 
   s.mywibox = awful.wibar({ position = "top"
                           , screen = s
                           , height = beautiful.wibar_height
                           })
   -- Left {{{
-  s.promptbox_wrap = wibox.container.background()
-    s.promptbox_wrap:set_widget(s.mypromptbox)
-    s.promptbox_wrap:set_bg(beautiful.midgray_0)
-
   s.left_layout = wibox.layout.fixed.horizontal()
     s.left_layout:add(s.taglist_wrap)
-    s.left_layout:add(s.promptbox_wrap)
     s.left_layout:add(arrow_1R2)
-    s.left_layout:add(arrow_2R0)
-
-    -- }}}
-    -- Right {{{
-    s.right_layout = wibox.layout.fixed.horizontal()
-
-      -- systray
-      s.right_layout:add(wibox.widget.systray())
-
-      -- mem / cpu state
-      s.right_layout:add(arrow_0L2)
-      s.right_layout:add(ipicon_wrap)
-      s.right_layout:add(ipwidget_wrap)
-
-      -- mem / cpu state
-      s.right_layout:add(arrow_2L1)
-      s.right_layout:add(memicon_wrap)
-      s.right_layout:add(memwidget_wrap)
-      s.right_layout:add(cpuwidget_sep)
-      s.right_layout:add(cpuwidget_wrap)
-
-      -- volume
-      s.right_layout:add(arrow_1L2)
-      s.right_layout:add(volicon_wrap)
-      s.right_layout:add(volperc_wrap)
-
-      -- battery
-      s.right_layout:add(arrow_2L1)
-      s.right_layout:add(pwricon_wrap)
-      s.right_layout:add(pwrperc_wrap)
-
-      -- date
-      s.right_layout:add(arrow_1L2)
-      s.right_layout:add(datewidget_wrap)
-
-      -- time
-      s.right_layout:add(arrow_2L3)
-      s.right_layout:add(clockwidget_wrap)
-
-    -- }}}
-    -- Bring it all together {{{
-
-   s.layout = wibox.layout.align.horizontal()
-
-      s.layout:set_left( s.left_layout)
-      s.layout:set_middle( s.mytasklist )
-      s.layout:set_right( s.right_layout)
+    s.left_layout:add(s.promptbox_wrap)
+    s.left_layout:add(arrow_2R0) -- }}}
+  -- Right {{{
+  s.right_layout = wibox.layout.fixed.horizontal()
+    -- systray
+    s.right_layout:add(wibox.widget.systray())
+    -- mem / cpu state
+    s.right_layout:add(arrow_0L2)
+    s.right_layout:add(ipicon_wrap)
+    s.right_layout:add(ipwidget_wrap)
+    -- mem / cpu state
+    s.right_layout:add(arrow_2L1)
+    s.right_layout:add(memicon_wrap)
+    s.right_layout:add(memwidget_wrap)
+    s.right_layout:add(cpuwidget_sep)
+    s.right_layout:add(cpuwidget_wrap)
+    -- volume
+    s.right_layout:add(arrow_1L2)
+    s.right_layout:add(volicon_wrap)
+    s.right_layout:add(volperc_wrap)
+    -- battery
+    s.right_layout:add(arrow_2L1)
+    s.right_layout:add(pwricon_wrap)
+    s.right_layout:add(pwrperc_wrap)
+    -- date
+    s.right_layout:add(arrow_1L2)
+    s.right_layout:add(datewidget_wrap)
+    -- time
+    s.right_layout:add(arrow_2L3)
+    s.right_layout:add(clockwidget_wrap) -- }}}
+  -- Bring it all together {{{
+  s.layout = wibox.layout.align.horizontal()
+    s.layout:set_left(s.left_layout)
+    s.layout:set_middle(s.mytasklist)
+    s.layout:set_right(s.right_layout)
 
     s.mywibox:set_widget(s.layout)
-
     -- }}}
 end)
 -- }}}
