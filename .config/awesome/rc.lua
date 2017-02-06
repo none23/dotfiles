@@ -217,7 +217,7 @@ local cpuwidget_sep = wrap_widget( wibox.widget.textbox(":")
                                  , 0                   --[[ margin-right ]]
                                  )
 local cpuwidget = awful.widget.watch("zsh -c " .. scripts_path .. "cpu", 5)
-  cpuwidget:set_text("X")
+  cpuwidget:set_text("9")
 local cpuwidget_wrap = wrap_widget( cpuwidget
                                   , beautiful.midgray_0 --[[ bg ]]
                                   , beautiful.primary   --[[ fg ]]
