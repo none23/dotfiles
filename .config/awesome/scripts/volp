@@ -11,4 +11,3 @@ if [ "$STS" = "off" ] ; then
 else
     echo $LVL"%"
 fi
-echo $STS
