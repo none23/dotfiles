@@ -30,7 +30,7 @@ theme.black               = "#000000"
 theme.tranasparent        = "#00000000"
 theme.midgray_0           = "#141414"
 theme.midgray_1           = "#232323"
-theme.midgray_2           = "#171717"
+theme.midgray_2           = "#060606"
 
 theme.popup_fg            = "#12121288"
 theme.popup_bg            = theme.primary
@@ -87,14 +87,24 @@ theme.taglist_squares_unsel      = theme.confdir .. "/icons/square_b.svg"
 
 theme.tasklist_align = "center"
 -- Powerline {{{
-theme.arrow_2L3  = theme.confdir .. "/icons/midgray1_to_primary.svg"
-theme.arrow_2L1  = theme.confdir .. "/icons/midgray1_to_midgray0.svg"
-theme.arrow_1L2  = theme.confdir .. "/icons/midgray0_to_midgray1.svg"
 theme.arrow_0L0  = theme.confdir .. "/icons/black_to_black.svg"
 theme.arrow_0L1  = theme.confdir .. "/icons/black_to_midgray0.svg"
 theme.arrow_0L2  = theme.confdir .. "/icons/black_to_midgray1.svg"
+theme.arrow_0L3  = theme.confdir .. "/icons/black_to_primary.svg"
 theme.arrow_0L4  = theme.confdir .. "/icons/black_to_midgray2.svg"
+
+theme.arrow_1L0  = theme.confdir .. "/icons/midgray0_to_black.svg"
+theme.arrow_1L2  = theme.confdir .. "/icons/midgray0_to_midgray1.svg"
+theme.arrow_1L3  = theme.confdir .. "/icons/midgray0_to_primary.svg"
+theme.arrow_1L4  = theme.confdir .. "/icons/midgray0_to_midgray2.svg"
+
+theme.arrow_2L0  = theme.confdir .. "/icons/midgray1_to_black.svg"
+theme.arrow_2L1  = theme.confdir .. "/icons/midgray1_to_midgray0.svg"
+theme.arrow_2L3  = theme.confdir .. "/icons/midgray1_to_primary.svg"
+theme.arrow_2L4  = theme.confdir .. "/icons/midgray1_to_midgray2.svg"
+
 theme.arrow_4L1  = theme.confdir .. "/icons/midgray2_to_midgray0.svg"
+
 theme.arrow_1R0  = theme.confdir .. "/icons/midgray0_to_black_right.svg"
 -- }}}
 -- Icons {{{

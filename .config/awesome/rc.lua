@@ -152,9 +152,7 @@ local icon_font = beautiful.icon_font
 
 local function wrap_widget( target_widget, target_bg, target_fg, margin_left, margin_right )
   local wrapped_inner = wibox.container.margin()
-    wrapped_inner:set_top(1)
     wrapped_inner:set_right(margin_right)
-    wrapped_inner:set_bottom(1)
     wrapped_inner:set_left(margin_left)
     wrapped_inner:set_widget(target_widget)
   local wrapped_widget = wibox.container.background()
@@ -175,25 +173,24 @@ end
 local ipicon = awful.widget.watch("zsh -c '[[ -n $(" .. scripts_path .. "ipext) ]] && echo \"\" || echo \"\" '", 10)
   ipicon:set_font(icon_font)
 local ipicon_wrap = wrap_widget( ipicon
-                               , beautiful.black      --[[ bg ]]
+                               , beautiful.midgray_1  --[[ bg ]]
                                , beautiful.fg         --[[ fg ]]
-                               , 4                    --[[ margin-left ]]
-                               , 2                    --[[ margin-right ]]
+                               , 2                    --[[ margin-left ]]
+                               , 3                    --[[ margin-right ]]
                                )
 local ipext= awful.widget.watch("zsh -c " .. scripts_path .. "ipext", 10)
   ipext:set_font(beautiful.font_small)
 local iploc= awful.widget.watch("zsh -c " .. scripts_path .. "iploc", 10)
   iploc:set_font(beautiful.font_small)
 local ipwidget = wibox.layout{ layout = wibox.layout.flex.vertical
-                             , forced_height = 8
                              , ipext
                              , iploc
                              }
 local ipwidget_wrap = wrap_widget( ipwidget
-                                 , beautiful.black --[[ bg ]]
-                                 , beautiful.fg    --[[ fg ]]
-                                 , 2               --[[ margin-left ]]
-                                 , 6               --[[ margin-right ]]
+                                 , beautiful.midgray_1 --[[ bg ]]
+                                 , beautiful.fg        --[[ fg ]]
+                                 , 2                   --[[ margin-left ]]
+                                 , 2                   --[[ margin-right ]]
                                  ) -- }}}
 -- memory / cpu {{{
 local memicon = wibox.widget.textbox("")
@@ -230,18 +227,18 @@ local vol_p_cmd = "zsh -c " .. scripts_path .. "volp"
 local volicon = awful.widget.watch(vol_i_cmd, 60)
   volicon:set_font(icon_font)
 local volicon_wrap = wrap_widget( volicon
-                                 , beautiful.midgray_1  --[[ bg ]]
-                                 , beautiful.fg         --[[ fg ]]
-                                 , 2                    --[[ margin-left ]]
-                                 , 2                    --[[ margin-right ]]
-                                 )
+                                , beautiful.midgray_1  --[[ bg ]]
+                                , beautiful.fg         --[[ fg ]]
+                                , 2                    --[[ margin-left ]]
+                                , 2                    --[[ margin-right ]]
+                                )
 local volperc = awful.widget.watch(vol_p_cmd, 60)
 local volperc_wrap = wrap_widget( volperc
-                                 , beautiful.midgray_1  --[[ bg ]]
-                                 , beautiful.fg         --[[ fg ]]
-                                 , 2                    --[[ margin-left ]]
-                                 , 4                    --[[ margin-right ]]
-                                 )
+                                , beautiful.midgray_1  --[[ bg ]]
+                                , beautiful.fg         --[[ fg ]]
+                                , 2                    --[[ margin-left ]]
+                                , 4                    --[[ margin-right ]]
+                                )
 local function volupdate ()
   volicon:set_text(read_pipe(vol_i_cmd))
   volperc:set_text(read_pipe(vol_p_cmd))
@@ -301,9 +298,12 @@ local arrow_1L2 = wrap_arrow(beautiful.arrow_1L2)
 local arrow_0L0 = wrap_arrow(beautiful.arrow_0L0)
 local arrow_0L1 = wrap_arrow(beautiful.arrow_0L1)
 local arrow_0L2 = wrap_arrow(beautiful.arrow_0L2)
+local arrow_2L0 = wrap_arrow(beautiful.arrow_2L0)
 local arrow_0L4 = wrap_arrow(beautiful.arrow_0L4)
-local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
+local arrow_1L0 = wrap_arrow(beautiful.arrow_1L0)
+local arrow_1L4 = wrap_arrow(beautiful.arrow_1L4)
 local arrow_4L1 = wrap_arrow(beautiful.arrow_4L1)
+local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
 
 -- }}}
 -- promptbox {{{
@@ -376,12 +376,12 @@ awful.screen.connect_for_each_screen(function(s)
       s.right_layout:add(wibox.widget.systray())
 
       -- mem / cpu state
-      s.right_layout:add(arrow_0L0)
+      s.right_layout:add(arrow_0L2)
       s.right_layout:add(ipicon_wrap)
       s.right_layout:add(ipwidget_wrap)
 
       -- mem / cpu state
-      s.right_layout:add(arrow_0L1)
+      s.right_layout:add(arrow_2L1)
       s.right_layout:add(memicon_wrap)
       s.right_layout:add(memwidget_wrap)
       s.right_layout:add(cpuwidget_sep)
