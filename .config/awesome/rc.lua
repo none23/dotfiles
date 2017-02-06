@@ -342,10 +342,12 @@ awful.screen.connect_for_each_screen(function(s)
                                     , mytaglist_buttons
                                     )
 
-  s.taglist_wrap = wibox.container.background()
-    s.taglist_wrap:set_widget(s.mytaglist)
-    s.taglist_wrap:set_bg(beautiful.midgray_0)
-
+  s.taglist_wrap = wrap_widget( s.mytaglist
+                              , beautiful.midgray_0  --[[ bg ]]
+                              , beautiful.fg         --[[ fg ]]
+                              , 1                    --[[ margin-left ]]
+                              , 6                    --[[ margin-right ]]
+                              )
 
   s.mytasklist = awful.widget.tasklist( s
                                       , awful.widget.tasklist.filter.currenttags
