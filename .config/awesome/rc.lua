@@ -8,8 +8,6 @@ local awful     = require("awful")
 local wibox     = require("wibox")
 local naughty   = require("naughty")
 local drop      = require("scratchdrop")  -- drop-down clients
---local lain      = require("lain")         -- additional widgets
-local menubar   = require("menubar")      -- dmenu
 local beautiful = require("beautiful")    -- theme
   beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
@@ -420,7 +418,6 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super, Shift }, "l",        function () awful.client.swap.global_bydirection("right")                                                end )
 , awful.key( { Super        }, "a",        function () awful.client.restore()                                                                       end )
 , awful.key( { Super        }, "x",        function () awful.screen.focused().mypromptbox:run()                                                     end )
-, awful.key( { Super        }, "z",        function () menubar.show()                                                                               end )
 , awful.key( { Super        }, "space",    function () awful.layout.inc(layouts,  1)                                                                end )
 , awful.key( { Super        }, "period",   function () awful.tag.incncol(1)                                                                         end )
 , awful.key( { Super        }, "comma",    function () awful.tag.incncol(-1)                                                                        end )
