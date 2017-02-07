@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-local STS=$(amixer get Master | grep % | awk '{print $NF}' | sed 's/[^(o|n|f)]//g')
-local LVL=$(amixer get Master | grep % | awk '{print $4}' | sed 's/[^0-9]//g')
+local STS=$(amixer get Master | grep -m1 % | awk '{print $NF}' | sed 's/[^(o|n|f)]//g')
+local LVL=$(amixer get Master | grep -m1 % | awk '{print $4}' | sed 's/[^0-9]//g')
 
 if [ "$STS" = "off" ] ; then
     echo $LVL"M"
