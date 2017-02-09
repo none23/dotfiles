@@ -32,6 +32,9 @@ theme.midgray_0        = "#141414"
 theme.midgray_1        = "#232323"
 theme.midgray_2        = "#060606"
 
+theme.fg_muted         = "#99999977"
+theme.primary_muted    = "#de5e1e88"
+
 theme.popup_fg         = "#12121288"
 theme.popup_bg         = theme.primary
 theme.popup_danger_bg  = "#de1e1e88"
@@ -104,6 +107,7 @@ theme.arrow_2L4  = theme.confdir .. "/icons/midgray1_to_midgray2.svg"
 
 theme.arrow_4L1  = theme.confdir .. "/icons/midgray2_to_midgray0.svg"
 
+theme.arrow_0R0  = theme.confdir .. "/icons/black_to_black_right.svg"
 theme.arrow_1R0  = theme.confdir .. "/icons/midgray0_to_black_right.svg"
 theme.arrow_1R2  = theme.confdir .. "/icons/midgray0_to_midgray1_right.svg"
 theme.arrow_2R0  = theme.confdir .. "/icons/midgray1_to_black_right.svg"
