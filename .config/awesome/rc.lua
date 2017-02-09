@@ -145,6 +145,7 @@ end
 -- }}}
 -- Wibox {{{
 ------------------------------------------------------------------------------
+-- Widgets {{{
 -- utility functions {{{
 local scripts_path = beautiful.confdir .. "/scripts/"
 
@@ -214,37 +215,46 @@ local arrow_2L4 = wrap_arrow(beautiful.arrow_2L4)
 
 local arrow_4L1 = wrap_arrow(beautiful.arrow_4L1) -- }}}
 -- pointing right {{{
+local arrow_0R0 = wrap_arrow(beautiful.arrow_0R0)
 local arrow_1R0 = wrap_arrow(beautiful.arrow_1R0)
 local arrow_1R2 = wrap_arrow(beautiful.arrow_1R2)
 local arrow_2R0 = wrap_arrow(beautiful.arrow_2R0) -- }}}
 -- }}}
 
--- Widgets {{{
--- ip address {{{
+-- ip addresses {{{
 local ipicon = awful.widget.watch("zsh -c '[[ -n $(" .. scripts_path .. "ipext) ]] && echo \"\" || echo \"\" '", 10)
   ipicon:set_font(beautiful.icon_font)
 local ipicon_wrap = wrap_widget( ipicon
-                               , beautiful.midgray_1  --[[ bg ]]
-                               , beautiful.fg         --[[ fg ]]
-                               , 2                    --[[ margin-left ]]
-                               , 3                    --[[ margin-right ]]
+                               , beautiful.bg       --[[ bg ]]
+                               , beautiful.fg_muted --[[ fg ]]
+                               , 4                  --[[ margin-left ]]
+                               , 3                  --[[ margin-right ]]
                                )
+
 local ipext= awful.widget.watch("zsh -c " .. scripts_path .. "ipext", 10)
-  ipext:set_font(beautiful.font_small)
-  ipext:set_align("right")
+local ipext_wrap = wrap_widget( ipext
+                              , beautiful.bg            --[[ bg ]]
+                              , beautiful.primary_muted --[[ fg ]]
+                              , 2                       --[[ margin-left ]]
+                              , 2                       --[[ margin-right ]]
+                              )
+
 local iploc= awful.widget.watch("zsh -c " .. scripts_path .. "iploc", 10)
-  iploc:set_font(beautiful.font_small)
-  iploc:set_align("right")
-local ipwidget = wibox.layout{ layout = wibox.layout.flex.vertical
-                             , iploc
-                             , ipext
-                             }
-local ipwidget_wrap = wrap_widget( ipwidget
-                                 , beautiful.midgray_1 --[[ bg ]]
-                                 , beautiful.fg        --[[ fg ]]
-                                 , 2                   --[[ margin-left ]]
-                                 , 3                   --[[ margin-right ]]
-                                 ) -- }}}
+local iploc_wrap = wrap_widget( iploc
+                              , beautiful.bg       --[[ bg ]]
+                              , beautiful.fg_muted --[[ fg ]]
+                              , 2                  --[[ margin-left ]]
+                              , 2                  --[[ margin-right ]]
+                              )
+
+local ip_sep = wrap_widget( wibox.widget.textbox(":")
+                          , beautiful.bg            --[[ bg ]]
+                          , beautiful.primary_muted --[[ fg ]]
+                          , 0                       --[[ margin-left ]]
+                          , 0                       --[[ margin-right ]]
+                          )
+
+-- }}}
 -- memory / cpu {{{
 local memicon = wibox.widget.textbox("")
   memicon:set_font(beautiful.icon_font)
@@ -326,12 +336,13 @@ local clockwidget_wrap = wrap_widget( wibox.widget.textclock( '<span>' ..  tostr
                                     , 2                    --[[ margin-left ]]
                                     , 5                    --[[ margin-right ]]
                                     ) -- }}}
+-- }}}
 
 awful.screen.connect_for_each_screen(function(s)
   -- promptbox {{{
   s.mypromptbox = awful.widget.prompt()
   s.promptbox_wrap = wrap_widget( s.mypromptbox
-                                , beautiful.midgray_1 --[[ bg ]]
+                                , beautiful.bg        --[[ bg ]]
                                 , beautiful.fg        --[[ fg ]]
                                 , 4                   --[[ margin-left ]]
                                 , 1                   --[[ margin-right ]]
@@ -352,7 +363,6 @@ awful.screen.connect_for_each_screen(function(s)
                                       , awful.widget.tasklist.filter.currenttags
                                       , mytasklist_buttons
                                       ) -- }}}
--- }}}
 
   s.mywibox = awful.wibar({ position = "top"
                           , screen = s
@@ -361,19 +371,23 @@ awful.screen.connect_for_each_screen(function(s)
   -- Left {{{
   s.left_layout = wibox.layout.fixed.horizontal()
     s.left_layout:add(s.taglist_wrap)
-    s.left_layout:add(arrow_1R2)
+    s.left_layout:add(arrow_1R0)
     s.left_layout:add(s.promptbox_wrap)
-    s.left_layout:add(arrow_2R0) -- }}}
+    s.left_layout:add(arrow_0R0)
+    --s.left_layout:add(arrow_1R2)
+    --s.left_layout:add(arrow_2R0) -- }}}
   -- Right {{{
   s.right_layout = wibox.layout.fixed.horizontal()
     -- systray
     s.right_layout:add(wibox.widget.systray())
-    -- mem / cpu state
-    s.right_layout:add(arrow_0L2)
+    -- local / external ip
+    s.right_layout:add(arrow_0L0)
     s.right_layout:add(ipicon_wrap)
-    s.right_layout:add(ipwidget_wrap)
+    s.right_layout:add(iploc_wrap)
+    s.right_layout:add(ip_sep)
+    s.right_layout:add(ipext_wrap)
     -- mem / cpu state
-    s.right_layout:add(arrow_2L1)
+    s.right_layout:add(arrow_0L1)
     s.right_layout:add(memicon_wrap)
     s.right_layout:add(memwidget_wrap)
     s.right_layout:add(cpuwidget_sep)
