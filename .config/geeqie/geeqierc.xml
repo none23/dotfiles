@@ -262,7 +262,7 @@
         show_thumbnails = "true" 
         show_directory_date = "false" 
         home_path = "" 
-        last_path = "/home/n/study/misc" 
+        last_path = "/tmp" 
         startup_path = "0" 
         exit_on_close = "false" 
 
