@@ -262,7 +262,7 @@
         show_thumbnails = "true" 
         show_directory_date = "false" 
         home_path = "" 
-        last_path = "/home/n/hdd/blender/loot/shaders/Fabric_Patterned" 
+        last_path = "/home/n/hdd/blender/hdrs" 
         startup_path = "0" 
         exit_on_close = "false" 
 
@@ -271,7 +271,7 @@
         main_window.w = "1366" 
         main_window.h = "752" 
         main_window.maximized = "false" 
-        main_window.hdivider_pos = "373" 
+        main_window.hdivider_pos = "338" 
         main_window.vdivider_pos = "311" 
 
         float_window.x = "784" 
