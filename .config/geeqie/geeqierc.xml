@@ -262,7 +262,7 @@
         show_thumbnails = "true" 
         show_directory_date = "false" 
         home_path = "" 
-        last_path = "/home/n/hdd/blender/hdrs" 
+        last_path = "/home/n/hdd/blender/out" 
         startup_path = "0" 
         exit_on_close = "false" 
 
