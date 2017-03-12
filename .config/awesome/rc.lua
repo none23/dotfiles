@@ -77,8 +77,6 @@ function run_once(cmd)
   awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-
-run_once("chromium")
 run_once("konsole -e zsh")
 startup_time_notification()
 
