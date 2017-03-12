@@ -180,7 +180,7 @@ set cursorline
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set background=dark
-colorscheme nwsomest
+colorscheme nwsome
 
 " highlight 79'th column
 set colorcolumn=79
