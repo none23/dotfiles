@@ -68,8 +68,8 @@ fi
 # source /usr/bin/virtualenvwrapper.sh
 # }}}
 # zshrc-local {{{
-if [[ -a ~/.zshrc_local ]]; then
-    source ~/.zshrc_local
+if [[ -a ~/.zshrc-local ]]; then
+    source ~/.zshrc-local
 fi
 # }}}
 
