@@ -33,6 +33,7 @@ alias df='df -h'
 alias du='du -h '
 alias vtop='vtop -t nwsome '
 alias octave=octave-cli
+alias spotify='spotify & blockify'
 # }}}
 # gui apps in bg {{{
 thunar      () { command thunar       "$*" & }
