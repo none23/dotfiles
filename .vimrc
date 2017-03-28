@@ -29,12 +29,12 @@ Plug 'sheerun/vim-polyglot'           " Syntax highlighting
 Plug 'neomake/neomake'                " async linters and builders
 Plug 'junegunn/vim-easy-align'        " easy alignment
 Plug 'airblade/vim-gitgutter'         " highlight git changes
+Plug 'mattn/emmet-vim'                " emmet
 Plug 'elzr/vim-json'                                                         " JSON
 Plug 'digitaltoad/vim-pug'                                                   " Pug (Jade)
 Plug 'tpope/vim-haml'                                                        " Sass
 Plug 'wavded/vim-stylus', { 'for': ['styl'] }                                " Stylus
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                       " CoffeScript
-Plug 'mattn/emmet-vim'                                                       " emmet
 Plug 'ap/vim-css-color'                                                      " css colors preview
 Plug 'maksimr/vim-jsbeautify'                                                " Un-minify JS
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                " JS code completion
@@ -345,12 +345,12 @@ autocmd BufReadPost *.doc %!antiword "%"
 " }}}
 " Plugins settings {{{
 " EasyMotion {{{
-map <Leader> <Plug>(easymotion-prefix)
+map <leader> <Plug>(easymotion-prefix)
 
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward))
+map <leader>l <Plug>(easymotion-lineforward)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
+map <leader>h <Plug>(easymotion-linebackward))
 
 " }}}
 " ExpandRegion {{{
@@ -471,5 +471,10 @@ nmap ga <Plug>(EasyAlign)
 " <bar> is `|` i.e. <S-backslash>
  nmap <bar> gaip:
 " }}}
-" }}}
+" Emmet {{{
+let g:user_emmet_mode='a'
+let g:user_emmet_install_global = 0
 
+autocmd FileType html,css,javascript EmmetInstall
+" }}}
+" }}}
