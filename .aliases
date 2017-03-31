@@ -29,6 +29,7 @@ gui () { [[ $1 ]] && thunar "$*" || thunar $(pwd) & }
 alias dmesgg='watch "dmesg -e | tail"'
 zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
 alias py='ipython3'
+alias n='node'
 alias df='df -h'
 alias du='du -h '
 alias vtop='vtop -t nwsome '

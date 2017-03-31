@@ -63,10 +63,11 @@ set shiftwidth=4
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType svg setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " TODO: language-specific indentation
 set autoindent
@@ -120,6 +121,8 @@ set splitright
 set foldmethod=marker
 set foldlevel=0
 autocmd FileType javascript setlocal foldmethod=syntax
+autocmd FileType typescript setlocal foldmethod=syntax
+autocmd FileType jsx setlocal foldmethod=syntax
 
 " enable concealment
 set conceallevel=1
@@ -129,7 +132,6 @@ let g:javascript_conceal_function = 'ƒ'
 let g:javascript_conceal_arrow_function = "⇒"
 let g:javascript_conceal_return = '⇚'
 let g:javascript_conceal_this = '@'
-let g:javascript_conceal_prototype = '#'
 " let g:javascript_conceal_function = "ƒ"
 " let g:javascript_conceal_null = "ø"
 " let g:javascript_conceal_undefined = "¿"
@@ -186,9 +188,9 @@ colorscheme nwsome
 set colorcolumn=79
 
 " }}}
-" Aurocmd on save {{{
+" Autocmd on save {{{
 " remove trailing whitespace
-autocmd FileType python,lua,javascript,json,jsx,coffeescript,jade,pug,html,stylus,css,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType python,lua,json,jsx,coffeescript,typescript,jade,pug,html,stylus,css,scss,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " autoformat js follow standard
 " autocmd bufwritepost *.js silent !standard-format -w %
@@ -365,6 +367,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_always_populate_loc_list = 1
@@ -438,8 +441,11 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType jsx setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType typescript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -475,6 +481,6 @@ nmap ga <Plug>(EasyAlign)
 let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 0
 
-autocmd FileType html,css,javascript EmmetInstall
+autocmd FileType html,css,javascript,typescript,jsx EmmetInstall
 " }}}
 " }}}
