@@ -16,7 +16,7 @@ eval $(keychain --eval --quiet id_rsa)
 # }}}
 # automatic startx {{{
 [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
-# same, but doesn't exit if X fails
+## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
 # }}}
 # zstyle completions {{{
@@ -53,14 +53,10 @@ powerline-daemon -q
 
 # }}}
 # profile {{{
-if [[ -a ~/.profile ]]; then
-    source ~/.profile
-fi
+source ~/.profile || echo '~/.profile not found'
 # }}}
 # syntax-highlighting {{{
-if [[ -a  ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || echo '~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh not found'
 # }}}
 # [OFF] virtualenvwrapper {{{
 # export WORKON_HOME=$HOME/.virtualenvs
@@ -68,9 +64,7 @@ fi
 # source /usr/bin/virtualenvwrapper.sh
 # }}}
 # zshrc-local {{{
-if [[ -a ~/.zshrc-local ]]; then
-    source ~/.zshrc-local
-fi
+source ~/.zshrc-local || echo '~/.zshrc-local not found'
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
