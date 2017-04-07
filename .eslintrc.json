@@ -1,0 +1,9 @@
+{ "extends": [ "none23" ]
+, "parser": "babel-eslint"
+, "plugins": [ "standard"
+           , "react"
+           , "promise"
+           , "import"
+           , "node"
+           ]
+}

@@ -1,0 +1,13 @@
+{ "plugins": {
+    "webpack": {}
+  , "modules": {}
+  , "es_modules": {}
+  , "node": {}
+  , "node_resolve": {}
+  , "complete_strings": {}
+  }
+, "libs": [
+    "ecmascript"
+  ]
+, "ecmaVersion": 6
+}
