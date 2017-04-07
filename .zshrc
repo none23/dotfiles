@@ -64,7 +64,7 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || echo '~/.zsh-sy
 # source /usr/bin/virtualenvwrapper.sh
 # }}}
 # zshrc-local {{{
-source ~/.zshrc-local || echo '~/.zshrc-local not found'
+[[ -a ~/.zshrc-local ]] && source ~/.zshrc-local
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0

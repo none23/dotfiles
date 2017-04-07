@@ -10,38 +10,37 @@ endif
 " }}}
 set nocompatible
 call plug#begin('~/.vim/plugged')
-" General
-Plug 'easymotion/vim-easymotion'      " quickly anywhere without counting words
-Plug 'vim-airline/vim-airline'        " airline
-Plug 'vim-airline/vim-airline-themes' " airline themes
-Plug 'kien/tabman.vim'                " tab list side-panel
-Plug 'tpope/vim-surround'             " surround
-Plug 'terryma/vim-expand-region'      " expand region
-Plug 'Townk/vim-autoclose'            " autoclose
-Plug 't9md/vim-choosewin'             " window chooser
-Plug 'ervandew/supertab'              " completion with <TAB>
-Plug 'YankRing.vim'                   " yank history navigation
-Plug 'IndexedSearch'                  " search results counter
-Plug 'xolox/vim-misc'                 " sessions dependency
-Plug 'xolox/vim-session'              " sessions
-Plug 'scrooloose/syntastic'           " linter
-Plug 'sheerun/vim-polyglot'           " Syntax highlighting
-Plug 'neomake/neomake'                " async linters and builders
-Plug 'junegunn/vim-easy-align'        " easy alignment
-Plug 'airblade/vim-gitgutter'         " highlight git changes
-Plug 'mattn/emmet-vim'                " emmet
+Plug 'easymotion/vim-easymotion'                                             " quickly anywhere without counting words
+Plug 'vim-airline/vim-airline'                                               " airline
+Plug 'vim-airline/vim-airline-themes'                                        " airline themes
+Plug 'kien/tabman.vim'                                                       " tab list side-panel
+Plug 'tpope/vim-surround'                                                    " surround
+Plug 'terryma/vim-expand-region'                                             " expand region
+Plug 'Townk/vim-autoclose'                                                   " autoclose
+Plug 't9md/vim-choosewin'                                                    " window chooser
+Plug 'ervandew/supertab'                                                     " completion with <TAB>
+Plug 'YankRing.vim'                                                          " yank history navigation
+Plug 'IndexedSearch'                                                         " search results counter
+Plug 'xolox/vim-misc'                                                        " sessions dependency
+Plug 'xolox/vim-session'                                                     " sessions
+Plug 'scrooloose/syntastic'                                                  " linter
+Plug 'sheerun/vim-polyglot'                                                  " Syntax highlighting
+Plug 'neomake/neomake'                                                       " async linters and builders
+Plug 'junegunn/vim-easy-align'                                               " easy alignment
+Plug 'airblade/vim-gitgutter'                                                " highlight git changes
+Plug 'mattn/emmet-vim'                                                       " emmet
 Plug 'elzr/vim-json'                                                         " JSON
 Plug 'digitaltoad/vim-pug'                                                   " Pug (Jade)
 Plug 'tpope/vim-haml'                                                        " Sass
-Plug 'wavded/vim-stylus', { 'for': ['styl'] }                                " Stylus
+Plug 'wavded/vim-stylus', { 'for': ['stylus']}                               " Stylus
+Plug 'hhsnopek/vim-sugarss', { 'for': ['sugarss'] }                          " SugarSS
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                       " CoffeScript
 Plug 'ap/vim-css-color'                                                      " css colors preview
-Plug 'maksimr/vim-jsbeautify'                                                " Un-minify JS
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                " JS code completion
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }      " ternjs
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] } " tern + deoplete
-Plug 'othree/jspc.vim'                                                       " Parameter completion e.g., .on('cli<tab>
-Plug 'moll/vim-node', { 'for': 'javascript' }                                " Open node modules with gf
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }          " Parameter completion e.g., .on('cli<tab>
+Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }            " Open node modules with gf
 
 " " Lint as you type. (off)
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
@@ -60,14 +59,21 @@ set softtabstop=4
 set shiftwidth=4
 
 " tab length exceptions on some file types
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType pug setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType svg setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html           setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType xml            setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType svg            setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType jade           setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType pug            setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType lua            setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript     setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript.jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType json           setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType coffee         setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType sugarss        setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType stylus         setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType sass           setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType scss           setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType css            setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " TODO: language-specific indentation
 set autoindent
@@ -190,10 +196,7 @@ set colorcolumn=79
 " }}}
 " Autocmd on save {{{
 " remove trailing whitespace
-autocmd FileType python,lua,json,jsx,coffeescript,typescript,jade,pug,html,stylus,css,scss,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
-
-" autoformat js follow standard
-" autocmd bufwritepost *.js silent !standard-format -w %
+autocmd FileType python,lua,json,javascript,javascript.jsx,coffee,typescript,jade,pug,html,svg,sugarss,stylus,css,scss,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
 set autoread
 
 " }}}
@@ -225,25 +228,23 @@ set wildignore+=.sass-cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
 set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
-
 set isfname-==
-
 set complete-=i                       " don't complete includes
 set complete-=t                       " don't complete tags
-set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
-set completeopt+=menu,menuone         " show PUM, even for one thing
+" set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
+" set completeopt+=menu,menuone         " show PUM, even for one thing
+set completeopt=longest,menuone,preview
 " }}}
 " Backup, swap and undos storage {{{
-
-set directory=~/.vim/dirs/tmp     " <=== swap files go here
+set directory=~/.vim/dirs/tmp
 
 " turn on backups
 set backup
-set backupdir=~/.vim/dirs/backups " <=== backup files go here
+set backupdir=~/.vim/dirs/backups
 
 " turn on undo history
 set undofile
-set undodir=~/.vim/dirs/undos     " <=== undo history for every file ever edited go here
+set undodir=~/.vim/dirs/undos
 
 set viminfo+=n~/.vim/dirs/viminfo
 
@@ -318,10 +319,8 @@ imap <C-S-Left> <Esc>:tabp<CR>
 " }}}
 " Splits navigation {{{
 map <F2> :below 10sp term://$SHELL<CR>i
-map <F3> :above 10sp term:///usr/bin/ranger<CR>
+map <F3> :below 10sp term:///usr/bin/ranger<CR>i
 map <F4> :below 10sp term:///usr/bin/node<CR>i
-" map <F4> :below 10sp term:///bin/ipython3<CR>i
-
 " close current split
 map <F6> <Esc><C-w>c
 " }}}
@@ -335,15 +334,10 @@ vmap <F9> "+p
 nmap <F7> "+P
 vmap <F7> "+P
 " }}}
-" Reading DOC and PDF files {{{
+" Reading DOC files {{{
 autocmd BufReadPre *.doc set ro
-autocmd BufReadPre *.pdf set ro
-
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
-
-" TODO: convert pdf to text on open
-" :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 " }}}
 " Plugins settings {{{
 " EasyMotion {{{
@@ -367,12 +361,12 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
@@ -396,6 +390,9 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 " TernJS {{{
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='on_hold'
+let g:tern#filetypes=['javascript.jsx', 'javascript']
+let g:tern#command = ['/home/n/.npm-global/bin/tern']
+let g:tern#arguments = ['--persistent']
 " }}}
 " VimJSON {{{
 let g:vim_json_syntax_conceal=1
@@ -410,7 +407,6 @@ let g:choosewin_return_on_single_win = 0
 " Airline {{{
 let g:airline_powerline_fonts=1
 let g:airline_theme='simple'
-
 " tab line
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
@@ -425,30 +421,29 @@ let g:airline#extensions#tabline#fnametruncate = 6
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3
-
 let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni' ]
-set completeopt=longest,menuone,preview
+let g:deoplete#omni#functions.javascript = ['tern#Complete', 'jspc#omni']
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-let g:tern#command = ['/home/n/.npm-global/bin/tern']
-let g:tern#arguments = ['--persistent']
+let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ultisnips', 'ternjs']
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
+set omnifunc=syntaxcomplete#Complete
+autocmd FileType html           setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType markdown       setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType typescript     setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python         setlocal omnifunc=python3complete#Complete
+autocmd FileType sugarss        setlocal omnifunc=csscomplete#CompleteCSS
+
+" }}}
+" SuperTab {{{
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:SuperTabClosePreviewOnPopupClose = 1
-
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType typescript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=python3complete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 " }}}
 " Vim Session {{{
 let g:session_autosave = 'yes'
@@ -480,7 +475,9 @@ nmap ga <Plug>(EasyAlign)
 " Emmet {{{
 let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 0
-
-autocmd FileType html,css,javascript,typescript,jsx EmmetInstall
+autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
+" }}}
+" Ultisnips {{{
+let g:UltiSnipsExpandTrigger="<C-j>"
 " }}}
 " }}}
