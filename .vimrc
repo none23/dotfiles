@@ -58,24 +58,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" tab length exceptions on some file types
-autocmd FileType html           setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml            setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType svg            setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType jade           setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType pug            setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType lua            setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript     setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript.jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType json           setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType coffee         setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType sugarss        setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType stylus         setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType sass           setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType scss           setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css            setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,xml,svg,jade,pug,lua,javascript,javascript.jsx,json,coffee,sugarss,stylus,sass,scss,css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" TODO: language-specific indentation
 set autoindent
 set nocopyindent
 set nopreserveindent
@@ -126,9 +110,7 @@ set splitright
 " marker folding
 set foldmethod=marker
 set foldlevel=0
-autocmd FileType javascript setlocal foldmethod=syntax
-autocmd FileType typescript setlocal foldmethod=syntax
-autocmd FileType jsx setlocal foldmethod=syntax
+autocmd FileType javascript,javascript.jsx,json,sugarss,stylus,sass,scss,css,jade,pug,html,xml,svg setlocal foldmethod=syntax
 
 " enable concealment
 set conceallevel=1
@@ -156,8 +138,8 @@ filetype indent plugin on
 syntax on
 
 " hide some files by default in netrw
-let g:netrw_list_hide='\.*,Gemfile.lock,README,LICENSE,node_modules'
-let g:netrw_hide=1
+let g:netrw_list_hide='\..*,Gemfile.lock,README,LICENSE,node_modules'
+let g:netrw_hide=0
 
 " prevent wrapping lines
 set textwidth=9999
@@ -279,20 +261,22 @@ vnoremap > >gv
 noremap ; :
 
 "clear search results highlighting
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <C-l> :nohl<CR><C-l>
 
-" map leader to space
+" set <Leader> key
 let mapleader = " "
 
 " toggle concealing
-map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+map <Leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " sort lines
-map <leader>o vv:sort<CR>
+map <Leader>o vv:sort<CR>
 
-" comma-last to comma-first
-map <leader>q $i<CR><Esc>J
+" move curent line's last character to the next line
+map <Leader>q $i<CR><Esc>J
 
+" escape key in terminal
+:tnoremap <Esc><Esc> <C-\><C-n>
 " }}}
 " Buffer navigation {{{
 map tN  :bnext<CR>
@@ -321,6 +305,7 @@ imap <C-S-Left> <Esc>:tabp<CR>
 map <F2> :below 10sp term://$SHELL<CR>i
 map <F3> :below 10sp term:///usr/bin/ranger<CR>i
 map <F4> :below 10sp term:///usr/bin/node<CR>i
+
 " close current split
 map <F6> <Esc><C-w>c
 " }}}
@@ -341,12 +326,12 @@ autocmd BufReadPost *.doc %!antiword "%"
 " }}}
 " Plugins settings {{{
 " EasyMotion {{{
-map <leader> <Plug>(easymotion-prefix)
+map <Leader> <Plug>(easymotion-prefix)
 
-map <leader>l <Plug>(easymotion-lineforward)
-map <leader>j <Plug>(easymotion-j)
-map <leader>k <Plug>(easymotion-k)
-map <leader>h <Plug>(easymotion-linebackward))
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward))
 
 " }}}
 " ExpandRegion {{{
@@ -385,7 +370,7 @@ let g:tabman_focus  = 'tf'
 " }}}
 " Autoclose {{{
 " fix to let ESC work as espected with Autoclose plugin
-let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+let g:AutoClosePumvisible = {"ENTER": "\<C-y>", "ESC": "\<ESC>"}
 " }}}
 " TernJS {{{
 let g:tern_map_keys=1
@@ -396,18 +381,20 @@ let g:tern#arguments = ['--persistent']
 " }}}
 " VimJSON {{{
 let g:vim_json_syntax_conceal=1
+autocmd FileType json map <Leader>c :exec &g:vim_json_syntax_conceal ? "let g:vim_json_syntax_conceal=0" : "let g:vim_json_syntax_conceal=1"<CR>
+
 " }}}
 " ChooseWin {{{
-nmap  -  <Plug>(choosewin)
-" show big letters
 let g:choosewin_overlay_enable = 0
-let g:choosewin_return_on_single_win = 0
+let g:choosewin_return_on_single_win = 1
+nmap  <C-w><Leader>  <Plug>(choosewin)
 
 " }}}
 " Airline {{{
 let g:airline_powerline_fonts=1
 let g:airline_theme='simple'
-" tab line
+
+" tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_close_button = 0
@@ -425,29 +412,26 @@ let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = ['tern#Complete', 'jspc#omni']
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ultisnips', 'ternjs']
-
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
+" omnifunc settings
 set omnifunc=syntaxcomplete#Complete
-autocmd FileType html           setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType markdown       setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType typescript     setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python         setlocal omnifunc=python3complete#Complete
-autocmd FileType sugarss        setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript,javascript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd FileType sugarss setlocal omnifunc=csscomplete#CompleteCSS
 
 " }}}
 " SuperTab {{{
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:SuperTabClosePreviewOnPopupClose = 1
+
 " }}}
 " Vim Session {{{
 let g:session_autosave = 'yes'
-" let g:session_autoload = 'no'
 
 " automatically (silently) save current working session every 5 minutes
 let g:session_autosave_periodic = 5
@@ -455,29 +439,27 @@ let g:session_autosave_silent = 1
 
 " when prompting do not include instructions on disabling prompting
 let g:session_verbose_messages = 0
-" let g:session_autosave = 'no'
+
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
 
 " }}}
 " EasyAlign {{{
-" Start interactive EasyAlign in visual mode (e.g. vipga)
+" start interactive EasyAlign in visual mode (e.g. vipga)
 let g:easy_align_interactive_modes = ['l', 'r']
 let g:easy_align_bang_interactive_modes = ['c', 'r']
-
-nmap <bar> gaip:
+nmap <bar> <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-"
-" <bar> is `|` i.e. <S-backslash>
- nmap <bar> gaip:
 " }}}
 " Emmet {{{
 let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
+autocmd FileType html,javascript.jsx EmmetInstall
+
 " }}}
 " Ultisnips {{{
-let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsExpandTrigger="<C-->"
+
 " }}}
 " }}}
