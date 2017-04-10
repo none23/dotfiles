@@ -296,10 +296,10 @@ map tp :tabp<CR>
 
 map tm0 :tabm0<CR>
 map tmm :tabm<CR>
-map <C-S-Right> :tabn<CR>
-map <C-S-Left> :tabp<CR>
-imap <C-S-Right> <Esc>:tabn<CR>
-imap <C-S-Left> <Esc>:tabp<CR>
+map <S-Right> :tabn<CR>
+map <S-Left> :tabp<CR>
+imap <S-Right> <Esc>:tabn<CR>
+imap <S-Left> <Esc>:tabp<CR>
 " }}}
 " Splits navigation {{{
 map <F2> :below 10sp term://$SHELL<CR>i
@@ -386,7 +386,13 @@ autocmd FileType json map <Leader>c :exec &g:vim_json_syntax_conceal ? "let g:vi
 " }}}
 " ChooseWin {{{
 let g:choosewin_overlay_enable = 0
+let g:choosewin_statusline_replace = 0
 let g:choosewin_return_on_single_win = 1
+
+let g:choosewin_keymap.x = '<NOP>'    " Disable default tab_close keybind
+let g:choosewin_keymap.s = '<NOP>'    " Disable default swap keybind
+let g:choosewin_keymap.S = '<NOP>'    " Disable default swap_stay keybind
+
 nmap  <C-w><Leader>  <Plug>(choosewin)
 
 " }}}
@@ -403,6 +409,9 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#fnametruncate = 6
 
+"tab numbers
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
 " }}}
 " Deoplete {{{
 let g:deoplete#enable_at_startup = 1
