@@ -88,9 +88,3 @@ hi cinclude       guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ct
 hi ColorColumn    guifg=NONE      guibg=#880000   gui=NONE      ctermfg=NONE  ctermbg=88    cterm=NONE
 hi EndOfBuffer    guifg=#070707   guibg=NONE      gui=NONE      ctermfg=NONE  ctermbg=232   cterm=NONE
 hi Substitute     guifg=#ff4300   guibg=#000000   gui=NONE      ctermfg=56    ctermbg=NONE  cterm=NONE
-
-let g:choosewin_color_label = {
-            \ 'gui':   ['#000000', '#ff6600'] 'cterm': [246, 202] }
-let g:choosewin_color_label_curent = {
-            \ 'gui':   ['#ff6600', '#000000'] 'cterm': [202, 246] }
-" { 'gui': [ {guibg}, {guifg}, {gui} ], 'cterm': [ {ctermbg}, {ctermfg}, {cterm} ] }

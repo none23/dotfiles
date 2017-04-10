@@ -324,7 +324,7 @@ autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
 " }}}
-" Plugins settings {{{
+"
 " EasyMotion {{{
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -386,13 +386,15 @@ autocmd FileType json map <Leader>c :exec &g:vim_json_syntax_conceal ? "let g:vi
 " }}}
 " ChooseWin {{{
 let g:choosewin_overlay_enable = 0
-let g:choosewin_statusline_replace = 0
+let g:choosewin_statusline_replace = 1
 let g:choosewin_return_on_single_win = 1
 
-let g:choosewin_keymap.x = '<NOP>'    " Disable default tab_close keybind
-let g:choosewin_keymap.s = '<NOP>'    " Disable default swap keybind
-let g:choosewin_keymap.S = '<NOP>'    " Disable default swap_stay keybind
-
+let g:choosewin_color_label =           { 'gui': ['#111111', '#ffffff'], 'cterm': [235, 250, 'bold'] }
+let g:choosewin_color_label_current =   { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233, 'bold'] }
+let g:choosewin_color_land =            { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233] }
+let g:choosewin_color_other =           { 'gui': ['#111111', '#000000'], 'cterm': [235, 233] }
+let g:choosewin_color_overlay =         { 'gui': ['#111111', '#ffffff'], 'cterm': [235, 250] }
+let g:choosewin_color_overlay_current = { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233] }
 nmap  <C-w><Leader>  <Plug>(choosewin)
 
 " }}}
@@ -457,8 +459,8 @@ let g:session_autoload = 'no'
 " start interactive EasyAlign in visual mode (e.g. vipga)
 let g:easy_align_interactive_modes = ['l', 'r']
 let g:easy_align_bang_interactive_modes = ['c', 'r']
-nmap <bar> <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " }}}
 " Emmet {{{
@@ -470,5 +472,4 @@ autocmd FileType html,javascript.jsx EmmetInstall
 " Ultisnips {{{
 let g:UltiSnipsExpandTrigger="<C-->"
 
-" }}}
 " }}}
