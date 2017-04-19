@@ -18,7 +18,7 @@ hi Conceal        guifg=#ff6600   guibg=NONE      gui=underline ctermfg=202   ct
 hi Conditional    guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
 hi Constant       guifg=#ff6600   guibg=NONE      gui=NONE      ctermfg=202   ctermbg=NONE  cterm=NONE
 hi Cursor         guifg=#000000   guibg=#999999   gui=NONE      ctermfg=NONE  ctermbg=246   cterm=NONE
-hi CursorColumn   guifg=fg        guibg=#370000   gui=NONE      ctermfg=NONE  ctermbg=52    cterm=NONE
+hi CursorColumn   guifg=fg        guibg=#270300   gui=NONE      ctermfg=NONE  ctermbg=52    cterm=NONE
 hi CursorLine     guifg=NONE      guibg=#370000   gui=NONE      ctermfg=220   ctermbg=52    cterm=NONE
 hi CursorLineNr   guifg=#fefa00   guibg=#330000   gui=NONE      ctermfg=220   ctermbg=52    cterm=NONE
 hi Debug          guifg=#f58f15   guibg=#000000   gui=NONE      ctermfg=208   ctermbg=NONE  cterm=NONE
@@ -43,7 +43,7 @@ hi Keyword        guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ct
 hi Label          guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
 hi LineNr         guifg=#de5e1e   guibg=#000000   gui=NONE      ctermfg=166   ctermbg=NONE  cterm=NONE
 hi Macro          guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
-hi MatchParen     guifg=#000000   guibg=#fefa00   gui=NONE      ctermfg=NONE  ctermbg=112   cterm=NONE
+hi MatchParen     guifg=#000000   guibg=#fefa00   gui=bold      ctermfg=NONE  ctermbg=112   cterm=bold
 hi ModeMsg        guifg=#de5e1e   guibg=#000000   gui=NONE      ctermfg=166   ctermbg=NONE  cterm=NONE
 hi MoreMsg        guifg=#defa11   guibg=#000000   gui=NONE      ctermfg=184   ctermbg=NONE  cterm=NONE
 hi NonText        guifg=#ffaa55   guibg=#000000   gui=NONE      ctermfg=215   ctermbg=NONE  cterm=NONE
@@ -76,7 +76,7 @@ hi TabLineFill    guifg=#de5e1e   guibg=#171717   gui=underline ctermfg=NONE  ct
 hi TabLineSel     guifg=#000000   guibg=#de5e1e   gui=NONE      ctermfg=NONE  ctermbg=166   cterm=NONE
 hi Tag            guifg=#f58f15   guibg=#000000   gui=NONE      ctermfg=208   ctermbg=NONE  cterm=NONE
 hi Title          guifg=#c7aed9   guibg=NONE      gui=NONE      ctermfg=182   ctermbg=NONE  cterm=NONE
-hi Todo           guifg=#eb1d14   guibg=#000000   gui=NONE      ctermfg=160   ctermbg=NONE  cterm=NONE
+hi Todo           guifg=#000000   guibg=#eb1d14   gui=NONE      ctermfg=160   ctermbg=NONE  cterm=NONE
 hi Type           guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
 hi Typedef        guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
 hi VertSplit      guifg=#232323   guibg=#232323   gui=NONE      ctermfg=235   ctermbg=235   cterm=NONE

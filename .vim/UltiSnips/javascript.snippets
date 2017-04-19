@@ -1,188 +1,147 @@
-#
-#  React
-#
-
-#
-## create class component
-#
-
-snippet rcc "create class component" b
-import React, { ${1:PropTypes, }Component } from 'react';
+snippet ccc "create class component" b
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 
 class ${2:ClassComponent} extends Component {
-
-	$0
-	render() {
-		return (
-			${4:<div>
-			  $5
-			</div}
-		);
-	}
+  $0
+  render() {
+    return (
+      ${4:<div>
+        $5
+      </div}
+    )
+  }
 }
 
-${3:export default $2;}
+${3:export default $2}
 endsnippet
 
-#
-## functional component
-#
+snippet ffc "create simple functional component" b
+import React from 'react'
+import { PropTypes } from 'prop-types'
 
-snippet funcCom "create simple functional component" b
-import React from 'react';
+const ${1:functionalComponent} = (${2:props}) => (
+  ${3:<div>
+    $4
+  </div>}
+)
+$1.propTypes = {
+  TODO: PropTypes.${5:string}.isRequired
+, TODO: PropTypes.${5:string}.isRequired
+}
+
+export default $1
+endsnippet
+
+snippet fcc "create simple functional component" b
+import React from 'react'
+import { PropTypes } from 'prop-types'
 
 const ${1:functionalComponent} = (${2:props}) => {
   return (
     ${3:<div>
-		  $4
-		</div>}
-  );
-};
-
-export default $1;
-endsnippet
-
-#
-## class component
-#
-
-snippet classCom "create cimple class component" b
-import React, { Component } from 'react';
-
-class ${1:ClassComponent} extends Component {
-  constructor(props) {
-		super(props);
-
-		${2:this.state = {
-		  $3
-		};}
-	}
-
-  $0
-	render() {
-    return (
-		  ${4:<div>
-        $5
-			</div>}
-		);
-	}
+      $4
+    </div>}
+  )
+}
+$1.propTypes = {
+  TODO: PropTypes.${5:string}.isRequired
+, TODO: PropTypes.${5:string}.isRequired
 }
 
-export default $1;
+export default $1
 endsnippet
 
-#
-## imports & exports
-#
-
-snippet impR "import React from 'react'" b
+snippet ir "import React" b
 import React from 'react'
 $0
 endsnippet
 
-snippet impRC "import React, {Component} from 'react'" b
+snippet irpt "import React, PropTypes" b
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+$0
+endsnippet
+
+snippet irc "import React, {Component} from 'react'" b
 import React, {Component} from 'react'
 $0
 endsnippet
 
-snippet impRPT "import React, {Component, PropTypes} from 'react'" b
-import React, {Component, PropTypes} from 'react'
-$0
-endsnippet
-
-snippet impD "import ReactDOM from 'react-dom'" b
+snippet ird "import ReactDOM from 'react-dom'" b
 import ReactDOM from 'react-dom'
 $0
 endsnippet
 
-#
-## Component specs & lifecycle
-#
-
-snippet cs "React.addons.classSet" b
-var cx = React.addons.classSet;
-endsnippet
-
 snippet cdm "component did mount" b
 componentDidMount() {
-	${1}
+  ${1}
 },$0
 endsnippet
 
 snippet cdup "component did update" b
 componentDidUpdate(prevProps, prevState) {
-	${1}
+  ${1}
 },$0
 endsnippet
 
-snippet scu "should component update"
+snippet scup "should component update"
 shouldComponentUpdate(nextProps, nextState) {
-	${1}
+  ${1}
 },$0
 endsnippet
 
 snippet cwm "component will mount" b
 componentWillMount() {
-	${1}
+  ${1}
+},$0
+endsnippet
+
+snippet cwum "component will unmount" b
+componentWillUnmount() {
+  ${1}
 },$0
 endsnippet
 
 snippet cwrp "component will receive props" b
 componentWillReceiveProps(nextProps) {
-	${1}
-},$0
-endsnippet
-
-snippet cwun "component will unmount" b
-componentWillUnmount() {
-	${1}
+  ${1}
 },$0
 endsnippet
 
 snippet cwup "component will update" b
 componentWillUpdate(nextProps, nextState) {
-	${1}
+  ${1}
 },$0
-endsnippet
-
-snippet fup
-forceUpdate(${1:callback});
 endsnippet
 
 snippet gdp "get default props" b
 getDefaultProps() {
-	return {
-		${1}
-	};
+  return {
+    ${1}
+  }
 },$0
-endsnippet
-
-snippet ism "is mounted"
-isMounted()
 endsnippet
 
 snippet ren
 render() {
-	return (
-		${1:<div>
-		  $2
-		</div>}
-	);
+  return (
+    ${1:<div>
+      $2
+    </div>}
+  )
 }
 $0
 endsnippet
 
-#
-## state
-#
 
-snippet constr "construct state" b
+snippet construct "construct state" b
 constructor(props) {
-  super(props);
+  super(props)
 
   ${1:this.state = {
-	  $2
-	};}
+    $2
+  }}
 }
 
 $0
@@ -190,9 +149,9 @@ endsnippet
 
 snippet gis "get initial state" b
 getInitialState() {
-	return {
-		${1}: ${2}
-	};
+  return {
+    ${1}: ${2}
+  }
 }
 
 $0
@@ -200,65 +159,26 @@ endsnippet
 
 snippet pt "propTypes" b
 propTypes: {
-	${1}: React.PropTypes.${2:string}
+  ${1}: React.PropTypes.${2:string}
 },
 endsnippet
 
-snippet sst "set state" b
+snippet sest "set state" b
 this.setState({
-	${1}: ${2}
-});$0
+  ${1}: ${2}
+})$0
 endsnippet
 
-snippet props "get property" i
-this.props.${1}
-endsnippet
 
-snippet state "get state" i
-this.state.${1}
-endsnippet
-
-snippet trp
-this.transferPropsTo(${VISUAL}$0);
-endsnippet
-
-#
-## DOM render
-#
-
-snippet domren "render component to DOM" b
-ReactDOM.render(${1:<$2 />}, document.${3:querySelector('$4')});
-endsnippet
-
-#
-#  Logging & JSON
-#
-
-snippet logd "log.debug();" b
-log.debug($0);
-endsnippet
-
-snippet logi "log.info();" b
-log.info($0);
-endsnippet
-
-snippet logw "log.warn();" b
-log.warn($0);
-endsnippet
-
-snippet loge "log.error();" b
-log.error($0);
-endsnippet
-
-snippet jparse "JSON.parse()"
+snippet jp "JSON.parse()"
 JSON.parse($0)
 endsnippet
 
-snippet jstring "JSON.stringify()"
+snippet jst "JSON.stringify()"
 JSON.stringify($0)
 endsnippet
 
-snippet logstr "log.debug(JSON.stringify());"
-log.debug(JSON.stringify($0));
+snippet lg "console.log"
+console.log.debug(JSON.stringify($0))
 
 endsnippet
