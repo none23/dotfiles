@@ -439,13 +439,14 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "Left",     function () awful.tag.incmwfact(-0.01)                                                                   end )
 , awful.key( { Super, Shift }, "Right",    function () awful.tag.incmwfact(0.05)                                                                    end )
 , awful.key( { Super, Shift }, "Left",     function () awful.tag.incmwfact(-0.05)                                                                   end )
-, awful.key( { Super        }, "F1",       function () awful.screen.focus(1)                                                                        end )
-, awful.key( { Super        }, "F2",       function () awful.screen.focus(2)                                                                        end )
-, awful.key( { Super        }, "F3",       function () awful.screen.focus(3)                                                                        end )
 , awful.key( { Super        }, "Return",   function () awful.util.spawn("konsole -e zsh")                                                           end )
 , awful.key( { Super, Cntrl }, "Return",   function () awful.util.spawn("urxvt")                                                                    end )
 , awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("konsole -e zsh")                                                           end )
 , awful.key( { Super, Cntrl }, "KP_Enter", function () awful.util.spawn("urxvt")                                                                    end )
+
+, awful.key( { Super        }, "F1",       function () awful.screen.focus(1)                                                                        end )
+, awful.key( { Super        }, "F2",       function () awful.screen.focus(2)                                                                        end )
+, awful.key( { Super        }, "F3",       function () awful.screen.focus(3)                                                                        end )
 
 , awful.key( { Hyper        }, "grave",    function () awful.util.spawn("konsole -e nvim")                                                          end )
 , awful.key( { Hyper        }, "1",        function () awful.util.spawn("chromium")                                                                 end )
@@ -498,30 +499,42 @@ for i = 1, 9 do
   globalkeys = awful.util.table.join( globalkeys
                                     , awful.key( { Super, Cntrl }, "#"..i + 9
                                                , function ()
-                                                   local tag = awful.screen.focused().tags[i]
+                                                   local focused_screen = awful.screen.focused()
+                                                   local tag = focused_screen.tags[i]
                                                    if tag then
                                                      tag:view_only()
+                                                     awful.screen.focus(focused_screen)
                                                    end
                                                  end
                                                )
 
                                     , awful.key( { Super }, "#"..i + 9
                                                , function ()
+                                                   local focused_screen = awful.screen.focused()
+                                                   local tag = focused_screen.tags[i]
+                                                   if tag then
+                                                     tag:view_only()
+                                                   end
+                                                   --[[
                                                    for a_screen in screen do
                                                      local tag = a_screen.tags[i]
                                                      if tag then
                                                        tag:view_only()
                                                      end
                                                    end
+                                                   awful.screen.focus(focused_screen)
+                                                   --]]
                                                  end
                                                )
 
                                     , awful.key( { Super, Shift }, "#"..i + 9
                                                , function ()
-                                                   local tag = awful.screen.focused().tags[i]
+                                                   local focused_screen = awful.screen.focused()
+                                                   local tag = focused_screen.tags[i]
                                                    if awful.client.focus and tag then
                                                      awful.client.toggletag(tag)
                                                    end
+                                                   awful.screen.focus(focused_screen)
                                                  end
                                                )
 
