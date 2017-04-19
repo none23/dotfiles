@@ -28,6 +28,7 @@ Plug 'sheerun/vim-polyglot'                                                  " S
 Plug 'neomake/neomake'                                                       " async linters and builders
 Plug 'junegunn/vim-easy-align'                                               " easy alignment
 Plug 'airblade/vim-gitgutter'                                                " highlight git changes
+Plug 'SirVer/ultisnips'                                                      " ultisnips
 Plug 'mattn/emmet-vim'                                                       " emmet
 Plug 'elzr/vim-json'                                                         " JSON
 Plug 'digitaltoad/vim-pug'                                                   " Pug (Jade)
@@ -422,6 +423,7 @@ let g:deoplete#sources#syntax#min_keyword_length = 3
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = ['tern#Complete', 'jspc#omni']
 let g:deoplete#sources = {}
+let g:deoplete#sources['javascript'] = ['buffer', 'ultisnips', 'ternjs']
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ultisnips', 'ternjs']
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
@@ -470,6 +472,6 @@ autocmd FileType html,javascript.jsx EmmetInstall
 
 " }}}
 " Ultisnips {{{
-let g:UltiSnipsExpandTrigger="<C-->"
+let g:UltiSnipsExpandTrigger="<C-j>"
 
 " }}}
