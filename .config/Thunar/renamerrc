@@ -1,6 +1,6 @@
 [Configuration]
-LastActiveMode=THUNAR_RENAMER_MODE_SUFFIX
-LastActiveRenamer=ThunarSbrInsertRenamer
+LastActiveMode=THUNAR_RENAMER_MODE_NAME
+LastActiveRenamer=ThunarSbrRemoveRenamer
 
 [ThunarSbrReplaceRenamer]
 Regexp=FALSE
@@ -8,21 +8,21 @@ Replacement=-
 CaseSensitive=FALSE
 Pattern=-00
 
+[ThunarSbrInsertRenamer]
+Offset=17
+Mode=THUNAR_SBR_INSERT_MODE_INSERT
+OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+Text=1
+
 [ThunarSbrNumberRenamer]
-TextMode=THUNAR_SBR_TEXT_MODE_TN
+TextMode=THUNAR_SBR_TEXT_MODE_OTN
 Mode=THUNAR_SBR_NUMBER_MODE_123
 Start=1
-Text=7.
+Text=_
 
 [ThunarSbrRemoveRenamer]
-EndOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
-StartOffset=0
-EndOffset=8
-StartOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
-
-[ThunarSbrInsertRenamer]
-Offset=2
-Mode=THUNAR_SBR_INSERT_MODE_INSERT
-OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-Text=a
+EndOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+StartOffset=5
+EndOffset=2
+StartOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
 
