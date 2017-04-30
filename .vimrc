@@ -10,38 +10,40 @@ endif
 " }}}
 set nocompatible
 call plug#begin('~/.vim/plugged')
-Plug 'easymotion/vim-easymotion'                                             " quickly anywhere without counting words
-Plug 'vim-airline/vim-airline'                                               " airline
-Plug 'vim-airline/vim-airline-themes'                                        " airline themes
-Plug 'kien/tabman.vim'                                                       " tab list side-panel
-Plug 'tpope/vim-surround'                                                    " surround
-Plug 'terryma/vim-expand-region'                                             " expand region
-Plug 'Townk/vim-autoclose'                                                   " autoclose
-Plug 't9md/vim-choosewin'                                                    " window chooser
-Plug 'ervandew/supertab'                                                     " completion with <TAB>
-Plug 'YankRing.vim'                                                          " yank history navigation
-Plug 'IndexedSearch'                                                         " search results counter
-Plug 'xolox/vim-misc'                                                        " sessions dependency
-Plug 'xolox/vim-session'                                                     " sessions
-Plug 'scrooloose/syntastic'                                                  " linter
-Plug 'sheerun/vim-polyglot'                                                  " Syntax highlighting
-Plug 'neomake/neomake'                                                       " async linters and builders
-Plug 'junegunn/vim-easy-align'                                               " easy alignment
-Plug 'airblade/vim-gitgutter'                                                " highlight git changes
-Plug 'SirVer/ultisnips'                                                      " ultisnips
-Plug 'mattn/emmet-vim'                                                       " emmet
-Plug 'elzr/vim-json'                                                         " JSON
-Plug 'digitaltoad/vim-pug'                                                   " Pug (Jade)
-Plug 'tpope/vim-haml'                                                        " Sass
-Plug 'wavded/vim-stylus', { 'for': ['stylus']}                               " Stylus
-Plug 'hhsnopek/vim-sugarss', { 'for': ['sugarss'] }                          " SugarSS
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                       " CoffeScript
-Plug 'ap/vim-css-color'                                                      " css colors preview
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                " JS code completion
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }      " ternjs
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] } " tern + deoplete
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }          " Parameter completion e.g., .on('cli<tab>
-Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }            " Open node modules with gf
+
+Plug 'easymotion/vim-easymotion'                                                   " quickly anywhere without counting words
+Plug 'vim-airline/vim-airline'                                                     " airline
+Plug 'vim-airline/vim-airline-themes'                                              " airline themes
+Plug 'kien/tabman.vim'                                                             " tab list side-panel
+Plug 'tpope/vim-surround'                                                          " surround
+Plug 'terryma/vim-expand-region'                                                   " expand region
+Plug 'Townk/vim-autoclose'                                                         " autoclose
+Plug 't9md/vim-choosewin'                                                          " window chooser
+Plug 'ervandew/supertab'                                                           " completion with <TAB>
+Plug 'YankRing.vim'                                                                " yank history navigation
+Plug 'IndexedSearch'                                                               " search results counter
+Plug 'xolox/vim-misc'                                                              " sessions dependency
+Plug 'xolox/vim-session'                                                           " sessions
+Plug 'scrooloose/syntastic'                                                        " linter
+Plug 'sheerun/vim-polyglot'                                                        " Syntax highlighting
+Plug 'neomake/neomake'                                                             " async linters and builders
+Plug 'junegunn/vim-easy-align'                                                     " easy alignment
+Plug 'airblade/vim-gitgutter'                                                      " highlight git changes
+Plug 'SirVer/ultisnips'                                                            " ultisnips
+Plug 'mattn/emmet-vim'                                                             " emmet
+Plug 'elzr/vim-json'                                                               " JSON
+Plug 'digitaltoad/vim-pug'                                                         " Pug (Jade)
+Plug 'tpope/vim-haml'                                                              " Sass
+Plug 'wavded/vim-stylus', { 'for': ['stylus']}                                     " Stylus
+Plug 'hhsnopek/vim-sugarss', { 'for': ['sugarss'] }                                " SugarSS
+Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] } " Stylefmt
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                             " CoffeScript
+Plug 'ap/vim-css-color'                                                            " css colors preview
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }            " ternjs
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }       " tern + deoplete
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }                " Parameter completion e.g., .on('cli<tab>
+Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }                  " Open node modules with gf
 
 " " Lint as you type. (off)
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
@@ -325,7 +327,7 @@ autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
 " }}}
-"
+
 " EasyMotion {{{
 map <Leader> <Plug>(easymotion-prefix)
 
