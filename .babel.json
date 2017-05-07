@@ -3702,5 +3702,1069 @@
       ]
     },
     "mtime": 1492057158695
+  },
+  "{\"filename\":\"/tmp/react-image-lightbox/webpack.config.umd.babel.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/tmp/react-image-lightbox\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.24.1:production": {
+    "metadata": {
+      "usedHelpers": [
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "path",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "path"
+              }
+            ]
+          },
+          {
+            "source": "webpack",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "webpack"
+              }
+            ]
+          },
+          {
+            "source": "autoprefixer",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "autoprefixer"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/tmp/react-image-lightbox/webpack.config.umd.babel.js",
+      "filenameRelative": "/tmp/react-image-lightbox/webpack.config.umd.babel.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "webpack.config.umd.babel.js",
+      "sourceFileName": "webpack.config.umd.babel.js",
+      "sourceRoot": "/tmp/react-image-lightbox",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/tmp/react-image-lightbox",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "webpack.config.umd.babel"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nvar _path = require('path');\n\nvar _path2 = _interopRequireDefault(_path);\n\nvar _webpack = require('webpack');\n\nvar _webpack2 = _interopRequireDefault(_webpack);\n\nvar _autoprefixer = require('autoprefixer');\n\nvar _autoprefixer2 = _interopRequireDefault(_autoprefixer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nmodule.exports = {\n    entry: {\n        'react-image-lightbox': './src/index'\n    },\n    output: {\n        path: _path2.default.join(__dirname, 'dist', 'umd'),\n        filename: '[name].js',\n        libraryTarget: 'umd',\n        library: 'ReactImageLightbox'\n    },\n    resolve: {\n        extensions: ['', '.js']\n    },\n    devtool: 'source-map',\n    plugins: [new _webpack2.default.optimize.OccurenceOrderPlugin(), new _webpack2.default.EnvironmentPlugin([\"NODE_ENV\"]), new _webpack2.default.optimize.UglifyJsPlugin({\n        compress: {\n            warnings: false\n        },\n        mangle: false,\n        beautify: true,\n        comments: true\n    })],\n    postcss: [(0, _autoprefixer2.default)({ browsers: ['IE >= 9', '> 1%'] })],\n    externals: {\n        react: 'react',\n        'react-dom': 'react-dom',\n        'react-modal': 'react-modal'\n    },\n    module: {\n        loaders: [{\n            test: /\\.jsx?$/,\n            loaders: ['babel'],\n            include: _path2.default.join(__dirname, 'src')\n        }, {\n            test: /\\.scss$/,\n            loaders: ['style-loader', 'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]', 'postcss-loader', 'sass-loader'],\n            include: _path2.default.join(__dirname, 'src')\n        }]\n    }\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2suY29uZmlnLnVtZC5iYWJlbC5qcyJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwiZW50cnkiLCJvdXRwdXQiLCJwYXRoIiwiam9pbiIsIl9fZGlybmFtZSIsImZpbGVuYW1lIiwibGlicmFyeVRhcmdldCIsImxpYnJhcnkiLCJyZXNvbHZlIiwiZXh0ZW5zaW9ucyIsImRldnRvb2wiLCJwbHVnaW5zIiwib3B0aW1pemUiLCJPY2N1cmVuY2VPcmRlclBsdWdpbiIsIkVudmlyb25tZW50UGx1Z2luIiwiVWdsaWZ5SnNQbHVnaW4iLCJjb21wcmVzcyIsIndhcm5pbmdzIiwibWFuZ2xlIiwiYmVhdXRpZnkiLCJjb21tZW50cyIsInBvc3Rjc3MiLCJicm93c2VycyIsImV4dGVybmFscyIsInJlYWN0IiwibG9hZGVycyIsInRlc3QiLCJpbmNsdWRlIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7O0FBRUFBLE9BQU9DLE9BQVAsR0FBaUI7QUFDYkMsV0FBTztBQUNILGdDQUF3QjtBQURyQixLQURNO0FBSWJDLFlBQVE7QUFDSkMsY0FBTSxlQUFLQyxJQUFMLENBQVVDLFNBQVYsRUFBcUIsTUFBckIsRUFBNkIsS0FBN0IsQ0FERjtBQUVKQyxrQkFBVSxXQUZOO0FBR0pDLHVCQUFlLEtBSFg7QUFJSkMsaUJBQVM7QUFKTCxLQUpLO0FBVWJDLGFBQVM7QUFDTEMsb0JBQVksQ0FBQyxFQUFELEVBQUssS0FBTDtBQURQLEtBVkk7QUFhYkMsYUFBUyxZQWJJO0FBY2JDLGFBQVMsQ0FDTCxJQUFJLGtCQUFRQyxRQUFSLENBQWlCQyxvQkFBckIsRUFESyxFQUVMLElBQUksa0JBQVFDLGlCQUFaLENBQThCLENBQzFCLFVBRDBCLENBQTlCLENBRkssRUFLTCxJQUFJLGtCQUFRRixRQUFSLENBQWlCRyxjQUFyQixDQUFvQztBQUNoQ0Msa0JBQVU7QUFDTkMsc0JBQVU7QUFESixTQURzQjtBQUloQ0MsZ0JBQVEsS0FKd0I7QUFLaENDLGtCQUFVLElBTHNCO0FBTWhDQyxrQkFBVTtBQU5zQixLQUFwQyxDQUxLLENBZEk7QUE0QmJDLGFBQVMsQ0FDTCw0QkFBYSxFQUFFQyxVQUFVLENBQUMsU0FBRCxFQUFZLE1BQVosQ0FBWixFQUFiLENBREssQ0E1Qkk7QUErQmJDLGVBQVc7QUFDUEMsZUFBTyxPQURBO0FBRVAscUJBQWEsV0FGTjtBQUdQLHVCQUFlO0FBSFIsS0EvQkU7QUFvQ2IxQixZQUFRO0FBQ0oyQixpQkFBUyxDQUNMO0FBQ0lDLGtCQUFNLFNBRFY7QUFFSUQscUJBQVMsQ0FBQyxPQUFELENBRmI7QUFHSUUscUJBQVMsZUFBS3hCLElBQUwsQ0FBVUMsU0FBVixFQUFxQixLQUFyQjtBQUhiLFNBREssRUFNTDtBQUNJc0Isa0JBQU0sU0FEVjtBQUVJRCxxQkFBUyxDQUNMLGNBREssRUFFTCwyRkFGSyxFQUdMLGdCQUhLLEVBSUwsYUFKSyxDQUZiO0FBUUlFLHFCQUFTLGVBQUt4QixJQUFMLENBQVVDLFNBQVYsRUFBcUIsS0FBckI7QUFSYixTQU5LO0FBREw7QUFwQ0ssQ0FBakIiLCJmaWxlIjoid2VicGFjay5jb25maWcudW1kLmJhYmVsLmpzIiwic291cmNlUm9vdCI6Ii90bXAvcmVhY3QtaW1hZ2UtbGlnaHRib3giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcGF0aCBmcm9tICdwYXRoJztcbmltcG9ydCB3ZWJwYWNrIGZyb20gJ3dlYnBhY2snO1xuaW1wb3J0IGF1dG9wcmVmaXhlciBmcm9tICdhdXRvcHJlZml4ZXInO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgICBlbnRyeToge1xuICAgICAgICAncmVhY3QtaW1hZ2UtbGlnaHRib3gnOiAnLi9zcmMvaW5kZXgnLFxuICAgIH0sXG4gICAgb3V0cHV0OiB7XG4gICAgICAgIHBhdGg6IHBhdGguam9pbihfX2Rpcm5hbWUsICdkaXN0JywgJ3VtZCcpLFxuICAgICAgICBmaWxlbmFtZTogJ1tuYW1lXS5qcycsXG4gICAgICAgIGxpYnJhcnlUYXJnZXQ6ICd1bWQnLFxuICAgICAgICBsaWJyYXJ5OiAnUmVhY3RJbWFnZUxpZ2h0Ym94JyxcbiAgICB9LFxuICAgIHJlc29sdmU6IHtcbiAgICAgICAgZXh0ZW5zaW9uczogWycnLCAnLmpzJ11cbiAgICB9LFxuICAgIGRldnRvb2w6ICdzb3VyY2UtbWFwJyxcbiAgICBwbHVnaW5zOiBbXG4gICAgICAgIG5ldyB3ZWJwYWNrLm9wdGltaXplLk9jY3VyZW5jZU9yZGVyUGx1Z2luKCksXG4gICAgICAgIG5ldyB3ZWJwYWNrLkVudmlyb25tZW50UGx1Z2luKFtcbiAgICAgICAgICAgIFwiTk9ERV9FTlZcIixcbiAgICAgICAgXSksXG4gICAgICAgIG5ldyB3ZWJwYWNrLm9wdGltaXplLlVnbGlmeUpzUGx1Z2luKHtcbiAgICAgICAgICAgIGNvbXByZXNzOiB7XG4gICAgICAgICAgICAgICAgd2FybmluZ3M6IGZhbHNlXG4gICAgICAgICAgICB9LFxuICAgICAgICAgICAgbWFuZ2xlOiBmYWxzZSxcbiAgICAgICAgICAgIGJlYXV0aWZ5OiB0cnVlLFxuICAgICAgICAgICAgY29tbWVudHM6IHRydWUsXG4gICAgICAgIH0pLFxuICAgIF0sXG4gICAgcG9zdGNzczogW1xuICAgICAgICBhdXRvcHJlZml4ZXIoeyBicm93c2VyczogWydJRSA+PSA5JywgJz4gMSUnXSB9KSxcbiAgICBdLFxuICAgIGV4dGVybmFsczoge1xuICAgICAgICByZWFjdDogJ3JlYWN0JyxcbiAgICAgICAgJ3JlYWN0LWRvbSc6ICdyZWFjdC1kb20nLFxuICAgICAgICAncmVhY3QtbW9kYWwnOiAncmVhY3QtbW9kYWwnLFxuICAgIH0sXG4gICAgbW9kdWxlOiB7XG4gICAgICAgIGxvYWRlcnM6IFtcbiAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICB0ZXN0OiAvXFwuanN4PyQvLFxuICAgICAgICAgICAgICAgIGxvYWRlcnM6IFsnYmFiZWwnXSxcbiAgICAgICAgICAgICAgICBpbmNsdWRlOiBwYXRoLmpvaW4oX19kaXJuYW1lLCAnc3JjJylcbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgdGVzdDogL1xcLnNjc3MkLyxcbiAgICAgICAgICAgICAgICBsb2FkZXJzOiBbXG4gICAgICAgICAgICAgICAgICAgICdzdHlsZS1sb2FkZXInLFxuICAgICAgICAgICAgICAgICAgICAnY3NzLWxvYWRlcj9tb2R1bGVzJi1hdXRvcHJlZml4ZXImaW1wb3J0TG9hZGVycz0xJmxvY2FsSWRlbnROYW1lPVtsb2NhbF1fX19baGFzaDpiYXNlNjQ6NV0nLFxuICAgICAgICAgICAgICAgICAgICAncG9zdGNzcy1sb2FkZXInLFxuICAgICAgICAgICAgICAgICAgICAnc2Fzcy1sb2FkZXInLFxuICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgaW5jbHVkZTogcGF0aC5qb2luKF9fZGlybmFtZSwgJ3NyYycpXG4gICAgICAgICAgICB9LFxuICAgICAgICBdXG4gICAgfVxufTtcbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "webpack.config.umd.babel.js"
+      ],
+      "names": [
+        "module",
+        "exports",
+        "entry",
+        "output",
+        "path",
+        "join",
+        "__dirname",
+        "filename",
+        "libraryTarget",
+        "library",
+        "resolve",
+        "extensions",
+        "devtool",
+        "plugins",
+        "optimize",
+        "OccurenceOrderPlugin",
+        "EnvironmentPlugin",
+        "UglifyJsPlugin",
+        "compress",
+        "warnings",
+        "mangle",
+        "beautify",
+        "comments",
+        "postcss",
+        "browsers",
+        "externals",
+        "react",
+        "loaders",
+        "test",
+        "include"
+      ],
+      "mappings": ";;AAAA;;;;AACA;;;;AACA;;;;;;AAEAA,OAAOC,OAAP,GAAiB;AACbC,WAAO;AACH,gCAAwB;AADrB,KADM;AAIbC,YAAQ;AACJC,cAAM,eAAKC,IAAL,CAAUC,SAAV,EAAqB,MAArB,EAA6B,KAA7B,CADF;AAEJC,kBAAU,WAFN;AAGJC,uBAAe,KAHX;AAIJC,iBAAS;AAJL,KAJK;AAUbC,aAAS;AACLC,oBAAY,CAAC,EAAD,EAAK,KAAL;AADP,KAVI;AAabC,aAAS,YAbI;AAcbC,aAAS,CACL,IAAI,kBAAQC,QAAR,CAAiBC,oBAArB,EADK,EAEL,IAAI,kBAAQC,iBAAZ,CAA8B,CAC1B,UAD0B,CAA9B,CAFK,EAKL,IAAI,kBAAQF,QAAR,CAAiBG,cAArB,CAAoC;AAChCC,kBAAU;AACNC,sBAAU;AADJ,SADsB;AAIhCC,gBAAQ,KAJwB;AAKhCC,kBAAU,IALsB;AAMhCC,kBAAU;AANsB,KAApC,CALK,CAdI;AA4BbC,aAAS,CACL,4BAAa,EAAEC,UAAU,CAAC,SAAD,EAAY,MAAZ,CAAZ,EAAb,CADK,CA5BI;AA+BbC,eAAW;AACPC,eAAO,OADA;AAEP,qBAAa,WAFN;AAGP,uBAAe;AAHR,KA/BE;AAoCb1B,YAAQ;AACJ2B,iBAAS,CACL;AACIC,kBAAM,SADV;AAEID,qBAAS,CAAC,OAAD,CAFb;AAGIE,qBAAS,eAAKxB,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAHb,SADK,EAML;AACIsB,kBAAM,SADV;AAEID,qBAAS,CACL,cADK,EAEL,2FAFK,EAGL,gBAHK,EAIL,aAJK,CAFb;AAQIE,qBAAS,eAAKxB,IAAL,CAAUC,SAAV,EAAqB,KAArB;AARb,SANK;AADL;AApCK,CAAjB",
+      "file": "webpack.config.umd.babel.js",
+      "sourceRoot": "/tmp/react-image-lightbox",
+      "sourcesContent": [
+        "import path from 'path';\nimport webpack from 'webpack';\nimport autoprefixer from 'autoprefixer';\n\nmodule.exports = {\n    entry: {\n        'react-image-lightbox': './src/index',\n    },\n    output: {\n        path: path.join(__dirname, 'dist', 'umd'),\n        filename: '[name].js',\n        libraryTarget: 'umd',\n        library: 'ReactImageLightbox',\n    },\n    resolve: {\n        extensions: ['', '.js']\n    },\n    devtool: 'source-map',\n    plugins: [\n        new webpack.optimize.OccurenceOrderPlugin(),\n        new webpack.EnvironmentPlugin([\n            \"NODE_ENV\",\n        ]),\n        new webpack.optimize.UglifyJsPlugin({\n            compress: {\n                warnings: false\n            },\n            mangle: false,\n            beautify: true,\n            comments: true,\n        }),\n    ],\n    postcss: [\n        autoprefixer({ browsers: ['IE >= 9', '> 1%'] }),\n    ],\n    externals: {\n        react: 'react',\n        'react-dom': 'react-dom',\n        'react-modal': 'react-modal',\n    },\n    module: {\n        loaders: [\n            {\n                test: /\\.jsx?$/,\n                loaders: ['babel'],\n                include: path.join(__dirname, 'src')\n            },\n            {\n                test: /\\.scss$/,\n                loaders: [\n                    'style-loader',\n                    'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]',\n                    'postcss-loader',\n                    'sass-loader',\n                ],\n                include: path.join(__dirname, 'src')\n            },\n        ]\n    }\n};\n"
+      ]
+    },
+    "mtime": 1493884836096
+  },
+  "{\"filename\":\"/home/n/none23/react-image-lightbox/webpack.config.umd.babel.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/n/none23/react-image-lightbox\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.24.1:production": {
+    "metadata": {
+      "usedHelpers": [
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "path",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "path"
+              }
+            ]
+          },
+          {
+            "source": "webpack",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "webpack"
+              }
+            ]
+          },
+          {
+            "source": "autoprefixer",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "autoprefixer"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/home/n/none23/react-image-lightbox/webpack.config.umd.babel.js",
+      "filenameRelative": "/home/n/none23/react-image-lightbox/webpack.config.umd.babel.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "webpack.config.umd.babel.js",
+      "sourceFileName": "webpack.config.umd.babel.js",
+      "sourceRoot": "/home/n/none23/react-image-lightbox",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/home/n/none23/react-image-lightbox",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "webpack.config.umd.babel"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nvar _path = require('path');\n\nvar _path2 = _interopRequireDefault(_path);\n\nvar _webpack = require('webpack');\n\nvar _webpack2 = _interopRequireDefault(_webpack);\n\nvar _autoprefixer = require('autoprefixer');\n\nvar _autoprefixer2 = _interopRequireDefault(_autoprefixer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nmodule.exports = {\n  entry: {\n    'react-image-lightbox': './src/index'\n  },\n  output: {\n    path: _path2.default.join(__dirname, 'dist', 'umd'),\n    filename: '[name].js',\n    libraryTarget: 'umd',\n    library: 'ReactImageLightbox'\n  },\n  resolve: {\n    extensions: ['', '.js']\n  },\n  devtool: 'source-map',\n  plugins: [new _webpack2.default.optimize.OccurenceOrderPlugin(), new _webpack2.default.EnvironmentPlugin(['NODE_ENV']), new _webpack2.default.optimize.UglifyJsPlugin({\n    compress: { warnings: false },\n    mangle: false,\n    beautify: true,\n    comments: true\n  })],\n  postcss: [(0, _autoprefixer2.default)({ browsers: ['IE >= 9', '> 1%'] })],\n  externals: {\n    react: 'react',\n    'react-dom': 'react-dom',\n    'react-modal': 'react-modal'\n  },\n  module: {\n    loaders: [{ test: /\\.jsx?$/,\n      loaders: ['babel'],\n      include: _path2.default.join(__dirname, 'src')\n    }, { test: /\\.scss$/,\n      loaders: ['style-loader', 'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]', 'postcss-loader', 'sass-loader'],\n      include: _path2.default.join(__dirname, 'src')\n    }]\n  }\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2suY29uZmlnLnVtZC5iYWJlbC5qcyJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwiZW50cnkiLCJvdXRwdXQiLCJwYXRoIiwiam9pbiIsIl9fZGlybmFtZSIsImZpbGVuYW1lIiwibGlicmFyeVRhcmdldCIsImxpYnJhcnkiLCJyZXNvbHZlIiwiZXh0ZW5zaW9ucyIsImRldnRvb2wiLCJwbHVnaW5zIiwib3B0aW1pemUiLCJPY2N1cmVuY2VPcmRlclBsdWdpbiIsIkVudmlyb25tZW50UGx1Z2luIiwiVWdsaWZ5SnNQbHVnaW4iLCJjb21wcmVzcyIsIndhcm5pbmdzIiwibWFuZ2xlIiwiYmVhdXRpZnkiLCJjb21tZW50cyIsInBvc3Rjc3MiLCJicm93c2VycyIsImV4dGVybmFscyIsInJlYWN0IiwibG9hZGVycyIsInRlc3QiLCJpbmNsdWRlIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7O0FBRUFBLE9BQU9DLE9BQVAsR0FBaUI7QUFDZkMsU0FBTztBQUNMLDRCQUF3QjtBQURuQixHQURRO0FBSWZDLFVBQVE7QUFDTkMsVUFBTSxlQUFLQyxJQUFMLENBQVVDLFNBQVYsRUFBcUIsTUFBckIsRUFBNkIsS0FBN0IsQ0FEQTtBQUVOQyxjQUFVLFdBRko7QUFHTkMsbUJBQWUsS0FIVDtBQUlOQyxhQUFTO0FBSkgsR0FKTztBQVVmQyxXQUFTO0FBQ1BDLGdCQUFZLENBQUMsRUFBRCxFQUFLLEtBQUw7QUFETCxHQVZNO0FBYWZDLFdBQVMsWUFiTTtBQWNmQyxXQUFTLENBQ1AsSUFBSSxrQkFBUUMsUUFBUixDQUFpQkMsb0JBQXJCLEVBRE8sRUFFUCxJQUFJLGtCQUFRQyxpQkFBWixDQUE4QixDQUFDLFVBQUQsQ0FBOUIsQ0FGTyxFQUdQLElBQUksa0JBQVFGLFFBQVIsQ0FBaUJHLGNBQXJCLENBQW9DO0FBQ2xDQyxjQUFVLEVBQUNDLFVBQVUsS0FBWCxFQUR3QjtBQUVsQ0MsWUFBUSxLQUYwQjtBQUdsQ0MsY0FBVSxJQUh3QjtBQUlsQ0MsY0FBVTtBQUp3QixHQUFwQyxDQUhPLENBZE07QUF3QmZDLFdBQVMsQ0FDUCw0QkFBYSxFQUFFQyxVQUFVLENBQUMsU0FBRCxFQUFZLE1BQVosQ0FBWixFQUFiLENBRE8sQ0F4Qk07QUEyQmZDLGFBQVc7QUFDVEMsV0FBTyxPQURFO0FBRVQsaUJBQWEsV0FGSjtBQUdULG1CQUFlO0FBSE4sR0EzQkk7QUFnQ2YxQixVQUFRO0FBQ04yQixhQUFTLENBQ1AsRUFBRUMsTUFBTSxTQUFSO0FBQ0VELGVBQVMsQ0FBQyxPQUFELENBRFg7QUFFRUUsZUFBUyxlQUFLeEIsSUFBTCxDQUFVQyxTQUFWLEVBQXFCLEtBQXJCO0FBRlgsS0FETyxFQUtQLEVBQUVzQixNQUFNLFNBQVI7QUFDRUQsZUFBUyxDQUNQLGNBRE8sRUFFUCwyRkFGTyxFQUdQLGdCQUhPLEVBSVAsYUFKTyxDQURYO0FBT0VFLGVBQVMsZUFBS3hCLElBQUwsQ0FBVUMsU0FBVixFQUFxQixLQUFyQjtBQVBYLEtBTE87QUFESDtBQWhDTyxDQUFqQiIsImZpbGUiOiJ3ZWJwYWNrLmNvbmZpZy51bWQuYmFiZWwuanMiLCJzb3VyY2VSb290IjoiL2hvbWUvbi9ub25lMjMvcmVhY3QtaW1hZ2UtbGlnaHRib3giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcGF0aCBmcm9tICdwYXRoJ1xuaW1wb3J0IHdlYnBhY2sgZnJvbSAnd2VicGFjaydcbmltcG9ydCBhdXRvcHJlZml4ZXIgZnJvbSAnYXV0b3ByZWZpeGVyJ1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgZW50cnk6IHtcbiAgICAncmVhY3QtaW1hZ2UtbGlnaHRib3gnOiAnLi9zcmMvaW5kZXgnXG4gIH1cbiwgb3V0cHV0OiB7XG4gICAgcGF0aDogcGF0aC5qb2luKF9fZGlybmFtZSwgJ2Rpc3QnLCAndW1kJylcbiAgLCBmaWxlbmFtZTogJ1tuYW1lXS5qcydcbiAgLCBsaWJyYXJ5VGFyZ2V0OiAndW1kJ1xuICAsIGxpYnJhcnk6ICdSZWFjdEltYWdlTGlnaHRib3gnXG4gIH1cbiwgcmVzb2x2ZToge1xuICAgIGV4dGVuc2lvbnM6IFsnJywgJy5qcyddXG4gIH1cbiwgZGV2dG9vbDogJ3NvdXJjZS1tYXAnXG4sIHBsdWdpbnM6IFtcbiAgICBuZXcgd2VicGFjay5vcHRpbWl6ZS5PY2N1cmVuY2VPcmRlclBsdWdpbigpXG4gICwgbmV3IHdlYnBhY2suRW52aXJvbm1lbnRQbHVnaW4oWydOT0RFX0VOViddKVxuICAsIG5ldyB3ZWJwYWNrLm9wdGltaXplLlVnbGlmeUpzUGx1Z2luKHtcbiAgICAgIGNvbXByZXNzOiB7d2FybmluZ3M6IGZhbHNlfVxuICAgICwgbWFuZ2xlOiBmYWxzZVxuICAgICwgYmVhdXRpZnk6IHRydWVcbiAgICAsIGNvbW1lbnRzOiB0cnVlXG4gICAgfSlcbiAgXVxuLCBwb3N0Y3NzOiBbXG4gICAgYXV0b3ByZWZpeGVyKHsgYnJvd3NlcnM6IFsnSUUgPj0gOScsICc+IDElJ10gfSlcbiAgXVxuLCBleHRlcm5hbHM6IHtcbiAgICByZWFjdDogJ3JlYWN0J1xuICAsICdyZWFjdC1kb20nOiAncmVhY3QtZG9tJ1xuICAsICdyZWFjdC1tb2RhbCc6ICdyZWFjdC1tb2RhbCdcbiAgfVxuLCBtb2R1bGU6IHtcbiAgICBsb2FkZXJzOiBbXG4gICAgICB7IHRlc3Q6IC9cXC5qc3g/JC9cbiAgICAgICwgbG9hZGVyczogWydiYWJlbCddXG4gICAgICAsIGluY2x1ZGU6IHBhdGguam9pbihfX2Rpcm5hbWUsICdzcmMnKVxuICAgICAgfVxuICAgICwgeyB0ZXN0OiAvXFwuc2NzcyQvXG4gICAgICAsIGxvYWRlcnM6IFtcbiAgICAgICAgICAnc3R5bGUtbG9hZGVyJ1xuICAgICAgICAsICdjc3MtbG9hZGVyP21vZHVsZXMmLWF1dG9wcmVmaXhlciZpbXBvcnRMb2FkZXJzPTEmbG9jYWxJZGVudE5hbWU9W2xvY2FsXV9fX1toYXNoOmJhc2U2NDo1XSdcbiAgICAgICAgLCAncG9zdGNzcy1sb2FkZXInXG4gICAgICAgICwgJ3Nhc3MtbG9hZGVyJ1xuICAgICAgICBdXG4gICAgICAsIGluY2x1ZGU6IHBhdGguam9pbihfX2Rpcm5hbWUsICdzcmMnKVxuICAgICAgfVxuICAgIF1cbiAgfVxufVxuIl19",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "webpack.config.umd.babel.js"
+      ],
+      "names": [
+        "module",
+        "exports",
+        "entry",
+        "output",
+        "path",
+        "join",
+        "__dirname",
+        "filename",
+        "libraryTarget",
+        "library",
+        "resolve",
+        "extensions",
+        "devtool",
+        "plugins",
+        "optimize",
+        "OccurenceOrderPlugin",
+        "EnvironmentPlugin",
+        "UglifyJsPlugin",
+        "compress",
+        "warnings",
+        "mangle",
+        "beautify",
+        "comments",
+        "postcss",
+        "browsers",
+        "externals",
+        "react",
+        "loaders",
+        "test",
+        "include"
+      ],
+      "mappings": ";;AAAA;;;;AACA;;;;AACA;;;;;;AAEAA,OAAOC,OAAP,GAAiB;AACfC,SAAO;AACL,4BAAwB;AADnB,GADQ;AAIfC,UAAQ;AACNC,UAAM,eAAKC,IAAL,CAAUC,SAAV,EAAqB,MAArB,EAA6B,KAA7B,CADA;AAENC,cAAU,WAFJ;AAGNC,mBAAe,KAHT;AAINC,aAAS;AAJH,GAJO;AAUfC,WAAS;AACPC,gBAAY,CAAC,EAAD,EAAK,KAAL;AADL,GAVM;AAafC,WAAS,YAbM;AAcfC,WAAS,CACP,IAAI,kBAAQC,QAAR,CAAiBC,oBAArB,EADO,EAEP,IAAI,kBAAQC,iBAAZ,CAA8B,CAAC,UAAD,CAA9B,CAFO,EAGP,IAAI,kBAAQF,QAAR,CAAiBG,cAArB,CAAoC;AAClCC,cAAU,EAACC,UAAU,KAAX,EADwB;AAElCC,YAAQ,KAF0B;AAGlCC,cAAU,IAHwB;AAIlCC,cAAU;AAJwB,GAApC,CAHO,CAdM;AAwBfC,WAAS,CACP,4BAAa,EAAEC,UAAU,CAAC,SAAD,EAAY,MAAZ,CAAZ,EAAb,CADO,CAxBM;AA2BfC,aAAW;AACTC,WAAO,OADE;AAET,iBAAa,WAFJ;AAGT,mBAAe;AAHN,GA3BI;AAgCf1B,UAAQ;AACN2B,aAAS,CACP,EAAEC,MAAM,SAAR;AACED,eAAS,CAAC,OAAD,CADX;AAEEE,eAAS,eAAKxB,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAFX,KADO,EAKP,EAAEsB,MAAM,SAAR;AACED,eAAS,CACP,cADO,EAEP,2FAFO,EAGP,gBAHO,EAIP,aAJO,CADX;AAOEE,eAAS,eAAKxB,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAPX,KALO;AADH;AAhCO,CAAjB",
+      "file": "webpack.config.umd.babel.js",
+      "sourceRoot": "/home/n/none23/react-image-lightbox",
+      "sourcesContent": [
+        "import path from 'path'\nimport webpack from 'webpack'\nimport autoprefixer from 'autoprefixer'\n\nmodule.exports = {\n  entry: {\n    'react-image-lightbox': './src/index'\n  }\n, output: {\n    path: path.join(__dirname, 'dist', 'umd')\n  , filename: '[name].js'\n  , libraryTarget: 'umd'\n  , library: 'ReactImageLightbox'\n  }\n, resolve: {\n    extensions: ['', '.js']\n  }\n, devtool: 'source-map'\n, plugins: [\n    new webpack.optimize.OccurenceOrderPlugin()\n  , new webpack.EnvironmentPlugin(['NODE_ENV'])\n  , new webpack.optimize.UglifyJsPlugin({\n      compress: {warnings: false}\n    , mangle: false\n    , beautify: true\n    , comments: true\n    })\n  ]\n, postcss: [\n    autoprefixer({ browsers: ['IE >= 9', '> 1%'] })\n  ]\n, externals: {\n    react: 'react'\n  , 'react-dom': 'react-dom'\n  , 'react-modal': 'react-modal'\n  }\n, module: {\n    loaders: [\n      { test: /\\.jsx?$/\n      , loaders: ['babel']\n      , include: path.join(__dirname, 'src')\n      }\n    , { test: /\\.scss$/\n      , loaders: [\n          'style-loader'\n        , 'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]'\n        , 'postcss-loader'\n        , 'sass-loader'\n        ]\n      , include: path.join(__dirname, 'src')\n      }\n    ]\n  }\n}\n"
+      ]
+    },
+    "mtime": 1493979404549
+  },
+  "{\"filename\":\"/home/n/none23/react-image-lightbox/webpack.config.demo.babel.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/n/none23/react-image-lightbox\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.24.1:production": {
+    "metadata": {
+      "usedHelpers": [
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "html-webpack-plugin",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "HtmlWebpackPlugin"
+              }
+            ]
+          },
+          {
+            "source": "path",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "path"
+              }
+            ]
+          },
+          {
+            "source": "webpack",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "webpack"
+              }
+            ]
+          },
+          {
+            "source": "autoprefixer",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "autoprefixer"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/home/n/none23/react-image-lightbox/webpack.config.demo.babel.js",
+      "filenameRelative": "/home/n/none23/react-image-lightbox/webpack.config.demo.babel.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "webpack.config.demo.babel.js",
+      "sourceFileName": "webpack.config.demo.babel.js",
+      "sourceRoot": "/home/n/none23/react-image-lightbox",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/home/n/none23/react-image-lightbox",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "webpack.config.demo.babel"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nvar _htmlWebpackPlugin = require('html-webpack-plugin');\n\nvar _htmlWebpackPlugin2 = _interopRequireDefault(_htmlWebpackPlugin);\n\nvar _path = require('path');\n\nvar _path2 = _interopRequireDefault(_path);\n\nvar _webpack = require('webpack');\n\nvar _webpack2 = _interopRequireDefault(_webpack);\n\nvar _autoprefixer = require('autoprefixer');\n\nvar _autoprefixer2 = _interopRequireDefault(_autoprefixer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nmodule.exports = {\n    devtool: 'source-map',\n    entry: {\n        demo: './src/examples/cats/app'\n    },\n    output: {\n        path: 'build',\n        filename: 'static/[name].js'\n    },\n    plugins: [new _htmlWebpackPlugin2.default({\n        filename: 'index.html',\n        inject: true,\n        template: './src/examples/cats/index.html'\n    }), new _webpack2.default.EnvironmentPlugin([\"NODE_ENV\"]), new _webpack2.default.optimize.UglifyJsPlugin({\n        compress: {\n            warnings: false\n        }\n    })],\n    postcss: [(0, _autoprefixer2.default)({ browsers: ['IE >= 9', '> 1%'] })],\n    module: {\n        loaders: [{\n            test: /\\.jsx?$/,\n            loaders: ['babel'],\n            include: _path2.default.join(__dirname, 'src')\n        }, {\n            test: /\\.scss$/,\n            loaders: ['style-loader', 'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]', 'postcss-loader', 'sass-loader'],\n            include: _path2.default.join(__dirname, 'src')\n        }, {\n            test: /\\.(jpe?g|png|gif)$/,\n            loaders: ['file-loader?name=static/[name]-[hash:6].[ext]'],\n            include: _path2.default.join(__dirname, 'src')\n        }]\n    }\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2suY29uZmlnLmRlbW8uYmFiZWwuanMiXSwibmFtZXMiOlsibW9kdWxlIiwiZXhwb3J0cyIsImRldnRvb2wiLCJlbnRyeSIsImRlbW8iLCJvdXRwdXQiLCJwYXRoIiwiZmlsZW5hbWUiLCJwbHVnaW5zIiwiaW5qZWN0IiwidGVtcGxhdGUiLCJFbnZpcm9ubWVudFBsdWdpbiIsIm9wdGltaXplIiwiVWdsaWZ5SnNQbHVnaW4iLCJjb21wcmVzcyIsIndhcm5pbmdzIiwicG9zdGNzcyIsImJyb3dzZXJzIiwibG9hZGVycyIsInRlc3QiLCJpbmNsdWRlIiwiam9pbiIsIl9fZGlybmFtZSJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7O0FBRUFBLE9BQU9DLE9BQVAsR0FBaUI7QUFDYkMsYUFBUyxZQURJO0FBRWJDLFdBQU87QUFDSEMsY0FBTTtBQURILEtBRk07QUFLYkMsWUFBUTtBQUNKQyxjQUFNLE9BREY7QUFFSkMsa0JBQVU7QUFGTixLQUxLO0FBU2JDLGFBQVMsQ0FDTCxnQ0FBc0I7QUFDbEJELGtCQUFVLFlBRFE7QUFFbEJFLGdCQUFRLElBRlU7QUFHbEJDLGtCQUFVO0FBSFEsS0FBdEIsQ0FESyxFQU1MLElBQUksa0JBQVFDLGlCQUFaLENBQThCLENBQzFCLFVBRDBCLENBQTlCLENBTkssRUFTTCxJQUFJLGtCQUFRQyxRQUFSLENBQWlCQyxjQUFyQixDQUFvQztBQUNoQ0Msa0JBQVU7QUFDTkMsc0JBQVU7QUFESjtBQURzQixLQUFwQyxDQVRLLENBVEk7QUF3QmJDLGFBQVMsQ0FDTCw0QkFBYSxFQUFFQyxVQUFVLENBQUMsU0FBRCxFQUFZLE1BQVosQ0FBWixFQUFiLENBREssQ0F4Qkk7QUEyQmJqQixZQUFRO0FBQ0prQixpQkFBUyxDQUNMO0FBQ0lDLGtCQUFNLFNBRFY7QUFFSUQscUJBQVMsQ0FBQyxPQUFELENBRmI7QUFHSUUscUJBQVMsZUFBS0MsSUFBTCxDQUFVQyxTQUFWLEVBQXFCLEtBQXJCO0FBSGIsU0FESyxFQU1MO0FBQ0lILGtCQUFNLFNBRFY7QUFFSUQscUJBQVMsQ0FDTCxjQURLLEVBRUwsMkZBRkssRUFHTCxnQkFISyxFQUlMLGFBSkssQ0FGYjtBQVFJRSxxQkFBUyxlQUFLQyxJQUFMLENBQVVDLFNBQVYsRUFBcUIsS0FBckI7QUFSYixTQU5LLEVBZ0JMO0FBQ0lILGtCQUFNLG9CQURWO0FBRUlELHFCQUFTLENBQ0wsK0NBREssQ0FGYjtBQUtJRSxxQkFBUyxlQUFLQyxJQUFMLENBQVVDLFNBQVYsRUFBcUIsS0FBckI7QUFMYixTQWhCSztBQURMO0FBM0JLLENBQWpCIiwiZmlsZSI6IndlYnBhY2suY29uZmlnLmRlbW8uYmFiZWwuanMiLCJzb3VyY2VSb290IjoiL2hvbWUvbi9ub25lMjMvcmVhY3QtaW1hZ2UtbGlnaHRib3giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgSHRtbFdlYnBhY2tQbHVnaW4gZnJvbSAnaHRtbC13ZWJwYWNrLXBsdWdpbic7XG5pbXBvcnQgcGF0aCBmcm9tICdwYXRoJztcbmltcG9ydCB3ZWJwYWNrIGZyb20gJ3dlYnBhY2snO1xuaW1wb3J0IGF1dG9wcmVmaXhlciBmcm9tICdhdXRvcHJlZml4ZXInO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgICBkZXZ0b29sOiAnc291cmNlLW1hcCcsXG4gICAgZW50cnk6IHtcbiAgICAgICAgZGVtbzogJy4vc3JjL2V4YW1wbGVzL2NhdHMvYXBwJyxcbiAgICB9LFxuICAgIG91dHB1dDoge1xuICAgICAgICBwYXRoOiAnYnVpbGQnLFxuICAgICAgICBmaWxlbmFtZTogJ3N0YXRpYy9bbmFtZV0uanMnLFxuICAgIH0sXG4gICAgcGx1Z2luczogW1xuICAgICAgICBuZXcgSHRtbFdlYnBhY2tQbHVnaW4oe1xuICAgICAgICAgICAgZmlsZW5hbWU6ICdpbmRleC5odG1sJyxcbiAgICAgICAgICAgIGluamVjdDogdHJ1ZSxcbiAgICAgICAgICAgIHRlbXBsYXRlOiAnLi9zcmMvZXhhbXBsZXMvY2F0cy9pbmRleC5odG1sJyxcbiAgICAgICAgfSksXG4gICAgICAgIG5ldyB3ZWJwYWNrLkVudmlyb25tZW50UGx1Z2luKFtcbiAgICAgICAgICAgIFwiTk9ERV9FTlZcIixcbiAgICAgICAgXSksXG4gICAgICAgIG5ldyB3ZWJwYWNrLm9wdGltaXplLlVnbGlmeUpzUGx1Z2luKHtcbiAgICAgICAgICAgIGNvbXByZXNzOiB7XG4gICAgICAgICAgICAgICAgd2FybmluZ3M6IGZhbHNlXG4gICAgICAgICAgICB9LFxuICAgICAgICB9KSxcbiAgICBdLFxuICAgIHBvc3Rjc3M6IFtcbiAgICAgICAgYXV0b3ByZWZpeGVyKHsgYnJvd3NlcnM6IFsnSUUgPj0gOScsICc+IDElJ10gfSksXG4gICAgXSxcbiAgICBtb2R1bGU6IHtcbiAgICAgICAgbG9hZGVyczogW1xuICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgIHRlc3Q6IC9cXC5qc3g/JC8sXG4gICAgICAgICAgICAgICAgbG9hZGVyczogWydiYWJlbCddLFxuICAgICAgICAgICAgICAgIGluY2x1ZGU6IHBhdGguam9pbihfX2Rpcm5hbWUsICdzcmMnKVxuICAgICAgICAgICAgfSxcbiAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICB0ZXN0OiAvXFwuc2NzcyQvLFxuICAgICAgICAgICAgICAgIGxvYWRlcnM6IFtcbiAgICAgICAgICAgICAgICAgICAgJ3N0eWxlLWxvYWRlcicsXG4gICAgICAgICAgICAgICAgICAgICdjc3MtbG9hZGVyP21vZHVsZXMmLWF1dG9wcmVmaXhlciZpbXBvcnRMb2FkZXJzPTEmbG9jYWxJZGVudE5hbWU9W2xvY2FsXV9fX1toYXNoOmJhc2U2NDo1XScsXG4gICAgICAgICAgICAgICAgICAgICdwb3N0Y3NzLWxvYWRlcicsXG4gICAgICAgICAgICAgICAgICAgICdzYXNzLWxvYWRlcicsXG4gICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICBpbmNsdWRlOiBwYXRoLmpvaW4oX19kaXJuYW1lLCAnc3JjJylcbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgdGVzdDogL1xcLihqcGU/Z3xwbmd8Z2lmKSQvLFxuICAgICAgICAgICAgICAgIGxvYWRlcnM6IFtcbiAgICAgICAgICAgICAgICAgICAgJ2ZpbGUtbG9hZGVyP25hbWU9c3RhdGljL1tuYW1lXS1baGFzaDo2XS5bZXh0XScsXG4gICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICBpbmNsdWRlOiBwYXRoLmpvaW4oX19kaXJuYW1lLCAnc3JjJylcbiAgICAgICAgICAgIH0sXG4gICAgICAgIF0sXG4gICAgfVxufTtcbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "webpack.config.demo.babel.js"
+      ],
+      "names": [
+        "module",
+        "exports",
+        "devtool",
+        "entry",
+        "demo",
+        "output",
+        "path",
+        "filename",
+        "plugins",
+        "inject",
+        "template",
+        "EnvironmentPlugin",
+        "optimize",
+        "UglifyJsPlugin",
+        "compress",
+        "warnings",
+        "postcss",
+        "browsers",
+        "loaders",
+        "test",
+        "include",
+        "join",
+        "__dirname"
+      ],
+      "mappings": ";;AAAA;;;;AACA;;;;AACA;;;;AACA;;;;;;AAEAA,OAAOC,OAAP,GAAiB;AACbC,aAAS,YADI;AAEbC,WAAO;AACHC,cAAM;AADH,KAFM;AAKbC,YAAQ;AACJC,cAAM,OADF;AAEJC,kBAAU;AAFN,KALK;AASbC,aAAS,CACL,gCAAsB;AAClBD,kBAAU,YADQ;AAElBE,gBAAQ,IAFU;AAGlBC,kBAAU;AAHQ,KAAtB,CADK,EAML,IAAI,kBAAQC,iBAAZ,CAA8B,CAC1B,UAD0B,CAA9B,CANK,EASL,IAAI,kBAAQC,QAAR,CAAiBC,cAArB,CAAoC;AAChCC,kBAAU;AACNC,sBAAU;AADJ;AADsB,KAApC,CATK,CATI;AAwBbC,aAAS,CACL,4BAAa,EAAEC,UAAU,CAAC,SAAD,EAAY,MAAZ,CAAZ,EAAb,CADK,CAxBI;AA2BbjB,YAAQ;AACJkB,iBAAS,CACL;AACIC,kBAAM,SADV;AAEID,qBAAS,CAAC,OAAD,CAFb;AAGIE,qBAAS,eAAKC,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAHb,SADK,EAML;AACIH,kBAAM,SADV;AAEID,qBAAS,CACL,cADK,EAEL,2FAFK,EAGL,gBAHK,EAIL,aAJK,CAFb;AAQIE,qBAAS,eAAKC,IAAL,CAAUC,SAAV,EAAqB,KAArB;AARb,SANK,EAgBL;AACIH,kBAAM,oBADV;AAEID,qBAAS,CACL,+CADK,CAFb;AAKIE,qBAAS,eAAKC,IAAL,CAAUC,SAAV,EAAqB,KAArB;AALb,SAhBK;AADL;AA3BK,CAAjB",
+      "file": "webpack.config.demo.babel.js",
+      "sourceRoot": "/home/n/none23/react-image-lightbox",
+      "sourcesContent": [
+        "import HtmlWebpackPlugin from 'html-webpack-plugin';\nimport path from 'path';\nimport webpack from 'webpack';\nimport autoprefixer from 'autoprefixer';\n\nmodule.exports = {\n    devtool: 'source-map',\n    entry: {\n        demo: './src/examples/cats/app',\n    },\n    output: {\n        path: 'build',\n        filename: 'static/[name].js',\n    },\n    plugins: [\n        new HtmlWebpackPlugin({\n            filename: 'index.html',\n            inject: true,\n            template: './src/examples/cats/index.html',\n        }),\n        new webpack.EnvironmentPlugin([\n            \"NODE_ENV\",\n        ]),\n        new webpack.optimize.UglifyJsPlugin({\n            compress: {\n                warnings: false\n            },\n        }),\n    ],\n    postcss: [\n        autoprefixer({ browsers: ['IE >= 9', '> 1%'] }),\n    ],\n    module: {\n        loaders: [\n            {\n                test: /\\.jsx?$/,\n                loaders: ['babel'],\n                include: path.join(__dirname, 'src')\n            },\n            {\n                test: /\\.scss$/,\n                loaders: [\n                    'style-loader',\n                    'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]',\n                    'postcss-loader',\n                    'sass-loader',\n                ],\n                include: path.join(__dirname, 'src')\n            },\n            {\n                test: /\\.(jpe?g|png|gif)$/,\n                loaders: [\n                    'file-loader?name=static/[name]-[hash:6].[ext]',\n                ],\n                include: path.join(__dirname, 'src')\n            },\n        ],\n    }\n};\n"
+      ]
+    },
+    "mtime": 1493885232090
+  },
+  "{\"filename\":\"/home/n/none23/react-image-lightbox/webpack.config.dev.babel.js\",\"env\":{\"development\":{\"plugins\":[]}},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/n/none23/react-image-lightbox\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.24.1:development": {
+    "metadata": {
+      "usedHelpers": [
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "html-webpack-plugin",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "HtmlWebpackPlugin"
+              }
+            ]
+          },
+          {
+            "source": "path",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "path"
+              }
+            ]
+          },
+          {
+            "source": "webpack",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "webpack"
+              }
+            ]
+          },
+          {
+            "source": "autoprefixer",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "autoprefixer"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/home/n/none23/react-image-lightbox/webpack.config.dev.babel.js",
+      "filenameRelative": "/home/n/none23/react-image-lightbox/webpack.config.dev.babel.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false,
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "spec": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "webpack.config.dev.babel.js",
+      "sourceFileName": "webpack.config.dev.babel.js",
+      "sourceRoot": "/home/n/none23/react-image-lightbox",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/home/n/none23/react-image-lightbox",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "webpack.config.dev.babel"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nvar _htmlWebpackPlugin = require('html-webpack-plugin');\n\nvar _htmlWebpackPlugin2 = _interopRequireDefault(_htmlWebpackPlugin);\n\nvar _path = require('path');\n\nvar _path2 = _interopRequireDefault(_path);\n\nvar _webpack = require('webpack');\n\nvar _webpack2 = _interopRequireDefault(_webpack);\n\nvar _autoprefixer = require('autoprefixer');\n\nvar _autoprefixer2 = _interopRequireDefault(_autoprefixer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nmodule.exports = {\n  devtool: 'source-map',\n  entry: { demo: './src/example/app' },\n  output: {\n    path: 'build',\n    filename: 'static/[name].js'\n  },\n  plugins: [new _htmlWebpackPlugin2.default({\n    filename: 'index.html',\n    inject: true,\n    template: './src/example/index.html'\n  }), new _webpack2.default.EnvironmentPlugin(['NODE_ENV']), new _webpack2.default.NoErrorsPlugin()],\n  resolve: {\n    alias: {\n      'react/lib/ReactMount': 'react-dom/lib/ReactMount'\n    }\n  },\n  postcss: [(0, _autoprefixer2.default)({ browsers: ['IE >= 9', '> 1%'] })],\n  module: {\n    loaders: [{ test: /\\.jsx?$/,\n      loaders: ['react-hot', 'babel'],\n      include: _path2.default.join(__dirname, 'src')\n    }, { test: /\\.scss$/,\n      loaders: ['style-loader', 'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]', 'postcss-loader', 'sass-loader'],\n      include: _path2.default.join(__dirname, 'src')\n    }, { test: /\\.(jpe?g|png|gif)$/,\n      loaders: ['file-loader?name=static/[name]-[hash:6].[ext]'],\n      include: _path2.default.join(__dirname, 'src')\n    }]\n  },\n  devServer: {\n    contentBase: 'build',\n    port: 3001,\n    stats: {\n      chunks: false,\n      hash: false,\n      version: false,\n      assets: false,\n      children: false\n    }\n  }\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2suY29uZmlnLmRldi5iYWJlbC5qcyJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwiZGV2dG9vbCIsImVudHJ5IiwiZGVtbyIsIm91dHB1dCIsInBhdGgiLCJmaWxlbmFtZSIsInBsdWdpbnMiLCJpbmplY3QiLCJ0ZW1wbGF0ZSIsIkVudmlyb25tZW50UGx1Z2luIiwiTm9FcnJvcnNQbHVnaW4iLCJyZXNvbHZlIiwiYWxpYXMiLCJwb3N0Y3NzIiwiYnJvd3NlcnMiLCJsb2FkZXJzIiwidGVzdCIsImluY2x1ZGUiLCJqb2luIiwiX19kaXJuYW1lIiwiZGV2U2VydmVyIiwiY29udGVudEJhc2UiLCJwb3J0Iiwic3RhdHMiLCJjaHVua3MiLCJoYXNoIiwidmVyc2lvbiIsImFzc2V0cyIsImNoaWxkcmVuIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7Ozs7QUFFQUEsT0FBT0MsT0FBUCxHQUFpQjtBQUNmQyxXQUFTLFlBRE07QUFFZkMsU0FBTyxFQUFFQyxNQUFNLG1CQUFSLEVBRlE7QUFHZkMsVUFBUTtBQUNOQyxVQUFNLE9BREE7QUFFTkMsY0FBVTtBQUZKLEdBSE87QUFPZkMsV0FBUyxDQUNQLGdDQUFzQjtBQUNwQkQsY0FBVSxZQURVO0FBRXBCRSxZQUFRLElBRlk7QUFHcEJDLGNBQVU7QUFIVSxHQUF0QixDQURPLEVBTVAsSUFBSSxrQkFBUUMsaUJBQVosQ0FBOEIsQ0FBQyxVQUFELENBQTlCLENBTk8sRUFPUCxJQUFJLGtCQUFRQyxjQUFaLEVBUE8sQ0FQTTtBQWdCZkMsV0FBUztBQUNQQyxXQUFPO0FBQ0wsOEJBQXdCO0FBRG5CO0FBREEsR0FoQk07QUFxQmZDLFdBQVMsQ0FDUCw0QkFBYSxFQUFFQyxVQUFVLENBQUMsU0FBRCxFQUFZLE1BQVosQ0FBWixFQUFiLENBRE8sQ0FyQk07QUF3QmZoQixVQUFRO0FBQ05pQixhQUFTLENBQ1AsRUFBRUMsTUFBTSxTQUFSO0FBQ0VELGVBQVMsQ0FBQyxXQUFELEVBQWMsT0FBZCxDQURYO0FBRUVFLGVBQVMsZUFBS0MsSUFBTCxDQUFVQyxTQUFWLEVBQXFCLEtBQXJCO0FBRlgsS0FETyxFQUtQLEVBQUVILE1BQU0sU0FBUjtBQUNFRCxlQUFTLENBQ1AsY0FETyxFQUVQLDJGQUZPLEVBR1AsZ0JBSE8sRUFJUCxhQUpPLENBRFg7QUFPRUUsZUFBUyxlQUFLQyxJQUFMLENBQVVDLFNBQVYsRUFBcUIsS0FBckI7QUFQWCxLQUxPLEVBY1AsRUFBRUgsTUFBTSxvQkFBUjtBQUNFRCxlQUFTLENBQUUsK0NBQUYsQ0FEWDtBQUVFRSxlQUFTLGVBQUtDLElBQUwsQ0FBVUMsU0FBVixFQUFxQixLQUFyQjtBQUZYLEtBZE87QUFESCxHQXhCTztBQTZDZkMsYUFBVztBQUNUQyxpQkFBYSxPQURKO0FBRVRDLFVBQU0sSUFGRztBQUdUQyxXQUFPO0FBQ0xDLGNBQVEsS0FESDtBQUVMQyxZQUFNLEtBRkQ7QUFHTEMsZUFBUyxLQUhKO0FBSUxDLGNBQVEsS0FKSDtBQUtMQyxnQkFBVTtBQUxMO0FBSEU7QUE3Q0ksQ0FBakIiLCJmaWxlIjoid2VicGFjay5jb25maWcuZGV2LmJhYmVsLmpzIiwic291cmNlUm9vdCI6Ii9ob21lL24vbm9uZTIzL3JlYWN0LWltYWdlLWxpZ2h0Ym94Iiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEh0bWxXZWJwYWNrUGx1Z2luIGZyb20gJ2h0bWwtd2VicGFjay1wbHVnaW4nXG5pbXBvcnQgcGF0aCBmcm9tICdwYXRoJ1xuaW1wb3J0IHdlYnBhY2sgZnJvbSAnd2VicGFjaydcbmltcG9ydCBhdXRvcHJlZml4ZXIgZnJvbSAnYXV0b3ByZWZpeGVyJ1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgZGV2dG9vbDogJ3NvdXJjZS1tYXAnXG4sIGVudHJ5OiB7IGRlbW86ICcuL3NyYy9leGFtcGxlL2FwcCcgfVxuLCBvdXRwdXQ6IHtcbiAgICBwYXRoOiAnYnVpbGQnXG4gICwgZmlsZW5hbWU6ICdzdGF0aWMvW25hbWVdLmpzJ1xuICB9XG4sIHBsdWdpbnM6IFtcbiAgICBuZXcgSHRtbFdlYnBhY2tQbHVnaW4oe1xuICAgICAgZmlsZW5hbWU6ICdpbmRleC5odG1sJ1xuICAgICwgaW5qZWN0OiB0cnVlXG4gICAgLCB0ZW1wbGF0ZTogJy4vc3JjL2V4YW1wbGUvaW5kZXguaHRtbCdcbiAgICB9KVxuICAsIG5ldyB3ZWJwYWNrLkVudmlyb25tZW50UGx1Z2luKFsnTk9ERV9FTlYnXSlcbiAgLCBuZXcgd2VicGFjay5Ob0Vycm9yc1BsdWdpbigpXG4gIF1cbiwgcmVzb2x2ZToge1xuICAgIGFsaWFzOiB7XG4gICAgICAncmVhY3QvbGliL1JlYWN0TW91bnQnOiAncmVhY3QtZG9tL2xpYi9SZWFjdE1vdW50J1xuICAgIH1cbiAgfVxuLCBwb3N0Y3NzOiBbXG4gICAgYXV0b3ByZWZpeGVyKHsgYnJvd3NlcnM6IFsnSUUgPj0gOScsICc+IDElJ10gfSlcbiAgXVxuLCBtb2R1bGU6IHtcbiAgICBsb2FkZXJzOiBbXG4gICAgICB7IHRlc3Q6IC9cXC5qc3g/JC9cbiAgICAgICwgbG9hZGVyczogWydyZWFjdC1ob3QnLCAnYmFiZWwnXVxuICAgICAgLCBpbmNsdWRlOiBwYXRoLmpvaW4oX19kaXJuYW1lLCAnc3JjJylcbiAgICAgIH1cbiAgICAsIHsgdGVzdDogL1xcLnNjc3MkL1xuICAgICAgLCBsb2FkZXJzOiBbXG4gICAgICAgICAgJ3N0eWxlLWxvYWRlcidcbiAgICAgICAgLCAnY3NzLWxvYWRlcj9tb2R1bGVzJi1hdXRvcHJlZml4ZXImaW1wb3J0TG9hZGVycz0xJmxvY2FsSWRlbnROYW1lPVtsb2NhbF1fX19baGFzaDpiYXNlNjQ6NV0nXG4gICAgICAgICwgJ3Bvc3Rjc3MtbG9hZGVyJ1xuICAgICAgICAsICdzYXNzLWxvYWRlcidcbiAgICAgICAgXVxuICAgICAgLCBpbmNsdWRlOiBwYXRoLmpvaW4oX19kaXJuYW1lLCAnc3JjJylcbiAgICAgIH1cbiAgICAsIHsgdGVzdDogL1xcLihqcGU/Z3xwbmd8Z2lmKSQvXG4gICAgICAsIGxvYWRlcnM6IFsgJ2ZpbGUtbG9hZGVyP25hbWU9c3RhdGljL1tuYW1lXS1baGFzaDo2XS5bZXh0XScgXVxuICAgICAgLCBpbmNsdWRlOiBwYXRoLmpvaW4oX19kaXJuYW1lLCAnc3JjJylcbiAgICAgIH1cbiAgICBdXG4gIH1cbiwgZGV2U2VydmVyOiB7XG4gICAgY29udGVudEJhc2U6ICdidWlsZCdcbiAgLCBwb3J0OiAzMDAxXG4gICwgc3RhdHM6IHtcbiAgICAgIGNodW5rczogZmFsc2VcbiAgICAsIGhhc2g6IGZhbHNlXG4gICAgLCB2ZXJzaW9uOiBmYWxzZVxuICAgICwgYXNzZXRzOiBmYWxzZVxuICAgICwgY2hpbGRyZW46IGZhbHNlXG4gICAgfVxuICB9XG59XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "webpack.config.dev.babel.js"
+      ],
+      "names": [
+        "module",
+        "exports",
+        "devtool",
+        "entry",
+        "demo",
+        "output",
+        "path",
+        "filename",
+        "plugins",
+        "inject",
+        "template",
+        "EnvironmentPlugin",
+        "NoErrorsPlugin",
+        "resolve",
+        "alias",
+        "postcss",
+        "browsers",
+        "loaders",
+        "test",
+        "include",
+        "join",
+        "__dirname",
+        "devServer",
+        "contentBase",
+        "port",
+        "stats",
+        "chunks",
+        "hash",
+        "version",
+        "assets",
+        "children"
+      ],
+      "mappings": ";;AAAA;;;;AACA;;;;AACA;;;;AACA;;;;;;AAEAA,OAAOC,OAAP,GAAiB;AACfC,WAAS,YADM;AAEfC,SAAO,EAAEC,MAAM,mBAAR,EAFQ;AAGfC,UAAQ;AACNC,UAAM,OADA;AAENC,cAAU;AAFJ,GAHO;AAOfC,WAAS,CACP,gCAAsB;AACpBD,cAAU,YADU;AAEpBE,YAAQ,IAFY;AAGpBC,cAAU;AAHU,GAAtB,CADO,EAMP,IAAI,kBAAQC,iBAAZ,CAA8B,CAAC,UAAD,CAA9B,CANO,EAOP,IAAI,kBAAQC,cAAZ,EAPO,CAPM;AAgBfC,WAAS;AACPC,WAAO;AACL,8BAAwB;AADnB;AADA,GAhBM;AAqBfC,WAAS,CACP,4BAAa,EAAEC,UAAU,CAAC,SAAD,EAAY,MAAZ,CAAZ,EAAb,CADO,CArBM;AAwBfhB,UAAQ;AACNiB,aAAS,CACP,EAAEC,MAAM,SAAR;AACED,eAAS,CAAC,WAAD,EAAc,OAAd,CADX;AAEEE,eAAS,eAAKC,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAFX,KADO,EAKP,EAAEH,MAAM,SAAR;AACED,eAAS,CACP,cADO,EAEP,2FAFO,EAGP,gBAHO,EAIP,aAJO,CADX;AAOEE,eAAS,eAAKC,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAPX,KALO,EAcP,EAAEH,MAAM,oBAAR;AACED,eAAS,CAAE,+CAAF,CADX;AAEEE,eAAS,eAAKC,IAAL,CAAUC,SAAV,EAAqB,KAArB;AAFX,KAdO;AADH,GAxBO;AA6CfC,aAAW;AACTC,iBAAa,OADJ;AAETC,UAAM,IAFG;AAGTC,WAAO;AACLC,cAAQ,KADH;AAELC,YAAM,KAFD;AAGLC,eAAS,KAHJ;AAILC,cAAQ,KAJH;AAKLC,gBAAU;AALL;AAHE;AA7CI,CAAjB",
+      "file": "webpack.config.dev.babel.js",
+      "sourceRoot": "/home/n/none23/react-image-lightbox",
+      "sourcesContent": [
+        "import HtmlWebpackPlugin from 'html-webpack-plugin'\nimport path from 'path'\nimport webpack from 'webpack'\nimport autoprefixer from 'autoprefixer'\n\nmodule.exports = {\n  devtool: 'source-map'\n, entry: { demo: './src/example/app' }\n, output: {\n    path: 'build'\n  , filename: 'static/[name].js'\n  }\n, plugins: [\n    new HtmlWebpackPlugin({\n      filename: 'index.html'\n    , inject: true\n    , template: './src/example/index.html'\n    })\n  , new webpack.EnvironmentPlugin(['NODE_ENV'])\n  , new webpack.NoErrorsPlugin()\n  ]\n, resolve: {\n    alias: {\n      'react/lib/ReactMount': 'react-dom/lib/ReactMount'\n    }\n  }\n, postcss: [\n    autoprefixer({ browsers: ['IE >= 9', '> 1%'] })\n  ]\n, module: {\n    loaders: [\n      { test: /\\.jsx?$/\n      , loaders: ['react-hot', 'babel']\n      , include: path.join(__dirname, 'src')\n      }\n    , { test: /\\.scss$/\n      , loaders: [\n          'style-loader'\n        , 'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=[local]___[hash:base64:5]'\n        , 'postcss-loader'\n        , 'sass-loader'\n        ]\n      , include: path.join(__dirname, 'src')\n      }\n    , { test: /\\.(jpe?g|png|gif)$/\n      , loaders: [ 'file-loader?name=static/[name]-[hash:6].[ext]' ]\n      , include: path.join(__dirname, 'src')\n      }\n    ]\n  }\n, devServer: {\n    contentBase: 'build'\n  , port: 3001\n  , stats: {\n      chunks: false\n    , hash: false\n    , version: false\n    , assets: false\n    , children: false\n    }\n  }\n}\n"
+      ]
+    },
+    "mtime": 1494004046960
   }
 }
