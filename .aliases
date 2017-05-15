@@ -2,54 +2,50 @@
 alias la='ls -AFlh --color=tty'
 alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
-# }}}
-# myip {{{
-alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
+
 # }}}
 # sshuttle {{{
 alias sshide='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid'
 alias sshide-dl='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid --no-latency-control'
 alias sshive='sshuttle -r aws 0/0 --dns --verbose'
 alias sshive-dl='sshuttle -r aws 0/0 --dns --verbose --no-latency-control'
+
 # }}}
 # touchpad {{{
 alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
 alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
-alias ton='tonn && (sleep 30 && toff) &'
-# }}}
-# improved dd {{{
-dd () { command sudo dd $* bs=512K status=progress ; }
-# }}}
-# ping {{{
-pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
-# }}}
-# misc {{{
-rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
-gui () { [[ $1 ]] && thunar "$*" || thunar $(pwd) & }
-alias dmesgg='watch "dmesg -e | tail"'
-zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
-alias py='ipython3'
-alias n='node'
-alias df='df -h'
-alias du='du -h '
-alias vtop='vtop -t nwsome '
-alias octave=octave-cli
-alias spotify='spotify & blockify'
+alias ton='tonn && (sleep 30 && toff) &' # shitty, but works for me
+
 # }}}
 # gui apps in bg {{{
-thunar      () { command thunar       "$*" & }
-gparted     () { command gparted      "$*" & }
-libreoffice () { command libreoffice  "$*" & }
-feh         () { command feh          "$*" & }
-geeqie      () { command geeqie       "$*" & }
+thunar () { command thunar "$@" & }
+gparted () { command gparted "$@" & }
+libreoffice () { command libreoffice "$@" & }
+feh () { command feh "$@" & }
+geeqie () { command geeqie "$@" & }
+
 # }}}
-# npm {{{
-alias ni='npm install'
-alias nr='npm run'
-alias nv='npm version'
-alias nrb='npm run build'
-alias nrt='npm run test'
-alias nrw='npm run watch'
+# npm/yarn {{{
+ni () { [[ $1 ]] && if [[ "$1" == '-g' && $2 ]]; then npm i -g ${@:2}; else yarn $* ; fi || yarn }
+nr () { [[ $1 ]] && yarn run $1 || ( echo 'no arguments given' && exit 1 ) }
+nrb () { if [[ $1 ]]; then echo "nrb doesn't accept arguments" && exit 1; else yarn run build; fi }
+nrt () { if [[ $1 ]]; then echo "nrt doesn't accept arguments" && exit 1; else yarn test; fi }
+nrw () { if [[ $1 ]]; then echo "nrw doesn't accept arguments" && exit 1; else yarn run watch || yarn start; fi }
+
+# }}}
+# dotfiles etc {{{
+alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
+alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
+
+# }}}
+# yaourt {{{
+alias y='yaourt'
+alias Y='yaourt -Syua && npm update -g && pkglist'
+alias Yy='yaourt -Syy'
+alias Yc='yaourt -Sc'
+alias Ycc='yaourt -Scc'
+alias yor='yaourt -Rsc $(yaourt -Qtdq)'
+
 # }}}
 # git {{{
       Ga () { [[ $* ]] && git add $* || git add . ; }
@@ -63,60 +59,51 @@ alias Gm='git merge'
 alias Gr='git rm -rf'
 alias Gs='git status'
       GG () { Ga && Gc $* && Gp ; }
-# }}}
-# dotfiles,packagelist github {{{
-alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
-alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
+
 # }}}
 # wireless {{{
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
-alias wltx='sudo ifconfig wlp7s0 down && sudo iw reg set US && sudo ifconfig wlp7s0 up && sudo iwconfig wlp7s0 txpower 30'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
 alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
 alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 alias foilhat='sudo rfkill block all'
-# alias nmkill='sudo kill $(NetworkManager 2>&1 | sed -r "s/(NetworkManager\ is\ already\ running\ \(pid\ |\))//g") && echo "NetworkManager killed" || echo "Nothing to kill"'
 alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
 alias N='(nmtui) || (sudo NetworkManager && sleep 1 && nmtui)'
+
 # }}}
 # multi-screen {{{
-# alias xrandr1080x1920='xrandr --newmode "1080x1920_60.00" 178.35 1080 1168 1288 1496  1920 1921 1924 1987 -HSync +Vsync && xrandr --addmode HDMI1 1080x1920_60.00'
-# alias xrandr1600x1200='xrandr --newmode "1600x1200_60.00" 160.96 1600 1704 1880 2160  1200 1201 1204 1242 -HSync +Vsync && xrandr --addmode HDMI1 1600x1200_60.00'
-# alias xrandr1360x1024='xrandr --newmode "1360x1024_60.00" 116.01 1360 1448 1592 1824  1024 1025 1028 1060 -HSync +Vsync && xrandr --addmode HDMI1 1360x1024_60.00'
-alias  xrandr1360x768='xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync && xrandr --addmode HDMI1 1360x768_60.00'
-# _prerandr () { xrandr1080x1920 && xrandr1600x1200 && xrandr1360x1024 && xrandr1360x768 && $1 || $1 }
-_prerandr () { xrandr1360x768 && $1 || $1 }
-_qrandr () { xrandr --output LVDS1 --primary --preferred --mode 1366x768 --pos 0x768 --rotate normal --output DP1 --off --output VGA1 --off --output HDMI1 --mode 1360x768_60.00 --pos 0x0 --rotate normal }
+_prerandr () { xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync && xrandr --addmode HDMI1 1360x768_60.00 && $1 || $1 }
+_qrandr () { xrandr --output HDMI1 --mode 1360x768_60.00 --pos 1367x0 --rotate normal --output LVDS1 --primary --preferred --mode 1366x768 --pos 0x0 --rotate normal }
+
 alias arandr='_prerandr arandr'
 alias qrandr='_prerandr _qrandr'
+
 # }}}
 # dpms {{{
 alias wkp='xset dpms force on'
-alias gdrk='xset dpms force off'
-# }}}
-# mount / unmount {{{
-mount ()  { if [ $# -ne 2 ]; then echo   "Two arguments expected: received $#"; else ( mount  "$1" "$2" || sudo mount  "$1" "$2" ); fi ; }
-umount () { if [ $# -ne 1 ]; then echo "Single argument expected: received $#"; else ( umount "$1"      || sudo umount "$1"      ); fi ; }
-# }}}
-# yaourt {{{
-alias y='yaourt'
-alias Y='yaourt -Syua && npm update -g && pkglist'
-alias Yy='yaourt -Syy'
-alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc'
-alias yor='yaourt -Rsc $(yaourt -Qtdq)'
-# }}}
+alias pretendtosleep='xset dpms force off'
 
-# sudo {{{
-# if needed {{{
+# }}}
+# mount {{{
+# mount ()  { if [[ $# -ne 2 ]]; then echo   "Two arguments expected: received $#"; else ( mount  "$1" "$2" || sudo mount  "$1" "$2" ); fi }
+# umount () { if [[ $# -ne 1 ]]; then echo "Single argument expected: received $#"; else ( umount "$1"      || sudo umount "$1"      ); fi }
+alias mount='sudo mount'
+alias umount='sudo umount'
+
+# }}}
+# chromium-tor {{{
+alias _start_tor_if_not_running='if [[ -n "$(ps -ef | grep tor | grep -v grep)" ]]; then echo "tor already running" ; else systemctl start tor.service && echo "tor started" ; fi'
+alias chromium-tor='_start_tor_if_not_running && chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
+
+# }}}
+# add sudo {{{
 du () { command du "$@" || sudo du "$@" ; }
 ifconfig () { command ifconfig "$@" || sudo ifconfig "$@" ; }
 iwconfig () { command iwconfig "$@" || sudo iwconfig "$@" ; }
 nmap () { command nmap "$@" || sudo nmap "$@" ; }
 systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
-# }}}
-# always {{{
+
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
@@ -133,8 +120,6 @@ alias mkinitcpio='sudo mkinitcpio'
 alias mkfs.ext4='sudo mkfs.ext4'
 alias mkfs.ext3='sudo mkfs.ext3'
 alias mkfs.ext2='sudo mkfs.ext2'
-alias networkmanager='sudo NetworkManager'
-alias NetworkManager='sudo NetworkManager'
 alias rfkill='sudo rfkill'
 alias rmmod='sudo rmmod'
 alias skill='sudo kill'
@@ -142,40 +127,30 @@ alias skillall='sudo killall'
 alias umount='sudo umount'
 alias wifite='sudo wifite'
 alias wifijammer='sudo wifijammer'
+
 # }}}
+# misc {{{
+rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
+dd () { command sudo dd $@ bs=512K status=progress }
+zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
+
+alias py='ipython3'
+alias df='df -h'
+alias du='du -h '
+alias vtop='vtop -t nwsome '
+alias spotify='spotify > /dev/zero & blockify > /dev/zero &'
+alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
+pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
+
 # }}}
-# Global Aliases {{{
+# global aliases {{{
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
 alias -g gvim='konsole -e nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
-# }}}
-# File Extensions {{{
-alias -s html=chromium
-alias -s conf=nvim
-alias -s lua=nvim
-alias -s xml=nvim
-alias -s txt=nvim
-alias -s xml=nvim
-alias -s css=nvim
-alias -s ini=nvim
-alias -s stylus=nvim
-alias -s sass=nvim
-alias -s pug=nvim
-alias -s jade=nvim
-alias -s js=nvim
-alias -s coffee=nvim
-alias -s jsx=nvim
-alias -s yml=nvim
-alias -s json=nvim
-alias -s pdf=zathura
-alias -s jpg=geeqie
-alias -s png=geeqie
-alias -s gif=geeqie
-alias -s svg=inkscape
-alias -s psd=inkscape
+
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
