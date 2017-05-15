@@ -26,11 +26,9 @@ geeqie () { command geeqie "$@" & }
 
 # }}}
 # npm/yarn {{{
-ni () { [[ $1 ]] && if [[ "$1" == '-g' && $2 ]]; then npm i -g ${@:2}; else yarn $* ; fi || yarn }
-nr () { [[ $1 ]] && yarn run $1 || ( echo 'no arguments given' && exit 1 ) }
-nrb () { if [[ $1 ]]; then echo "nrb doesn't accept arguments" && exit 1; else yarn run build; fi }
-nrt () { if [[ $1 ]]; then echo "nrt doesn't accept arguments" && exit 1; else yarn test; fi }
-nrw () { if [[ $1 ]]; then echo "nrw doesn't accept arguments" && exit 1; else yarn run watch || yarn start; fi }
+alias nrb='yarn run build'
+alias nrt='yarn run test'
+alias nrw='yarn run watch'
 
 # }}}
 # dotfiles etc {{{
@@ -74,7 +72,7 @@ alias N='(nmtui) || (sudo NetworkManager && sleep 1 && nmtui)'
 # }}}
 # multi-screen {{{
 _prerandr () { xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync && xrandr --addmode HDMI1 1360x768_60.00 && $1 || $1 }
-_qrandr () { xrandr --output HDMI1 --mode 1360x768_60.00 --pos 1367x0 --rotate normal --output LVDS1 --primary --preferred --mode 1366x768 --pos 0x0 --rotate normal }
+_qrandr () { xrandr --output HDMI1 --mode 1360x768_60.00 --pos 1366x0 --rotate normal --output LVDS1 --primary --preferred --mode 1366x768 --pos 0x0 --rotate normal }
 
 alias arandr='_prerandr arandr'
 alias qrandr='_prerandr _qrandr'
