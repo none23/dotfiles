@@ -6466,5 +6466,153 @@
       ]
     },
     "mtime": 1494196018183
+  },
+  "{\"filename\":\"/home/n/none23/profkarniz-be/quotes/src/helpers/spreadsheet.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/n/none23/profkarniz-be/quotes/src/helpers\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.22.1": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "lodash",
+            "imported": [
+              "orderBy"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "orderBy",
+                "local": "orderBy"
+              }
+            ]
+          },
+          {
+            "source": "./utils",
+            "imported": [
+              "hash"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "hash",
+                "local": "hash"
+              }
+            ]
+          },
+          {
+            "source": "./localStorage",
+            "imported": [
+              "get"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "get",
+                "local": "get"
+              }
+            ]
+          },
+          {
+            "source": "../config",
+            "imported": [
+              "spreadsheetId",
+              "clientId",
+              "scope"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "spreadsheetId",
+                "local": "spreadsheetId"
+              },
+              {
+                "kind": "named",
+                "imported": "clientId",
+                "local": "clientId"
+              },
+              {
+                "kind": "named",
+                "imported": "scope",
+                "local": "scope"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/home/n/none23/profkarniz-be/quotes/src/helpers/spreadsheet.js",
+      "filenameRelative": "/home/n/none23/profkarniz-be/quotes/src/helpers/spreadsheet.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "spreadsheet.js",
+      "sourceFileName": "spreadsheet.js",
+      "sourceRoot": "/home/n/none23/profkarniz-be/quotes/src/helpers",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "/home/n/none23/profkarniz-be/quotes/src/helpers",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "spreadsheet"
+    },
+    "ignored": false,
+    "code": "import { orderBy } from 'lodash';\nimport { hash } from './utils';\nimport { get } from './localStorage';\nimport { spreadsheetId, clientId, scope } from '../config';\n\nconst checkAuth = immediate => {\n  window.gapi.auth.authorize({ 'client_id': clientId,\n    'scope': scope,\n    'immediate': immediate\n  });\n};\n\nrange = 'A2:L';\nconst getData = () => {\n  window.gapi.client.sheets.spreadsheets.values.get({ spreadsheetId, range }).then(res => console.log(res));\n};\n\nconst load = () => {\n  window.gapi.client.load('sheets', 'v4', getData);\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwcmVhZHNoZWV0LmpzIl0sIm5hbWVzIjpbIm9yZGVyQnkiLCJoYXNoIiwiZ2V0Iiwic3ByZWFkc2hlZXRJZCIsImNsaWVudElkIiwic2NvcGUiLCJjaGVja0F1dGgiLCJpbW1lZGlhdGUiLCJ3aW5kb3ciLCJnYXBpIiwiYXV0aCIsImF1dGhvcml6ZSIsInJhbmdlIiwiZ2V0RGF0YSIsImNsaWVudCIsInNoZWV0cyIsInNwcmVhZHNoZWV0cyIsInZhbHVlcyIsInRoZW4iLCJyZXMiLCJjb25zb2xlIiwibG9nIiwibG9hZCJdLCJtYXBwaW5ncyI6IkFBQUEsU0FBU0EsT0FBVCxRQUF3QixRQUF4QjtBQUNBLFNBQVNDLElBQVQsUUFBcUIsU0FBckI7QUFDQSxTQUFTQyxHQUFULFFBQW9CLGdCQUFwQjtBQUNBLFNBQVNDLGFBQVQsRUFBd0JDLFFBQXhCLEVBQWtDQyxLQUFsQyxRQUErQyxXQUEvQzs7QUFFQSxNQUFNQyxZQUFhQyxTQUFELElBQWU7QUFDL0JDLFNBQU9DLElBQVAsQ0FBWUMsSUFBWixDQUFpQkMsU0FBakIsQ0FDRSxFQUFFLGFBQWFQLFFBQWY7QUFDRSxhQUFTQyxLQURYO0FBRUUsaUJBQWFFO0FBRmYsR0FERjtBQU1ELENBUEQ7O0FBU0FLLFFBQVEsTUFBUjtBQUNBLE1BQU1DLFVBQVUsTUFBTTtBQUNwQkwsU0FBT0MsSUFBUCxDQUFZSyxNQUFaLENBQW1CQyxNQUFuQixDQUEwQkMsWUFBMUIsQ0FBdUNDLE1BQXZDLENBQThDZixHQUE5QyxDQUFrRCxFQUFDQyxhQUFELEVBQWdCUyxLQUFoQixFQUFsRCxFQUNDTSxJQURELENBRUdDLEdBQUQsSUFBU0MsUUFBUUMsR0FBUixDQUFZRixHQUFaLENBRlg7QUFJRCxDQUxEOztBQU9BLE1BQU1HLE9BQU8sTUFBTTtBQUNqQmQsU0FBT0MsSUFBUCxDQUFZSyxNQUFaLENBQW1CUSxJQUFuQixDQUF3QixRQUF4QixFQUFrQyxJQUFsQyxFQUF3Q1QsT0FBeEM7QUFDRCxDQUZEIiwiZmlsZSI6InNwcmVhZHNoZWV0LmpzIiwic291cmNlUm9vdCI6Ii9ob21lL24vbm9uZTIzL3Byb2ZrYXJuaXotYmUvcXVvdGVzL3NyYy9oZWxwZXJzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgb3JkZXJCeSB9IGZyb20gJ2xvZGFzaCdcbmltcG9ydCB7IGhhc2ggfSBmcm9tICcuL3V0aWxzJ1xuaW1wb3J0IHsgZ2V0IH0gZnJvbSAnLi9sb2NhbFN0b3JhZ2UnXG5pbXBvcnQgeyBzcHJlYWRzaGVldElkLCBjbGllbnRJZCwgc2NvcGUgfSBmcm9tICcuLi9jb25maWcnXG5cbmNvbnN0IGNoZWNrQXV0aCA9IChpbW1lZGlhdGUpID0+IHtcbiAgd2luZG93LmdhcGkuYXV0aC5hdXRob3JpemUoXG4gICAgeyAnY2xpZW50X2lkJzogY2xpZW50SWRcbiAgICAsICdzY29wZSc6IHNjb3BlXG4gICAgLCAnaW1tZWRpYXRlJzogaW1tZWRpYXRlXG4gICAgfVxuICApXG59XG5cbnJhbmdlID0gJ0EyOkwnXG5jb25zdCBnZXREYXRhID0gKCkgPT4ge1xuICB3aW5kb3cuZ2FwaS5jbGllbnQuc2hlZXRzLnNwcmVhZHNoZWV0cy52YWx1ZXMuZ2V0KHtzcHJlYWRzaGVldElkLCByYW5nZX0pXG4gIC50aGVuKFxuICAgIChyZXMpID0+IGNvbnNvbGUubG9nKHJlcylcbiAgKVxufVxuXG5jb25zdCBsb2FkID0gKCkgPT4ge1xuICB3aW5kb3cuZ2FwaS5jbGllbnQubG9hZCgnc2hlZXRzJywgJ3Y0JywgZ2V0RGF0YSlcbn1cbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "spreadsheet.js"
+      ],
+      "names": [
+        "orderBy",
+        "hash",
+        "get",
+        "spreadsheetId",
+        "clientId",
+        "scope",
+        "checkAuth",
+        "immediate",
+        "window",
+        "gapi",
+        "auth",
+        "authorize",
+        "range",
+        "getData",
+        "client",
+        "sheets",
+        "spreadsheets",
+        "values",
+        "then",
+        "res",
+        "console",
+        "log",
+        "load"
+      ],
+      "mappings": "AAAA,SAASA,OAAT,QAAwB,QAAxB;AACA,SAASC,IAAT,QAAqB,SAArB;AACA,SAASC,GAAT,QAAoB,gBAApB;AACA,SAASC,aAAT,EAAwBC,QAAxB,EAAkCC,KAAlC,QAA+C,WAA/C;;AAEA,MAAMC,YAAaC,SAAD,IAAe;AAC/BC,SAAOC,IAAP,CAAYC,IAAZ,CAAiBC,SAAjB,CACE,EAAE,aAAaP,QAAf;AACE,aAASC,KADX;AAEE,iBAAaE;AAFf,GADF;AAMD,CAPD;;AASAK,QAAQ,MAAR;AACA,MAAMC,UAAU,MAAM;AACpBL,SAAOC,IAAP,CAAYK,MAAZ,CAAmBC,MAAnB,CAA0BC,YAA1B,CAAuCC,MAAvC,CAA8Cf,GAA9C,CAAkD,EAACC,aAAD,EAAgBS,KAAhB,EAAlD,EACCM,IADD,CAEGC,GAAD,IAASC,QAAQC,GAAR,CAAYF,GAAZ,CAFX;AAID,CALD;;AAOA,MAAMG,OAAO,MAAM;AACjBd,SAAOC,IAAP,CAAYK,MAAZ,CAAmBQ,IAAnB,CAAwB,QAAxB,EAAkC,IAAlC,EAAwCT,OAAxC;AACD,CAFD",
+      "file": "spreadsheet.js",
+      "sourceRoot": "/home/n/none23/profkarniz-be/quotes/src/helpers",
+      "sourcesContent": [
+        "import { orderBy } from 'lodash'\nimport { hash } from './utils'\nimport { get } from './localStorage'\nimport { spreadsheetId, clientId, scope } from '../config'\n\nconst checkAuth = (immediate) => {\n  window.gapi.auth.authorize(\n    { 'client_id': clientId\n    , 'scope': scope\n    , 'immediate': immediate\n    }\n  )\n}\n\nrange = 'A2:L'\nconst getData = () => {\n  window.gapi.client.sheets.spreadsheets.values.get({spreadsheetId, range})\n  .then(\n    (res) => console.log(res)\n  )\n}\n\nconst load = () => {\n  window.gapi.client.load('sheets', 'v4', getData)\n}\n"
+      ]
+    },
+    "mtime": 1494725328991
   }
 }
