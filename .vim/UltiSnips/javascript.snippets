@@ -1,6 +1,6 @@
 snippet ccc "create class component" b
 import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 
 class ${2:ClassComponent} extends Component {
   $0
@@ -18,16 +18,23 @@ endsnippet
 
 snippet ffc "create simple functional component" b
 import React from 'react'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 
-const ${1:functionalComponent} = (${2:props}) => (
-  ${3:<div>
-    $4
-  </div>}
+const ${1:functionalComponent} = ({$4 = '', $6 = null, $8 = null}) => (
+  <${2:div}>
+    $3
+  </$2>
 )
 $1.propTypes = {
-  TODO: PropTypes.${5:string}.isRequired
-, TODO: PropTypes.${5:string}.isRequired
+  ${4:className}: PropTypes.${5:string}
+, ${6:onClick}: PropTypes.${7:func}
+, ${8:children}: PropTypes.${9:arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.node
+    , PropTypes.element
+    , PropTypes.func
+    ])
+  )}.isRequired
 }
 
 export default $1
@@ -35,7 +42,7 @@ endsnippet
 
 snippet fcc "create simple functional component" b
 import React from 'react'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 
 const ${1:functionalComponent} = (${2:props}) => {
   return (
@@ -45,8 +52,8 @@ const ${1:functionalComponent} = (${2:props}) => {
   )
 }
 $1.propTypes = {
-  TODO: PropTypes.${5:string}.isRequired
-, TODO: PropTypes.${5:string}.isRequired
+  $2: PropTypes.${5:string}.isRequired
+, $2: PropTypes.${6:string}.isRequired
 }
 
 export default $1
