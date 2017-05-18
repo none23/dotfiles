@@ -26,6 +26,7 @@ geeqie () { command geeqie "$@" & }
 
 # }}}
 # npm/yarn {{{
+alias ni='yarn'
 alias nrb='yarn run build'
 alias nrt='yarn run test'
 alias nrw='yarn run watch'
