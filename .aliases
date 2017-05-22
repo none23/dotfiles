@@ -130,7 +130,7 @@ alias wifijammer='sudo wifijammer'
 # }}}
 # misc {{{
 rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
-dd () { command sudo dd $@ bs=512K status=progress }
+ddd () { sudo dd $@ bs=512K status=progress }
 zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
 
 alias py='ipython3'

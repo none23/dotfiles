@@ -1,19 +1,42 @@
 snippet ccc "create class component" b
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-class ${2:ClassComponent} extends Component {
-  $0
-  render() {
+class ${1:ClassComponent} extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      $5
+    }
+  }
+
+  componentWillUpdate () {} 
+  componentDidUpdate () {}
+  componentWillMount () {}
+  componentDidMount () {}
+  componentWillUnmount () {}
+
+  render () {
     return (
-      ${4:<div>
-        $5
-      </div}
+      <${2:div} $3 >
+        $4
+      </$2>
     )
   }
 }
+$1.propTypes = {
+  className: PropTypes.string
+, onClick: PropTypes.func
+, children: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.node
+    , PropTypes.element
+    , PropTypes.func
+    ])
+  ).isRequired
+}
 
-${3:export default $2}
+export default $1
 endsnippet
 
 snippet ffc "create simple functional component" b
@@ -75,72 +98,63 @@ import React, {Component} from 'react'
 $0
 endsnippet
 
-snippet ird "import ReactDOM from 'react-dom'" b
-import ReactDOM from 'react-dom'
-$0
-endsnippet
-
 snippet cdm "component did mount" b
 componentDidMount() {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet cdup "component did update" b
 componentDidUpdate(prevProps, prevState) {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet scup "should component update"
 shouldComponentUpdate(nextProps, nextState) {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet cwm "component will mount" b
 componentWillMount() {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet cwum "component will unmount" b
 componentWillUnmount() {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet cwrp "component will receive props" b
 componentWillReceiveProps(nextProps) {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet cwup "component will update" b
 componentWillUpdate(nextProps, nextState) {
-  ${1}
-},$0
+  $0
+}
 endsnippet
 
 snippet gdp "get default props" b
 getDefaultProps() {
   return {
-    ${1}
+	  $0
   }
-},$0
+}
 endsnippet
 
 snippet ren
 render() {
   return (
-    ${1:<div>
-      $2
-    </div>}
+    $0
   )
 }
-$0
 endsnippet
-
 
 snippet construct "construct state" b
 constructor(props) {
@@ -157,7 +171,7 @@ endsnippet
 snippet gis "get initial state" b
 getInitialState() {
   return {
-    ${1}: ${2}
+    $0
   }
 }
 
@@ -187,5 +201,8 @@ endsnippet
 
 snippet lg "console.log"
 console.log.debug(JSON.stringify($0))
+endsnippet
 
+snippet edl "eslint-disable-line"
+// eslint-disable-line $0
 endsnippet
