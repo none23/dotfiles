@@ -20,8 +20,6 @@ Plug 'terryma/vim-expand-region'                                                
 Plug 'Townk/vim-autoclose'                                                         " autoclose
 Plug 't9md/vim-choosewin'                                                          " window chooser
 Plug 'ervandew/supertab'                                                           " completion with <TAB>
-Plug 'YankRing.vim'                                                                " yank history navigation
-Plug 'IndexedSearch'                                                               " search results counter
 Plug 'xolox/vim-misc'                                                              " sessions dependency
 Plug 'xolox/vim-session'                                                           " sessions
 Plug 'scrooloose/syntastic'                                                        " linter
@@ -34,8 +32,8 @@ Plug 'mattn/emmet-vim'                                                          
 Plug 'elzr/vim-json'                                                               " JSON
 Plug 'digitaltoad/vim-pug'                                                         " Pug (Jade)
 Plug 'tpope/vim-haml'                                                              " Sass
+Plug 'hhsnopek/vim-sugarss'                                                        " SugarSS
 Plug 'wavded/vim-stylus', { 'for': ['stylus']}                                     " Stylus
-Plug 'hhsnopek/vim-sugarss', { 'for': ['sugarss'] }                                " SugarSS
 Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] } " Stylefmt
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                             " CoffeScript
 Plug 'ap/vim-css-color'                                                            " css colors preview

@@ -18,5 +18,8 @@ MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAABVYAAALcAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 
+[Notification Messages]
+CloseAllTabs=true
+
 [TabBar]
 TabBarVisibility=AlwaysHideTabBar
