@@ -22,7 +22,7 @@ Text=
 
 [ThunarSbrRemoveRenamer]
 EndOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-StartOffset=4
+StartOffset=3
 EndOffset=0
 StartOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
 
