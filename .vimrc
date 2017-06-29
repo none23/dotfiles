@@ -20,6 +20,7 @@ Plug 'terryma/vim-expand-region'                                                
 Plug 'Townk/vim-autoclose'                                                         " autoclose
 Plug 't9md/vim-choosewin'                                                          " window chooser
 Plug 'ervandew/supertab'                                                           " completion with <TAB>
+Plug 'vim-scripts/IndexedSearch'                                                   " search results counter
 Plug 'xolox/vim-misc'                                                              " sessions dependency
 Plug 'xolox/vim-session'                                                           " sessions
 Plug 'scrooloose/syntastic'                                                        " linter
