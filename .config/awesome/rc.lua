@@ -76,7 +76,6 @@ startup_time_notification()
 
 -- }}}
 -- Layouts & Tags Table {{{
--- Create {{{
 local layouts = {
   awful.layout.suit.tile
 , awful.layout.suit.tile.bottom
@@ -84,60 +83,62 @@ local layouts = {
 , awful.layout.suit.fair,fair
 }
 
-tags = {
-  name = {
-    "1"
-  , "2"
-  , "3"
-  , "4"
-  , "5"
-  , "6"
-  , "7"
-  , "8"
-  , "9"
-  }
-, layout = {
-    layouts[3]
-  , layouts[1]
-  , layouts[1]
-  , layouts[1]
-  , layouts[1]
-  , layouts[1]
-  , layouts[1]
-  , layouts[1]
-  , layouts[3]
-  }
+local tags = {
+  name = { "1", "2", "3"
+         , "4", "5", "6"
+         , "7", "8", "9"
+         }
+, layout = { layouts[3], layouts[1], layouts[1]
+           , layouts[1], layouts[1], layouts[1]
+           , layouts[1], layouts[1], layouts[3]
+           }
 }
 
+-- create table
 for s = 1, screen.count() do
   tags[s] = awful.tag(tags.name, s, tags.layout)
 end
 
--- }}}
--- Config {{{
-awful.screen.connect_for_each_screen( function (s)
-  if s.index == 1 then
-    s.tags[1].master_count = 1
-    s.tags[1].column_count = 1
-    s.tags[1].master_width_factor = 0.85
-    s.tags[9].master_count = 3
-    s.tags[9].column_count = 1
-    s.tags[9].master_width_factor = 0.5
-    for t = 2, 8 do
-      s.tags[t].master_count = 1
-      s.tags[t].column_count = 1
-      s.tags[t].master_width_factor = 0.75
+awful.screen.connect_for_each_screen(
+  function (s)
+
+    if not s.tags then
+      tags[s] = awful.tag(tags.name, s, tags.layout)
     end
-  else
-    for t = 1, 9 do
-      s.tags[t].master_count = 1
-      s.tags[t].column_count = 1
-      s.tags[t].master_width_factor = 0.625
+
+    if s.index == 1 then
+      s.tags[1].master_count = 1
+      s.tags[1].column_count = 1
+      s.tags[1].master_width_factor = 0.85
+
+      for t = 2, 8 do
+        s.tags[t].master_count = 1
+        s.tags[t].column_count = 1
+        s.tags[t].master_width_factor = 0.75
+      end
+
+      s.tags[9].master_count = 3
+      s.tags[9].column_count = 1
+      s.tags[9].master_width_factor = 0.5
+
+    else
+      for t = 1, 9 do
+        if not s.tags[t] then
+          s.tags[t] = {
+            master_count = 1
+          , column_count = 1
+          , master_width_factor = 0.625
+          }
+        else
+          s.tags[t].master_count = 1
+          s.tags[t].column_count = 1
+          s.tags[t].master_width_factor = 0.625
+        end
+      end
     end
   end
-end)
+)
 
--- }}}
 -- }}}
 -- Wallpaper {{{
 if beautiful.wallpaper then
