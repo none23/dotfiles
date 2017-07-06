@@ -139,7 +139,7 @@ alias du='du -h '
 alias vtop='vtop -t nwsome '
 alias spotify='spotify > /dev/zero & blockify > /dev/zero &'
 alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
-alias lt='lt -s none23'
+alias lt='lt -l localhost -s none23 || lt -s none23 || lt'
 pn () { [[ ! $* ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
 
 # }}}
