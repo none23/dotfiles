@@ -23,9 +23,9 @@ Plug 'ervandew/supertab'                                                        
 Plug 'vim-scripts/IndexedSearch'                                                   " search results counter
 Plug 'xolox/vim-misc'                                                              " sessions dependency
 Plug 'xolox/vim-session'                                                           " sessions
-Plug 'scrooloose/syntastic'                                                        " linter
+" Plug 'scrooloose/syntastic'                                                        " linter
 Plug 'sheerun/vim-polyglot'                                                        " Syntax highlighting
-Plug 'neomake/neomake'                                                             " async linters and builders
+" Plug 'neomake/neomake'                                                             " async linters and builders
 Plug 'junegunn/vim-easy-align'                                                     " easy alignment
 Plug 'airblade/vim-gitgutter'                                                      " highlight git changes
 Plug 'SirVer/ultisnips'                                                            " ultisnips
@@ -41,6 +41,7 @@ Plug 'ap/vim-css-color'                                                         
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }            " ternjs
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }       " tern + deoplete
+Plug 'w0rp/ale'                                                                    " ALE (async linting engine)
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }                " Parameter completion e.g., .on('cli<tab>
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }                  " Open node modules with gf
 
@@ -343,25 +344,25 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " }}}
 " Syntastic {{{
 " show list of errors and warnings on the current file
-nmap ,e :Errors<CR>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" nmap ,e :Errors<CR>
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_enable_signs = 1
 
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_style_error_symbol = '✗'
+" let g:syntastic_style_warning_symbol = '⚠'
 
 " }}}
 " TabMan {{{
@@ -474,5 +475,29 @@ autocmd FileType html,javascript.jsx EmmetInstall
 " }}}
 " Ultisnips {{{
 let g:UltiSnipsExpandTrigger="<C-j>"
+
+" }}}
+" ALE {{{
+let g:ale_change_sign_column_color = 1
+let g:ale_sign_column_always = 1
+let g:ale_set_signs = 1
+let g:ale_set_baloons = 1
+let g:ale_open_list = 1
+let g:ale_list_window_size = 7
+
+let g:ale_sign_error = '✗'
+let g:ale_sign_style_error = '✗'
+let g:ale_echo_msg_error_str = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_style_warning = '⚠'
+let g:ale_echo_msg_warning_str = '⚠'
+let g:ale_sign_info = '*'
+
+let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_javascript_eslint_executable = '$(npm bin)/eslint'
+
+nnoremap ,e :ALENextWrap<cr>
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
 
 " }}}
