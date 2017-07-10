@@ -37,13 +37,9 @@ alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && ya
 alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
 
 # }}}
-# yaourt {{{
-alias y='yaourt'
-alias Y='yaourt -Syua && npm update -g && pkglist'
-alias Yy='yaourt -Syy'
-alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc'
-alias yor='yaourt -Rsc $(yaourt -Qtdq)'
+# apt {{{
+alias Y='sudo apt-get update && sudo apt-get upgrade && npm update -g'
+      y () { [[ $* ]] && sudo apt-get install $* || apt-cache search $* }
 
 # }}}
 # git {{{
