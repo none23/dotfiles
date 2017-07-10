@@ -52,9 +52,9 @@ alias yor='yaourt -Rsc $(yaourt -Qtdq)'
       Gg () { [[ $2 ]] && ( git clone git@github.com:none23/$1 $2 || git clone git@github.com:$1 $2 ) || ( git clone git@github.com:none23/$1 || git clone git@github.com:$1 ) || echo "That didn't work..." ; }
 alias Gi='git init'
 alias Gm='git merge'
-      Gl () { [[ $1 ]] && [[ ! $2 ]] && git pull origin $1 || git pull origin master ; }
+      Gl () { [[ $1 ]] && [[ ! $2 ]] && git pull origin $1 || git pull origin HEAD ; }
       Go () { [[ $1 ]] && [[ ! $2 ]] && git remote add origin git@github.com:none23/$1 || echo "Please, enter the repo name (e.g. dotfiles)" ; }
-      Gp () { [[ $1 ]] && git push origin $1 || git push origin master ; }
+      Gp () { [[ $1 ]] && git push origin $1 || git push origin HEAD ; }
 alias Gr='git rm -rf'
 alias Gs='git status'
       GG () { Ga && Gc $* && Gp ; }
