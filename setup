@@ -35,7 +35,7 @@ ln -s $DOTFILES_PATH/.zdirs ~/.zdirs
 ln -s $DOTFILES_PATH/.zprofile ~/.zprofile
 
 [[ -a ~/.zsh-syntax-highlighting ]] && mv ~/.zsh-syntax-highlighting{,.old}
-ln -s $DOTFILES_PATH/.zsh-syntax-highlighting ~/.zsh-syntax-highlighting
+git clone git@github.com:zsh-users/zsh-syntax-highlighting ~/zsh-syntax-highlighting
 
 # /zsh }}}
 # bash {{{
