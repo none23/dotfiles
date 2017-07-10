@@ -32,24 +32,11 @@ autoload -Uz compinit
 compinit
 setopt completealiases
 # }}}
-# numeric keypad {{{
-bindkey "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
-bindkey -s "^[5~" "Prior"
-bindkey -s "^[6~" "Next"
-bindkey -s "^[Oo" "/"
-bindkey -s "^[Oj" "*"
-bindkey -s "^[Om" "-"
-bindkey -s "^[Ok" "+"
-# }}}
 # powerline {{{
 autoload -U colors && colors
 prompt off
 powerline-daemon -q
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-# fallback: TODO
-# [[ -a /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]
-# || autoload -Uz promptinit && promptinit && prompt adam1
+. /usr/lib/python3/dist-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
 # profile {{{
