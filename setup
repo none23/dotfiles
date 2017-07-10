@@ -22,6 +22,8 @@ ln -s $DOTFILES_PATH/.zshrc ~/.zshrc
 
 [[ -a ~/.aliases ]] && mv ~/.aliases{,.old}
 ln -s $DOTFILES_PATH/.aliases ~/.aliases
+[[ -a ~/.private_aliases ]] || touch ~/.private_aliases
+[[ -a ~/.zshrc-local ]] || touch ~/.zshrc-local
 
 [[ -a ~/.zcompdump ]] && mv ~/.zcompdump{,.old}
 ln -s $DOTFILES_PATH/.zcompdump ~/.zcompdump
@@ -74,26 +76,14 @@ ln -s $DOTFILES_PATH/.xscreensaver ~/.xscreensaver
 [[ -a ~/.cvimrc ]] && mv ~/.cvimrc{,.old}
 ln -s $DOTFILES_PATH/.cvimrc ~/.cvimrc
 
-[[ -a ~/.fonts ]] && mv ~/.fonts{,.old}
-ln -s $DOTFILES_PATH/.fonts ~/.fonts
-
 [[ -a ~/.gnome2 ]] && mv ~/.gnome2{,.old}
 ln -s $DOTFILES_PATH/.gnome2 ~/.gnome2
 
 [[ -a ~/.gtkrc-2.0 ]] && mv ~/.gtkrc-2.0{,.old}
 ln -s $DOTFILES_PATH/.gtkrc-2.0 ~/.gtkrc-2.0
 
-[[ -a ~/.icons ]] && mv ~/.icons{,.old}
-ln -s $DOTFILES_PATH/.icons ~/.icons
-
 [[ -a ~/.inputrc ]] && mv ~/.inputrc{,.old}
 ln -s $DOTFILES_PATH/.inputrc ~/.inputrc
-
-[[ -a ~/.vimperator ]] && mv ~/.vimperator{,.old}
-ln -s $DOTFILES_PATH/.vimperator ~/.vimperator
-
-[[ -a ~/.vimperatorrc ]] && mv ~/.vimperatorrc{,.old}
-ln -s $DOTFILES_PATH/.vimperatorrc ~/.vimperatorrc
 
 [[ -a ~/.i3 ]] && mv ~/.i3{,.old}
 ln -s $DOTFILES_PATH/.i3 ~/.i3
@@ -152,12 +142,6 @@ ln -s $DOTFILES_PATH/.config/ranger ~/.config/ranger
 [[ -a ~/.config/Thunar ]] && mv ~/.config/Thunar{,.old}
 ln -s $DOTFILES_PATH/.config/Thunar ~/.config/Thunar
 
-[[ -a ~/.config/transmission ]] && mv ~/.config/transmission{,.old}
-ln -s $DOTFILES_PATH/.config/transmission ~/.config/transmission
-
-[[ -a ~/.config/transmission-daemon ]] && mv ~/.config/transmission-daemon{,.old}
-ln -s $DOTFILES_PATH/.config/transmission-daemon ~/.config/transmission-daemon
-
 [[ -a ~/.config/Trolltech.conf ]] && mv ~/.config/Trolltech.conf{,.old}
 ln -s $DOTFILES_PATH/.config/Trolltech.conf ~/.config/Trolltech.conf
 
@@ -175,8 +159,5 @@ ln -s $DOTFILES_PATH/.config/xarchiver ~/.config/xarchiver
 
 [[ -a ~/.config/xfce4 ]] && mv ~/.config/xfce4{,.old}
 ln -s $DOTFILES_PATH/.config/xfce4 ~/.config/xfce4
-
-[[ -a ~/.config/pycharm_settings ]] && mv ~/.config/pycharm_settings{,.old}
-ln -s $DOTFILES_PATH/.config/pycharm_settings ~/.config/pycharm_settings
 
 # /misc }}}
