@@ -22,7 +22,7 @@ ln -s $DOTFILES_PATH/.zshrc ~/.zshrc
 
 [[ -a ~/.aliases ]] && mv ~/.aliases{,.old}
 ln -s $DOTFILES_PATH/.aliases ~/.aliases
-[[ -a ~/.private_aliases ]] || touch ~/.private_aliases
+[[ -a ~/.private-aliases ]] || touch ~/.private-aliases
 [[ -a ~/.zshrc-local ]] || touch ~/.zshrc-local
 
 [[ -a ~/.zcompdump ]] && mv ~/.zcompdump{,.old}
