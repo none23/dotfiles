@@ -39,7 +39,7 @@ alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0
 # }}}
 # apt {{{
 alias Y='sudo apt-get update && sudo apt-get upgrade && npm update -g'
-      y () { [[ $* ]] && sudo apt-get install $* || apt-cache search $* }
+      y () { [[ $* ]] && sudo apt-get install $* || apt-cache search | less $* }
 
 # }}}
 # git {{{
