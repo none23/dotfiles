@@ -1,12 +1,18 @@
 # aliases {{{
 source $HOME/.aliases
-source $HOME/.private_aliases || echo "$HOME/.private_aliases not found"
+source $HOME/.private-aliases || echo "$HOME/.private-aliases not found"
+
 # }}}
 # rvm {{{
-export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -a ~/.gem/ruby/2.3.0/bin ]]; then
+    export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.rvm/bin"
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+fi
+
 # }}}
 # npm {{{
+[[ -a ~/.npm-global/bin ]] || mkdir -p ~/.npm-global/bin
 export PATH="$HOME/.npm-global/bin:$PATH" || echo "adding $HOME/.npm-global/bin to PATH failed somehow..."
+
 # }}}
-# vim:filetype=zsh:foldmethod=marker:foldlevel=0
+# vim:filetype=zsh
