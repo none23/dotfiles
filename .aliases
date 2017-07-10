@@ -97,8 +97,10 @@ du () { command du "$@" || sudo du "$@" ; }
 ifconfig () { command ifconfig "$@" || sudo ifconfig "$@" ; }
 iwconfig () { command iwconfig "$@" || sudo iwconfig "$@" ; }
 nmap () { command nmap "$@" || sudo nmap "$@" ; }
-systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
 
+# systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
+
+alia systemctl='sudo systemctl'
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
