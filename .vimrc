@@ -38,12 +38,17 @@ Plug 'wavded/vim-stylus', { 'for': ['stylus']}                                  
 Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] } " Stylefmt
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                             " CoffeScript
 Plug 'ap/vim-css-color'                                                            " css colors preview
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }            " ternjs
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }       " tern + deoplete
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'steelsojka/deoplete-flow', { 'do': 'npm install -g tern' }
 Plug 'w0rp/ale'                                                                    " ALE (async linting engine)
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }                " Parameter completion e.g., .on('cli<tab>
-Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }                  " Open node modules with gf
+Plug 'https://github.com/wesQ3/vim-windowswap'                                     " swap windows with ww
+Plug 'chrisbra/NrrwRgn'                                                            " yank text to new window
+" Plug 'xolox/vim-easytags'                                                          " ctags
+" Plug 'Shougo/denite.nvim',
+Plug 'roxma/nvim-completion-manager'
 
 " " Lint as you type. (off)
 " Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
@@ -483,7 +488,7 @@ let g:ale_sign_column_always = 1
 let g:ale_set_signs = 1
 let g:ale_set_baloons = 1
 let g:ale_open_list = 1
-let g:ale_list_window_size = 7
+let g:ale_list_window_size = 3
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_style_error = '✗'
@@ -501,3 +506,8 @@ nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 
 " }}}
+" NCM {{{
+set shortmess+=c
+" }}}
+
+" vim:syntax=vim

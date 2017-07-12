@@ -68,5 +68,9 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || echo '~/.zsh-sy
 # zshrc-local {{{
 [[ -a ~/.zshrc-local ]] && source ~/.zshrc-local
 # }}}
+# zshrc-local {{{
+generate-gitignore () { curl -L -s https://www.gitignore.io/api/\$@ ;}
+[[ -a ~/.zshrc-local ]] && source ~/.zshrc-local
+# }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
