@@ -96,6 +96,11 @@ alias _start_tor_if_not_running='if [[ -n "$(ps -ef | grep tor | grep -v grep)" 
 alias chromium-tor='_start_tor_if_not_running && chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
 
 # }}}
+# systemd shutdown/reboot {{{
+alias shutdown='sudo systemctl poweroff'
+alias reboot='sudo systemctl reboot'
+
+# }}}
 # add sudo {{{
 du () { command du "$@" || sudo du "$@" ; }
 ifconfig () { command ifconfig "$@" || sudo ifconfig "$@" ; }
