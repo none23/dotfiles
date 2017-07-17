@@ -58,19 +58,13 @@ alias Gs='git status'
 # dotfiles etc {{{
 pkglist () {
     if [[ -d /home/n/none23/pkglist ]]; then
-        cd /home/n/none23/pkglist \
-        && yaourt -Qnq > ./official_repos \
-        && yaourt -Qmq > ./aur \
-        && GG "updated" \
-        || exit
+        cd /home/n/none23/pkglist && yaourt -Qnq > ./official_repos && yaourt -Qmq > ./aur && GG "updated" || exit
     fi
 }
 
 dot () {
     if [[ -d /home/n/none23/dotfiles ]]; then
-        cd /home/n/none23/dotfiles \
-        && GG "updated" \
-        || exit
+        cd /home/n/none23/dotfiles && GG "updated" || exit
     fi
 }
 # }}}
