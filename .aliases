@@ -18,11 +18,20 @@ alias ton='tonn && (sleep 30 && toff) &' # shitty, but works for me
 
 # }}}
 # gui apps in bg {{{
-thunar () { command thunar "$@" & }
-gparted () { command gparted "$@" & }
-libreoffice () { command libreoffice "$@" & }
-feh () { command feh "$@" & }
-geeqie () { command geeqie "$@" & }
+_thunar () { thunar "$@" & }
+alias thunar=_thunar
+
+alias gparted=_gparted
+_gparted () { gparted "$@" & }
+
+_libreoffice () { libreoffice "$@" & }
+alias libreoffice=_libreoffice
+
+_feh () { feh "$@" & }
+alias feh=_feh
+
+_geeqie () { geeqie "$@" & }
+alias geeqie=_geeqie
 
 # }}}
 # npm/yarn {{{
@@ -32,23 +41,9 @@ alias nrt='yarn run test'
 alias nrw='yarn run watch'
 
 # }}}
-# dotfiles etc {{{
-alias pkglist='(cd /home/n/none23/pkglist && (yaourt -Qnq > official_repos && yaourt -Qmq > aur) && git add . && git commit -m "updated" && git push origin master)'
-alias dot='(cd /home/n/none23/dotfiles && (git ls-files --modified -z | xargs -0 git add ) && git commit -m "updated" && git push origin master)'
-
-# }}}
-# yaourt {{{
-alias y='yaourt'
-alias Y='yaourt -Syua && npm update -g && pkglist'
-alias Yy='yaourt -Syy'
-alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc'
-alias yor='yaourt -Rsc $(yaourt -Qtdq)'
-
-# }}}
 # git {{{
       Ga () { [[ $1 ]] && git add "$@" || git add . ; }
-      Gc () { [[ $* ]] && git commit -m "$*" || git commit  . ; }
+      Gc () { [[ "$@" ]] && git commit -m "$*" || git commit  . ; }
       Gg () { [[ $2 ]] && ( git clone "git@github.com:none23/$1" $2 || git clone "git@github.com:$1" $2 ) || ( git clone "git@github.com:none23/$1" || git clone "git@github.com:$1" ) || echo "That didn't work..." ; }
 alias Gi='git init'
 alias Gm='git merge'
@@ -60,15 +55,53 @@ alias Gs='git status'
       GG () { Ga && Gc "$@" && Gp ; }
 
 # }}}
+# dotfiles etc {{{
+pkglist () {
+    if [[ -d /home/n/none23/pkglist ]]; then
+        cd /home/n/none23/pkglist \
+        && yaourt -Qnq > ./official_repos \
+        && yaourt -Qmq > ./aur \
+        && GG "updated" \
+        || exit
+    fi
+}
+
+dot () {
+    if [[ -d /home/n/none23/dotfiles ]]; then
+        cd /home/n/none23/dotfiles \
+        && GG "updated" \
+        || exit
+    fi
+}
+# }}}
+# yaourt {{{
+alias y='yaourt'
+alias Y='yaourt -Syua && npm update -g && pkglist'
+alias Yy='yaourt -Syy'
+alias Yc='yaourt -Sc'
+alias Ycc='yaourt -Scc'
+alias yor='yaourt -Rsc $(yaourt -Qtdq)'
+
+# }}}
 # wireless {{{
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
-alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
+
 alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
-alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 alias foilhat='sudo rfkill block all'
+alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
+alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
+
+      wmac () {
+          if [[ -n "$1" ]]; then
+              sudo macchanger -ab
+          else
+              sudo macchanger -b --mac="$1"
+          fi
+      }
+
 alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
-alias N='(nmtui) || (sudo NetworkManager && sleep 1 && nmtui)'
+alias N='nmtui || sudo NetworkManager && sleep 1 && nmtui'
 
 # }}}
 # multi-screen {{{
@@ -102,11 +135,20 @@ alias reboot='sudo systemctl reboot'
 
 # }}}
 # add sudo {{{
-du () { command du "$@" || sudo du "$@" ; }
-ifconfig () { command ifconfig "$@" || sudo ifconfig "$@" ; }
-iwconfig () { command iwconfig "$@" || sudo iwconfig "$@" ; }
-nmap () { command nmap "$@" || sudo nmap "$@" ; }
-systemctl () { command systemctl "$@" || sudo systemctl "$@" ; }
+_du () { du "$@" || sudo du "$@" ; }
+alias du=_du
+
+_ifconfig () { ifconfig "$@" || sudo ifconfig "$@" ; }
+alias ifconfig=_ifconfig
+
+_iwconfig () { iwconfig "$@" || sudo iwconfig "$@" ; }
+alias iwconfig=_iwconfig
+
+_nmap () { nmap "$@" || sudo nmap "$@" ; }
+alias nmap=_nmap
+
+_systemctl () { systemctl "$@" || sudo systemctl "$@" ; }
+alias systemctl=_systemctl
 
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
@@ -117,7 +159,6 @@ alias gdisk='sudo gdisk'
 alias gparted='sudo gparted'
 alias hdparm='sudo hdparm'
 alias lsmod='sudo lsmod'
-alias macchanger='sudo macchanger'
 alias masscan='sudo masscan'
 alias modprobe='sudo modprobe'
 alias minicom='sudo minicom'
@@ -135,7 +176,7 @@ alias wifijammer='sudo wifijammer'
 
 # }}}
 # misc {{{
-rr () { [[ $1 ]] && ranger "$*" || ranger $(pwd) ; }
+rr () { [[ $1 ]] && ranger "$*" || ranger "$(pwd)" ; }
 zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
 
 alias dd='sudo dd bs=512K status=progress'
@@ -159,4 +200,4 @@ alias -g .....='../../../..'
 
 # }}}
 
-# vim:filetype=zsh:foldmethod=marker:foldlevel=0
+# vim:filetype=bash:foldmethod=marker:foldlevel=0
