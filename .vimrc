@@ -488,7 +488,7 @@ let g:ale_sign_column_always = 1
 let g:ale_set_signs = 1
 let g:ale_set_baloons = 1
 let g:ale_open_list = 1
-let g:ale_list_window_size = 3
+let g:ale_list_window_size = 5
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_style_error = '✗'
@@ -498,6 +498,7 @@ let g:ale_sign_style_warning = '⚠'
 let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_sign_info = '*'
 
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = { 'javascript': ['eslint'] }
 let g:ale_javascript_eslint_executable = '$(npm bin)/eslint'
 

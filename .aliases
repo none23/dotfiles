@@ -129,20 +129,12 @@ alias reboot='sudo systemctl reboot'
 
 # }}}
 # add sudo {{{
-_du () { du "$@" || sudo du "$@" ; }
-alias du=_du
 
-_ifconfig () { ifconfig "$@" || sudo ifconfig "$@" ; }
-alias ifconfig=_ifconfig
-
-_iwconfig () { iwconfig "$@" || sudo iwconfig "$@" ; }
-alias iwconfig=_iwconfig
-
-_nmap () { nmap "$@" || sudo nmap "$@" ; }
-alias nmap=_nmap
-
-_systemctl () { systemctl "$@" || sudo systemctl "$@" ; }
-alias systemctl=_systemctl
+du () { /usr/bin/du "$@" || sudo /usr/bin/du "$@" ; }
+ifconfig () { /usr/bin/ifconfig "$@" || sudo /usr/bin/ifconfig "$@" ; }
+iwconfig () { /usr/bin/iwconfig "$@" || sudo /usr/bin/iwconfig "$@" ; }
+nmap () { /usr/bin/nmap "$@" || sudo /usr/bin/nmap "$@" ; }
+systemctl () { /usr/bin/systemctl "$@" || sudo /usr/bin/systemctl "$@" ; }
 
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
