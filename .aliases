@@ -17,23 +17,6 @@ alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
 alias ton='tonn && (sleep 30 && toff) &' # shitty, but works for me
 
 # }}}
-# gui apps in bg {{{
-_thunar () { thunar "$@" & }
-alias thunar=_thunar
-
-alias gparted=_gparted
-_gparted () { gparted "$@" & }
-
-_libreoffice () { libreoffice "$@" & }
-alias libreoffice=_libreoffice
-
-_feh () { feh "$@" & }
-alias feh=_feh
-
-_geeqie () { geeqie "$@" & }
-alias geeqie=_geeqie
-
-# }}}
 # npm/yarn {{{
 alias ni='yarn'
 alias nrb='yarn run build'
@@ -73,7 +56,7 @@ alias y='yaourt'
 alias Y='yaourt -Syua && npm update -g && pkglist'
 alias Yy='yaourt -Syy'
 alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc'
+alias Ycc='yaourt -Scc && npm cache clean --force'
 alias yor='yaourt -Rsc $(yaourt -Qtdq)'
 
 # }}}
@@ -119,7 +102,7 @@ alias umount='sudo umount'
 
 # }}}
 # chromium-tor {{{
-alias _start_tor_if_not_running='if [[ -n "$(ps -ef | grep tor | grep -v grep)" ]]; then echo "tor already running" ; else systemctl start tor.service && echo "tor started" ; fi'
+alias _start_tor_if_not_running='if [[ -n "$(ps -ef | grep tor | grep -v grep)" ]]; then echo "tor already running" ; else sudo systemctl start tor.service && echo "tor started" ; fi'
 alias chromium-tor='_start_tor_if_not_running && chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
 
 # }}}
@@ -134,7 +117,6 @@ du () { /usr/bin/du "$@" || sudo /usr/bin/du "$@" ; }
 ifconfig () { /usr/bin/ifconfig "$@" || sudo /usr/bin/ifconfig "$@" ; }
 iwconfig () { /usr/bin/iwconfig "$@" || sudo /usr/bin/iwconfig "$@" ; }
 nmap () { /usr/bin/nmap "$@" || sudo /usr/bin/nmap "$@" ; }
-systemctl () { /usr/bin/systemctl "$@" || sudo /usr/bin/systemctl "$@" ; }
 
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
@@ -156,6 +138,7 @@ alias rfkill='sudo rfkill'
 alias rmmod='sudo rmmod'
 alias skill='sudo kill'
 alias skillall='sudo killall'
+alias systemctl='sudo systemctl'
 alias umount='sudo umount'
 alias wifite='sudo wifite'
 alias wifijammer='sudo wifijammer'
@@ -169,7 +152,6 @@ alias dd='sudo dd bs=512K status=progress'
 alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
-alias vtop='vtop -t nwsome '
 alias spotify='spotify > /dev/zero & blockify > /dev/zero &'
 alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
 alias lt='lt -l localhost -s none23'
@@ -186,4 +168,4 @@ alias -g .....='../../../..'
 
 # }}}
 
-# vim:filetype=bash:foldmethod=marker:foldlevel=0
+# vim:filetype=zsh:foldmethod=marker:foldlevel=0

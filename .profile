@@ -15,4 +15,9 @@ fi
 export PATH="$HOME/.npm-global/bin:$PATH" || echo "adding $HOME/.npm-global/bin to PATH failed somehow..."
 
 # }}}
+# yarn {{{
+[[ -a ~/.yarn/bin ]] || mkdir -p ~/.yarn/bin
+export PATH="$HOME/.yarn/bin:$PATH" || echo "adding $HOME/.yarn/bin to PATH failed somehow..."
+
+# }}}
 # vim:filetype=zsh
