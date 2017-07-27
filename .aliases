@@ -23,6 +23,12 @@ alias nrb='yarn run build'
 alias nrt='yarn run test'
 alias nrw='yarn run watch'
 
+eslint-none23 () {
+    ( cd $(npm root)/.. && if [[ -a ./package.json ]]; then
+        yarn add -D babel-eslint eslint{,-config-none23,-plugin-{flowtype,import,jest,jsx-a11y,node,promise,react,standard}} ;
+        [[ -a eslintrc.js ]] && echo ".eslintrc.js exists" || echo "const path = require(\"path\");\nmodule.exports = {\n  root: true,\n  extends: [ \"none23\" ],\n  settings: {\n    \"import/resolver\": {\n      node: { paths: path.resolve(__dirname, \"src\") },\n    },\n  },\n};" > .eslintrc.js
+    fi )
+}
 # }}}
 # git {{{
       Ga () { [[ $1 ]] && git add "$@" || git add . ; }
@@ -71,14 +77,14 @@ alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 
       wmac () {
           if [[ -n "$1" ]]; then
-              sudo macchanger -ab
+              sudo macchanger -b --mac="$1" wlp7s0
           else
-              sudo macchanger -b --mac="$1"
+              sudo macchanger -ab wlp7s0
           fi
       }
 
 alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
-alias N='nmtui || sudo NetworkManager && sleep 1 && nmtui'
+alias N='nmtui || (sudo NetworkManager && sleep 1 && nmtui)'
 
 # }}}
 # multi-screen {{{
@@ -152,7 +158,6 @@ alias dd='sudo dd bs=512K status=progress'
 alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
-alias spotify='spotify > /dev/zero & blockify > /dev/zero &'
 alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
 alias lt='lt -l localhost -s none23'
 pn () { [[ ! "$*" ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }

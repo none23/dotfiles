@@ -10,10 +10,10 @@ require("awful.autofocus")
 
 -- }}}
 -- Aliases {{{
-Super = "Mod4"
-Hyper = "Mod3"
-Shift = "Shift"
-Cntrl = "Control"
+local Super = "Mod4"
+local Hyper = "Mod3"
+local Shift = "Shift"
+local Cntrl = "Control"
 
 -- }}}
 -- Notifications {{{
@@ -61,9 +61,9 @@ end
 -- }}}
 -- }}}
 -- Startup {{{
-function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
+local function run_once(cmd)
+  local findme = cmd
+  local firstspace = cmd:find(" ")
   if firstspace then
       findme = cmd:sub(0, firstspace-1)
   end
@@ -80,7 +80,7 @@ local layouts = {
   awful.layout.suit.tile
 , awful.layout.suit.tile.bottom
 , awful.layout.suit.tile.top
-, awful.layout.suit.fair,fair
+, awful.layout.suit.fair
 }
 
 local tags = {
@@ -662,7 +662,6 @@ awful.rules.rules = {
 , { rule_any = {
       class = {
         "Chromium"
-      , "Firefox"
       }
     }
   , properties = {
@@ -691,6 +690,7 @@ awful.rules.rules = {
       , "pinentry"
       , "veromix"
       , "xtightvncviewer"
+      , "Popup"
       }
     , name = {
         "Event Tester"

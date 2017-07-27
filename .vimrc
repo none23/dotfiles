@@ -23,9 +23,8 @@ Plug 'ervandew/supertab'                                                        
 Plug 'vim-scripts/IndexedSearch'                                                   " search results counter
 Plug 'xolox/vim-misc'                                                              " sessions dependency
 Plug 'xolox/vim-session'                                                           " sessions
-" Plug 'scrooloose/syntastic'                                                        " linter
 Plug 'sheerun/vim-polyglot'                                                        " Syntax highlighting
-" Plug 'neomake/neomake'                                                             " async linters and builders
+" Plug 'neomake/neomake'                                                           " async linters and builders
 Plug 'junegunn/vim-easy-align'                                                     " easy alignment
 Plug 'airblade/vim-gitgutter'                                                      " highlight git changes
 Plug 'SirVer/ultisnips'                                                            " ultisnips
@@ -39,15 +38,14 @@ Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss']
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                             " CoffeScript
 Plug 'ap/vim-css-color'                                                            " css colors preview
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }            " ternjs
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Plug 'steelsojka/deoplete-flow', { 'do': 'npm install -g tern' }
 Plug 'w0rp/ale'                                                                    " ALE (async linting engine)
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }                " Parameter completion e.g., .on('cli<tab>
-Plug 'https://github.com/wesQ3/vim-windowswap'                                     " swap windows with ww
 Plug 'chrisbra/NrrwRgn'                                                            " yank text to new window
+Plug 'mileszs/ack.vim'                                                             " find across files
 " Plug 'xolox/vim-easytags'                                                          " ctags
-" Plug 'Shougo/denite.nvim',
 Plug 'roxma/nvim-completion-manager'
 
 " " Lint as you type. (off)
@@ -76,6 +74,8 @@ set nocindent
 
 " }}}
 " Misc Settings {{{
+" (OFF) cd to file directory automatically
+set noautochdir
 
 " [experimental] keep the cursor on the same column
 set nostartofline
@@ -213,7 +213,6 @@ set wildignore+=*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm
 set wildignore+=*.eot,*.otf,*.ttf,*.woff
 set wildignore+=*.docx
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=.sass-cache
 set wildignore+=.sass-cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
 set wildignore+=*.*~,*~
@@ -499,8 +498,9 @@ let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_sign_info = '*'
 
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'css': ['stylelint'] }
 let g:ale_javascript_eslint_executable = '$(npm bin)/eslint'
+let g:ale_javascript_stylelint_executable = '$(npm bin)/stylelint'
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -508,7 +508,7 @@ nnoremap <leader>ap :ALEPreviousWrap<cr>
 
 " }}}
 " NCM {{{
-set shortmess+=c
+" set shortmess+=c
 " }}}
 
 " vim:syntax=vim
