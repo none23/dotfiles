@@ -117,7 +117,7 @@ set splitright
 
 " marker folding
 set foldmethod=marker
-set foldlevel=0
+set foldlevel=999
 autocmd FileType javascript,javascript.jsx,json,sugarss,stylus,sass,scss,css,jade,pug,html,xml,svg setlocal foldmethod=syntax
 
 " enable concealment
