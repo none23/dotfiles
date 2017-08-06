@@ -26,12 +26,14 @@ alias nrw='yarn start || yarn run watch'
 # }}}
 # configure eslint {{{
 eslint-none23 () {
-    ( cd $(npm root)/..; then
+    ( cd $(npm root)/..
         yarn add -D babel-eslint eslint{,-config-none23,-plugin-{flowtype,import,jest,jsx-a11y,node,promise,react,standard}}
+
         [[ -a .eslintrc.js ]] && mv .eslintrc.js{,.old}
         [[ -a .eslintrc ]] && mv .eslintrc{,.old}
         [[ -a .eslintrc.json ]] && mv .eslintrc.json{,.old}
         [[ -a .eslintrc.yml ]] && mv .eslintrc.yml{,.old}
+
         if [[ -a ~/.eslintrc.js ]]; then
             cp ~/.eslintrc.js .eslintrc.js
         else
@@ -43,7 +45,7 @@ eslint-none23 () {
 # git {{{
 ## add {{{
 Ga () {
-    if [[ "$1"=="-h" || "$1"=="--help" ]]; then
+    if [[ "$1" ]]; then
         git add "$@"
     else
         git add .
@@ -67,7 +69,7 @@ Gg () {
             || echo "That didn't work..."
     else
         git clone "git@github.com:none23/$1" \
-            || git clone "git@github.com:$1" ) \
+            || git clone "git@github.com:$1" \
             || echo "That didn't work..."
     fi
 }
