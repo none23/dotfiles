@@ -73,6 +73,9 @@ ln -s $DOTFILES_PATH/.Xresources ~/.Xresources
 [[ -a ~/.xscreensaver ]] && mv ~/.xscreensaver{,.old}
 ln -s $DOTFILES_PATH/.xscreensaver ~/.xscreensaver
 
+[[ -a ~/.czrc ]] && mv ~/.czrc{,.old}
+ln -s $DOTFILES_PATH/.czrc ~/.czrc
+
 [[ -a ~/.cvimrc ]] && mv ~/.cvimrc{,.old}
 ln -s $DOTFILES_PATH/.cvimrc ~/.cvimrc
 
@@ -100,9 +103,6 @@ ln -s $DOTFILES_PATH/.local/share/konsole ~/.local/share/konsole
 
 [[ -a ~/.config/compton.conf ]] && mv ~/.config/compton.conf{,.old}
 ln -s $DOTFILES_PATH/.config/compton.conf ~/.config/compton.conf
-
-[[ -a ~/.config/cvim ]] && mv ~/.config/cvim{,.old}
-ln -s $DOTFILES_PATH/.config/cvim ~/.config/cvim
 
 [[ -a ~/.config/cvim ]] && mv ~/.config/cvim{,.old}
 ln -s $DOTFILES_PATH/.config/cvim ~/.config/cvim
