@@ -35,7 +35,7 @@ ln -s $DOTFILES_PATH/.zdirs ~/.zdirs
 ln -s $DOTFILES_PATH/.zprofile ~/.zprofile
 
 [[ -a ~/.zsh-syntax-highlighting ]] && mv ~/.zsh-syntax-highlighting{,.old}
-git clone git@github.com:zsh-users/zsh-syntax-highlighting ~/zsh-syntax-highlighting
+git clone https://github.com:zsh-users/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
 
 # /zsh }}}
 # bash {{{
@@ -47,13 +47,13 @@ ln -s $DOTFILES_PATH/.bashrc ~/.bashrc
 ln -s $DOTFILES_PATH/.bash_profile ~/.bash_profile
 
 # /bash }}}
-# profile {{{
+# .profile {{{
 
 [[ -a ~/.profile ]] && mv ~/.profile{,.old}
 ln -s $DOTFILES_PATH/.profile ~/.profile
 
 # /profile }}}
-# misc {{{
+# awesomewm {{{
 
 [[ -a ~/.config/awesome ]] && mv ~/.config/awesome{,.old}
 ln -s $DOTFILES_PATH/.config/awesome ~/.config/awesome
@@ -93,6 +93,7 @@ ln -s $DOTFILES_PATH/.ipython ~/.ipython
 
 [[ -a ~/.tmux.conf ]] && mv ~/.tmux.conf{,.old}
 ln -s $DOTFILES_PATH/.tmux.conf ~/.tmux.conf
+[[ -a ~/.tmux-conf-local ]] || touch ~/.tmux-conf-local
 
 [[ -a ~/.local/share/konsole ]] && mv ~/.local/share/konsole{,.old}
 ln -s $DOTFILES_PATH/.local/share/konsole ~/.local/share/konsole
@@ -114,6 +115,9 @@ ln -s $DOTFILES_PATH/.config/gtk-2.0 ~/.config/gtk-2.0
 
 [[ -a ~/.config/gtk-3.0 ]] && mv ~/.config/gtk-3.0{,.old}
 ln -s $DOTFILES_PATH/.config/gtk-3.0 ~/.config/gtk-3.0
+
+[[ -a ~/.config/fontconfig ]] && mv ~/.config/fontconfig{,.old}
+ln -s $DOTFILES_PATH/.config/fontconfig ~/.config/fontconfig
 
 [[ -a ~/.config/htop ]] && mv ~/.config/htop{,.old}
 ln -s $DOTFILES_PATH/.config/htop ~/.config/htop

@@ -21,39 +21,124 @@ alias ton='tonn && (sleep 30 && toff) &' # shitty, but works for me
 alias ni='yarn'
 alias nrb='yarn run build'
 alias nrt='yarn run test'
-alias nrw='yarn run watch'
+alias nrw='yarn start || yarn run watch'
 
+# }}}
+# configure eslint {{{
 eslint-none23 () {
-    ( cd $(npm root)/.. && if [[ -a ./package.json ]]; then
-        yarn add -D babel-eslint eslint{,-config-none23,-plugin-{flowtype,import,jest,jsx-a11y,node,promise,react,standard}} ;
-        [[ -a eslintrc.js ]] && echo ".eslintrc.js exists" || echo "const path = require(\"path\");\nmodule.exports = {\n  root: true,\n  extends: [ \"none23\" ],\n  settings: {\n    \"import/resolver\": {\n      node: { paths: path.resolve(__dirname, \"src\") },\n    },\n  },\n};" > .eslintrc.js
-    fi )
+    ( cd $(npm root)/..; then
+        yarn add -D babel-eslint eslint{,-config-none23,-plugin-{flowtype,import,jest,jsx-a11y,node,promise,react,standard}}
+        [[ -a .eslintrc.js ]] && mv .eslintrc.js{,.old}
+        [[ -a .eslintrc ]] && mv .eslintrc{,.old}
+        [[ -a .eslintrc.json ]] && mv .eslintrc.json{,.old}
+        [[ -a .eslintrc.yml ]] && mv .eslintrc.yml{,.old}
+        if [[ -a ~/.eslintrc.js ]]; then
+            cp ~/.eslintrc.js .eslintrc.js
+        else
+            echo "const path = require('path');\nmodule.exports = {\n\ \ root: true,\n\ \ extends: [ 'none23' ],\n\ \ settings: {\n\ \ \ \ 'import/resolver': {\n\ \ \ \ \ \ node: { paths: path.resolve(__dirname, 'src') },\n\ \ \ \ },\n\ \ },\n};" > .eslintrc.js
+        fi
+    )
 }
 # }}}
 # git {{{
-      Ga () { [[ $1 ]] && git add "$@" || git add . ; }
-      Gc () { [[ "$@" ]] && git commit -m "$*" || git commit  . ; }
-      Gg () { [[ $2 ]] && ( git clone "git@github.com:none23/$1" $2 || git clone "git@github.com:$1" $2 ) || ( git clone "git@github.com:none23/$1" || git clone "git@github.com:$1" ) || echo "That didn't work..." ; }
-alias Gi='git init'
-alias Gm='git merge'
-      Gl () { [[ $1 ]] && [[ ! $2 ]] && git pull origin $1 || git pull origin HEAD ; }
-      Go () { [[ $1 ]] && [[ ! $2 ]] && git remote add origin "git@github.com:none23/$1" || echo "Please, enter the repo name (e.g. dotfiles)" ; }
-      Gp () { [[ $1 ]] && git push origin $1 || git push origin HEAD ; }
-alias Gr='git rm -rf'
-alias Gs='git status'
-      GG () { Ga && Gc "$@" && Gp ; }
-
-# }}}
-# dotfiles etc {{{
-pkglist () {
-    if [[ -d /home/n/none23/pkglist ]]; then
-        ( cd /home/n/none23/pkglist && yaourt -Qnq > ./official_repos && yaourt -Qmq > ./aur && GG "updated" )
+## add {{{
+Ga () {
+    if [[ "$1"=="-h" || "$1"=="--help" ]]; then
+        git add "$@"
+    else
+        git add .
     fi
 }
-
+## }}}
+## checkout {{{
+Gk () {
+    if [[ $1 ]]; then
+        git checkout -b "$1"
+    else
+        echo 'please, specify the branch name'
+    fi
+}
+## }}}
+## clone {{{
+Gg () {
+    if [[ $2 ]]; then
+        git clone "git@github.com:none23/$1" $2 \
+            || git clone "git@github.com:$1" $2 \
+            || echo "That didn't work..."
+    else
+        git clone "git@github.com:none23/$1" \
+            || git clone "git@github.com:$1" ) \
+            || echo "That didn't work..."
+    fi
+}
+## }}}
+## commit {{{
+Gc () {
+    if [[ "$@" ]]; then
+        git commit -m "$*"
+    else
+        git cz || git commit
+    fi
+}
+## }}}
+## fetch {{{
+alias Gf='git fetch'
+## }}}
+## init {{{
+alias Gi='git init'
+## }}}
+## merge {{{
+alias Gm='git merge'
+## }}}
+## pull {{{
+Gl () {
+    if [[ $1 && ! $2 ]]; then
+        git pull origin $1
+    else
+        git pull origin HEAD
+    fi
+}
+## }}}
+## push {{{
+Gp () {
+    if [[ $1 ]]; then
+        git push origin $1
+    else
+        git push origin HEAD
+    fi
+}
+## }}}
+## remote add {{{
+Gra () {
+    if [[ $1 && ! $2 ]]; then
+        git remote add origin "git@github.com:none23/$1"
+    else
+        echo 'please, specify the repo name'
+    fi
+}
+## }}}
+## status {{{
+alias Gs='git status'
+## }}}
+## add all, commit, and push {{{
+GG () {
+  Ga
+  Gc "$@"
+  Gp
+}
+## }}}
+# }}}
+# dotfiles github {{{
 dot () {
     if [[ -d /home/n/none23/dotfiles ]]; then
         ( cd /home/n/none23/dotfiles && GG "updated" )
+    fi
+}
+# }}}
+# installed packages github {{{
+pkglist () {
+    if [[ -d /home/n/none23/pkglist ]]; then
+        ( cd /home/n/none23/pkglist && yaourt -Qnq > ./official_repos && yaourt -Qmq > ./aur && GG "updated" )
     fi
 }
 # }}}
@@ -64,65 +149,107 @@ alias Yy='yaourt -Syy'
 alias Yc='yaourt -Sc'
 alias Ycc='yaourt -Scc && npm cache clean --force'
 alias yor='yaourt -Rsc $(yaourt -Qtdq)'
-
 # }}}
 # wireless {{{
+alias N='nmtui || (sudo NetworkManager && sleep 1 && nmtui)'
+alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
-
-alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 alias foilhat='sudo rfkill block all'
+alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
 alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
 alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 
-      wmac () {
-          if [[ -n "$1" ]]; then
-              sudo macchanger -b --mac="$1" wlp7s0
-          else
-              sudo macchanger -ab wlp7s0
-          fi
-      }
-
-alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
-alias N='nmtui || (sudo NetworkManager && sleep 1 && nmtui)'
-
+wmac () {
+    if [[ -n "$1" ]]; then
+        sudo macchanger -b --mac="$1" wlp7s0
+    else
+        sudo macchanger -ab wlp7s0
+    fi
+}
 # }}}
 # multi-screen {{{
-_prerandr () { xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync && xrandr --addmode HDMI1 1360x768_60.00 && $1 || $1 ; }
-_qrandr () { xrandr --output HDMI1 --mode 1360x768_60.00 --pos 1366x0 --rotate normal --output LVDS1 --primary --preferred --mode 1366x768 --pos 0x0 --rotate normal ; }
+_LVDS='LVDS1'
+_HDMI='HDMI1'
+
+alias _prerandr=" \
+    xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync \
+    && xrandr --addmode $HDMI 1360x768_60.00 \
+    && $1 \
+    || $1
+"
+
+alias _qrandr="
+    xrandr \
+        --output $HDMI \
+            --rotate normal \
+            --mode 1360x768_60.00 \
+            --pos 1366x0 \
+        --output $LVDS \
+            --rotate normal \
+            --mode 1366x768 \
+            --pos 0x0 \
+            --primary \
+            --preferred \
+"
 
 alias arandr='_prerandr arandr'
 alias qrandr='_prerandr _qrandr'
-
 # }}}
-# dpms {{{
+# dpms control {{{
 alias wkp='xset dpms force on'
 alias pretendtosleep='xset dpms force off'
-
-# }}}
-# mount {{{
-# mount ()  { if [[ $# -ne 2 ]]; then echo   "Two arguments expected: received $#"; else ( mount  "$1" "$2" || sudo mount  "$1" "$2" ); fi }
-# umount () { if [[ $# -ne 1 ]]; then echo "Single argument expected: received $#"; else ( umount "$1"      || sudo umount "$1"      ); fi }
-alias mount='sudo mount'
-alias umount='sudo umount'
-
 # }}}
 # chromium-tor {{{
-alias _start_tor_if_not_running='if [[ -n "$(ps -ef | grep tor | grep -v grep)" ]]; then echo "tor already running" ; else sudo systemctl start tor.service && echo "tor started" ; fi'
-alias chromium-tor='_start_tor_if_not_running && chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
+_start_tor_if_not_running () {
+    if [[ -n "$(ps -ef | grep tor | grep -v grep)" ]]; then
+        echo "tor already running"
+    else
+        sudo systemctl start tor.service
+        echo "tor started"
+    fi
+}
+
+chromium-tor () {
+    _start_tor_if_not_running
+    chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
+}
 
 # }}}
-# systemd shutdown/reboot {{{
-alias shutdown='sudo systemctl poweroff'
-alias reboot='sudo systemctl reboot'
+# shutdown/reboot {{{
+shutdown () {
+    if [[ -a /usr/bin/shutdown ]]; then
+        /usr/bin/shutdown "$@"
+    else
+        sudo systemctl poweroff
+    fi
+}
+
+reboot () {
+    if [[ -a /usr/bin/reboot ]]; then
+        /usr/bin/reboot
+    else
+        sudo systemctl reboot
+    fi
+}
 
 # }}}
 # add sudo {{{
+du () {
+    /usr/bin/du "$@" || sudo /usr/bin/du "$@"
+}
 
-du () { /usr/bin/du "$@" || sudo /usr/bin/du "$@" ; }
-ifconfig () { /usr/bin/ifconfig "$@" || sudo /usr/bin/ifconfig "$@" ; }
-iwconfig () { /usr/bin/iwconfig "$@" || sudo /usr/bin/iwconfig "$@" ; }
-nmap () { /usr/bin/nmap "$@" || sudo /usr/bin/nmap "$@" ; }
+ifconfig () {
+    /usr/bin/ifconfig "$@" || sudo /usr/bin/ifconfig "$@"
+}
+
+iwconfig () {
+    /usr/bin/iwconfig "$@" || sudo /usr/bin/iwconfig "$@"
+}
+
+nmap () {
+    /usr/bin/nmap "$@" || sudo /usr/bin/nmap "$@"
+}
 
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
@@ -134,12 +261,13 @@ alias gparted='sudo gparted'
 alias hdparm='sudo hdparm'
 alias lsmod='sudo lsmod'
 alias masscan='sudo masscan'
-alias modprobe='sudo modprobe'
 alias minicom='sudo minicom'
 alias mkinitcpio='sudo mkinitcpio'
 alias mkfs.ext4='sudo mkfs.ext4'
 alias mkfs.ext3='sudo mkfs.ext3'
 alias mkfs.ext2='sudo mkfs.ext2'
+alias modprobe='sudo modprobe'
+alias mount='sudo mount'
 alias rfkill='sudo rfkill'
 alias rmmod='sudo rmmod'
 alias skill='sudo kill'
@@ -148,11 +276,54 @@ alias systemctl='sudo systemctl'
 alias umount='sudo umount'
 alias wifite='sudo wifite'
 alias wifijammer='sudo wifijammer'
-
+# }}}
+# extract {{{
+extract () {
+    if [ -z "$1" ]; then
+         # display usage if no parameters given
+         echo "Usage: extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+         return 1
+    else
+        for n in $@; do
+            if [ -f "$n" ] ; then
+                case "${n%,}" in
+                *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                             tar xvf "$n"       ;;
+                *.lzma)      unlzma ./"$n"      ;;
+                *.bz2)       bunzip2 ./"$n"     ;;
+                *.rar)       unrar x -ad ./"$n" ;;
+                *.gz)        gunzip ./"$n"      ;;
+                *.zip)       unzip ./"$n"       ;;
+                *.z)         uncompress ./"$n"  ;;
+                *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
+                             7z x ./"$n"        ;;
+                *.xz)        unxz ./"$n"        ;;
+                *.exe)       cabextract ./"$n"  ;;
+                *)
+                            echo "extract: '$n' - unknown archive method"
+                            return 1
+                            ;;
+                esac
+            else
+                echo "'$n' - file does not exist"
+                return 1
+            fi
+        done
+    fi
+}
 # }}}
 # misc {{{
-rr () { [[ $1 ]] && ranger "$*" || ranger "$(pwd)" ; }
-zathura () { ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &  }
+pn () {
+    [[ ! "$*" ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*"
+}
+
+rr () {
+    [[ $1 ]] && ranger "$*" || ranger "$(pwd)"
+}
+
+zathura () {
+    ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &
+}
 
 alias dd='sudo dd bs=512K status=progress'
 alias py='ipython3'
@@ -160,7 +331,6 @@ alias df='df -h'
 alias du='du -h '
 alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
 alias lt='lt -l localhost -s none23'
-pn () { [[ ! "$*" ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" ; }
 
 # }}}
 # global aliases {{{
@@ -170,7 +340,6 @@ alias -g gvim='konsole -e nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
-
 # }}}
 
-# vim:filetype=zsh:foldmethod=marker:foldlevel=0
+# vim:filetype=zsh:foldmethod=marker:foldlevel=2
