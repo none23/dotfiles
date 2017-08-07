@@ -1,16 +1,16 @@
 snippet ccc "create class component" b
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ${1:ClassComponent} extends Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
-      $5
-    }
+      $5,
+    };
   }
 
-  componentWillUpdate () {} 
+  componentWillUpdate () {}
   componentDidUpdate () {}
   componentWillMount () {}
   componentDidMount () {}
@@ -21,188 +21,194 @@ class ${1:ClassComponent} extends Component {
       <${2:div} $3 >
         $4
       </$2>
-    )
+    );
   }
-}
+};
 $1.propTypes = {
-  className: PropTypes.string
-, onClick: PropTypes.func
-, children: PropTypes.arrayOf(
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.arrayOf(
     PropTypes.oneOfType([
-      PropTypes.node
-    , PropTypes.element
-    , PropTypes.func
-    ])
-  ).isRequired
-}
+      PropTypes.node,
+      PropTypes.element,
+      PropTypes.func,
+    ]),
+  ).isRequired,
+};
 
-export default $1
+export default $1;
 endsnippet
 
 snippet ffc "create simple functional component" b
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ${1:functionalComponent} = ({$4 = '', $6 = null, $8 = null}) => (
+const ${1:functionalComponent} = ({ ${3:prop}, ...props }) => (
   <${2:div}>
-    $3
   </$2>
-)
+);
 $1.propTypes = {
-  ${4:className}: PropTypes.${5:string}
-, ${6:onClick}: PropTypes.${7:func}
-, ${8:children}: PropTypes.${9:arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.node
-    , PropTypes.element
-    , PropTypes.func
-    ])
-  )}.isRequired
-}
+  $3: PropTypes.string.isRequired,
+};
 
-export default $1
+export default $1;
 endsnippet
 
 snippet fcc "create simple functional component" b
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ${1:functionalComponent} = (${2:props}) => {
+const ${1:functionalComponent} = ({ ${3:prop}, ...props }) => {
   return (
-    ${3:<div>
-      $4
-    </div>}
-  )
-}
+    <${2:div}>
+    </$2>}
+  );
+};
 $1.propTypes = {
-  $2: PropTypes.${5:string}.isRequired
-, $2: PropTypes.${6:string}.isRequired
-}
+  $3: PropTypes.string.isRequired,
+};
 
-export default $1
+export default $1;
+endsnippet
+
+snippet im "import" b
+import $0 from '${1: $0}';
 endsnippet
 
 snippet ir "import React" b
-import React from 'react'
+import React from 'react';
 $0
 endsnippet
 
 snippet irpt "import React, PropTypes" b
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 $0
 endsnippet
 
-snippet irc "import React, {Component} from 'react'" b
-import React, {Component} from 'react'
+snippet irc "import React, Component" b
+import React, { Component } from 'react';
 $0
 endsnippet
 
-snippet cdm "component did mount" b
-componentDidMount() {
+snippet exd "export default"
+export default $0;
+endsnippet
+
+snippet exf "export from"
+export $0 from '${1: $0}';
+endsnippet
+
+snippet exdf "export default from"
+export default from '$0';
+endsnippet
+
+snippet construct "construct state"
+constructor (props) {
+  super(props);
+
+  this.state = {
+    $0: $1,
+  };
+}
+endsnippet
+
+snippet cdm "component did mount"
+componentDidMount () {
   $0
 }
 endsnippet
 
-snippet cdup "component did update" b
-componentDidUpdate(prevProps, prevState) {
+snippet cdup "component did update"
+componentDidUpdate (prevProps, prevState) {
   $0
 }
 endsnippet
 
 snippet scup "should component update"
-shouldComponentUpdate(nextProps, nextState) {
+shouldComponentUpdate (nextProps, nextState) {
   $0
 }
 endsnippet
 
-snippet cwm "component will mount" b
-componentWillMount() {
+snippet cwm "component will mount"
+componentWillMount () {
   $0
 }
 endsnippet
 
-snippet cwum "component will unmount" b
-componentWillUnmount() {
+snippet cwum "component will unmount"
+componentWillUnmount () {
   $0
 }
 endsnippet
 
-snippet cwrp "component will receive props" b
-componentWillReceiveProps(nextProps) {
+snippet cwrp "component will receive props"
+componentWillReceiveProps (nextProps) {
   $0
 }
 endsnippet
 
-snippet cwup "component will update" b
-componentWillUpdate(nextProps, nextState) {
+snippet cwup "component will update"
+componentWillUpdate (nextProps, nextState) {
   $0
 }
 endsnippet
 
-snippet gdp "get default props" b
-getDefaultProps() {
-  return {
-	  $0
-  }
-}
-endsnippet
-
-snippet ren
-render() {
+snippet ren "render"
+render () {
   return (
     $0
-  )
+  );
 }
 endsnippet
 
-snippet construct "construct state" b
-constructor(props) {
-  super(props)
-
-  ${1:this.state = {
-    $2
-  }}
-}
-
-$0
-endsnippet
-
-snippet gis "get initial state" b
-getInitialState() {
+snippet gis "get initial state"
+getInitialState () {
   return {
-    $0
-  }
+    $0,
+  };
 }
-
-$0
 endsnippet
 
-snippet pt "propTypes" b
-propTypes: {
-  ${1}: React.PropTypes.${2:string}
-},
-endsnippet
-
-snippet sest "set state" b
+snippet sst "set state"
 this.setState({
-  ${1}: ${2}
-})$0
+  $0,
+});
 endsnippet
 
-
-snippet jp "JSON.parse()"
-JSON.parse($0)
+snippet spt "static propTypes"
+static propTypes = {
+  ${0}: PropTypes.${1:string},
+};
 endsnippet
 
-snippet jst "JSON.stringify()"
-JSON.stringify($0)
+snippet sdp "static defaultProps"
+static defaultProps = {
+  $0: $1,
+};
 endsnippet
 
-snippet lg "console.log"
-console.log.debug(JSON.stringify($0))
+snippet jpars "JSON.parse()"
+JSON.parse($0);
+endsnippet
+
+snippet jsrt "JSON.stringify()"
+JSON.stringify($0);
+endsnippet
+
+snippet dbg "debugger"
+debugger;
+endsnippet
+
+snippet cl "console.log"
+console.log($0);
 endsnippet
 
 snippet edl "eslint-disable-line"
 // eslint-disable-line $0
+endsnippet
+
+snippet ednl "eslint-disable-next-line"
+// eslint-disable-next-line $0
 endsnippet
