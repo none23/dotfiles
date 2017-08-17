@@ -262,7 +262,7 @@
         show_thumbnails = "true" 
         show_directory_date = "false" 
         home_path = "" 
-        last_path = "/home/n/work/web-client/storybook-static" 
+        last_path = "/home/n/work/myfresh-routes/src/components/tags/user_statuses" 
         startup_path = "0" 
         exit_on_close = "false" 
 
