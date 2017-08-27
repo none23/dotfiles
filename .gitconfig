@@ -6,6 +6,7 @@
     d = diff --word-diff
     f = fetch
     k = checkout
+    kb = checkout -b
     l = pull
     lr = pull --rebase
     m = merge
