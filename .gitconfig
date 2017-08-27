@@ -1,0 +1,44 @@
+[alias]
+    a = add
+    b = branch
+    c = commit
+    ca = commit --amend
+    d = diff --word-diff
+    f = fetch
+    k = checkout
+    l = pull
+    lr = pull --rebase
+    m = merge
+    m = merge
+    mm = merge --no-ff
+    p = push
+    pf = push --force
+    r1 = reset HEAD^
+    rh1 = reset --hard HEAD^
+    s = status
+
+    ls = log --pretty = format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
+    ll = log --pretty = format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+
+    ours = "!f() { git co --ours $@ && git add $@; }; f"
+    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+
+    tree = log --graph --oneline --decorate --all
+
+[diff]
+    tool = nvim -d
+[difftool]
+    prompt = false
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool "vimdiff"]
+    prompt = true
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[user]
+    email = n.anisimov.23@gmail.com
+    name = none23
