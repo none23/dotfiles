@@ -53,7 +53,7 @@
             image.exif_rotate_enable = "true" 
             image.use_custom_border_color = "true" 
             image.use_custom_border_color_in_fullscreen = "true" 
-            image.border_color = "#DEDE5E5E1E1E" 
+            image.border_color = "#de5e1e" 
             image.use_clutter_renderer = "false" 
             thumbnails.max_width = "32" 
             thumbnails.max_height = "32" 
@@ -262,7 +262,7 @@
         show_thumbnails = "true" 
         show_directory_date = "false" 
         home_path = "" 
-        last_path = "/home/n/work/myfresh-routes/src/components/tags/user_statuses" 
+        last_path = "" 
         startup_path = "0" 
         exit_on_close = "false" 
 

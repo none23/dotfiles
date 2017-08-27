@@ -1,88 +1,101 @@
-snippet ccc "create class component" b
+snippet ccc "class component" b
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles.css';
+import enhance from './enhance';
+
 class ${1:ClassComponent} extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      $5,
-    };
-  }
-
-  componentWillUpdate () {}
-  componentDidUpdate () {}
-  componentWillMount () {}
-  componentDidMount () {}
-  componentWillUnmount () {}
-
-  render () {
-    return (
-      <${2:div} $3 >
-        $4
-      </$2>
-    );
-  }
-};
-$1.propTypes = {
+static propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.element,
-      PropTypes.func,
-    ]),
-  ).isRequired,
 };
 
-export default $1;
+static defaultProps = {
+  className: '',
+};
+
+constructor (props) {
+  super(props);
+  this.state = {
+  $5,
+  };
+}
+
+componentDidMount () {}
+componentWillUnmount () {}
+
+render () {
+  return (
+    <${2:div}>
+    </$2>
+  );
+}
+};
+
+export { $1 as Component };
+export default enhance($1);
 endsnippet
 
-snippet ffc "create simple functional component" b
+snippet ffc "functional component" b
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles.css';
+import enhance from './enhance';
+
 const ${1:functionalComponent} = ({ ${3:prop}, ...props }) => (
+<${2:div}>
+</$2>
+);
+
+$1.propTypes = {
+className: PropTypes.string,
+};
+
+$1.defaultProps = {
+className: '',
+};
+
+export { $1 as Component };
+export default enhance($1);
+endsnippet
+
+snippet fcc "functional component" b
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import './styles.css';
+import enhance from './enhance';
+
+const ${1:functionalComponent} = ({ ${3:prop}, ...props }) => {
+return (
   <${2:div}>
   </$2>
 );
+};
+
 $1.propTypes = {
-  $3: PropTypes.string.isRequired,
+className: PropTypes.string,
 };
 
-export default $1;
-endsnippet
-
-snippet fcc "create simple functional component" b
-import React from 'react';
-import PropTypes from 'prop-types';
-
-const ${1:functionalComponent} = ({ ${3:prop}, ...props }) => {
-  return (
-    <${2:div}>
-    </$2>}
-  );
-};
-$1.propTypes = {
-  $3: PropTypes.string.isRequired,
+$1.defaultProps = {
+className: '',
 };
 
-export default $1;
+export { $1 as Component };
+export default enhance($1);
 endsnippet
 
 snippet im "import" b
-import $0 from '${1: $0}';
+import $1 from '${1: $2}';
+endsnippet
+
+snippet im "import {...}" b
+import { $1 } from '$2';
 endsnippet
 
 snippet ir "import React" b
 import React from 'react';
-$0
-endsnippet
-
-snippet irpt "import React, PropTypes" b
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 $0
 endsnippet
 
@@ -91,124 +104,124 @@ import React, { Component } from 'react';
 $0
 endsnippet
 
+snippet ipt "import PropTypes" b
+import PropTypes from 'prop-types';
+$0
+endsnippet
+
+snippet exa "export as"
+export { $1 as $2 };
+endsnippet
+
 snippet exd "export default"
-export default $0;
+export default $1;
 endsnippet
 
 snippet exf "export from"
-export $0 from '${1: $0}';
+export $1 from '$2';
 endsnippet
 
-snippet exdf "export default from"
-export default from '$0';
-endsnippet
-
-snippet construct "construct state"
+snippet construct "constructor"
 constructor (props) {
-  super(props);
+super(props);
 
-  this.state = {
-    $0: $1,
-  };
+this.state = {
+  $0,
+};
 }
 endsnippet
 
 snippet cdm "component did mount"
 componentDidMount () {
-  $0
+$0
 }
 endsnippet
 
 snippet cdup "component did update"
 componentDidUpdate (prevProps, prevState) {
-  $0
+$0
 }
 endsnippet
 
 snippet scup "should component update"
 shouldComponentUpdate (nextProps, nextState) {
-  $0
+$0
 }
 endsnippet
 
 snippet cwm "component will mount"
 componentWillMount () {
-  $0
+$0
 }
 endsnippet
 
 snippet cwum "component will unmount"
 componentWillUnmount () {
-  $0
+$0
 }
 endsnippet
 
 snippet cwrp "component will receive props"
 componentWillReceiveProps (nextProps) {
-  $0
+$0
 }
 endsnippet
 
 snippet cwup "component will update"
 componentWillUpdate (nextProps, nextState) {
-  $0
+$0
 }
 endsnippet
 
 snippet ren "render"
 render () {
-  return (
-    $0
-  );
+return (
+  $0
+);
 }
 endsnippet
 
 snippet gis "get initial state"
 getInitialState () {
-  return {
-    $0,
-  };
+return {
+  $0,
+};
 }
 endsnippet
 
 snippet sst "set state"
 this.setState({
-  $0,
+$0,
 });
 endsnippet
 
 snippet spt "static propTypes"
 static propTypes = {
-  ${0}: PropTypes.${1:string},
+className: PropTypes.string,
 };
+$0
 endsnippet
 
 snippet sdp "static defaultProps"
 static defaultProps = {
-  $0: $1,
+className: '',
 };
-endsnippet
-
-snippet jpars "JSON.parse()"
-JSON.parse($0);
-endsnippet
-
-snippet jsrt "JSON.stringify()"
-JSON.stringify($0);
+$0
 endsnippet
 
 snippet dbg "debugger"
 debugger;
+$0
 endsnippet
 
-snippet cl "console.log"
-console.log($0);
+snippet edf "eslint-disable"
+/* eslint-disable-line $1 */
 endsnippet
 
 snippet edl "eslint-disable-line"
-// eslint-disable-line $0
+// eslint-disable-line $1
 endsnippet
 
-snippet ednl "eslint-disable-next-line"
-// eslint-disable-next-line $0
+snippet edn "eslint-disable-next-line"
+// eslint-disable-next-line $1
 endsnippet

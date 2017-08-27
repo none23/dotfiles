@@ -43,47 +43,7 @@ eslint-none23 () {
 }
 # }}}
 # git {{{
-## add {{{
-Ga () {
-    if [[ "$1" ]]; then
-        git add "$@"
-    else
-        git add .
-    fi
-}
-## }}}
-## checkout {{{
-Gk () {
-    if [[ $1 ]]; then
-        git checkout "$1"
-    else
-        echo 'please, specify the branch name'
-    fi
-}
-## }}}
-## checkout -b {{{
-Gb () {
-    if [[ $1 ]]; then
-        git checkout -b "$1"
-    else
-        echo 'please, specify the branch name'
-    fi
-}
-## }}}
-## clone {{{
-Gg () {
-    if [[ $2 ]]; then
-        git clone "git@github.com:none23/$1" $2 \
-            || git clone "git@github.com:$1" $2 \
-            || echo "That didn't work..."
-    else
-        git clone "git@github.com:none23/$1" \
-            || git clone "git@github.com:$1" \
-            || echo "That didn't work..."
-    fi
-}
-## }}}
-## commit {{{
+alias Gb='git checkout -b'
 Gc () {
     if [[ "$@" ]]; then
         git commit -m "$*"
@@ -91,51 +51,23 @@ Gc () {
         git cz || git commit
     fi
 }
-## }}}
-## fetch {{{
+alias Gcm='git commit --amend'
 alias Gf='git fetch'
-## }}}
-## init {{{
-alias Gi='git init'
-## }}}
-## merge {{{
-alias Gm='git merge'
-## }}}
-## pull {{{
-Gl () {
-    if [[ $1 && ! $2 ]]; then
-        git pull origin $1
-    else
-        git pull origin HEAD
-    fi
-}
-## }}}
-## push {{{
-Gp () {
-    if [[ $1 ]]; then
-        git push origin $1
-    else
-        git push origin HEAD
-    fi
-}
-## }}}
-## remote add {{{
-Gra () {
-    if [[ $1 && ! $2 ]]; then
-        git remote add origin "git@github.com:none23/$1"
-    else
-        echo 'please, specify the repo name'
-    fi
-}
-## }}}
-## status {{{
+alias Gp='git push origin HEAD'
 alias Gs='git status'
-## }}}
 ## add all, commit, and push {{{
 GG () {
-  Ga
-  Gc "$@"
-  Gp
+    git add .
+    [[ "$1" ]] && git commit -m "$@" || git cz
+    git push origin HEAD
+}
+## }}}
+## workfow {{{
+newBranch () {
+    [[ "$1" ]] \
+        && git checkout master \
+        && git pull origin master \
+        && git checkout -b "$1"
 }
 ## }}}
 # }}}
@@ -245,10 +177,6 @@ reboot () {
 
 # }}}
 # add sudo {{{
-du () {
-    /usr/bin/du "$@" || sudo /usr/bin/du "$@"
-}
-
 ifconfig () {
     /usr/bin/ifconfig "$@" || sudo /usr/bin/ifconfig "$@"
 }
@@ -264,6 +192,7 @@ nmap () {
 alias aircheck='sudo aircheck'
 alias cfdisk='sudo cfdisk'
 alias cgdisk='sudo cgdisk'
+alias du='sudo du'
 alias fdisk='sudo fdisk'
 alias fstrim='sudo fstrim'
 alias gdisk='sudo gdisk'
@@ -341,7 +270,10 @@ alias df='df -h'
 alias du='du -h '
 alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
 alias lt='lt -l localhost -s none23'
-
+alias remove_tern_port='for ternportfile in ${$(find -name .tern-port)}; do rm "$ternportfile" && echo "removed $ternportfile" ; done'
+alias flow='$(npm bin)/flow'
+alias eslint='$(npm bin)/eslint'
+alias stylelint='$(npm bin)/stylelint'
 # }}}
 # global aliases {{{
 alias -g vim='nvim'

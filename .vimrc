@@ -11,46 +11,47 @@ endif
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
-Plug 'easymotion/vim-easymotion'                                                   " quickly anywhere without counting words
-Plug 'vim-airline/vim-airline'                                                     " airline
-Plug 'vim-airline/vim-airline-themes'                                              " airline themes
-Plug 'kien/tabman.vim'                                                             " tab list side-panel
-Plug 'tpope/vim-surround'                                                          " surround
-Plug 'terryma/vim-expand-region'                                                   " expand region
-Plug 'Townk/vim-autoclose'                                                         " autoclose
-Plug 't9md/vim-choosewin'                                                          " window chooser
-Plug 'ervandew/supertab'                                                           " completion with <TAB>
-Plug 'vim-scripts/IndexedSearch'                                                   " search results counter
-Plug 'xolox/vim-misc'                                                              " sessions dependency
-Plug 'xolox/vim-session'                                                           " sessions
-Plug 'sheerun/vim-polyglot'                                                        " Syntax highlighting
-" Plug 'neomake/neomake'                                                           " async linters and builders
-Plug 'junegunn/vim-easy-align'                                                     " easy alignment
-Plug 'airblade/vim-gitgutter'                                                      " highlight git changes
-Plug 'SirVer/ultisnips'                                                            " ultisnips
-Plug 'mattn/emmet-vim'                                                             " emmet
-Plug 'elzr/vim-json'                                                               " JSON
-Plug 'digitaltoad/vim-pug'                                                         " Pug (Jade)
-Plug 'tpope/vim-haml'                                                              " Sass
-Plug 'hhsnopek/vim-sugarss'                                                        " SugarSS
-Plug 'wavded/vim-stylus', { 'for': ['stylus']}                                     " Stylus
-Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] } " Stylefmt
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }                             " CoffeScript
-Plug 'ap/vim-css-color'                                                            " css colors preview
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }            " ternjs
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                      " JS code completion
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" Plug 'steelsojka/deoplete-flow', { 'do': 'npm install -g tern' }
-Plug 'w0rp/ale'                                                                    " ALE (async linting engine)
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }                " Parameter completion e.g., .on('cli<tab>
-Plug 'chrisbra/NrrwRgn'                                                            " yank text to new window
-Plug 'mileszs/ack.vim'                                                             " find across files
-" Plug 'xolox/vim-easytags'                                                          " ctags
-Plug 'roxma/nvim-completion-manager'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/tabman.vim'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-expand-region'
+Plug 't9md/vim-choosewin'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/IndexedSearch'
+Plug 'junegunn/vim-easy-align'
+Plug 'airblade/vim-gitgutter'
 
-" " Lint as you type. (off)
-" Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-" g:neomake_autolint_sign_column_always
+Plug 'sheerun/vim-polyglot'
+Plug 'w0rp/ale'
+Plug 'elzr/vim-json', { 'for': ['json'] }
+Plug 'jparise/vim-graphql'
+Plug 'digitaltoad/vim-pug'
+Plug 'tpope/vim-haml'
+Plug 'hhsnopek/vim-sugarss'
+Plug 'ap/vim-css-color'
+Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
+Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] }
+
+Plug 'xolox/vim-misc' " <---------------╮
+Plug 'xolox/vim-session' " dependancy --╯
+
+Plug 'mattn/webapi-vim' " <----------╮
+Plug 'mattn/gist-vim' " dependancy --╯
+
+Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'
+
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g flow-bin' }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
+" Plug 'roxma/ncm-flow'
 
 call plug#end()
 
@@ -284,6 +285,13 @@ map <Leader>q $i<CR><Esc>J
 
 " escape key in terminal
 :tnoremap <Esc><Esc> <C-\><C-n>
+
+" stop using arrows in normal mode
+noremap <Up> :bNext<CR>
+noremap <Down> :bnext<CR>
+noremap <Left> :tabp<CR>
+noremap <Right> :tabn<CR>
+
 " }}}
 " Buffer navigation {{{
 map tN  :bnext<CR>
@@ -303,10 +311,6 @@ map tp :tabp<CR>
 
 map tm0 :tabm0<CR>
 map tmm :tabm<CR>
-map <S-Right> :tabn<CR>
-map <S-Left> :tabp<CR>
-imap <S-Right> <Esc>:tabn<CR>
-imap <S-Left> <Esc>:tabp<CR>
 " }}}
 " Splits navigation {{{
 map <F2> :below 10sp term://$SHELL<CR>i
@@ -331,7 +335,6 @@ autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
 " }}}
-
 " EasyMotion {{{
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -346,44 +349,20 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " }}}
-" Syntastic {{{
-" show list of errors and warnings on the current file
-" nmap ,e :Errors<CR>
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_loc_list_height = 5
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_enable_signs = 1
-
-" let g:syntastic_error_symbol = '✗'
-" let g:syntastic_warning_symbol = '⚠'
-" let g:syntastic_style_error_symbol = '✗'
-" let g:syntastic_style_warning_symbol = '⚠'
-
-" }}}
 " TabMan {{{
 " mappings to toggle display, and to focus on it
 let g:tabman_toggle = 'tl'
 let g:tabman_focus  = 'tf'
 
 " }}}
-" Autoclose {{{
-" fix to let ESC work as espected with Autoclose plugin
-let g:AutoClosePumvisible = {"ENTER": "\<C-y>", "ESC": "\<ESC>"}
+" AutoPairs {{{
+"let g:AutoPairsMapCR=0
 " }}}
 " TernJS {{{
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='on_hold'
 let g:tern#filetypes=['javascript.jsx', 'javascript']
-let g:tern#command = ['/home/n/.npm-global/bin/tern']
+let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 " }}}
 " VimJSON {{{
@@ -425,12 +404,14 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 " Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#sources#syntax#min_keyword_length = 3
+let g:deoplete#sources#syntax#min_keyword_length = 2
 let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = ['tern#Complete', 'jspc#omni']
+let g:deoplete#omni#functions.javascript = [
+            \ 'tern#Complete',
+            \ 'jspc#omni'
+            \]
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript'] = ['buffer', 'ultisnips', 'ternjs']
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ultisnips', 'ternjs']
+let g:deoplete#sources['javascript'] = ['buffer', 'ultisnips', 'ternjs', 'flow']
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
@@ -442,11 +423,32 @@ autocmd FileType javascript,javascript.jsx setlocal omnifunc=javascriptcomplete#
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType sugarss setlocal omnifunc=csscomplete#CompleteCSS
 
+
+" as NCM Source {{{
+" force init deoplete then hack deoplete's mapping
+" call deoplete#enable()
+"
+" " register as ncm source
+" au User CmSetup call cm#register_source({'name' : 'deoplete',
+"         \ 'priority': 7,
+"         \ 'abbreviation': '',
+"         \ })
+"
+" " hack deoplete's mapping
+" inoremap <silent> <Plug>_ <C-r>=g:Deoplete_ncm()<CR>
+"
+" func! g:Deoplete_ncm()
+"   " forward to ncm
+"   call cm#complete('deoplete', cm#context(), g:deoplete#_context.complete_position + 1, g:deoplete#_context.candidates)
+"   return ''
+" endfunc
+" }}}
+
 " }}}
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:SuperTabClosePreviewOnPopupClose = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " }}}
 " Vim Session {{{
@@ -482,23 +484,15 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 
 " }}}
 " ALE {{{
-let g:ale_change_sign_column_color = 1
-let g:ale_sign_column_always = 1
-let g:ale_set_signs = 1
-let g:ale_set_baloons = 1
-let g:ale_open_list = 1
-let g:ale_list_window_size = 5
-
-let g:ale_sign_error = '✗'
-let g:ale_sign_style_error = '✗'
-let g:ale_echo_msg_error_str = '✗'
-let g:ale_sign_warning = '⚠'
-let g:ale_sign_style_warning = '⚠'
-let g:ale_echo_msg_warning_str = '⚠'
-let g:ale_sign_info = '*'
-
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_linters = { 'javascript': ['eslint'], 'css': ['stylelint'] }
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_insert_leave = 1
+" let g:ale_lint_delay = 200
+let g:ale_linters = {
+            \ 'javascript': ['eslint'],
+            \ 'css': ['stylelint']
+            \}
 let g:ale_javascript_eslint_executable = '$(npm bin)/eslint'
 let g:ale_javascript_stylelint_executable = '$(npm bin)/stylelint'
 
@@ -506,9 +500,30 @@ nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 
+let g:ale_change_sign_column_color = 0
+let g:ale_sign_column_always = 1
+let g:ale_set_signs = 1
+" let g:ale_open_list = 1
+let g:ale_open_list = 'on_save'
+let g:ale_list_window_size = 5
+let g:ale_echo_cursor = 1
+let g:ale_echo_msg_format = '%severity%(%linter%): %s'
+
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_style_error = 'S'
+let g:ale_sign_style_warning = 's'
+let g:ale_sign_info = 'i'
+
 " }}}
 " NCM {{{
 " set shortmess+=c
+"
+" }}}
+" Gist {{{
+let g:gist_browser_command = 'chromium %URL%'
+let g:gist_clip_command = 'xclip -selection clipboard'
+
 " }}}
 
 " vim:syntax=vim
