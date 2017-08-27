@@ -43,18 +43,6 @@ eslint-none23 () {
 }
 # }}}
 # git {{{
-alias Gb='git checkout -b'
-Gc () {
-    if [[ "$@" ]]; then
-        git commit -m "$*"
-    else
-        git cz || git commit
-    fi
-}
-alias Gcm='git commit --amend'
-alias Gf='git fetch'
-alias Gp='git push origin HEAD'
-alias Gs='git status'
 ## add all, commit, and push {{{
 GG () {
     git add .
@@ -62,14 +50,12 @@ GG () {
     git push origin HEAD
 }
 ## }}}
-## workfow {{{
 newBranch () {
     [[ "$1" ]] \
         && git checkout master \
         && git pull origin master \
         && git checkout -b "$1"
 }
-## }}}
 # }}}
 # dotfiles github {{{
 dot () {
