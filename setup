@@ -2,6 +2,12 @@
 
 DOTFILES_PATH=$(pwd)
 
+# git {{{
+
+[[ -a ~/.gitconfig ]] && mv ~/.gitconfig{,.old}
+ln -s $DOTFILES_PATH/.gitconfig ~/.gitconfig
+
+# /git }}}
 # vim {{{
 
 [[ -a ~/.config/nvim ]] && mv ~/.config/nvim{,.old}
