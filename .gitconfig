@@ -7,13 +7,13 @@
     f = fetch
     k = checkout
     kb = checkout -b
-    l = pull
-    lr = pull --rebase
+    l = pull origin master
+    lr = pull --rebase origin master
     m = merge
     m = merge
     mm = merge --no-ff
-    p = push
-    pf = push --force
+    p = push origin HEAD
+    pf = push --force origin HEAD
     r1 = reset HEAD^
     rh1 = reset --hard HEAD^
     s = status
