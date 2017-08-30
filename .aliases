@@ -258,6 +258,7 @@ alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
 alias lt='lt -l localhost -s none23'
 alias remove_tern_port='for ternportfile in ${$(find -name .tern-port)}; do rm "$ternportfile" && echo "removed $ternportfile" ; done'
 alias flow='$(npm bin)/flow'
+alias jest='$(npm bin)/jest'
 alias eslint='$(npm bin)/eslint'
 alias stylelint='$(npm bin)/stylelint'
 # }}}

@@ -739,13 +739,14 @@ awful.rules.rules = {
     }
   }
 
-, { rule = { class = "Chromium"    }, properties = { tag = tags[1][1] } }
-, { rule = { class = "Blender"     }, properties = { tag = tags[1][3] } }
-, { rule = { class = "Inkscape"    }, properties = { tag = tags[1][4] } }
-, { rule = { class = "Gimp"        }, properties = { tag = tags[1][5] } }
-, { rule = { class = "Tor Browser" }, properties = { tag = tags[1][6] } }
-, { rule = { class = "Arandr"      }, properties = { tag = tags[1][8] } }
-, { rule = { class = "Firefox"     }, properties = { tag = tags[1][9] } }
+, { rule = { class = "Chromium"        }, properties = { tag = tags[1][1] } }
+, { rule = { class = "Blender"         }, properties = { tag = tags[1][3] } }
+, { rule = { class = "Inkscape"        }, properties = { tag = tags[1][4] } }
+, { rule = { class = "Gimp"            }, properties = { tag = tags[1][5] } }
+, { rule = { class = "Tor Browser"     }, properties = { tag = tags[1][6] } }
+, { rule = { class = "Arandr"          }, properties = { tag = tags[1][8] } }
+, { rule = { class = "Firefox"         }, properties = { tag = tags[1][9] } }
+, { rule = { class = "TelegramDesktop" }, properties = { tag = tags[1][9] } }
 }
 -- }}}
 -- Signals {{{
