@@ -8,6 +8,7 @@
     f = fetch
     k = checkout
     kb = checkout -b
+    km = checkout master
     l = pull origin master
     lr = pull --rebase origin master
     m = merge
