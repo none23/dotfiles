@@ -1,6 +1,7 @@
 [alias]
     a = add
     b = branch
+    bum = branch --set-upstream-to=origin/master 
     c = commit
     ca = commit --amend
     d = diff --word-diff
@@ -14,8 +15,9 @@
     mm = merge --no-ff
     p = push origin HEAD
     pf = push --force origin HEAD
-    r1 = reset HEAD^
-    rh1 = reset --hard HEAD^
+    r = rebase 
+    ri = rebase --interactive
+    rim = rebase --interactive origin/master
     s = status
 
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
