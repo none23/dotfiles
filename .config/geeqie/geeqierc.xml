@@ -284,7 +284,7 @@
         properties_window.h = "0" 
 
         tools_float = "false" 
-        tools_hidden = "false" 
+        tools_hidden = "true" 
 
         toolbar_hidden = "true" 
         show_info_pixel = "true" 

@@ -35,23 +35,27 @@ Plug 'ap/vim-css-color'
 Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] }
 
-Plug 'xolox/vim-misc' " <---------------╮
-Plug 'xolox/vim-session' " dependancy --╯
-
 Plug 'mattn/webapi-vim' " <----------╮
 Plug 'mattn/gist-vim' " dependancy --╯
 
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g flow-bin' }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'alexlafroscia/deoplete-flow',       { 'branch': 'pass-filename-to-autocomplete' }
+
+Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
+
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
 " Plug 'roxma/ncm-flow'
+" Plug 'xolox/vim-misc' " <---------------╮
+" Plug 'xolox/vim-session' " dependancy --╯
 
 call plug#end()
 
@@ -61,11 +65,9 @@ command! PU PlugUpdate | PlugUpgrade
 " }}}
 " Indentation {{{
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-autocmd FileType html,xml,svg,jade,pug,lua,javascript,javascript.jsx,json,coffee,sugarss,stylus,sass,scss,css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 set autoindent
 set nocopyindent
@@ -96,13 +98,14 @@ set incsearch
 
 " no excessive whitespace wthen joining lines
 set nojoinspaces
+
 " case insensitive search
 set ignorecase
 set smartcase
 set infercase
 
 " mouse support
-set mouse=a
+set mouse=v
 
 " highlighted search results
 set hlsearch
@@ -112,7 +115,7 @@ set lazyredraw
 
 " Cursor can move to spaces with no real character in vblock mode.
 set virtualedit=block
-set synmaxcol=800
+set synmaxcol=200
 set splitbelow
 set splitright
 
@@ -137,7 +140,7 @@ let g:javascript_conceal_this = '@'
 " let g:javascript_conceal_static = "•"
 " let g:javascript_conceal_super = "Ω"
 
-set fillchars+=diff:⣿
+set fillchars+=diff:┈
 set diffopt=vertical                  " Use in vertical diff mode
 set diffopt+=filler                   " blank lines to keep sides aligned
 set diffopt+=iwhite                   " Ignore whitespace changes
@@ -359,11 +362,20 @@ let g:tabman_focus  = 'tf'
 "let g:AutoPairsMapCR=0
 " }}}
 " TernJS {{{
-let g:tern_map_keys=1
-let g:tern_show_argument_hints='on_hold'
-let g:tern#filetypes=['javascript.jsx', 'javascript']
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+
+let g:tern_show_signature_in_pum = 1
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+
 " }}}
 " VimJSON {{{
 let g:vim_json_syntax_conceal=1
@@ -400,6 +412,7 @@ let g:airline#extensions#tabline#fnametruncate = 6
 "tab numbers
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
+
 " }}}
 " Deoplete {{{
 let g:deoplete#enable_at_startup = 1
@@ -408,20 +421,11 @@ let g:deoplete#sources#syntax#min_keyword_length = 2
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
             \ 'tern#Complete',
-            \ 'jspc#omni'
             \]
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript'] = ['buffer', 'ultisnips', 'ternjs', 'flow']
+let g:deoplete#sources['javascript'] = ['ultisnips', 'ternjs', 'flow', 'buffer']
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-
-" omnifunc settings
-set omnifunc=syntaxcomplete#Complete
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType javascript,javascript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=python3complete#Complete
-autocmd FileType sugarss setlocal omnifunc=csscomplete#CompleteCSS
 
 " }}}
 " Autocomplete-flow{{{
@@ -432,20 +436,6 @@ let g:autocomplete_flow#insert_paren_after_function = 0
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:SuperTabClosePreviewOnPopupClose = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" }}}
-" Vim Session {{{
-let g:session_autosave = 'yes'
-
-" automatically (silently) save current working session every 5 minutes
-let g:session_autosave_periodic = 5
-let g:session_autosave_silent = 1
-
-" when prompting do not include instructions on disabling prompting
-let g:session_verbose_messages = 0
-
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
 
 " }}}
 " EasyAlign {{{
@@ -467,16 +457,18 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 
 " }}}
 " ALE {{{
+let g:ale_set_quickfix = 1
 let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_text_changed = 'normal'
 " let g:ale_lint_on_enter = 0
 " let g:ale_lint_on_insert_leave = 1
 " let g:ale_lint_delay = 200
 let g:ale_linters = {
-            \ 'javascript': ['eslint'],
+            \ 'javascript': ['eslint', 'flow'],
             \ 'css': ['stylelint']
             \}
 let g:ale_javascript_eslint_executable = '$(npm bin)/eslint'
+let g:ale_javascript_flow_executable = '$(npm bin)/flow'
 let g:ale_javascript_stylelint_executable = '$(npm bin)/stylelint'
 
 nnoremap ,e :ALENextWrap<cr>
@@ -486,16 +478,15 @@ nnoremap <leader>ap :ALEPreviousWrap<cr>
 let g:ale_change_sign_column_color = 0
 let g:ale_sign_column_always = 1
 let g:ale_set_signs = 1
-" let g:ale_open_list = 1
-let g:ale_open_list = 'on_save'
+let g:ale_open_list = 1
 let g:ale_list_window_size = 5
 let g:ale_echo_cursor = 1
-let g:ale_echo_msg_format = '%severity%(%linter%): %s'
+let g:ale_echo_msg_format = '%s [%severity%] (%linter%)'
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
-let g:ale_sign_style_error = 'S'
-let g:ale_sign_style_warning = 's'
+let g:ale_sign_style_error = '⚑'
+let g:ale_sign_style_warning = '⚐'
 let g:ale_sign_info = 'i'
 
 " }}}
