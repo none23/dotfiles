@@ -46,9 +46,10 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'alexlafroscia/deoplete-flow',       { 'branch': 'pass-filename-to-autocomplete' }
 
-Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
+" Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'roxma/nvim-completion-manager'
@@ -488,6 +489,10 @@ let g:ale_sign_warning = '⚠'
 let g:ale_sign_style_error = '⚑'
 let g:ale_sign_style_warning = '⚐'
 let g:ale_sign_info = 'i'
+
+" }}}
+" Fzf {{{
+nnoremap <C-p> :FZF<CR>
 
 " }}}
 " NCM {{{

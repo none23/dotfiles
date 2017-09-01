@@ -73,3 +73,5 @@ generate-gitignore () { curl -L -s https://www.gitignore.io/api/\$@ ;}
 # }}}
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
