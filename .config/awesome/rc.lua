@@ -487,6 +487,7 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super        }, "w",        function () awful.client.focus.byidx(1) if client.focus then client.focus:raise() end                    end )
 , awful.key( { Super, Cntrl }, "w",        function () awful.client.cycle({clockwise=true})                                                         end )
 , awful.key( { Super        }, "b",        function () awful.client.focus.history.previous() if client.focus then client.focus:raise() end          end )
+, awful.key( { Super        }, "s",        function () awful.screen.focus_relative(1) if client.focus then client.focus:raise() end                 end )
 , awful.key( { Super, Shift }, "j",        function () awful.client.swap.global_bydirection("down")                                                 end )
 , awful.key( { Super, Shift }, "k",        function () awful.client.swap.global_bydirection("up")                                                   end )
 , awful.key( { Super, Shift }, "h",        function () awful.client.swap.global_bydirection("left")                                                 end )
