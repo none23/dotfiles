@@ -20,6 +20,8 @@
     ri = rebase --interactive
     rim = rebase --interactive origin/master
     s = status
+    st = stash
+    sta = stash apply
 
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
