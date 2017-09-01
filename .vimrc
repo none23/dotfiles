@@ -46,17 +46,18 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'alexlafroscia/deoplete-flow',       { 'branch': 'pass-filename-to-autocomplete' }
 
-" Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
+Plug 'xolox/vim-misc' " <---------------╮
+Plug 'xolox/vim-session' " dependancy --╯
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
 " Plug 'roxma/ncm-flow'
-" Plug 'xolox/vim-misc' " <---------------╮
-" Plug 'xolox/vim-session' " dependancy --╯
 
 call plug#end()
 
@@ -503,6 +504,20 @@ nnoremap <Leader>a :Ack!<Space>
 " Gist {{{
 let g:gist_browser_command = 'chromium %URL%'
 let g:gist_clip_command = 'xclip -selection clipboard'
+
+" }}}
+" Vim Session {{{
+let g:session_autosave = 'yes'
+
+" automatically (silently) save current working session every 5 minutes
+let g:session_autosave_periodic = 5
+let g:session_autosave_silent = 1
+
+" when prompting do not include instructions on disabling prompting
+let g:session_verbose_messages = 0
+
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
 
 " }}}
 
