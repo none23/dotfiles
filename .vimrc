@@ -466,11 +466,7 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_delay = 200
 let g:ale_linters = {
             \ 'javascript': ['eslint', 'flow'],
-            \ 'css': ['stylelint']
             \}
-let g:ale_javascript_eslint_executable = '$(npm bin)/eslint'
-let g:ale_javascript_flow_executable = '$(npm bin)/flow'
-let g:ale_javascript_stylelint_executable = '$(npm bin)/stylelint'
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -493,6 +489,11 @@ let g:ale_sign_info = 'i'
 " }}}
 " Fzf {{{
 nnoremap <C-p> :FZF<CR>
+
+" }}}
+" Ack {{{
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 " }}}
 " NCM {{{
