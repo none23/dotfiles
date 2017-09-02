@@ -540,6 +540,12 @@ clientkeys = awful.util.table.join(
   awful.key( { Super, Shift }, "F1",        function (c) awful.client.movetoscreen(c, 1)                                                            end )
 , awful.key( { Super, Shift }, "F2",        function (c) awful.client.movetoscreen(c, 2)                                                            end )
 , awful.key( { Super, Shift }, "F3",        function (c) awful.client.movetoscreen(c, 3)                                                            end )
+, awful.key( { Super, Shift }, "s",         function (c)
+    local next_screen = awful.screen.focused() + 1
+    if next_screen > screens.count() then next_screen = 1 end
+    awful.client.movetoscreen(c, next_screen)
+end )
+
 , awful.key( { Super        }, "slash",     function (c) c:swap(awful.client.getmaster())                                                           end )
 , awful.key( { Super        }, "Escape",    function (c) c:kill()                                                                                   end )
 , awful.key( { Super        }, "n",         function (c) c.minimized = true                                                                         end )
