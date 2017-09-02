@@ -507,9 +507,6 @@ globalkeys = awful.util.table.join(
 , awful.key( { Super, Cntrl }, "Return",   function () awful.util.spawn("urxvt")                                                                    end )
 , awful.key( { Super        }, "KP_Enter", function () awful.util.spawn("konsole -e zsh")                                                           end )
 , awful.key( { Super, Cntrl }, "KP_Enter", function () awful.util.spawn("urxvt")                                                                    end )
-, awful.key( { Super        }, "F1",       function () awful.screen.focus(1)                                                                        end )
-, awful.key( { Super        }, "F2",       function () awful.screen.focus(2)                                                                        end )
-, awful.key( { Super        }, "F3",       function () awful.screen.focus(3)                                                                        end )
 , awful.key( { Hyper        }, "grave",    function () awful.util.spawn("konsole -e nvim")                                                          end )
 , awful.key( { Hyper        }, "1",        function () awful.util.spawn("chromium")                                                                 end )
 , awful.key( { Hyper, Cntrl }, "1",        function () awful.util.spawn("tor-browser-en")                                                           end )
@@ -537,12 +534,9 @@ globalkeys = awful.util.table.join(
 -- }}}
 -- Client keybindings {{{
 clientkeys = awful.util.table.join(
-  awful.key( { Super, Shift }, "F1",        function (c) awful.client.movetoscreen(c, 1)                                                            end )
-, awful.key( { Super, Shift }, "F2",        function (c) awful.client.movetoscreen(c, 2)                                                            end )
-, awful.key( { Super, Shift }, "F3",        function (c) awful.client.movetoscreen(c, 3)                                                            end )
-, awful.key( { Super, Shift }, "s",         function (c)
-    local next_screen = awful.screen.focused() + 1
-    if next_screen > screens.count() then next_screen = 1 end
+  awful.key( { Super, Shift }, "s",         function (c)
+    local next_screen = awful.screen.focused().index + 1
+    if next_screen > screen.count() then next_screen = 1 end
     awful.client.movetoscreen(c, next_screen)
 end )
 
