@@ -45,6 +45,7 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'alexlafroscia/deoplete-flow',       { 'branch': 'pass-filename-to-autocomplete' }
+" Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'xolox/vim-misc' " <---------------╮
 Plug 'xolox/vim-session' " dependancy --╯
@@ -468,6 +469,8 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
             \ 'javascript': ['eslint', 'flow'],
             \}
+
+" let g:ale_javascript_flow_executable = "(npm bin)/flow"
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>

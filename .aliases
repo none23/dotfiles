@@ -80,7 +80,7 @@ alias Ycc='yaourt -Scc && npm cache clean --force'
 alias yor='yaourt -Rsc $(yaourt -Qtdq)'
 # }}}
 # wireless {{{
-alias N='nmtui || (sudo NetworkManager && sleep 1 && nmtui)'
+alias N='sudo wifi-menu'
 alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
 alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
 alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
