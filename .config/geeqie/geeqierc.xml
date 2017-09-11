@@ -262,7 +262,7 @@
         show_thumbnails = "true" 
         show_directory_date = "false" 
         home_path = "" 
-        last_path = "/home/n/work/images/cart" 
+        last_path = "/home/n/work/images" 
         startup_path = "0" 
         exit_on_close = "false" 
 
