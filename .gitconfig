@@ -38,7 +38,7 @@
 
 [difftool]
     tool = vimdiff
-    prompt = false
+    prompt = true
 
 [difftool "vimdiff"]
     prompt = true
