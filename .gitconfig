@@ -34,16 +34,23 @@
     tree = log --graph --oneline --decorate --all
 
 [diff]
-    tool = nvim -d
+    tool = vimdiff
+
 [difftool]
+    tool = vimdiff
     prompt = false
+
+[difftool "vimdiff"]
+    prompt = true
+    cmd = nvim -d $LOCAL $REMOTE -c '$wincmd w' -c 'wincmd L'
 
 [merge]
     tool = vimdiff
     conflictstyle = diff3
+
 [mergetool "vimdiff"]
     prompt = true
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd L'
 
 [user]
     email = n.anisimov.23@gmail.com
