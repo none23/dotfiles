@@ -1,56 +1,92 @@
 [alias]
     a = add
-    b = branch
+    aa = add --all
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     bum = branch --set-upstream-to=origin/master 
     c = commit
     ca = commit --amend
-    d = diff --word-diff
+    d = diff --stat
+    dh = difftool HEAD^
+    dl = diff --cached HEAD^
+    dt = difftool 
+    dw = diff --word-diff
     f = fetch
+    g = grep -I
+    gf = grep -Il
+    gg = log -S
+    h = show -s HEAD
     k = checkout
     kb = checkout -b
     km = checkout master
-    l = pull origin master
-    lr = pull --rebase origin master
-    m = merge
-    m = merge
+    l = pull origin HEAD
+    lr = pull --rebase origin HEAD
+    mo = merge --ours --no-ff
+    mt = merge --theirs --no-ff
     mm = merge --no-ff
     p = push origin HEAD
     pf = push --force origin HEAD
-    r = rebase 
+    ra = rebase --abort
+    rc = rebase --continue
     ri = rebase --interactive
-    rim = rebase --interactive origin/master
-    s = status
+    rim = rebase --interactive HEAD^
+    s = status 
     st = stash
     sta = stash apply
+
+    done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
 
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
 
-    ours = "!f() { git co --ours $@ && git add $@; }; f"
-    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
-
     tree = log --graph --oneline --decorate --all
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = red blink
+    local = cyan
+    remote = green
+
+[color "diff"]
+    meta = magenta
+    frag = magenta
+    old = red
+    new = green
+    plain = dim
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = dim
+
+[core]
+  excludesFile = ~/.gitignore-glogal
+
+[help]
+    autocorrect = 50
 
 [diff]
     tool = vimdiff
 
 [difftool]
+    prompt = false
     tool = vimdiff
-    prompt = true
 
 [difftool "vimdiff"]
-    prompt = true
-    cmd = nvim -d $LOCAL $REMOTE -c '$wincmd w' -c 'wincmd L'
+    cmd = nvim -d $LOCAL $REMOTE -c '$wincmd l'
 
 [merge]
+    prompt = true
     tool = vimdiff
     conflictstyle = diff3
 
 [mergetool "vimdiff"]
-    prompt = true
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd L'
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd l' -c '$wincmd l'
 
 [user]
     email = n.anisimov.23@gmail.com

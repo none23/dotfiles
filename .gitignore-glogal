@@ -1,0 +1,16 @@
+*rsa
+*private
+*.pem
+*.key
+*.key
+*.log
+*.pid
+*.pid.lock
+*.seed
+*.sqlite
+.happypack
+.node_repl_history
+.tern-port
+logs
+npm-debug.log*
+yarn-error.log

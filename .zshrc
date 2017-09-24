@@ -5,22 +5,28 @@ export VISUAL=nvim
 export BROWSER=chromium
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 bindkey -v
 set -o vi
-# history {{{
+
+# history
 HISTFILE=~/.histfile
 HISTSIZE=32000
 SAVEHIST=128000
 setopt appendhistory
-# }}}
-# SSH-Agent {{{
+
+# ssh-agent
 eval $(keychain --eval --quiet id_rsa)
-# }}}
-# automatic startx {{{
+
+# automatic startx on tty1
 [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
+
 ## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
-# }}}
+
 # zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
 zstyle ':acceptline' rehash true
@@ -33,8 +39,8 @@ zstyle nocompwarn true
 autoload -Uz compinit
 compinit
 setopt completealiases
-# }}}
-# numeric keypad {{{
+
+# numeric keypad
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey -s "^[5~" "Prior"
@@ -43,35 +49,28 @@ bindkey -s "^[Oo" "/"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Ok" "+"
-# }}}
-# powerline {{{
+
+# powerline
 autoload -U colors && colors
 prompt off
 powerline-daemon -q
 . /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-# fallback: TODO
-# [[ -a /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]
-# || autoload -Uz promptinit && promptinit && prompt adam1
 
 # }}}
-# profile {{{
+# profile
 source ~/.profile || echo '~/.profile not found'
-# }}}
-# syntax-highlighting {{{
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || echo '~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh not found'
-# }}}
-# [OFF] virtualenvwrapper {{{
+
+# syntax-highlighting
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || \
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh-syntax-highlighting || \
+  echo 'failed to install zsh-syntax-highlighting'
+
+# virtualenvwrapper
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=/home/n/projects
 # source /usr/bin/virtualenvwrapper.sh
-# }}}
-# zshrc-local {{{
-[[ -a ~/.zshrc-local ]] && source ~/.zshrc-local
-# }}}
-# generate-gitignore {{{
-generate-gitignore () { curl -L -s https://www.gitignore.io/api/\$@ ;}
-# }}}
+
+# zshrc-local
+[[ -a ~/.zshrc-local ]] && source ~/.zshrc-local || touch
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
