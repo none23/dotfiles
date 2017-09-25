@@ -71,12 +71,12 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || \
 # source /usr/bin/virtualenvwrapper.sh
 
 # fzf
-if [[ -n ~/.fzf/shell ]]; then
+function install_fzf {
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
-fi
+}
 
-source ~/.fzf/shell/completion.zsh 2> /dev/null
+source ~/.fzf/shell/completion.zsh 2> /dev/null || install_fzf
 source ~/.fzf/shell/key-bindings.zsh
 
 # zshrc-local
