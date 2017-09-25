@@ -71,7 +71,7 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || \
 # source /usr/bin/virtualenvwrapper.sh
 
 # fzf
-if [[ -a ~/.fzf/shell ]]; then
+if [[ -n ~/.fzf/shell ]]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
 fi
