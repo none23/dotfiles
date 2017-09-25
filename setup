@@ -1,68 +1,105 @@
 #!/bin/zsh
 
-_DOTFILES_PATH=$(pwd)
-_BACKUP_PATH="$HOME/.old_dotfiles"
+DOTFILES_PATH=$(pwd)
 
-function _backuo_file {
-  [[ -a "$_BACKUP_PATH" ]] || mkdir "$_BACKUP_PATH"
-  mv "$1" "$_BACKUP_PATH/$1"
+function get_powerline {
+  local COMMAND_OUTPUT POWERLINE_PATH ORANGE_POWERLINE_PATH
+  ORANGE_POWERLINE_PATH="$HOME/.config/orange-powerline"
+  COMMAND_OUTPUT=$(python --version)
+  POWERLINE_PATH="/usr/lib/python$COMMAND_OUTPUT[8,10]/site-packages/powerline/config_files"
+
+  git clone https://github.com/none23/orange-powerline "$ORANGE_POWERLINE_PATH"
+  sudo chown -R "$(whoami)" "$POWERLINE_PATH"
+  cp -rv "$ORANGE_POWERLINE_PATH/colorschemes" "$POWERLINE_PATH"
+}
+
+
+function get_powerline {
+  local COMMAND_OUTPUT POWERLINE_PATH
+  COMMAND_OUTPUT=$(python --version)
+  POWERLINE_PATH="/usr/lib/python$COMMAND_OUTPUT[8,10]/site-packages/powerline/config_files"
+
+  git clone https://github.com/none23/orange-powerline "$ORANGE_POWERLINE_PATH"
+  sudo chown -R "$(whoami)" "$POWERLINE_PATH"
+  cp -rv "$ORANGE_POWERLINE_PATH/colorschemes" "$POWERLINE_PATH"
+}
+
+function backuo_file {
+  local BACKUP_PATH
+  BACKUP_PATH="$HOME/.old_dotfiles"
+
+  [[ -a "$BACKUP_PATH" ]] || mkdir "$BACKUP_PATH"
+  mv "$1" "$BACKUP_PATH/$1"
 }
 
 function _link_to_home {
-  _FILE="$HOME/$1"
-  [[ -a "$_FILE" ]] && _backuo_file "$_FILE"
-  ln -s "$_DOTFILES_PATH/$1" "$_FILE"
+  local FILE
+  FILE="$HOME/$1"
+
+  [[ -a "$FILE" ]] && backuo_file "$FILE"
+  ln -s "$DOTFILES_PATH/$1" "$FILE"
 }
 
 function _link_to_config {
-  _FILE="$HOME/.config/$1"
-  [[ -a "$_FILE" ]] && _backuo_file ".config/$1"
-  ln -s "$_DOTFILES_PATH/.config/$1" "$_FILE"
+  local FILE
+  FILE="$HOME/.config/$1"
+
+  [[ -a "$FILE" ]] && backuo_file ".config/$1"
+  ln -s "$DOTFILES_PATH/.config/$1" "$FILE"
 }
 
-# git
-_link_to_home .gitignore-glogal
-_link_to_home .gitconfig
-_link_to_home .czrc
+function link_dotfiles {
+  # git
+  link_to_home .gitignore-glogal
+  link_to_home .gitconfig
+  link_to_home .czrc
 
-# vim
-_link_to_config nvim
-_link_to_home .vim
-_link_to_home .vimrc
+  # vim
+  link_to_config nvim
+  link_to_home .vim
+  link_to_home .vimrc
 
-# shell
-_link_to_home .aliases
-_link_to_home .profile
-_link_to_home .bashrc
-_link_to_home .bash_profile
-_link_to_home .zshrc
+  # shell
+  link_to_home .aliases
+  link_to_home .profile
+  link_to_home .bashrc
+  link_to_home .bash_profile
+  link_to_home .zshrc
 
-# desktop environment
-_link_to_config awesome
-_link_to_config .compton.conf
-_link_to_home .dmrc
-_link_to_home .xinitrc
-_link_to_home .Xmodmap
-_link_to_home .Xresources
-_link_to_home .xscreensaver
-_link_to_home .gtkrc-2.0
-_link_to_home .inputrc
-_link_to_home .i3
-_link_to_config fontconfig
-_link_to_config konsolerc
-_link_to_home .cvimrc
-_link_to_config cvim
-_link_to_config htop
-_link_to_config qt5ct
-_link_to_config ranger
-_link_to_config mimeapps.list
-_link_to_config libfm
-_link_to_config Thunar
-_link_to_config user-dirs.dirs
-_link_to_config user-dirs.locale
-_link_to_config vlc
-_link_to_home .tmux.conf
-_link_to_home .ipython
+  # desktop environment
+  link_to_config awesome
+  link_to_config .compton.conf
+  link_to_home .dmrc
+  link_to_home .xinitrc
+  link_to_home .Xmodmap
+  link_to_home .Xresources
+  link_to_home .xscreensaver
+  link_to_home .gtkrc-2.0
+  link_to_config gtk-3.0
+  link_to_home .inputrc
+  link_to_home .i3
+  link_to_config fontconfig
+  link_to_config konsolerc
+  link_to_home .cvimrc
+  link_to_config cvim
+  link_to_config htop
+  link_to_config qt5ct
+  link_to_config ranger
+  link_to_config mimeapps.list
+  link_to_config libfm
+  link_to_config Thunar
+  link_to_config user-dirs.dirs
+  link_to_config user-dirs.locale
+  link_to_config vlc
+  link_to_home .tmux.conf
+  link_to_home .ipython
 
-ln -s "$DOTFILES_PATH/.local/share/konsole/nwsome.keytab" "$HOME/.local/share/konsole/nwsome.keytab"
-ln -s "$DOTFILES_PATH/.local/share/konsole/nwsome.profile" "$HOME/.local/share/konsole/nwsome.profile"
+  ln -s "$DOTFILES_PATH/.local/share/konsole/nwsome.keytab" "$HOME/.local/share/konsole/nwsome.keytab"
+  ln -s "$DOTFILES_PATH/.local/share/konsole/nwsome.profile" "$HOME/.local/share/konsole/nwsome.profile"
+}
+
+link_dotfiles
+get_powerline
+# TODO: get_fonts
+# TODO: get_nwsome_gtk
+

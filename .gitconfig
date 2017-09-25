@@ -28,7 +28,7 @@
     ra = rebase --abort
     rc = rebase --continue
     ri = rebase --interactive
-    rim = rebase --interactive HEAD^
+    rim = rebase --interactive origin/master
     s = status 
     st = stash
     sta = stash apply

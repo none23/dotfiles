@@ -70,6 +70,15 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || \
 # export PROJECT_HOME=/home/n/projects
 # source /usr/bin/virtualenvwrapper.sh
 
+# fzf
+if [[ -a ~/.fzf/shell ]]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+fi
+
+source ~/.fzf/shell/completion.zsh 2> /dev/null
+source ~/.fzf/shell/key-bindings.zsh
+
 # zshrc-local
 [[ -a ~/.zshrc-local ]] && source ~/.zshrc-local || touch
 

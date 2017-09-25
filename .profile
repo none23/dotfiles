@@ -14,4 +14,9 @@ export PATH="$HOME/.yarn-global/bin:$PATH"
 [[ -a "$HOME/.npm-global/bin" ]] || mkdir -p "$HOME/.npm-global/bin"
 [[ -a "$HOME/.yarn/bin" ]] || mkdir -p "$HOME/.yarn-global/bin"
 
+# fzf
+if [[ ! "$PATH" == */home/n/.fzf/bin* ]]; then
+  export PATH="$PATH:/home/n/.fzf/bin"
+fi
+
 # vim:filetype=zsh
