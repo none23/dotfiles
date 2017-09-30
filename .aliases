@@ -1,102 +1,83 @@
-# ls {{{
+# list files
 alias la='ls -AFlh --color=tty'
 alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
 
-# }}}
-# sshuttle {{{
+# yaourt {{{
+alias y='yaourt'
+alias Y='yaourt -Syua && npm update -g'
+alias Yy='yaourt -Syy'
+alias Yc='yaourt -Sc'
+alias Ycc='yaourt -Scc && npm cache clean --force'
+alias yor='yaourt -Rsc $(yaourt -Qtdq)'
+
+# sshuttle
 alias sshide='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid'
 alias sshide-dl='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid --no-latency-control'
 alias sshive='sshuttle -r aws 0/0 --dns --verbose'
 alias sshive-dl='sshuttle -r aws 0/0 --dns --verbose --no-latency-control'
 
-# }}}
-# touchpad {{{
-alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
-alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
-alias ton='tonn && (sleep 30 && toff) &' # shitty, but works for me
-
-# }}}
-# npm/yarn {{{
+# npm/yarn
 alias ni='yarn'
 alias nrb='yarn run build'
 alias nrt='yarn run test'
 alias nrw='yarn start || yarn run watch'
 
-# }}}
-# configure eslint {{{
-eslint-none23 () {
-    ( cd $(npm root)/..
-        yarn add -D babel-eslint eslint{,-config-none23,-plugin-{flowtype,import,jest,jsx-a11y,node,promise,react,standard}}
+# wireless
+function _wireless_aliases {
+  local IFACE
+  IFACE="wlp7s0"
 
-        [[ -a .eslintrc.js ]] && mv .eslintrc.js{,.old}
-        [[ -a .eslintrc ]] && mv .eslintrc{,.old}
-        [[ -a .eslintrc.json ]] && mv .eslintrc.json{,.old}
-        [[ -a .eslintrc.yml ]] && mv .eslintrc.yml{,.old}
+  alias monup="sudo ifconfig $IFACE down && sudo iwconfig $IFACE mode monitor && sudo ifconfig $IFACE up"
+  alias mondown="sudo ifconfig $IFACE down && sudo iwconfig $IFACE mode managed && sudo ifconfig $IFACE up"
+  alias airod="sudo airodump-ng -i $IFACE --wps --manufacturer"
+  alias rvr="sudo reaver -i $IFACE -K 1 -vv -b"
+  alias wmac="sudo macchanger -ab $IFACE"
+}
+alias N='sudo systemctl start NetworkManager.service'
+alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
+alias foilhat='sudo rfkill block all'
+_wireless_aliases
 
-        if [[ -a ~/.eslintrc.js ]]; then
-            cp ~/.eslintrc.js .eslintrc.js
-        else
-            echo "const path = require('path');\nmodule.exports = {\n\ \ root: true,\n\ \ extends: [ 'none23' ],\n\ \ settings: {\n\ \ \ \ 'import/resolver': {\n\ \ \ \ \ \ node: { paths: path.resolve(__dirname, 'src') },\n\ \ \ \ },\n\ \ },\n};" > .eslintrc.js
-        fi
-    )
+# touchpad
+alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
+alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
+function ton {
+    local LOCKFILE
+    LOCKFILE="/tmp/.touchpad-on.lock"
+
+    if [[ -a "$LOCKFILE" ]]; then
+        xinput --disable SynPS/2\ Synaptics\ TouchPad
+        rm "$LOCKFILE"
+    else
+        xinput --enable SynPS/2\ Synaptics\ TouchPad
+        touch "$LOCKFILE"
+    fi
 }
-# }}}
-# git {{{
-## add all, commit, and push {{{
-GG () {
-    git add .
-    [[ "$1" ]] && git commit -m "$@" || git cz
-    git push origin HEAD
-}
-## }}}
-newBranch () {
-    [[ "$1" ]] \
-        && git checkout master \
-        && git pull origin master \
-        && git checkout -b "$1"
-}
-# }}}
-# dotfiles github {{{
+
+alias eslint-none23="(cd $(npm root)/.. \
+    && [[ -a .eslintrc.js ]] && mv .eslintrc.js{,.old} \
+    && [[ -a ~/.eslintrc.js ]] && cp ~/.eslintrc.js .eslintrc.js \
+    && yarn add -D babel-eslint eslint \
+          eslint-config-none23 \
+          eslint-plugin-compat \
+          eslint-plugin-flowtype \
+          eslint-plugin-import \
+          eslint-plugin-jest \
+          eslint-plugin-jsx-a11y \
+          eslint-plugin-node \
+          eslint-plugin-promise \
+          eslint-plugin-react \
+  )"
+
 dot () {
     if [[ -d /home/n/none23/dotfiles ]]; then
-        ( cd /home/n/none23/dotfiles && GG "updated" )
+        ( cd /home/n/none23/dotfiles && git aa && git c && git p )
     fi
 }
-# }}}
-# installed packages github {{{
-pkglist () {
-    if [[ -d /home/n/none23/pkglist ]]; then
-        ( cd /home/n/none23/pkglist && yaourt -Qnq > ./official_repos && yaourt -Qmq > ./aur && GG "updated" )
-    fi
-}
-# }}}
-# yaourt {{{
-alias y='yaourt'
-alias Y='yaourt -Syua && npm update -g && pkglist'
-alias Yy='yaourt -Syy'
-alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc && npm cache clean --force'
-alias yor='yaourt -Rsc $(yaourt -Qtdq)'
-# }}}
-# wireless {{{
-alias N='nmtui || (sudo NetworkManager && sleep 1 && nmtui)'
-alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
-alias monup='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode monitor && sudo ifconfig wlp7s0 up'
-alias mondown='sudo ifconfig wlp7s0 down && sudo iwconfig wlp7s0 mode managed && sudo ifconfig wlp7s0 up'
-alias foilhat='sudo rfkill block all'
-alias airod='sudo airodump-ng -i wlp7s0 --wps --manufacturer'
-alias rvr='sudo reaver -i wlp7s0 -K 1 -vv -b'
-alias silentjam='sudo iwconfig && sudo wifijammer -d --world > /dev/zero &'
 
-wmac () {
-    if [[ -n "$1" ]]; then
-        sudo macchanger -b --mac="$1" wlp7s0
-    else
-        sudo macchanger -ab wlp7s0
-    fi
-}
-# }}}
+
+
 # multi-screen {{{
 _LVDS='LVDS1'
 _HDMI='HDMI1'

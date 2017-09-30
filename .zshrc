@@ -3,8 +3,6 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=chromium
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -80,6 +78,9 @@ source ~/.fzf/shell/completion.zsh 2> /dev/null || install_fzf
 source ~/.fzf/shell/key-bindings.zsh
 
 # zshrc-local
-[[ -a ~/.zshrc-local ]] && source ~/.zshrc-local || touch
+[[ -a ~/.zshrc-pre ]] && source ~/.zshrc-pre || touch ~/.zshrc-pre
+[[ -a ~/.zshrc-post ]] && source ~/.zshrc-post || touch ~/.zshrc-post
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
