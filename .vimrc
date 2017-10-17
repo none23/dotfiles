@@ -23,6 +23,8 @@ Plug 'ervandew/supertab'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
@@ -33,10 +35,10 @@ Plug 'tpope/vim-haml'
 Plug 'hhsnopek/vim-sugarss'
 Plug 'ap/vim-css-color'
 Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
-Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'sass', 'stylus', 'sugarss'] }
+Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
 
-Plug 'mattn/webapi-vim' " <----------╮
-Plug 'mattn/gist-vim' " dependancy --╯
+" Plug 'mattn/webapi-vim' " <----------╮
+" Plug 'mattn/gist-vim' " dependancy --╯
 
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
@@ -66,6 +68,7 @@ call plug#end()
 command! PU PlugUpdate | PlugUpgrade
 
 " }}}
+
 " Indentation {{{
 set expandtab
 set tabstop=2
@@ -79,15 +82,19 @@ set nosmartindent
 set nocindent
 
 " }}}
+"
 " Misc Settings {{{
+set splitright
+
 " (OFF) cd to file directory automatically
 set noautochdir
 
 " [experimental] keep the cursor on the same column
 set nostartofline
 
-" keep splits equal width / height
+" keep splits equal width (but not height)
 set equalalways
+set winfixheight
 
 " status bar
 set laststatus=2
@@ -95,6 +102,9 @@ set noshowmode
 
 " substitute with 'g' flag
 set gdefault
+
+" fix annoying hit-enter prompts
+set cmdheight=2
 
 " incremental search
 set incsearch
@@ -108,34 +118,28 @@ set smartcase
 set infercase
 
 " mouse support
-set mouse=v
+set mouse=a
 
 " highlighted search results
 set hlsearch
 
-"  " Don't redraw screen durring macros
+" don't redraw screen durring macros
 set lazyredraw
 
-" Cursor can move to spaces with no real character in vblock mode.
+" cursor can move to spaces with no real character in vblock mode.
 set virtualedit=block
-set synmaxcol=200
-set splitbelow
-set splitright
 
-" marker folding
+" folding
 set foldmethod=marker
 set foldlevel=999
-autocmd FileType javascript,javascript.jsx,json,sugarss,stylus,sass,scss,css,jade,pug,html,xml,svg setlocal foldmethod=syntax
+autocmd FileType javascript,json,yaml,css,sugarss,stylus,sass,scss,python,jade,pug,html,xml,svg setlocal foldmethod=syntax
 
 " enable concealment
 set conceallevel=1
-
-" vim-javascript conceal settings.
 let g:javascript_conceal_function = 'ƒ'
 let g:javascript_conceal_arrow_function = "⇒"
-let g:javascript_conceal_return = '⇚'
-let g:javascript_conceal_this = '@'
-" let g:javascript_conceal_function = "ƒ"
+" let g:javascript_conceal_return = '⇚'
+" let g:javascript_conceal_this = '@'
 " let g:javascript_conceal_null = "ø"
 " let g:javascript_conceal_undefined = "¿"
 " let g:javascript_conceal_NaN = "ℕ"
@@ -143,21 +147,22 @@ let g:javascript_conceal_this = '@'
 " let g:javascript_conceal_static = "•"
 " let g:javascript_conceal_super = "Ω"
 
+" diff-mode
+set diffopt=vertical
+set diffopt+=filler " blank lines to keep sides aligned
+set diffopt+=iwhite " ignore whitespace changes
 set fillchars+=diff:┈
-set diffopt=vertical                  " Use in vertical diff mode
-set diffopt+=filler                   " blank lines to keep sides aligned
-set diffopt+=iwhite                   " Ignore whitespace changes
 
 " syntax highlight
 filetype indent plugin on
 syntax on
 
-" hide some files by default in netrw
-let g:netrw_list_hide='\..*,Gemfile.lock,README,LICENSE,node_modules'
-let g:netrw_hide=0
+" remove trailing whitespace on save
+autocmd FileType javascript,typescript,python,lua,json,jade,pug,html,svg,sugarss,stylus,css,scss,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
+set autoread
 
 " prevent wrapping lines
-set textwidth=9999
+set textwidth=100
 set nowrap
 
 " when scrolling, keep cursor this many lines away from screen border
@@ -165,7 +170,7 @@ set scrolloff=9
 set sidescrolloff=9
 
 " don't syntax highlight long lines
-set synmaxcol=200
+set synmaxcol=100
 
 " show line numbers
 set number
@@ -178,34 +183,27 @@ set fileformats=unix,mac,dos
 set fileformat=unix
 
 " }}}
-" Colorscheme {{{
 
+" Colors {{{
 set cursorcolumn
 set cursorline
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 set termguicolors
+
 set background=dark
+
 colorscheme nwsome
 
-" highlight 79'th column
-set colorcolumn=79
+" highlight 80'th column
+set colorcolumn=80
+
+" highlight 100'th column
+set colorcolumn=100
 
 " }}}
-" Autocmd on save {{{
-" remove trailing whitespace
-autocmd FileType python,lua,json,javascript,javascript.jsx,coffee,typescript,jade,pug,html,svg,sugarss,stylus,css,scss,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
-set autoread
-
-" }}}
-" Run macro on selected lines {{{
-
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-function! ExecuteMacroOverVisualRange()
-  echo "@".getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-" }}}
+"
 " Command completion  {{{
 set browsedir=buffer           " browse files in same dir as open file
 set wildmenu
@@ -225,12 +223,14 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
 set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 set isfname-==
-set complete-=i                       " don't complete includes
-set complete-=t                       " don't complete tags
+set completeopt=longest,menuone,preview
 " set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
 " set completeopt+=menu,menuone         " show PUM, even for one thing
-set completeopt=longest,menuone,preview
+" set complete-=i                       " don't complete includes
+" set complete-=t                       " don't complete tags
+
 " }}}
+
 " Backup, swap and undos storage {{{
 set directory=~/.vim/dirs/tmp
 
@@ -247,7 +247,7 @@ set viminfo+=n~/.vim/dirs/viminfo
 " store yankring history file there too
 let g:yankring_history_dir = '~/.vim/dirs/'
 
-" create needed directories if they don't exist {{{
+" create needed directories if they don't exist
 if !isdirectory(&backupdir)
     call mkdir(&backupdir, "p")
 endif
@@ -259,7 +259,7 @@ if !isdirectory(&undodir)
 endif
 
 " }}}
-" }}}
+
 " Misc mappings {{{
 " save with sudo
 ca w!! w !sudo tee "%"
@@ -292,55 +292,50 @@ map <Leader>q $i<CR><Esc>J
 " escape key in terminal
 :tnoremap <Esc><Esc> <C-\><C-n>
 
+" run macro on selected lines
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+
 " stop using arrows in normal mode
-noremap <Up> :bNext<CR>
-noremap <Down> :bnext<CR>
+noremap <Up> <C-w>w
+noremap <Down> <C-w>W
 noremap <Left> :tabp<CR>
 noremap <Right> :tabn<CR>
 
-" }}}
-" Buffer navigation {{{
-map tN  :bnext<CR>
-map tP  :bNext<CR>
+" buffer navigation
+map <C-Up> :bnext<CR>
+map <C-Down> :bNext<CR>
 
-map <C-S-Up> :bnext<CR>
-map <C-S-Down> :bNext<CR>
-
-map tL  :s<CR>
-
-" }}}
-" Tab navigation {{{
+" tab navigation
 map tt :tabnew<CR>
-map tcq :tabc<CR>
 map tn :tabn<CR>
 map tp :tabp<CR>
 
-map tm0 :tabm0<CR>
-map tmm :tabm<CR>
-" }}}
-" Splits navigation {{{
+" term-mode
 map <F2> :below 10sp term://$SHELL<CR>i
-map <F3> :below 10sp term:///usr/bin/ranger<CR>i
 map <F4> :below 10sp term:///usr/bin/node<CR>i
 
-" close current split
-map <F6> <Esc><C-w>c
-" }}}
-" Yank/paste to system clipboard {{{
+" yank to system clipboard
 nmap <F8> "+yy
 vmap <F8> "+y
-
+nmap <F7> "+P
+vmap <F7> "+P
 nmap <F9> "+p
 vmap <F9> "+p
 
-nmap <F7> "+P
-vmap <F7> "+P
 " }}}
-" Reading DOC files {{{
+
+" Read .doc files {{{
 autocmd BufReadPre *.doc set ro
 autocmd BufReadPre *.doc set hlsearch!
 autocmd BufReadPost *.doc %!antiword "%"
+
 " }}}
+
 " EasyMotion {{{
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -350,20 +345,20 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward))
 
 " }}}
+
 " ExpandRegion {{{
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " }}}
+
 " TabMan {{{
 " mappings to toggle display, and to focus on it
 let g:tabman_toggle = 'tl'
 let g:tabman_focus  = 'tf'
 
 " }}}
-" AutoPairs {{{
-"let g:AutoPairsMapCR=0
-" }}}
+
 " TernJS {{{
 " omnifuncs
 augroup omnifuncs
@@ -380,11 +375,13 @@ autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " }}}
+
 " VimJSON {{{
 let g:vim_json_syntax_conceal=1
 autocmd FileType json map <Leader>c :exec &g:vim_json_syntax_conceal ? "let g:vim_json_syntax_conceal=0" : "let g:vim_json_syntax_conceal=1"<CR>
 
 " }}}
+
 " ChooseWin {{{
 let g:choosewin_overlay_enable = 0
 let g:choosewin_statusline_replace = 1
@@ -399,6 +396,7 @@ let g:choosewin_color_overlay_current = { 'gui': ['#ff6600', '#000000'], 'cterm'
 nmap  <C-w><Leader>  <Plug>(choosewin)
 
 " }}}
+
 " Airline {{{
 let g:airline_powerline_fonts=1
 let g:airline_theme='simple'
@@ -417,6 +415,7 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 
 " }}}
+
 " Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
@@ -431,16 +430,19 @@ inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
 " }}}
+
 " Autocomplete-flow{{{
 let g:autocomplete_flow#insert_paren_after_function = 0
 
 " }}}
+
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:SuperTabClosePreviewOnPopupClose = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " }}}
+
 " EasyAlign {{{
 " start interactive EasyAlign in visual mode (e.g. vipga)
 let g:easy_align_interactive_modes = ['l', 'r']
@@ -449,16 +451,19 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " }}}
+
 " Emmet {{{
 let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 0
 autocmd FileType html,javascript.jsx EmmetInstall
 
 " }}}
+
 " Ultisnips {{{
 let g:UltiSnipsExpandTrigger="<C-j>"
 
 " }}}
+
 " ALE {{{
 let g:ale_set_quickfix = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -467,10 +472,10 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = 1
 " let g:ale_lint_delay = 200
 let g:ale_linters = {
-            \ 'javascript': ['eslint', 'flow'],
+            \ 'javascript': ['eslint'],
             \}
 
-" let g:ale_javascript_flow_executable = "(npm bin)/flow"
+let g:ale_javascript_flow_executable = "(npm bin)/flow"
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -491,24 +496,29 @@ let g:ale_sign_style_warning = '⚐'
 let g:ale_sign_info = 'i'
 
 " }}}
+
 " Fzf {{{
 nnoremap <C-p> :FZF<CR>
 
 " }}}
+
 " Ack {{{
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
 " }}}
-" NCM {{{
-" set shortmess+=c
-"
-" }}}
+
 " Gist {{{
-let g:gist_browser_command = 'chromium %URL%'
-let g:gist_clip_command = 'xclip -selection clipboard'
+" let g:gist_browser_command = 'chromium %URL%'
+" let g:gist_clip_command = 'xclip -selection clipboard'
 
 " }}}
+
+" NERDTree {{{
+nmap <F5> :NERDTreeToggle<CR>
+
+" }}}
+
 " Vim Session {{{
 let g:session_autosave = 'yes'
 
