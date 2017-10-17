@@ -85,6 +85,7 @@ set nocindent
 "
 " Misc Settings {{{
 set splitright
+set cmdheight=1
 
 " (OFF) cd to file directory automatically
 set noautochdir
@@ -102,9 +103,6 @@ set noshowmode
 
 " substitute with 'g' flag
 set gdefault
-
-" fix annoying hit-enter prompts
-set cmdheight=2
 
 " incremental search
 set incsearch
@@ -515,6 +513,7 @@ nnoremap <Leader>a :Ack!<Space>
 " }}}
 
 " NERDTree {{{
+let NERDTreeShowHidden=1
 nmap <F5> :NERDTreeToggle<CR>
 
 " }}}
