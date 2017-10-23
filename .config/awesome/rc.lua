@@ -512,7 +512,8 @@ globalkeys = awful.util.table.join(
 , awful.key( { Hyper, Cntrl }, "1",        function () awful.util.spawn("tor-browser-en")                                                           end )
 , awful.key( { Hyper        }, "2",        function () awful.util.spawn("firefox")                                                                  end )
 , awful.key( { Hyper, Cntrl }, "2",        function () awful.util.spawn("chromium --kiosk")                                                         end )
-, awful.key( { Hyper        }, "3",        function () awful.util.spawn("blender")                                                                  end )
+, awful.key( { Hyper        }, "3",        function () awful.util.spawn("atom")                                                                  end )
+, awful.key( { Hyper, Cntrl }, "3",        function () awful.util.spawn("blender")                                                                  end )
 , awful.key( { Hyper        }, "4",        function () awful.util.spawn("inkscape")                                                                 end )
 , awful.key( { Hyper        }, "5",        function () awful.util.spawn("gimp")                                                                     end )
 , awful.key( { Hyper        }, "8",        function () awful.util.spawn("transset-df 1")                                                            end )
@@ -741,6 +742,9 @@ awful.rules.rules = {
   }
 
 , { rule = { class = "Blender"         }, properties = { tag = tags[1][3] } }
+, { rule = { class = "Atom"            }, properties = { tag = tags[1][3] } }
+, { rule = { class = "Inkscape"        }, properties = { tag = tags[1][4] } }
+, { rule = { class = "Gimp"            }, properties = { tag = tags[1][5] } }
 , { rule = { class = "Tor Browser"     }, properties = { tag = tags[1][6] } }
 , { rule = { class = "Arandr"          }, properties = { tag = tags[1][8] } }
 , { rule = { class = "Firefox"         }, properties = { tag = tags[1][9] } }

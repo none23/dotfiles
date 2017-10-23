@@ -470,7 +470,7 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = 1
 " let g:ale_lint_delay = 200
 let g:ale_linters = {
-            \ 'javascript': ['eslint'],
+            \ 'javascript': ['eslint', 'flow'],
             \}
 
 let g:ale_javascript_flow_executable = "(npm bin)/flow"
