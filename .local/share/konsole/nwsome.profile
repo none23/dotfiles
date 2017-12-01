@@ -11,6 +11,9 @@ CursorShape=0
 CustomCursorColor=255,96,0
 UseCustomCursorColor=false
 
+[Encoding Options]
+DefaultEncoding=UTF-8
+
 [General]
 Command=/bin/zsh
 Environment=TERM=konsole-256color,
@@ -40,3 +43,4 @@ ScrollBarPosition=2
 BidiRenderingEnabled=false
 BlinkingCursorEnabled=true
 FlowControlEnabled=false
+UrlHintsModifiers=134217728

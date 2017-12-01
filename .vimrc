@@ -36,6 +36,7 @@ Plug 'hhsnopek/vim-sugarss'
 Plug 'ap/vim-css-color'
 Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
+Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Plug 'mattn/webapi-vim' " <----------╮
 " Plug 'mattn/gist-vim' " dependancy --╯
@@ -128,9 +129,9 @@ set lazyredraw
 set virtualedit=block
 
 " folding
-set foldmethod=marker
+set foldmethod=syntax
 set foldlevel=999
-autocmd FileType javascript,json,yaml,css,sugarss,stylus,sass,scss,python,jade,pug,html,xml,svg setlocal foldmethod=syntax
+autocmd FileType zsh,bash,shell,vim setlocal foldmethod=marker
 
 " enable concealment
 set conceallevel=1
@@ -376,7 +377,7 @@ autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " VimJSON {{{
 let g:vim_json_syntax_conceal=1
-autocmd FileType json map <Leader>c :exec &g:vim_json_syntax_conceal ? "let g:vim_json_syntax_conceal=0" : "let g:vim_json_syntax_conceal=1"<CR>
+autocmd FileType json let g:vim_json_syntax_conceal=1
 
 " }}}
 

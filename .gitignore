@@ -1,0 +1,5 @@
+.npmrc
+*.log
+.tern-port
+.vim/autoload
+.config/nvim/autoload

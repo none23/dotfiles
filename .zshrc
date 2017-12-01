@@ -2,7 +2,6 @@
 
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=chromium
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -84,3 +83,10 @@ source ~/.fzf/shell/key-bindings.zsh
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
