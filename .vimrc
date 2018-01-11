@@ -471,7 +471,7 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = 1
 " let g:ale_lint_delay = 200
 let g:ale_linters = {
-            \ 'javascript': ['eslint', 'flow'],
+            \ 'javascript': ['flow', 'eslint', 'stylelint']
             \}
 
 let g:ale_javascript_flow_executable = "(npm bin)/flow"
@@ -486,7 +486,11 @@ let g:ale_set_signs = 1
 let g:ale_open_list = 1
 let g:ale_list_window_size = 5
 let g:ale_echo_cursor = 1
-let g:ale_echo_msg_format = '%s [%severity%] (%linter%)'
+let g:ale_echo_msg_format = '%s %[code]% (%linter%)'
+
+let g:ale_echo_msg_error_str = '✗'
+let g:ale_echo_msg_warning_str = '⚠'
+let g:ale_echo_msg_info_str = 'i'
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
