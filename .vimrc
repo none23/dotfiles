@@ -157,7 +157,16 @@ filetype indent plugin on
 syntax on
 
 " remove trailing whitespace on save
-autocmd FileType javascript,typescript,python,lua,json,jade,pug,html,svg,sugarss,stylus,css,scss,sass,yaml,zsh,bash autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType javascript,json,typescript autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType lua autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType jade,pug autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType html,svg,xml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType css,sugarss,stylus,scss,sass autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType zsh,bash,sh autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType sql,pgsql autocmd BufWritePre <buffer> %s/\s\+$//e
+
 set autoread
 
 " prevent wrapping lines
@@ -169,7 +178,7 @@ set scrolloff=9
 set sidescrolloff=9
 
 " don't syntax highlight long lines
-set synmaxcol=100
+set synmaxcol=120
 
 " show line numbers
 set number
@@ -471,7 +480,7 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = 1
 " let g:ale_lint_delay = 200
 let g:ale_linters = {
-            \ 'javascript': ['flow', 'eslint', 'stylelint']
+            \ 'javascript': ['flow', 'eslint']
             \}
 
 let g:ale_javascript_flow_executable = "(npm bin)/flow"

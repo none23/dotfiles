@@ -21,11 +21,11 @@ Mode=THUNAR_SBR_CASE_RENAMER_MODE_LOWER
 Offset=0
 Mode=THUNAR_SBR_INSERT_MODE_INSERT
 OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
-Text=_product
+Text=_0
 
 [ThunarSbrRemoveRenamer]
 EndOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
 StartOffset=0
-EndOffset=3
+EndOffset=1
 StartOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
 
