@@ -80,13 +80,11 @@ source ~/.fzf/shell/key-bindings.zsh
 [[ -a ~/.zshrc-pre ]] && source ~/.zshrc-pre || touch ~/.zshrc-pre
 [[ -a ~/.zshrc-post ]] && source ~/.zshrc-post || touch ~/.zshrc-post
 
-# vim:filetype=zsh:foldmethod=marker:foldlevel=0
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# vim:filetype=zsh:foldmethod=marker:foldlevel=0
