@@ -40,17 +40,17 @@ alias foilhat='sudo rfkill block all'
 _wireless_aliases
 
 # touchpad
-alias toff='xinput --disable SynPS/2\ Synaptics\ TouchPad'
-alias tonn='xinput --enable SynPS/2\ Synaptics\ TouchPad'
+alias toff='xinput disable Elan\ Touchpad'
+alias tonn='xinput enable Elan\ Touchpad'
 function ton {
     local LOCKFILE
     LOCKFILE="/tmp/.touchpad-on.lock"
 
     if [[ -a "$LOCKFILE" ]]; then
-        xinput --disable SynPS/2\ Synaptics\ TouchPad
+        xinput disable Elan\ Touchpad
         rm "$LOCKFILE"
     else
-        xinput --enable SynPS/2\ Synaptics\ TouchPad
+        xinput enable Elan\ Touchpad
         touch "$LOCKFILE"
     fi
 }

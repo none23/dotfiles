@@ -80,11 +80,13 @@ source ~/.fzf/shell/key-bindings.zsh
 [[ -a ~/.zshrc-pre ]] && source ~/.zshrc-pre || touch ~/.zshrc-pre
 [[ -a ~/.zshrc-post ]] && source ~/.zshrc-post || touch ~/.zshrc-post
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/n/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# serverless
+[[ -f ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && \
+  . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+[[ -f ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && \
+  . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# nvm
+[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
