@@ -26,7 +26,7 @@ alias nrw='yarn start || yarn run watch'
 # wireless
 function _wireless_aliases {
   local IFACE
-  IFACE="wlp7s0"
+  IFACE="wlp3s0"
 
   alias monup="sudo ifconfig $IFACE down && sudo iwconfig $IFACE mode monitor && sudo ifconfig $IFACE up"
   alias mondown="sudo ifconfig $IFACE down && sudo iwconfig $IFACE mode managed && sudo ifconfig $IFACE up"
