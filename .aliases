@@ -126,21 +126,8 @@ chromium-tor () {
 
 # }}}
 # shutdown/reboot {{{
-shutdown () {
-    if [[ -a /usr/bin/shutdown ]]; then
-        /usr/bin/shutdown "$@"
-    else
-        sudo systemctl poweroff
-    fi
-}
-
-reboot () {
-    if [[ -a /usr/bin/reboot ]]; then
-        /usr/bin/reboot
-    else
-        sudo systemctl reboot
-    fi
-}
+alias shutdown='sudo systemctl poweroff'
+alias reboot='sudo systemctl reboot'
 
 # }}}
 # add sudo {{{
