@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -19,13 +22,13 @@ setopt appendhistory
 eval $(keychain --eval --quiet id_rsa)
 
 # automatic startx on tty1
-[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
+# [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
 
 ## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
 
 # zstyle completions {{{
-zstyle :compinstall filename '/home/n/.zshrc'
+zstyle :compinstall filename '/Users/none23/.zshrc'
 zstyle ':acceptline' rehash true
 zstyle ':completion:*:*:*:users' ignored-patterns \
     adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
@@ -49,9 +52,9 @@ bindkey -s "^[Ok" "+"
 
 # powerline
 autoload -U colors && colors
-prompt off
+# prompt off
 powerline-daemon -q
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
 # profile
@@ -88,5 +91,8 @@ source ~/.fzf/shell/key-bindings.zsh
 
 # nvm
 [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+
+# git-prompt
+source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0

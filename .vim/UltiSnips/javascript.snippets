@@ -1,3 +1,17 @@
+snippet mi "module index" b
+// @flow
+
+export * from './actions';
+export * from './sagas';
+export * from './model';
+export * from './selectors';
+export { default as reducer } from './reducer';
+endsnippet
+
+snippet act "action type" b
+export const $1 = '${1}';
+endsnippet
+
 snippet ind "index file" b
 // @flow
 
@@ -70,6 +84,52 @@ export { $1 as Component };
 export default enhance($1);
 endsnippet
 
+snippet ffb "flow functional BEM component" b
+// @flow
+
+import * as React from 'react';
+import b_ from 'b_';
+
+import './$1.css';
+
+const b: BT = b_.with('$1');
+
+export type Props = {|
+|};
+
+const $1 = ({
+}: Props) => (
+	<${2:div} className={b()}>
+	</$2>
+);
+
+export default $1;
+endsnippet
+
+snippet fcfb "flow connected functional BEM component" b
+// @flow
+
+import * as React from 'react';
+import { connect } from 'react-redux';
+import b_ from 'b_';
+
+import './$1.css';
+
+const b: BT = b_.with('$1');
+
+export type Props = {|
+|};
+
+const $1 = ({
+}: Props) => (
+	<${2:div} className={b()}>
+	</$2>
+);
+
+export default connect((state: StateT) => ({
+}))($1);
+endsnippet
+
 snippet fff "flow functional component" b
 // @flow
 
@@ -89,7 +149,7 @@ const $1 = (props: $1Props) => {
 	} = props;
 
 	return (
-		<${2:div} styleName="" className={className} {}>
+		<${2:div} styleName="" className={className}>
 		</$2>
 	);
 };

@@ -484,6 +484,7 @@ let g:ale_linters = {
             \}
 
 let g:ale_javascript_flow_executable = "(npm bin)/flow"
+let g:ale_javascript_eslint_executable = "(npm bin)/flow"
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
