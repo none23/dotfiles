@@ -23,9 +23,11 @@ eval $(keychain --eval --quiet id_rsa)
 
 ## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
+#
 
 # zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
+zstyle ":completion:*:commands" rehash 1 # do not trust completions cache
 zstyle ':acceptline' rehash true
 zstyle ':completion:*:*:*:users' ignored-patterns \
     adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
@@ -85,8 +87,5 @@ source ~/.fzf/shell/key-bindings.zsh
   . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
 [[ -f ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && \
   . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
-# nvm
-[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
