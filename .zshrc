@@ -22,11 +22,10 @@ setopt appendhistory
 eval $(keychain --eval --quiet id_rsa)
 
 # automatic startx on tty1
-# [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
+[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
 
 ## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
-#
 
 # zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
@@ -54,9 +53,9 @@ bindkey -s "^[Ok" "+"
 
 # powerline
 autoload -U colors && colors
-# prompt off
+prompt off
 powerline-daemon -q
-. /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
 # profile
