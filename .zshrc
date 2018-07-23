@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -23,7 +26,6 @@ eval $(keychain --eval --quiet id_rsa)
 
 ## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
-#
 
 # zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
