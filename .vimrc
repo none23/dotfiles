@@ -44,10 +44,12 @@ Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'alexlafroscia/deoplete-flow',       { 'branch': 'pass-filename-to-autocomplete' }
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'wokalski/autocomplete-flow'
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'xolox/vim-misc' " <---------------╮
@@ -231,7 +233,7 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
 set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 set isfname-==
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 " set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
 " set completeopt+=menu,menuone         " show PUM, even for one thing
 " set complete-=i                       " don't complete includes
@@ -427,13 +429,13 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 " Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#sources#syntax#min_keyword_length = 2
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-            \ 'tern#Complete',
-            \]
-let g:deoplete#sources = {}
-let g:deoplete#sources['javascript'] = ['ultisnips', 'ternjs', 'flow', 'buffer']
+let g:deoplete#auto_complete_delaya = 10
+let g:deoplete#max_list = 3000
+" let g:deoplete#custom#option('auto_complete_delay', 10)
+" let g:deoplete#custom#option('max_list', 3000)
+" let g:deoplete#sources#syntax#min_keyword_length = 2
+" let g:deoplete#sources = {}
+" let g:deoplete#sources['javascript'] = ['ultisnips', 'ternjs', 'flow', 'buffer']
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
@@ -441,6 +443,11 @@ inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
 " Autocomplete-flow{{{
 let g:autocomplete_flow#insert_paren_after_function = 0
+
+" }}}
+
+" Neosnippet{{{
+let g:neosnippet#enable_completed_snippet = 1
 
 " }}}
 
@@ -478,14 +485,13 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_text_changed = 'normal'
 " let g:ale_lint_on_enter = 0
 " let g:ale_lint_on_insert_leave = 1
-" let g:ale_lint_delay = 200
-let g:ale_linters = {
-            \ 'javascript': ['flow', 'eslint']
-            \}
-
-let g:ale_javascript_flow_executable = "(npm bin)/flow"
-let g:ale_javascript_eslint_executable = "(npm bin)/eslint"
+let g:ale_lint_delay = 50
+" let g:ale_linters = { 'javascript': ['flow', 'eslint', 'stylelint'] }
+let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
 let g:ale_javascript_eslint_suppress_eslintignore = 1
+
+" let g:ale_fixers = { 'javascript': ['prettier', 'eslint'] }
+" let g:ale_fix_on_save = 1
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
