@@ -55,7 +55,7 @@ bindkey -s "^[Ok" "+"
 autoload -U colors && colors
 prompt off
 powerline-daemon -q
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
 # profile
