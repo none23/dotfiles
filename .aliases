@@ -17,9 +17,6 @@ alias sshide-dl='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid 
 alias sshive='sshuttle -r aws 0/0 --dns --verbose'
 alias sshive-dl='sshuttle -r aws 0/0 --dns --verbose --no-latency-control'
 
-# docker cleanup
-alias docker-cleanup='docker container prune -a && docker image prune && docker volume prune'
-
 # npm/yarn
 alias ni='yarn'
 alias nrb='yarn run build'
