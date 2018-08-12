@@ -1,13 +1,14 @@
-{ "plugins": {
-    "webpack": {}
-  , "modules": {}
-  , "es_modules": {}
-  , "node": {}
-  , "node_resolve": {}
-  , "complete_strings": {}
-  }
-, "libs": [
+{
+  "plugins": {
+     "webpack": {},
+     "modules": {},
+     "es_modules": {},
+     "node": {},
+     "node_resolve": {},
+     "complete_strings": {}
+  },
+  "libs": [
     "ecmascript"
-  ]
-, "ecmaVersion": 7
+  ],
+  "ecmaVersion": 8
 }
