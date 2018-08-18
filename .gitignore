@@ -3,3 +3,7 @@
 .tern-port
 .vim/autoload
 .config/nvim/autoload
+.vim/autoload
+.vim/autoload
+.*.pyc
+__pycache__
