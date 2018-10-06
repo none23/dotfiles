@@ -2,4 +2,5 @@
 *.log
 .tern-port
 .vim/autoload
+.vim/plugged
 .config/nvim/autoload

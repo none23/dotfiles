@@ -22,66 +22,63 @@ export default $1;
 endsnippet
 
 snippet ccc "class component" b
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-import './styles.css';
-import enhance from './enhance';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import b_ from 'b_';
 
-class ${1:ClassComponent} extends Component {
-	static propTypes = {
-		className: PropTypes.string,
-	};
+import Component from 'components/Component/Component';
 
+import { action } from 'modules/router/actions';
+import { selector } from 'modules/router/selectors';
+import type { Type } from 'modules/router/model';
+
+import './$1.css';
+
+type Props = {|
+|};
+
+type State = {|
+|};
+
+class ${1:ClassComponent} extends React.Component<Props, State> {
 	static defaultProps = {
 		className: '',
 	};
 
-	constructor (props) {
-		super(props);
-		this.state = {
-		$5,
-		};
-	}
+  state = {
+  };
 
-	componentDidMount () {}
-	componentWillUnmount () {}
+	componentDidMount = () => {
+  };
 
-	render () {
+	componentDidUpdate = (prevProps, prevState) => {
+  };
+
+	componentWillUnmount = () => {
+  };
+
+	render = () => {
 		return (
 			<${2:div}>
 			</$2>
 		);
-	}
+	};
 };
 
-export { $1 as Component };
-export default enhance($1);
-endsnippet
+const mapStateToProps = createStructuredSelector({
+});
 
-snippet ffc "functional component" b
-// @flow
-
-import React from 'react';
-
-import './styles.css';
-import enhance from './enhance';
-
-const ${1:functionalComponent} = ({ ${3:prop}, ...props }) => (
-	<${2:div}>
-	</$2>
-);
-
-$1.propTypes = {
-className: PropTypes.string,
+const mapDispatchToProps = {
 };
 
-$1.defaultProps = {
-className: '',
-};
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)($1);
 
-export { $1 as Component };
-export default enhance($1);
 endsnippet
 
 snippet ffb "flow functional BEM component" b
@@ -111,7 +108,14 @@ snippet fcfb "flow connected functional BEM component" b
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import b_ from 'b_';
+
+import Component from 'components/Component/Component';
+
+import { action } from 'modules/router/actions';
+import { selector } from 'modules/router/selectors';
+import type { Type } from 'modules/router/model';
 
 import './$1.css';
 
@@ -126,8 +130,16 @@ const $1 = ({
 	</$2>
 );
 
-export default connect((state: StateT) => ({
-}))($1);
+const mapStateToProps = createStructuredSelector({
+});
+
+const mapDispatchToProps = {
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)($1);
 endsnippet
 
 snippet fff "flow functional component" b
@@ -175,16 +187,6 @@ import * as React from 'react';
 $0
 endsnippet
 
-snippet irc "import React, Component" b
-import React, { Component } from 'react';
-$0
-endsnippet
-
-snippet ipt "import PropTypes" b
-import PropTypes from 'prop-types';
-$0
-endsnippet
-
 snippet exa "export as"
 export { $1 as $2 };
 endsnippet
@@ -195,16 +197,6 @@ endsnippet
 
 snippet exf "export from"
 export $1 from '$2';
-endsnippet
-
-snippet construct "constructor"
-constructor (props) {
-	super(props);
-
-	this.state = {
-		$0,
-	};
-}
 endsnippet
 
 snippet cdm "component did mount"
@@ -225,26 +217,8 @@ shouldComponentUpdate (nextProps, nextState) {
 }
 endsnippet
 
-snippet cwm "component will mount"
-componentWillMount () {
-	$0
-}
-endsnippet
-
 snippet cwum "component will unmount"
 componentWillUnmount () {
-	$0
-}
-endsnippet
-
-snippet cwrp "component will receive props"
-componentWillReceiveProps (nextProps) {
-	$0
-}
-endsnippet
-
-snippet cwup "component will update"
-componentWillUpdate (nextProps, nextState) {
 	$0
 }
 endsnippet
@@ -265,20 +239,7 @@ getInitialState () {
 }
 endsnippet
 
-snippet sst "set state"
-this.setState({
-	$0,
-});
-endsnippet
-
-snippet spt "static propTypes"
-static propTypes = {
-	className: PropTypes.string,
-};
-$0
-endsnippet
-
-snippet sdp "static defaultProps"
+snippet dp "static defaultProps"
 static defaultProps = {
 	className: '',
 };
@@ -287,6 +248,16 @@ endsnippet
 
 snippet dbg "debugger"
 debugger;
+$0
+endsnippet
+
+snippet mapdbg "map debugger"
+.map(x => { debugger; return x; })
+$0
+endsnippet
+
+snippet maplog "map log"
+.map(x => { console.log(x); return x; })
 $0
 endsnippet
 
@@ -301,4 +272,12 @@ endsnippet
 
 snippet edn "eslint-disable-next-line"
 // eslint-disable-next-line $1
+endsnippet
+
+snippet fdn "flowlint-next-line"
+// flowlint-next-line $1
+endsnippet
+
+snippet prig "prettier ignore"
+// prettier-ignore $1
 endsnippet
