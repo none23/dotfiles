@@ -22,13 +22,14 @@ setopt appendhistory
 eval $(keychain --eval --quiet id_rsa)
 
 # automatic startx on tty1
-# [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
+[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
 
 ## same, but doesn't exit if X fails
 # [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
 
 # zstyle completions {{{
-zstyle :compinstall filename '/Users/none23/.zshrc'
+zstyle :compinstall filename '/home/n/.zshrc'
+zstyle ":completion:*:commands" rehash 1 # do not trust completions cache
 zstyle ':acceptline' rehash true
 zstyle ':completion:*:*:*:users' ignored-patterns \
     adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
@@ -52,9 +53,9 @@ bindkey -s "^[Ok" "+"
 
 # powerline
 autoload -U colors && colors
-# prompt off
+prompt off
 powerline-daemon -q
-. /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
 # profile
@@ -88,11 +89,5 @@ source ~/.fzf/shell/key-bindings.zsh
   . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
 [[ -f ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && \
   . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
-# nvm
-[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
-
-# git-prompt
-source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0

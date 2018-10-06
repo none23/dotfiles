@@ -48,6 +48,7 @@ Plug 'SirVer/ultisnips'
 
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 Plug 'none23/autocomplete-flow'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -399,11 +400,11 @@ let g:choosewin_statusline_replace = 1
 let g:choosewin_return_on_single_win = 1
 
 let g:choosewin_color_label =           { 'gui': ['#111111', '#ffffff'], 'cterm': [235, 250, 'bold'] }
-let g:choosewin_color_label_current =   { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233, 'bold'] }
-let g:choosewin_color_land =            { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233] }
+let g:choosewin_color_label_current =   { 'gui': ['#de5e1e', '#000000'], 'cterm': [202, 233, 'bold'] }
+let g:choosewin_color_land =            { 'gui': ['#de5e1e', '#000000'], 'cterm': [202, 233] }
 let g:choosewin_color_other =           { 'gui': ['#111111', '#000000'], 'cterm': [235, 233] }
 let g:choosewin_color_overlay =         { 'gui': ['#111111', '#ffffff'], 'cterm': [235, 250] }
-let g:choosewin_color_overlay_current = { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233] }
+let g:choosewin_color_overlay_current = { 'gui': ['#de5e1e', '#000000'], 'cterm': [202, 233] }
 nmap  <C-w><Leader>  <Plug>(choosewin)
 
 " }}}
@@ -440,7 +441,7 @@ let g:deoplete#omni#functions.javascript = [
 \]
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript'] = ['ultisnips', 'flow', 'ternjs', 'arround', 'buffer']
-" let g:deoplete#sources['javascript'] = ['ultisnips', 'ternjs', 'flow', 'buffer']
+
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
@@ -500,6 +501,20 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_enter = 0
 " g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = -1
+let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
+let g:ale_javascript_eslint_suppress_eslintignore = 1
+let g:ale_javascript_prettier_use_local_config = 1
+
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['css'] = ['prettier']
+let g:ale_fix_on_save = 1
+
+nnoremap ,e :ALENextWrap<cr>
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+
 let g:ale_change_sign_column_color = 0
 let g:ale_sign_column_always = 1
 let g:ale_set_signs = 1
@@ -574,19 +589,19 @@ nmap <F5> :NERDTreeToggle<CR>
 
 " }}}
 
-" Vim Session {{{
-let g:session_autosave = 'yes'
+" " Vim Session {{{
+" let g:session_autosave = 'yes'
 
-" automatically (silently) save current working session every 5 minutes
-let g:session_autosave_periodic = 5
-let g:session_autosave_silent = 1
+" " automatically (silently) save current working session every 5 minutes
+" let g:session_autosave_periodic = 5
+" let g:session_autosave_silent = 1
 
-" when prompting do not include instructions on disabling prompting
-let g:session_verbose_messages = 0
+" " when prompting do not include instructions on disabling prompting
+" let g:session_verbose_messages = 0
 
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
+" let g:session_autosave = 'no'
+" let g:session_autoload = 'no'
 
-" }}}
+" " }}}
 
 " vim:syntax=vim

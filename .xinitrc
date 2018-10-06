@@ -10,6 +10,7 @@ fi
 xrdb -merge /home/$USER/.Xresources && xrdb ~/.Xresources
 xmodmap "/home/$USER/.Xmodmap"
 xset s off && xset -dpms && xset r rate 200 60
+xset -b
 xinput --disable SynPS/2\ Synaptics\ TouchPad
 
 # nvidia
