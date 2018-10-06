@@ -398,11 +398,11 @@ let g:choosewin_statusline_replace = 1
 let g:choosewin_return_on_single_win = 1
 
 let g:choosewin_color_label =           { 'gui': ['#111111', '#ffffff'], 'cterm': [235, 250, 'bold'] }
-let g:choosewin_color_label_current =   { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233, 'bold'] }
-let g:choosewin_color_land =            { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233] }
+let g:choosewin_color_label_current =   { 'gui': ['#de5e1e', '#000000'], 'cterm': [202, 233, 'bold'] }
+let g:choosewin_color_land =            { 'gui': ['#de5e1e', '#000000'], 'cterm': [202, 233] }
 let g:choosewin_color_other =           { 'gui': ['#111111', '#000000'], 'cterm': [235, 233] }
 let g:choosewin_color_overlay =         { 'gui': ['#111111', '#ffffff'], 'cterm': [235, 250] }
-let g:choosewin_color_overlay_current = { 'gui': ['#ff6600', '#000000'], 'cterm': [202, 233] }
+let g:choosewin_color_overlay_current = { 'gui': ['#de5e1e', '#000000'], 'cterm': [202, 233] }
 nmap  <C-w><Leader>  <Plug>(choosewin)
 
 " }}}
@@ -472,13 +472,16 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_text_changed = 'normal'
 " let g:ale_lint_on_enter = 0
 " let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = 50
+" let g:ale_lint_delay = 50
 " let g:ale_linters = { 'javascript': ['flow', 'eslint', 'stylelint'] }
 let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
 let g:ale_javascript_eslint_suppress_eslintignore = 1
+let g:ale_javascript_prettier_use_local_config = 1
 
-" let g:ale_fixers = { 'javascript': ['prettier', 'eslint'] }
-" let g:ale_fix_on_save = 1
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['json'] = ['prettier']
+let g:ale_fix_on_save = 1
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
