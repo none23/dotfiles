@@ -2,6 +2,7 @@
 *.log
 .tern-port
 .vim/autoload
+.vim/plugged
 .config/nvim/autoload
 .vim/autoload
 .vim/autoload

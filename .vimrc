@@ -1,6 +1,7 @@
 " Vim Plug {{{
 scriptencoding utf-8
 set encoding=utf-8
+
 " Install if not already {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -17,8 +18,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/tabman.vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-expand-region'
-Plug 't9md/vim-choosewin'
+" Plug 't9md/vim-choosewin'
 Plug 'ervandew/supertab'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'junegunn/vim-easy-align'
@@ -28,15 +30,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
-Plug 'elzr/vim-json', { 'for': ['json'] }
-Plug 'jparise/vim-graphql'
-Plug 'digitaltoad/vim-pug'
-Plug 'tpope/vim-haml'
+" Plug 'elzr/vim-json', { 'for': ['json'] }
+" Plug 'jparise/vim-graphql'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'tpope/vim-haml'
 Plug 'hhsnopek/vim-sugarss'
 Plug 'ap/vim-css-color'
-Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
-Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
-Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
+" Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
+" Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Plug 'mattn/webapi-vim' " <----------╮
 " Plug 'mattn/gist-vim' " dependancy --╯
@@ -46,24 +48,23 @@ Plug 'SirVer/ultisnips'
 
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
+
 Plug 'none23/autocomplete-flow'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 
-Plug 'xolox/vim-misc' " <---------------╮
-Plug 'xolox/vim-session' " dependancy --╯
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
+
+" Plug 'xolox/vim-misc' " <---------------╮
+" Plug 'xolox/vim-session' " dependancy --╯
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
-" Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'jiangmiao/auto-pairs'
-" Plug 'roxma/nvim-completion-manager'
-" Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
-" Plug 'roxma/ncm-flow'
 
 call plug#end()
 
@@ -87,6 +88,7 @@ set nocindent
 " }}}
 "
 " Misc Settings {{{
+" set splitbelow
 set splitright
 set cmdheight=1
 
@@ -180,7 +182,7 @@ set scrolloff=9
 set sidescrolloff=9
 
 " don't syntax highlight long lines
-set synmaxcol=120
+set synmaxcol=220
 
 " show line numbers
 set number
@@ -429,12 +431,33 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 " Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#max_list = 3000
-let g:deoplete#sources#syntax#min_keyword_length = 1
+let g:deoplete#sources#syntax#min_keyword_length = 2
+" let g:deoplete#auto_complete_delay = 10
+" let g:deoplete#max_list = 3000
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+  \ 'tern#Complete',
+  \ 'jspc#omni'
+\]
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript'] = ['ultisnips', 'ternjs', 'flow', 'arround', 'buffer']
+let g:deoplete#sources['javascript'] = ['ultisnips', 'flow', 'ternjs', 'arround', 'buffer']
+
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+" }}}
+
+" Autocomplete-flow{{{
+let g:autocomplete_flow#insert_paren_after_function = 0
+
+" }}}
+
+" Neosnippet{{{
+" let g:neosnippet#enable_completed_snippet = 1
+
+" SuperTab like snippets behavior.
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " }}}
 
@@ -467,13 +490,17 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 " }}}
 
 " ALE {{{
-let g:ale_set_quickfix = 1
+" let g:ale_set_baloons = 1
+" let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 1
+let g:ale_keep_list_window_open = 1
+let g:ale_list_window_size = 6
+let g:ale_completion_enabled = 1
 let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_text_changed = 'normal'
 " let g:ale_lint_on_enter = 0
-" let g:ale_lint_on_insert_leave = 1
-" let g:ale_lint_delay = 50
-" let g:ale_linters = { 'javascript': ['flow', 'eslint', 'stylelint'] }
+" g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = -1
 let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
 let g:ale_javascript_eslint_suppress_eslintignore = 1
 let g:ale_javascript_prettier_use_local_config = 1
@@ -481,6 +508,7 @@ let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['css'] = ['prettier']
 let g:ale_fix_on_save = 1
 
 nnoremap ,e :ALENextWrap<cr>
@@ -491,16 +519,40 @@ let g:ale_change_sign_column_color = 0
 let g:ale_sign_column_always = 1
 let g:ale_set_signs = 1
 let g:ale_open_list = 1
-let g:ale_list_window_size = 5
 let g:ale_echo_cursor = 1
-let g:ale_echo_msg_format = '%s %[code]% (%linter%)'
+" let g:ale_cursor_detail = 1
+let g:ale_echo_msg_format = '%s (%linter%) - %[code]%'
 
-let g:ale_echo_msg_error_str = '✗'
-let g:ale_echo_msg_warning_str = '⚠'
-let g:ale_echo_msg_info_str = 'i'
 
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
+" let g:ale_linters = { 'javascript': ['flow', 'eslint', 'stylelint'] }
+let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
+let g:ale_javascript_eslint_suppress_eslintignore = 1
+let g:ale_javascript_eslint_suppress_missing_config = 1
+let g:ale_javascript_prettier_use_local_config = 1
+
+let g:ale_fix_on_save = 1
+
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['css'] = ['prettier']
+
+nnoremap ,e :ALENextWrap<cr>
+nnoremap ,d :ALEFindReferences<cr>
+nnoremap ,i :ALEDetail<cr>
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
+
+let g:ale_echo_msg_error_str = '🔥'
+let g:ale_echo_msg_warning_str = '💩'
+let g:ale_echo_msg_info_str = '💬'
+let g:ale_sign_error = '🔥'
+let g:ale_sign_warning = '💩'
 let g:ale_sign_style_error = '⚑'
 let g:ale_sign_style_warning = '⚐'
 let g:ale_sign_info = 'i'
@@ -524,25 +576,32 @@ nnoremap <Leader>a :Ack!<Space>
 
 " }}}
 
+" Fugitive {{{
+" set statusline+=%{fugitive#statusline()} 
+
+" }}}
+
+autocmd QuickFixCmdPost *grep* cwindow
+
 " NERDTree {{{
 let NERDTreeShowHidden=1
 nmap <F5> :NERDTreeToggle<CR>
 
 " }}}
 
-" Vim Session {{{
-let g:session_autosave = 'yes'
+" " Vim Session {{{
+" let g:session_autosave = 'yes'
 
-" automatically (silently) save current working session every 5 minutes
-let g:session_autosave_periodic = 5
-let g:session_autosave_silent = 1
+" " automatically (silently) save current working session every 5 minutes
+" let g:session_autosave_periodic = 5
+" let g:session_autosave_silent = 1
 
-" when prompting do not include instructions on disabling prompting
-let g:session_verbose_messages = 0
+" " when prompting do not include instructions on disabling prompting
+" let g:session_verbose_messages = 0
 
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
+" let g:session_autosave = 'no'
+" let g:session_autoload = 'no'
 
-" }}}
+" " }}}
 
 " vim:syntax=vim
