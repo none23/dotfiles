@@ -680,14 +680,14 @@ awful.rules.rules = {
     }
   },
 
-  { rule = { class = "Blender"         }, properties = { screen = 1, tag = 3 } },
-  { rule = { class = "Atom"            }, properties = { screen = 1, tag = 3 } },
-  { rule = { class = "Inkscape"        }, properties = { screen = 1, tag = 4 } },
-  { rule = { class = "Gimp"            }, properties = { screen = 1, tag = 5 } },
-  { rule = { class = "Tor Browser"     }, properties = { screen = 1, tag = 6 } },
-  { rule = { class = "Arandr"          }, properties = { screen = 1, tag = 8 } },
-  { rule = { class = "Firefox"         }, properties = { screen = 1, tag = 9 } },
-  { rule = { class = "TelegramDesktop" }, properties = { screen = 1, tag = 9 } }
+  { rule = { class = "Blender"         }, properties = { screen = 1, tag = "3" } },
+  { rule = { class = "Atom"            }, properties = { screen = 1, tag = "3" } },
+  { rule = { class = "Inkscape"        }, properties = { screen = 1, tag = "4" } },
+  { rule = { class = "Gimp"            }, properties = { screen = 1, tag = "5" } },
+  { rule = { class = "Tor Browser"     }, properties = { screen = 1, tag = "6" } },
+  { rule = { class = "Arandr"          }, properties = { screen = 1, tag = "8" } },
+  { rule = { class = "Firefox"         }, properties = { screen = 1, tag = "9" } },
+  { rule = { class = "TelegramDesktop" }, properties = { screen = 1, tag = "9" } }
 }
 
 
