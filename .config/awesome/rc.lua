@@ -346,7 +346,7 @@ awful.screen.connect_for_each_screen(function(s)
           layout = wibox.layout.align.horizontal,
           {
             {
-              text = 'V',
+              text = 'v',
               widget = wibox.widget.textbox,
             },
             left = 2,
@@ -372,7 +372,7 @@ awful.screen.connect_for_each_screen(function(s)
           layout = wibox.layout.align.horizontal,
           {
             {
-              text = 'B',
+              text = '*',
               widget = wibox.widget.textbox,
             },
             left = 4,
