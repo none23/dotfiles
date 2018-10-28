@@ -550,14 +550,14 @@ augroup CloseLoclistWindowGroup
   autocmd QuitPre * if empty(&buftype) | lclose | endif
 augroup END
 
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'w'
-let g:ale_echo_msg_info_str = 'i'
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'w'
-let g:ale_sign_style_error = '⚑'
-let g:ale_sign_style_warning = '⚐'
-let g:ale_sign_info = 'i'
+let g:ale_echo_msg_error_str = '🔥'
+let g:ale_echo_msg_warning_str = '💩'
+let g:ale_echo_msg_info_str = '👉'
+let g:ale_sign_error = '🔥'
+let g:ale_sign_warning = '💩'
+let g:ale_sign_style_error = '💩'
+let g:ale_sign_style_warning = '💩'
+let g:ale_sign_info = '👉'
 
 " }}}
 
