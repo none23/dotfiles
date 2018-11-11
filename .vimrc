@@ -480,9 +480,8 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " Emmet {{{
-let g:user_emmet_mode='a'
-let g:user_emmet_install_global = 0
-autocmd FileType html,javascript.jsx EmmetInstall
+let g:user_emmet_settings = { 'javascript.jsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' } }
+autocmd FileType javascript.jsx EmmetInstall
 
 " }}}
 
