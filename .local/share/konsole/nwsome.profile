@@ -24,9 +24,11 @@ SilenceSeconds=30
 
 [Interaction Options]
 AutoCopySelectedText=true
+CopyTextAsHTML=false
 MiddleClickPasteMode=1
 MouseWheelZoomEnabled=false
-OpenLinksByDirectClickEnabled=true
+OpenLinksByDirectClickEnabled=false
+TrimLeadingSpacesInSelectedText=true
 TrimTrailingSpacesInSelectedText=true
 TripleClickMode=0
 UnderlineLinksEnabled=true

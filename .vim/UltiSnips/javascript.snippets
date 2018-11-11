@@ -1,41 +1,23 @@
-snippet mi "module index" b
-// @flow
-
-export * from './actions';
-export * from './sagas';
-export * from './model';
-export * from './selectors';
-export { default as reducer } from './reducer';
-endsnippet
-
-snippet act "action type" b
-export const $1 = '${1}';
-endsnippet
-
 snippet ind "index file" b
-// @flow
+// @flow strict
 
-import { $1 } from './${1:File}';
+import $1 from './${1:File}';
 
-export { $1 } from './${1:File}';
+export * from './${1:File}';
 export default $1;
 endsnippet
 
 snippet ccc "class component" b
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import b_ from 'b_';
+import cn from 'classnames';
 
-import Component from 'components/Component/Component';
+import styles from './$1.scss';
 
-import { action } from 'modules/router/actions';
-import { selector } from 'modules/router/selectors';
-import type { Type } from 'modules/router/model';
-
-import './$1.css';
+const b = key => styles[key];
 
 type Props = {|
 |};
@@ -45,7 +27,6 @@ type State = {|
 
 class ${1:ClassComponent} extends React.Component<Props, State> {
 	static defaultProps = {
-		className: '',
 	};
 
   state = {
@@ -54,7 +35,7 @@ class ${1:ClassComponent} extends React.Component<Props, State> {
 	componentDidMount = () => {
   };
 
-	componentDidUpdate = (prevProps, prevState) => {
+	componentDidUpdate = (prevProps: Props, prevState: State) => {
   };
 
 	componentWillUnmount = () => {
@@ -62,8 +43,8 @@ class ${1:ClassComponent} extends React.Component<Props, State> {
 
 	render = () => {
 		return (
-			<${2:div}>
-			</$2>
+			<div className={b('$1')}>
+			</div>
 		);
 	};
 };
@@ -82,29 +63,28 @@ export default connect(
 endsnippet
 
 snippet ffb "flow functional BEM component" b
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import b_ from 'b_';
 
-import './$1.css';
+import styles from './$1.scss';
 
-const b = b_.with('$1');
+const b = key => styles[key]
 
 type Props = {|
 |};
 
 const $1 = ({
 }: Props) => (
-	<${2:div} className={b()}>
-	</$2>
+	<div className={b('$1')}>
+	</div>
 );
 
 export default $1;
 endsnippet
 
 snippet fcfb "flow connected functional BEM component" b
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -117,17 +97,17 @@ import { action } from 'modules/router/actions';
 import { selector } from 'modules/router/selectors';
 import type { Type } from 'modules/router/model';
 
-import './$1.css';
+import styles from './$1.scss';
 
-const b = b_.with('$1');
+const b = key => styles[key]
 
 type Props = {|
 |};
 
 const $1 = ({
 }: Props) => (
-	<${2:div} className={b()}>
-	</$2>
+	<div} className={b('$1')}>
+	</div>
 );
 
 const mapStateToProps = createStructuredSelector({
@@ -143,31 +123,33 @@ export default connect(
 endsnippet
 
 snippet fff "flow functional component" b
-// @flow
+// @flow strict
 
 import * as React from 'react';
 
-import './$1.css';
+import styles from './$1.scss';
 
-type ${1:FlowComponent}Props = {
+const b = key => styles[key]
+
+
+type Props = {
 	className: string,
-	children: React.ElementType,
+	children: React.Node
 };
 
-const $1 = (props: $1Props) => {
+const $1 = (props: Props) => {
 	const {
 		className,
 		children,
 	} = props;
 
 	return (
-		<${2:div} styleName="" className={className}>
-		</$2>
+		<div className="" className={b('$1')}>
+		</div>
 	);
 };
 
 $1.defaultProps = {
-	className: '',
 	children: null,
 };
 
@@ -220,22 +202,6 @@ endsnippet
 snippet cwum "component will unmount"
 componentWillUnmount () {
 	$0
-}
-endsnippet
-
-snippet ren "render"
-render () {
-	return (
-		$0
-	);
-}
-endsnippet
-
-snippet gis "get initial state"
-getInitialState () {
-	return {
-		$0,
-	};
 }
 endsnippet
 

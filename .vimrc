@@ -39,7 +39,7 @@ Plug 'hhsnopek/vim-sugarss'
 Plug 'ap/vim-css-color'
 " Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 " Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
-" Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Plug 'mattn/webapi-vim' " <----------╮
 " Plug 'mattn/gist-vim' " dependancy --╯
@@ -495,7 +495,7 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 " let g:ale_set_baloons = 1
 " let g:ale_set_quickfix = 1
 let g:ale_set_loclist = 1
-let g:ale_keep_list_window_open = 1
+let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 6
 let g:ale_completion_enabled = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -503,15 +503,22 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_enter = 0
 " g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = -1
-let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
-let g:ale_javascript_eslint_suppress_eslintignore = 1
-let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = {}
+let g:ale_linters['javascript'] = ['flow', 'eslint'] 
+let g:ale_linters['css'] = ['stylelint'] 
+let g:ale_linters['scss'] = ['stylelint'] 
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fixers['json'] = ['prettier']
-let g:ale_fixers['css'] = ['prettier']
-let g:ale_fix_on_save = 1
+let g:ale_fixers['css'] = ['prettier', 'stylelint']
+let g:ale_fixers['scss'] = ['prettier', 'stylelint']
+
+let g:ale_javascript_eslint_suppress_missing_config = 1
+let g:ale_javascript_eslint_suppress_eslintignore = 1
+let g:ale_javascript_prettier_use_local_config = 1
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -523,21 +530,16 @@ let g:ale_set_signs = 1
 let g:ale_open_list = 1
 let g:ale_echo_cursor = 1
 " let g:ale_cursor_detail = 1
-let g:ale_echo_msg_format = '%s (%linter%) - %[code]%'
+let g:ale_echo_msg_format = '%s (%linter%) %[code]%'
+let g:ale_echo_msg_error_str = '🔥'
+let g:ale_echo_msg_warning_str = '💩'
+let g:ale_echo_msg_info_str = '👉'
+let g:ale_sign_error = '🔥'
+let g:ale_sign_warning = '💩'
+let g:ale_sign_style_error = '💩'
+let g:ale_sign_style_warning = '💩'
+let g:ale_sign_info = '👉'
 
-
-" let g:ale_linters = { 'javascript': ['flow', 'eslint', 'stylelint'] }
-let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
-let g:ale_javascript_eslint_suppress_eslintignore = 1
-let g:ale_javascript_eslint_suppress_missing_config = 1
-let g:ale_javascript_prettier_use_local_config = 1
-
-let g:ale_fix_on_save = 1
-
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['json'] = ['prettier']
-let g:ale_fixers['css'] = ['prettier']
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap ,d :ALEFindReferences<cr>
@@ -549,15 +551,6 @@ augroup CloseLoclistWindowGroup
   autocmd!
   autocmd QuitPre * if empty(&buftype) | lclose | endif
 augroup END
-
-let g:ale_echo_msg_error_str = '🔥'
-let g:ale_echo_msg_warning_str = '💩'
-let g:ale_echo_msg_info_str = '👉'
-let g:ale_sign_error = '🔥'
-let g:ale_sign_warning = '💩'
-let g:ale_sign_style_error = '💩'
-let g:ale_sign_style_warning = '💩'
-let g:ale_sign_info = '👉'
 
 " }}}
 
