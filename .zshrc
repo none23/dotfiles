@@ -3,7 +3,7 @@
 export LANG=en_US.UTF-8
 
 export EDITOR=nvim
-export VISUAL=nvim
+export VISUAL="konsole -e nvim"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
