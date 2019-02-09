@@ -29,6 +29,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'wakatime/vim-wakatime'
+
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 " Plug 'elzr/vim-json', { 'for': ['json'] }
@@ -40,6 +42,8 @@ Plug 'ap/vim-css-color'
 " Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 " Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
 Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
 
 " Plug 'mattn/webapi-vim' " <----------╮
 " Plug 'mattn/gist-vim' " dependancy --╯
@@ -137,6 +141,9 @@ set virtualedit=block
 set foldmethod=syntax
 set foldlevel=999
 autocmd FileType zsh,bash,shell,vim setlocal foldmethod=marker
+
+" fix syntax highlightiing in .flow files
+autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
 
 " enable concealment
 set conceallevel=1
