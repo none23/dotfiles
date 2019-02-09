@@ -99,3 +99,6 @@ Gdraw.GGadget.Box.PressedBackground: #de4400
 fontforge.CharView.WidthColor: #ffffff
 fontforge.CharView.TransformOriginColor: #ffffff
 fontforge.CharView.ForegroundOutlineColor: #ffffff
+Xterm*foreground: #CCCCCC
+Xterm*background: #000000
+Xterm*faceName: Terminus:size=9
