@@ -69,6 +69,7 @@
 
 [core]
   excludesFile = ~/.gitignore-glogal
+	editor = nvim
 
 [help]
     autocorrect = 50
