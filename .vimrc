@@ -54,10 +54,17 @@ Plug 'SirVer/ultisnips'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-Plug 'none23/autocomplete-flow'
+" Plug 'none23/autocomplete-flow'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-flow.vim'
+
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Plug 'Shougo/neosnippet'
 " Plug 'Shougo/neosnippet-snippets'
@@ -499,8 +506,8 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 
 " ALE {{{
 " let g:ale_set_baloons = 1
-" let g:ale_set_quickfix = 1
-let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 1
+" let g:ale_set_loclist = 1
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 6
 let g:ale_completion_enabled = 1
@@ -512,9 +519,9 @@ let g:ale_lint_delay = -1
 let g:ale_fix_on_save = 1
 
 let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['flow', 'eslint'] 
-let g:ale_linters['css'] = ['stylelint'] 
-let g:ale_linters['scss'] = ['stylelint'] 
+let g:ale_linters['javascript'] = ['flow', 'eslint']
+let g:ale_linters['css'] = ['stylelint']
+let g:ale_linters['scss'] = ['stylelint']
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
@@ -578,7 +585,7 @@ nnoremap <Leader>a :Ack!<Space>
 " }}}
 
 " Fugitive {{{
-" set statusline+=%{fugitive#statusline()} 
+" set statusline+=%{fugitive#statusline()}
 
 " }}}
 
@@ -604,5 +611,31 @@ nmap <F5> :NERDTreeToggle<CR>
 " let g:session_autoload = 'no'
 
 " " }}}
+" LSP {{{
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'flow',
+  \ 'cmd': {server_info->['flow', 'lsp']},
+  \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+  \ 'whitelist': ['javascript', 'javascript.jsx'],
+  \ })
+
+" }}}
+
+" Asyncomplete {{{
+" let g:asyncomplete_remove_duplicates = 1
+" let g:asyncomplete_smart_completion = 1
+" let g:asyncomplete_auto_popup = 1
+" 
+" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+"     \ 'name': 'flow',
+"     \ 'whitelist': ['javascript'],
+"     \ 'completor': function('asyncomplete#sources#flow#completor'),
+"     \ 'config': {
+"     \    'prefer_local': 1,
+"     \    'flowbin_path': expand("$(npm bin)/flow"),
+"     \    'show_typeinfo': 1
+"     \  },
+"     \ }))
+" }}}
 
 " vim:syntax=vim
