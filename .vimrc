@@ -611,13 +611,24 @@ nmap <F5> :NERDTreeToggle<CR>
 " let g:session_autoload = 'no'
 
 " " }}}
+
 " LSP {{{
-au User lsp_setup call lsp#register_server({
-  \ 'name': 'flow',
-  \ 'cmd': {server_info->['flow', 'lsp']},
-  \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-  \ 'whitelist': ['javascript', 'javascript.jsx'],
-  \ })
+if executable('flow')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'flow',
+    \ 'cmd': {server_info->['flow', 'lsp']},
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ })
+endif
+
+if executable('css-languageserver')
+  au User lsp_setup call lsp#register_server({
+      \ 'name': 'css-languageserver',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+      \ 'whitelist': ['css', 'less', 'scss', 'sass'],
+      \ })
+endif
 
 " }}}
 
