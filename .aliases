@@ -77,34 +77,6 @@ dot () {
 }
 
 
-
-# multi-screen {{{
-_LVDS='LVDS1'
-_HDMI='HDMI1'
-
-_prerandr () {
-    xrandr --newmode "1360x768_60.00"  84.72  1360 1424 1568 1776  768  769  772  795  -HSync +Vsync \
-    && xrandr --addmode $HDMI 1360x768_60.00 \
-    && $1 \
-    || $1
-}
-
-alias _qrandr="
-    xrandr \
-        --output $HDMI \
-            --rotate normal \
-            --mode 1360x768_60.00 \
-            --pos 1366x0 \
-        --output $LVDS \
-            --rotate normal \
-            --mode 1366x768 \
-            --pos 0x0 \
-            --primary \
-            --preferred"
-
-alias arandr='_prerandr arandr'
-alias qrandr='_prerandr _qrandr'
-# }}}
 # dpms control {{{
 alias wkp='xset dpms force on'
 alias pretendtosleep='xset dpms force off'
@@ -118,11 +90,7 @@ _start_tor_if_not_running () {
         echo "tor started"
     fi
 }
-
-chromium-tor () {
-    _start_tor_if_not_running
-    chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
-}
+alias chromium-tor='_start_tor_if_not_running; chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
 
 # }}}
 # shutdown/reboot {{{
