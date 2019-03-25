@@ -37,7 +37,7 @@ Plug 'w0rp/ale'
 " Plug 'jparise/vim-graphql'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'tpope/vim-haml'
-Plug 'hhsnopek/vim-sugarss'
+" Plug 'hhsnopek/vim-sugarss'
 Plug 'ap/vim-css-color'
 " Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 " Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
@@ -51,23 +51,28 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Plug 'none23/autocomplete-flow'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+" Plug 'autozimu/LanguageClient-neovim', {
+"       \ 'branch': 'next',
+"       \ 'do': 'bash install.sh',
+"       \ }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " Plug 'prabirshrestha/asyncomplete-flow.vim'
 
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
 
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 " Plug 'xolox/vim-misc' " <---------------╮
 " Plug 'xolox/vim-session' " dependancy --╯
@@ -250,7 +255,7 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
 set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 set isfname-==
-set completeopt=longest,menuone
+set completeopt=menuone,noinsert,noselect
 " set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
 " set completeopt+=menu,menuone         " show PUM, even for one thing
 " set complete-=i                       " don't complete includes
@@ -389,18 +394,18 @@ let g:tabman_focus  = 'tf'
 
 " TernJS {{{
 " omnifuncs
-augroup omnifuncs
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup end
+" augroup omnifuncs
+"   autocmd!
+"   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" augroup end
 
-let g:tern_show_signature_in_pum = 1
-autocmd FileType javascript setlocal omnifunc=tern#Complete
-autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+" let g:tern_show_signature_in_pum = 1
+" autocmd FileType javascript setlocal omnifunc=tern#Complete
+" autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " }}}
 
@@ -448,15 +453,16 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#sources#syntax#min_keyword_length = 2
-" let g:deoplete#auto_complete_delay = 10
-" let g:deoplete#max_list = 3000
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
-\]
+let g:deoplete#auto_complete_delay = 10
+let g:deoplete#max_list = 3000
+" let g:deoplete#omni#functions = {}
+" let g:deoplete#omni#functions.javascript = [
+"   \ 'tern#Complete',
+"   \ 'jspc#omni'
+" \]
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript'] = ['ultisnips', 'flow', 'ternjs', 'arround', 'buffer']
+let g:deoplete#sources['javascript'] = ['ultisnips', 'flow', 'arround', 'buffer']
+let g:deoplete#sources['javascript.jsx'] = ['ultisnips', 'flow', 'arround', 'buffer']
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
@@ -468,19 +474,9 @@ let g:autocomplete_flow#insert_paren_after_function = 0
 
 " }}}
 
-" Neosnippet{{{
-" let g:neosnippet#enable_completed_snippet = 1
-
-" SuperTab like snippets behavior.
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" }}}
-
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:SuperTabClosePreviewOnPopupClose = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " }}}
 
@@ -510,18 +506,18 @@ let g:ale_set_quickfix = 1
 " let g:ale_set_loclist = 1
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 6
-let g:ale_completion_enabled = 1
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_completion_enabled = 0
 " let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_enter = 0
-" g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = -1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_delay = 100
 let g:ale_fix_on_save = 1
 
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['flow', 'eslint']
-let g:ale_linters['css'] = ['stylelint']
-let g:ale_linters['scss'] = ['stylelint']
+let g:ale_linters['css'] = ['css-languageserver', 'stylelint']
+let g:ale_linters['scss'] = ['css-languageserver', 'stylelint']
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
@@ -552,6 +548,10 @@ let g:ale_sign_warning = '💩'
 let g:ale_sign_style_error = '💩'
 let g:ale_sign_style_warning = '💩'
 let g:ale_sign_info = '👉'
+let g:ale_virtualtext_cursor = 0
+let g:ale_virtualtext_prefix = ''
+
+
 
 
 nnoremap ,e :ALENextWrap<cr>
@@ -613,6 +613,18 @@ nmap <F5> :NERDTreeToggle<CR>
 " " }}}
 
 " LSP {{{
+let g:lsp_insert_text_enabled = 1
+let g:lsp_virtual_text_enabled = 0
+
+if executable('$(npm bin)/graphql-language-server')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'graphql-languge-server',
+    \ 'cmd': {server_info->['graphql-languge-server', 'server']},
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.graphqlconfig'))},
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ })
+endif
+
 if executable('flow')
   au User lsp_setup call lsp#register_server({
     \ 'name': 'flow',
@@ -629,24 +641,45 @@ if executable('css-languageserver')
       \ 'whitelist': ['css', 'less', 'scss', 'sass'],
       \ })
 endif
-
+ 
 " }}}
 
-" Asyncomplete {{{
-" let g:asyncomplete_remove_duplicates = 1
-" let g:asyncomplete_smart_completion = 1
-" let g:asyncomplete_auto_popup = 1
+" LanguageClient {{{
+" let g:LanguageClient_serverCommands = {
+"     \ 'javascript': ['flow', 'lsp'],
+"     \ 'javascript.jsx': ['flow', 'lsp'],
+"     \ 'css': ['css-languageserver', '--stdio'], 
+"     \ 'less': ['css-languageserver', '--stdio'], 
+"     \ 'scss': ['css-languageserver', '--stdio'], 
+"     \ 'sass': ['css-languageserver', '--stdio'],
+"     \ }
 " 
-" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-"     \ 'name': 'flow',
-"     \ 'whitelist': ['javascript'],
-"     \ 'completor': function('asyncomplete#sources#flow#completor'),
-"     \ 'config': {
-"     \    'prefer_local': 1,
-"     \    'flowbin_path': expand("$(npm bin)/flow"),
-"     \    'show_typeinfo': 1
-"     \  },
-"     \ }))
+" let g:LanguageClient_completionPreferTextEdit = 1
+" 
+" function LC_maps()
+"     if has_key(g:LanguageClient_serverCommands, &filetype)
+"         nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+"         nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+"         nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+"     endif
+" endfunction
+" 
+" autocmd FileType * call LC_maps()
+" 
+" set completefunc=LanguageClient#complete
+" 
+" }}}
+" Asyncomplete {{{
+let g:asyncomplete_remove_duplicates = 0
+let g:asyncomplete_smart_completion = 0
+let g:asyncomplete_auto_popup = 1
+" 
+" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" 
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" set shortmess+=c
+
 " }}}
 
 " vim:syntax=vim
