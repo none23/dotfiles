@@ -80,6 +80,8 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'https://gitlab.com/Lenovsky/nuake.git'
+
 " Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
 " Plug 'jiangmiao/auto-pairs'
 
@@ -350,7 +352,7 @@ map tp :tabp<CR>
 
 " term-mode
 map <F2> :below 10sp term://$SHELL<CR>i
-map <F4> :below 10sp term:///usr/bin/node<CR>i
+" map <F4> :below 10sp term:///usr/bin/node<CR>i
 
 " yank to system clipboard
 nmap <F8> "+yy
@@ -641,6 +643,17 @@ if executable('css-languageserver')
       \ 'whitelist': ['css', 'less', 'scss', 'sass'],
       \ })
 endif
+ 
+" }}}
+
+
+" Nuake {{{
+nnoremap <F4> :Nuake<CR>
+inoremap <F4> <C-\><C-n>:Nuake<CR>
+tnoremap <F4> <C-\><C-n>:Nuake<CR>
+
+let g:nuake_position = 'top'
+let g:nuake_size = 0.2
  
 " }}}
 
