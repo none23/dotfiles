@@ -85,4 +85,12 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "typescript.autoClosingTags": false,
   "typescript.check.npmIsInstalled": false,
+  "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "npm.packageManager": "yarn",
+  "php.validate.enable": false,
+  "php.suggest.basic": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.blame.highlight.enabled": false,
+  "gitlens.codeLens.enabled": false,
 }
