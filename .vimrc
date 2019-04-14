@@ -22,7 +22,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-expand-region'
 " Plug 't9md/vim-choosewin'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
@@ -30,9 +30,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'wakatime/vim-wakatime'
+Plug 'https://gitlab.com/Lenovsky/nuake.git'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Plug 'elzr/vim-json', { 'for': ['json'] }
 " Plug 'jparise/vim-graphql'
 " Plug 'digitaltoad/vim-pug'
@@ -61,26 +63,29 @@ Plug 'SirVer/ultisnips'
 "       \ 'branch': 'next',
 "       \ 'do': 'bash install.sh',
 "       \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'ncm2/ncm2-vim-lsp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-path'
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " Plug 'prabirshrestha/asyncomplete-flow.vim'
 
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
 
 " Plug 'xolox/vim-misc' " <---------------╮
 " Plug 'xolox/vim-session' " dependancy --╯
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-Plug 'https://gitlab.com/Lenovsky/nuake.git'
 
 " Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
 " Plug 'jiangmiao/auto-pairs'
@@ -109,7 +114,11 @@ set nocindent
 " Misc Settings {{{
 " set splitbelow
 set splitright
-set cmdheight=1
+set cmdheight=2
+set hidden
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 " (OFF) cd to file directory automatically
 set noautochdir
@@ -269,7 +278,8 @@ set completeopt=menuone,noinsert,noselect
 set directory=~/.vim/dirs/tmp
 
 " turn on backups
-set backup
+set nobackup
+set nowritebackup
 set backupdir=~/.vim/dirs/backups
 
 " turn on undo history
@@ -452,33 +462,36 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 " }}}
 
 " Deoplete {{{
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#sources#syntax#min_keyword_length = 2
-let g:deoplete#auto_complete_delay = 10
-let g:deoplete#max_list = 3000
-" let g:deoplete#omni#functions = {}
-" let g:deoplete#omni#functions.javascript = [
-"   \ 'tern#Complete',
-"   \ 'jspc#omni'
-" \]
-let g:deoplete#sources = {}
-let g:deoplete#sources['javascript'] = ['ultisnips', 'flow', 'arround', 'buffer']
-let g:deoplete#sources['javascript.jsx'] = ['ultisnips', 'flow', 'arround', 'buffer']
-
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#sources#syntax#min_keyword_length = 2
+" let g:deoplete#auto_complete_delay = 10
+" let g:deoplete#max_list = 3000
+" 
+"  let g:deoplete#omni#functions = {}
+"  let g:deoplete#omni#functions.javascript = [
+"    \ 'tern#Complete',
+"    \ 'jspc#omni'
+"  \]
+" 
+" let g:deoplete#sources = {}
+" let g:deoplete#Isources['javascript'] = ['ultisnips', 'flow', 'arround', 'buffer']
+" let g:deoplete#sources['javascript.jsx'] = ['ultisnips', 'flow', 'arround', 'buffer']
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
 " }}}
 
 " Autocomplete-flow{{{
-let g:autocomplete_flow#insert_paren_after_function = 0
+" let g:autocomplete_flow#insert_paren_after_function = 0
 
 " }}}
 
 " SuperTab {{{
-let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
-let g:SuperTabClosePreviewOnPopupClose = 1
+" let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
+" let g:SuperTabClosePreviewOnPopupClose = 1
 
 " }}}
 
@@ -587,7 +600,7 @@ nnoremap <Leader>a :Ack!<Space>
 " }}}
 
 " Fugitive {{{
-" set statusline+=%{fugitive#statusline()}
+set statusline+=%{fugitive#statusline()}
 
 " }}}
 
@@ -618,32 +631,26 @@ nmap <F5> :NERDTreeToggle<CR>
 let g:lsp_insert_text_enabled = 1
 let g:lsp_virtual_text_enabled = 0
 
-if executable('$(npm bin)/graphql-language-server')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'graphql-languge-server',
-    \ 'cmd': {server_info->['graphql-languge-server', 'server']},
-    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.graphqlconfig'))},
-    \ 'whitelist': ['javascript', 'javascript.jsx'],
-    \ })
-endif
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'graphql-languge-server',
+  \ 'cmd': {server_info->['graphql-languge-server', 'server']},
+  \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.graphqlconfig'))},
+  \ 'whitelist': ['javascript', 'javascript.jsx'],
+  \ })
 
-if executable('flow')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'flow',
-    \ 'cmd': {server_info->['flow', 'lsp']},
-    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-    \ 'whitelist': ['javascript', 'javascript.jsx'],
-    \ })
-endif
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'flow',
+  \ 'cmd': {server_info->['flow', 'lsp']},
+  \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+  \ 'whitelist': ['javascript', 'javascript.jsx'],
+  \ })
 
-if executable('css-languageserver')
-  au User lsp_setup call lsp#register_server({
-      \ 'name': 'css-languageserver',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-      \ 'whitelist': ['css', 'less', 'scss', 'sass'],
-      \ })
-endif
- 
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'css-languageserver',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+    \ 'whitelist': ['css', 'less', 'scss', 'sass'],
+    \ })
+
 " }}}
 
 
@@ -682,17 +689,142 @@ let g:nuake_size = 0.2
 " set completefunc=LanguageClient#complete
 " 
 " }}}
-" Asyncomplete {{{
-let g:asyncomplete_remove_duplicates = 0
-let g:asyncomplete_smart_completion = 0
-let g:asyncomplete_auto_popup = 1
+" ncm2 {{{
+" enable ncm2 for all buffers
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 " 
-" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
-" 
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" set completeopt=noinsert,menuone,noselect
+"  
 " set shortmess+=c
+" 
 
+
+" wrap existing omnifunc
+" Note that omnifunc does not run in background and may probably block the
+" editor. If you don't want to be blocked by omnifunc too often, you could
+" add 180ms delay before the omni wrapper:
+"  'on_complete': ['ncm2#on_complete#delay', 180,
+"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+" au User Ncm2Plugin call ncm2#register_source({
+"     \ 'name' : 'css',
+"     \ 'priority': 9+=c,
+"     \ 'subscope_enable': 1,
+"     \ 'scope': ['css','scss'],
+"     \ 'mark': 'css',
+"     \ 'word_pattern': '[\w\-]+',
+"     \ 'complete_pattern': ':\s*',
+"     \ 'on_complete': ['ncm2#on_complete#delay', 180, 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+"     \ })
+
+" }}}
+
+" CoC {{{
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+
+" Add diagnostic info for https://github.com/itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 " vim:syntax=vim
