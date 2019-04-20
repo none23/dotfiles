@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "coc-css": "^1.0.7",
-    "coc-emmet": "^1.0.9",
     "coc-json": "^1.0.14",
     "coc-ultisnips": "^1.2.3"
   }
