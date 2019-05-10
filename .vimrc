@@ -21,74 +21,24 @@ Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-expand-region'
-" Plug 't9md/vim-choosewin'
-" Plug 'ervandew/supertab'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'wakatime/vim-wakatime'
-Plug 'https://gitlab.com/Lenovsky/nuake.git'
-
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Plug 'elzr/vim-json', { 'for': ['json'] }
-" Plug 'jparise/vim-graphql'
-" Plug 'digitaltoad/vim-pug'
-" Plug 'tpope/vim-haml'
-" Plug 'hhsnopek/vim-sugarss'
 Plug 'ap/vim-css-color'
-" Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
-" Plug 'kewah/vim-stylefmt', { 'for': ['css', 'scss', 'stylus', 'sugarss'] }
 Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-
-" Plug 'mattn/webapi-vim' " <----------╮
-" Plug 'mattn/gist-vim' " dependancy --╯
-
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'https://gitlab.com/Lenovsky/nuake.git'
+Plug 'wakatime/vim-wakatime'
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
-
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
-" Plug 'none23/autocomplete-flow'
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-
-" Plug 'autozimu/LanguageClient-neovim', {
-"       \ 'branch': 'next',
-"       \ 'do': 'bash install.sh',
-"       \ }
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'ncm2/ncm2-vim-lsp'
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'prabirshrestha/asyncomplete-flow.vim'
-
-" Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
-
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
-
-" Plug 'xolox/vim-misc' " <---------------╮
-" Plug 'xolox/vim-session' " dependancy --╯
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-" Plug 'Olical/vim-enmasse'                 " Edit all files in a Quickfix list
-" Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -505,8 +455,11 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " Emmet {{{
-let g:user_emmet_settings = { 'javascript.jsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' } }
-autocmd FileType javascript.jsx EmmetInstall
+let g:user_emmet_settings = { 
+      \ 'javascript.jsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
+      \ 'typescript.tsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
+      \ }
+autocmd FileType javascript.jsx,typescript.tsx EmmetInstall
 
 " }}}
 
@@ -531,11 +484,13 @@ let g:ale_fix_on_save = 1
 
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['flow', 'eslint']
+let g:ale_linters['typescript'] = ['tsserver', 'eslint']
 let g:ale_linters['css'] = ['css-languageserver', 'stylelint']
 let g:ale_linters['scss'] = ['css-languageserver', 'stylelint']
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['css'] = ['prettier', 'stylelint']
 let g:ale_fixers['scss'] = ['prettier', 'stylelint']
@@ -543,6 +498,7 @@ let g:ale_fixers['scss'] = ['prettier', 'stylelint']
 let g:ale_javascript_eslint_suppress_missing_config = 1
 let g:ale_javascript_eslint_suppress_eslintignore = 1
 let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_typescript_tsserver_use_global = 0
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -650,6 +606,7 @@ au User lsp_setup call lsp#register_server({
     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
     \ 'whitelist': ['css', 'less', 'scss', 'sass'],
     \ })
+
 
 " }}}
 

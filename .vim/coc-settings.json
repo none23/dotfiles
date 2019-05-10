@@ -1,4 +1,7 @@
 {
+  "tsserver": {
+    "enable": false
+  },
   "languageserver": {
     "flow": {
       "command": "flow",
@@ -19,6 +22,10 @@
       "args": ["start"],
       "filetypes": ["sh", "zsh"],
       "ignoredRootPaths": ["~"]
+    },
+    "reason": {
+      "command": "/home/n/.vim/reason-language-server.exe",
+      "filetypes": ["reason"]
     }
   }
 }
