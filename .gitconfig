@@ -2,9 +2,9 @@
     a = add
     aa = add --all
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
-    bum = branch --set-upstream-to=origin/master 
-    c = commit
-    ca = commit --amend
+    bum = branch --set-upstream-to=origin/master
+    c = commit -S
+    ca = commit --amend -S
     d = diff --stat
     dh = difftool HEAD^
     dl = diff --cached HEAD^
@@ -30,8 +30,8 @@
     ra = rebase --abort
     rc = rebase --continue
     ri = rebase --interactive
-    rim = rebase --interactive origin/master
-    s = status 
+    rim = rebase --interactive -S origin/master
+    s = status
     st = stash
     sta = stash apply
 
@@ -95,3 +95,4 @@
 [user]
     email = n.anisimov.23@gmail.com
     name = none23
+    signingkey = 03B9BFBA70DBD164C8215239584CC768671E4E97
