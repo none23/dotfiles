@@ -179,7 +179,7 @@ pn () {
 }
 
 rr () {
-    [[ $1 ]] && ranger "$*" || ranger "$(pwd)"
+    [[ $1 ]] && vifm "$*" || vifm "$(pwd)"
 }
 
 zathura () {
