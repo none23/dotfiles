@@ -81,8 +81,11 @@ set equalalways
 set winfixheight
 
 " status bar
-set laststatus=3
+set laststatus=2
 set noshowmode
+
+" disable modeline (i.e. 'vim:option=value' comments at the end of files
+set nomodeline
 
 " substitute with '/g' by default
 set gdefault
@@ -115,7 +118,7 @@ set diffopt=vertical
 set fillchars+=diff:┈
 
 " add blank lines to keep sides aligned
-set diffopt+=filler 
+set diffopt+=filler
 
 " ignore whitespace changes
 set diffopt+=iwhite
@@ -150,17 +153,17 @@ set confirm
 " remove trailing whitespace on save
 autocmd BufRead * autocmd  BufWritePre <buffer> %s/\s\+$//e
 
-" use foldmethod=marker 
-autocmd FileType zsh,bash,shell,vim 
+" use foldmethod=marker
+autocmd FileType zsh,bash,shell,vim
       \ setlocal foldmethod=marker
 
 " syntax highlighting in .flow files
-autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow} 
+autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow}
       \ setfiletype javascript
 
-" consider .babelrc, .prettierrc, .eslintrc, etc. to be json5
-autocmd BufRead {.babelrc,.prettierrc,.eslintrc,.stylelintrc,tsconfig.json} 
-      \ setfiletype json5
+" consider .babelrc, .prettierrc, .eslintrc, etc. to be jsonc
+autocmd BufRead {.babelrc,.prettierrc,.eslintrc,.stylelintrc,tsconfig.json}
+      \ setfiletype jsonc
 
 " }}}
 
@@ -360,7 +363,7 @@ let g:airline#extensions#tabline#fnametruncate = 6
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 
-" coc diagnostics 
+" coc diagnostics
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
@@ -375,7 +378,7 @@ nmap ga <plug>(EasyAlign)
 " }}}
 
 " emmet {{{
-let g:user_emmet_settings = { 
+let g:user_emmet_settings = {
       \ 'javascript.jsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ 'typescript.tsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ }
@@ -417,8 +420,8 @@ let g:ale_fixers['jsonc'] = ['prettier']
 let g:ale_fixers['json5'] = ['prettier']
 let g:ale_fixers['css'] = ['prettier', 'stylelint']
 let g:ale_fixers['scss'] = ['prettier', 'stylelint']
-let g:ale_fixers['graphql'] = ['prettier'] 
-let g:ale_fixers['markdown'] = ['prettier'] 
+let g:ale_fixers['graphql'] = ['prettier']
+let g:ale_fixers['markdown'] = ['prettier']
 
 let g:ale_javascript_eslint_suppress_missing_config = 1
 let g:ale_javascript_eslint_suppress_eslintignore = 1
@@ -513,7 +516,7 @@ au User lsp_setup call lsp#register_server({
 " }}}
 
 " coc {{{
-" trigger completion and navigate with <tab> 
+" trigger completion and navigate with <tab>
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -524,7 +527,7 @@ inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<c-h>"
 " trigger completion with <c-space>
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" confirm completion with <cr> 
+" confirm completion with <cr>
 inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 
 " navigate diagnostics
@@ -560,7 +563,7 @@ nmap <leader>f  <plug>(coc-format-selected)
 augroup mygroup
   autocmd!
   " setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,jsonc setlocal formatexpr=CocAction('formatSelected')
 
   " update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
@@ -573,7 +576,7 @@ nmap <leader>a  <plug>(coc-codeaction-selected)
 " codeAction on the current line
 nmap <leader>ac  <plug>(coc-codeaction)
 
-" autofix problem 
+" autofix problem
 nmap <leader>F  <plug>(coc-fix-current)
 
 " format buffer
