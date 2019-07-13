@@ -1,7 +1,4 @@
 {
-  "tsserver": {
-    "enable": false
-  },
   "languageserver": {
     "flow": {
       "command": "flow",
