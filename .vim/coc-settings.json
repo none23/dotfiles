@@ -1,4 +1,11 @@
 {
+  "tsserver": {
+    "enable": true,
+    "settings": {
+      "enableJavascript": true
+    },
+    "filetypes": ["typescript"]
+  },
   "languageserver": {
     "flow": {
       "command": "flow",
