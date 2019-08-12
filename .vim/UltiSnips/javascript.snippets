@@ -7,17 +7,13 @@ export * from './${1:File}';
 export default $1;
 endsnippet
 
-snippet ccc "class component" b
+snippet cc "class component" b
 // @flow strict
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import cn from 'classnames';
+import cn from 'clsx';
 
-import styles from './$1.scss';
-
-const b = key => styles[key];
+import s from './$1.scss';
 
 type Props = {|
 |};
@@ -32,132 +28,62 @@ class ${1:ClassComponent} extends React.Component<Props, State> {
   state = {
   };
 
-	componentDidMount = () => {
-  };
-
-	componentDidUpdate = (prevProps: Props, prevState: State) => {
-  };
-
-	componentWillUnmount = () => {
-  };
-
-	render = () => {
+	render() {
 		return (
-			<div className={b('$1')}>
+			<div className={s.$1}>
 			</div>
 		);
 	};
 };
 
-const mapStateToProps = createStructuredSelector({
-});
-
-const mapDispatchToProps = {
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)($1);
-
+export default $1;
 endsnippet
 
-snippet ffb "flow functional BEM component" b
+snippet fc "flow functional component" b
 // @flow strict
 
 import * as React from 'react';
 
-import styles from './$1.scss';
-
-const b = key => styles[key]
+import s from './$1.scss';
 
 type Props = {|
 |};
 
 const $1 = ({
 }: Props) => (
-	<div className={b('$1')}>
+	<div className={s.$1}>
 	</div>
 );
 
 export default $1;
 endsnippet
 
-snippet fcfb "flow connected functional BEM component" b
-// @flow strict
-
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import b_ from 'b_';
-
-import Component from 'components/Component/Component';
-
-import { action } from 'modules/router/actions';
-import { selector } from 'modules/router/selectors';
-import type { Type } from 'modules/router/model';
-
-import styles from './$1.scss';
-
-const b = key => styles[key]
-
-type Props = {|
-|};
-
-const $1 = ({
-}: Props) => (
-	<div} className={b('$1')}>
-	</div>
-);
-
-const mapStateToProps = createStructuredSelector({
-});
-
-const mapDispatchToProps = {
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)($1);
-endsnippet
 
 snippet fff "flow functional component" b
 // @flow strict
 
 import * as React from 'react';
 
-import styles from './$1.scss';
+import s from './$1.scss';
 
-const b = key => styles[key]
+type Props = {|
+	$3,
+|};
 
-
-type Props = {
-	className: string,
-	children: React.Node
-};
-
-const $1 = (props: Props) => {
-	const {
-		className,
-		children,
-	} = props;
-
+const $1 = ({
+	$3,
+}: Props) => {
 	return (
-		<div className="" className={b('$1')}>
-		</div>
+		<{$2:div} className={s.$1}>
+		</$2>
 	);
-};
-
-$1.defaultProps = {
-	children: null,
 };
 
 export default $1;
 endsnippet
 
 snippet im "import" b
-import $1 from '$2';
+import $1 from '$1';
 endsnippet
 
 snippet imn "import {...}" b
@@ -166,7 +92,27 @@ endsnippet
 
 snippet ir "import React" b
 import * as React from 'react';
-$0
+endsnippet
+
+snippet uq "useQuery" b
+// @flow strict
+
+import * as React from 'react';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+import type { $1 as $1T } from './__generated__/$1';
+
+const $1 = gql`
+  query $1 {
+  }
+`;
+
+function use$1() {
+  const { data } = useQuery($1);
+	return data
+}
+
+export default use$1;
 endsnippet
 
 snippet exa "export as"
@@ -193,12 +139,6 @@ componentDidUpdate (prevProps, prevState) {
 }
 endsnippet
 
-snippet scup "should component update"
-shouldComponentUpdate (nextProps, nextState) {
-	$0
-}
-endsnippet
-
 snippet cwum "component will unmount"
 componentWillUnmount () {
 	$0
@@ -209,22 +149,14 @@ snippet dp "static defaultProps"
 static defaultProps = {
 	className: '',
 };
-$0
-endsnippet
-
-snippet dbg "debugger"
-debugger;
-$0
 endsnippet
 
 snippet mapdbg "map debugger"
 .map(x => { debugger; return x; })
-$0
 endsnippet
 
 snippet maplog "map log"
 .map(x => { console.log(x); return x; })
-$0
 endsnippet
 
 snippet edf "eslint-disable"
@@ -244,6 +176,6 @@ snippet fdn "flowlint-next-line"
 // flowlint-next-line $1
 endsnippet
 
-snippet prig "prettier ignore"
+snippet pdn "prettier ignore"
 // prettier-ignore $1
 endsnippet

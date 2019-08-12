@@ -29,8 +29,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ap/vim-css-color'
-Plug 'alampros/vim-styled-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'alampros/vim-styled-jsx', { 'for': ['typescript', 'javascript', 'javascript.jsx'] }
 Plug 'jparise/vim-graphql'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'wakatime/vim-wakatime'
@@ -154,16 +154,13 @@ set confirm
 autocmd BufRead * autocmd  BufWritePre <buffer> %s/\s\+$//e
 
 " use foldmethod=marker
-autocmd FileType zsh,bash,shell,vim
-      \ setlocal foldmethod=marker
+autocmd FileType zsh,bash,shell,vim setlocal foldmethod=marker
 
 " syntax highlighting in .flow files
-autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow}
-      \ setfiletype javascript
+autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
 
-" consider .babelrc, .prettierrc, .eslintrc, etc. to be jsonc
-autocmd BufRead {.babelrc,.prettierrc,.eslintrc,.stylelintrc,tsconfig.json}
-      \ setfiletype jsonc
+" consider .babelrc, .prettierrc, .eslintrc, etc. to be json
+autocmd BufRead {.babelrc,.prettierrc,.eslintrc,.stylelintrc} setfiletype json
 
 " }}}
 
@@ -408,7 +405,7 @@ let g:ale_fix_on_save = 1
 
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['flow', 'eslint']
-let g:ale_linters['typescript'] = ['tsserver', 'eslint']
+let g:ale_linters['typescript'] = ['eslint']
 let g:ale_linters['css'] = ['css-languageserver', 'stylelint']
 let g:ale_linters['scss'] = ['css-languageserver', 'stylelint']
 
