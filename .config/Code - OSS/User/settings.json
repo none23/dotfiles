@@ -84,7 +84,7 @@
   "typescript.preferences.quoteStyle": "single",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.suggest.completeFunctionCalls": true,
-  "typescript.tsserver.log": "verbose",
+  "typescript.tsserver.log": "off",
   "typescript.tsserver.trace": "messages",
   "tsserver.enable": true,
   "tsserver.formatOnType": true,
