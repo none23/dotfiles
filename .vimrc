@@ -18,19 +18,16 @@ Plug 'kien/tabman.vim'
 Plug 'mileszs/ack.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ap/vim-css-color'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'alampros/vim-styled-jsx', { 'for': ['typescript', 'javascript', 'javascript.jsx'] }
 Plug 'jparise/vim-graphql'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'wakatime/vim-wakatime'
@@ -38,6 +35,7 @@ Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-apathy'
 
 call plug#end()
 
@@ -159,8 +157,9 @@ autocmd FileType zsh,bash,shell,vim setlocal foldmethod=marker
 " syntax highlighting in .flow files
 autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
 
-" consider .babelrc, .prettierrc, .eslintrc, etc. to be json
-autocmd BufRead {.babelrc,.prettierrc,.eslintrc,.stylelintrc} setfiletype json
+" consider .babelrc, .prettierrc, .eslintrc, etc. to be json[c]
+autocmd BufRead {.babelrc,.prettierrc,.stylelintrc} setfiletype json
+autocmd BufRead {tsconfig.json,.eslintrc} setfiletype jsonc
 
 " }}}
 
@@ -334,6 +333,9 @@ vmap <c-v> <plug>(expand_region_shrink)
 
 " }}}
 
+" polyglot {{{
+"let g:polyglot_disabled = ['markdown', 'graphql']
+
 " tab-man {{{
 " toggle display
 let g:tabman_toggle = 'tl'
@@ -406,8 +408,8 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['flow', 'eslint']
 let g:ale_linters['typescript'] = ['eslint']
-let g:ale_linters['css'] = ['css-languageserver', 'stylelint']
-let g:ale_linters['scss'] = ['css-languageserver', 'stylelint']
+let g:ale_linters['css'] = ['css-languageserver']
+let g:ale_linters['scss'] = ['css-languageserver']
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
@@ -447,7 +449,7 @@ let g:ale_sign_info = '👉'
 let g:ale_virtualtext_cursor = 0
 let g:ale_virtualtext_prefix = ''
 
-nnoremap ,e :ALENextWrap<cr>
+nnoremap ,E :ALENextWrap<cr>
 nnoremap ,d :ALEFindReferences<cr>
 nnoremap ,i :ALEDetail<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -465,18 +467,13 @@ nnoremap <c-p> :FZF<cr>
 
 " }}}
 
+
 " ack {{{
 cnoreabbrev Ack Ack!
 nnoremap <leader>a :Ack!<space>
 
 " }}}
 
-" git-fugitive {{{
-set statusline+=%{fugitive#statusline()}
-
-autocmd QuickFixCmdPost *grep* cwindow
-
-" }}}
 
 
 " nerd-tree {{{
@@ -486,30 +483,23 @@ nmap <F5> :NERDTreeToggle<cr>
 " }}}
 
 " (off?) lsp-servers {{{
-let g:lsp_insert_text_enabled = 1
-let g:lsp_virtual_text_enabled = 0
-
-au User lsp_setup call lsp#register_server({
-  \ 'name': 'graphql-languge-server',
-  \ 'cmd': {server_info->['graphql-languge-server', 'server']},
-  \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.graphqlconfig'))},
-  \ 'whitelist': ['javascript', 'javascript.jsx'],
-  \ })
-
-au User lsp_setup call lsp#register_server({
-  \ 'name': 'flow',
-  \ 'cmd': {server_info->['flow', 'lsp']},
-  \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-  \ 'whitelist': ['javascript', 'javascript.jsx'],
-  \ })
-
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'css-languageserver',
-    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-    \ 'whitelist': ['css', 'less', 'scss', 'sass'],
-    \ })
-
-
+" let g:lsp_insert_text_enabled = 1
+" let g:lsp_virtual_text_enabled = 0
+"
+" au User lsp_setup call lsp#register_server({
+"   \ 'name': 'flow',
+"   \ 'cmd': {server_info->['flow', 'lsp']},
+"   \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+"   \ 'whitelist': ['javascript', 'javascript.jsx'],
+"   \ })
+"
+" au User lsp_setup call lsp#register_server({
+"     \ 'name': 'css-languageserver',
+"     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+"     \ 'whitelist': ['css', 'less', 'scss', 'sass'],
+"     \ })
+"
+"
 " }}}
 
 " coc {{{
@@ -528,6 +518,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 
 " navigate diagnostics
+nmap <silent> ,e <plug>(coc-diagnostic-next)
 nmap <silent> [c <plug>(coc-diagnostic-prev)
 nmap <silent> ]c <plug>(coc-diagnostic-next)
 

@@ -1,16 +1,11 @@
 {
-  "tsserver": {
-    "enable": true,
-    "settings": {
-      "enableJavascript": true
-    },
-    "filetypes": ["typescript"]
-  },
+  "codeLens.enable": true,
+  "tsserver.enableJavascript": false,
   "languageserver": {
     "flow": {
       "command": "flow",
       "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact"],
+      "filetypes": ["javascript", "typescript", "typescript.tsx"],
       "initializationOptions": {},
       "requireRootPattern": true,
       "settings": {},
@@ -24,12 +19,18 @@
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
-      "filetypes": ["sh", "zsh"],
+      "filetypes": ["shell", "bash", "zsh"],
       "ignoredRootPaths": ["~"]
     },
     "reason": {
-      "command": "/home/n/.vim/reason-language-server.exe",
-      "filetypes": ["reason"]
+      "command": "~/.config/nvim/reason-language-server",
+      "filetypes": ["reason"],
+      "rootPatterns": ["bsconfig.json"]
+    },
+    "tsserver": {
+      "enable": false,
+      "filetypes": ["typescript", "typescript.tsx"],
+      "module": "node"
     }
   }
 }
