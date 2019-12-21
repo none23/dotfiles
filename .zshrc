@@ -14,7 +14,7 @@ set -o vi
 # history
 HISTFILE=~/.histfile
 HISTSIZE=32000
-SAVEHIST=128000
+SAVEHIST=512000
 setopt appendhistory
 
 # ssh-agent
@@ -54,7 +54,7 @@ bindkey -s "^[Ok" "+"
 autoload -U colors && colors
 prompt off
 powerline-daemon -q
-. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # }}}
 # profile
@@ -75,6 +75,8 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || \
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
 }
+# vi-mode in node repl
+alias node='NODE_NO_READLINE=1 rlwrap node'
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {

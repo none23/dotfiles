@@ -3,13 +3,12 @@ alias la='ls -AFlh --color=tty'
 alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
 
-# yaourt {{{
-alias y='yaourt'
-alias Y='yaourt -Syua && npm update -g'
-alias Yy='yaourt -Syy'
-alias Yc='yaourt -Sc'
-alias Ycc='yaourt -Scc && npm cache clean --force'
-alias yor='yaourt -Rsc $(yaourt -Qtdq)'
+# yay {{{
+alias Y='pacman -Syu && yay -Syua && npm update -g'
+alias Yy='pacman -Syy && yay -Syy'
+alias Yc='pacman -Sc && yay -Sc'
+alias Ycc='pacman -Scc && yay -Scc && npm cache clean --force'
+alias yor='yay -Rsc $(yay -Qtdq)'
 
 # sshuttle
 alias sshide='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid'
@@ -179,29 +178,29 @@ pn () {
 }
 
 rr () {
-    [[ $1 ]] && vifm "$*" || vifm "$(pwd)"
+    [[ $1 ]] && ranger "$*" || ranger "$(pwd)"
 }
 
 zathura () {
     ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &
 }
 
+alias pacman='sudo pacman'
 alias dd='sudo dd bs=512K status=progress'
-alias py='ipython3'
 alias df='df -h'
 alias du='du -h '
 alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
 alias lt='lt -l localhost -s none23'
-alias remove_tern_port='for ternportfile in ${$(find -name .tern-port)}; do rm "$ternportfile" && echo "removed $ternportfile" ; done'
 alias flow='$(npm bin)/flow'
 alias jest='$(npm bin)/jest'
 alias eslint='$(npm bin)/eslint'
 alias stylelint='$(npm bin)/stylelint'
+alias chromium='optirun -b primus chromium'
+alias firefox='optirun -b primus firefox'
 # }}}
 # global aliases {{{
 alias -g vim='nvim'
 alias -g vimdiff='nvim -d'
-alias -g gvim='konsole -e nvim'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'

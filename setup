@@ -68,7 +68,7 @@ function link_dotfiles {
 
   # desktop environment
   link_to_config awesome
-  link_to_config .compton.conf
+  link_to_config .picom.conf
   link_to_home .dmrc
   link_to_home .xinitrc
   link_to_home .Xmodmap
