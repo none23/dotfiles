@@ -4,7 +4,7 @@
   "vim.useCtrlKeys": true,
   "editor.fontFamily": "'Inconsolata for Powerline', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.cursorStyle": "block",
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.fontSize": 11,
   "editor.tabSize": 2,
   "editor.renderWhitespace": "boundary",
@@ -103,7 +103,6 @@
   "php.validate.enable": false,
   "php.suggest.basic": false,
   "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-  "emmet.showSuggestionsAsSnippets": true,
   "flow.logLevel": "error",
   "javascript.format.enable": false,
   "javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
@@ -117,5 +116,10 @@
   "javascript.suggest.completeJSDocs": false,
   "javascript.suggest.paths": false,
   "javascript.suggestionActions.enabled": false,
-  "javascript.validate.enable": false
+  "javascript.validate.enable": false,
+  "prettier.trailingComma": "all",
+  "prettier.configPath": ".prettierrc",
+  "editor.suggest.showSnippets": false,
+  "editor.snippetSuggestions": "none",
+  "editor.suggest.snippetsPreventQuickSuggestions": false
 }

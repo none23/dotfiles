@@ -13,8 +13,8 @@ set -o vi
 
 # history
 HISTFILE=~/.histfile
-HISTSIZE=32000
-SAVEHIST=512000
+HISTSIZE=128000
+SAVEHIST=1024000
 setopt appendhistory
 
 # ssh-agent
