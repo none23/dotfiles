@@ -27,7 +27,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'ap/vim-css-color'
+" Plug 'ap/vim-css-color'
 Plug 'jparise/vim-graphql'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'wakatime/vim-wakatime'
@@ -88,6 +88,9 @@ set nomodeline
 " substitute with '/g' by default
 set gdefault
 
+" use older regex engine for better performance
+set regexpengine=1
+
 " no excessive whitespace wthen joining lines
 set nojoinspaces
 
@@ -139,7 +142,9 @@ set synmaxcol=220
 
 " show line numbers
 set number
-set relativenumber
+"
+" disable relative line number due to its poor performance (see https://github.com/neovim/neovim/issues/6960)
+set norelativenumber
 
 " ask confirmation instead of failing
 set confirm
@@ -152,14 +157,20 @@ set confirm
 autocmd BufRead * autocmd  BufWritePre <buffer> %s/\s\+$//e
 
 " use foldmethod=marker
-autocmd FileType zsh,bash,shell,vim setlocal foldmethod=marker
+autocmd FileType zsh,bash,shell,vim,sql setlocal foldmethod=marker
 
 " syntax highlighting in .flow files
-autocmd BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
+autocmd BufNewFile,BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
 
-" consider .babelrc, .prettierrc, .eslintrc, etc. to be json[c]
-autocmd BufRead {.babelrc,.prettierrc,.stylelintrc} setfiletype json
-autocmd BufRead {tsconfig.json,.eslintrc} setfiletype jsonc
+" consider .ts and .tsx files to be javascript
+autocmd BufNewFile,BufRead *.ts setfiletype javascript
+autocmd BufNewFile,BufRead *.ts setlocal filetype=javascript
+autocmd BufNewFile,BufRead *.tsx setfiletype javascript.jsx
+autocmd BufNewFile,BufRead *.tsx setlocal filetype=javascript.jsx
+
+" consider these files be json:
+" .babelrc, .prettierrc, .eslintrc, etc.
+autocmd BufRead {.babelrc,.prettierrc,.stylelintrc,.lintstagedrc,.huskyrc,.eslintrc} setfiletype json
 
 " }}}
 
@@ -379,6 +390,7 @@ nmap ga <plug>(EasyAlign)
 " emmet {{{
 let g:user_emmet_settings = {
       \ 'javascript.jsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
+      \ 'typescriptreact': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ 'typescript.tsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ }
 
