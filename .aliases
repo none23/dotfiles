@@ -195,8 +195,6 @@ alias flow='$(npm bin)/flow'
 alias jest='$(npm bin)/jest'
 alias eslint='$(npm bin)/eslint'
 alias stylelint='$(npm bin)/stylelint'
-alias chromium='optirun -b primus chromium'
-alias firefox='optirun -b primus firefox'
 # }}}
 # global aliases {{{
 alias -g vim='nvim'
