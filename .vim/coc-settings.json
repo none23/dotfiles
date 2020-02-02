@@ -1,11 +1,31 @@
 {
-  "codeLens.enable": true,
-  "tsserver.enableJavascript": false,
+  "javascript.suggest.paths": true,
+  "suggest.timeout": 3000,
+  "prettier.semi": true,
+  "prettier.trailingComma": "all",
+  "prettier.disableSuccessMessage": true,
+  "codeLens.enable": false,
+  "eslint.packageManager": "yarn",
+  "eslint.enable": true,
+  "eslint.quiet": true,
+  "eslint.run": "onSave",
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "tsserver.log": "off",
+  "tsserver.enableJavascript": true,
+  "tsserver.enable": true,
+  "tsserver.formatOnType": false,
+  "tsserver.disableAutomaticTypeAcquisition": true,
+  "tsserver.reportStyleChecksAsWarnings": true,
   "languageserver": {
     "flow": {
       "command": "flow",
       "args": ["lsp"],
-      "filetypes": ["javascript", "typescript", "typescript.tsx"],
+      "filetypes": ["javascript", "typescript"],
       "initializationOptions": {},
       "requireRootPattern": true,
       "settings": {},
@@ -26,11 +46,6 @@
       "command": "~/.config/nvim/reason-language-server",
       "filetypes": ["reason"],
       "rootPatterns": ["bsconfig.json"]
-    },
-    "tsserver": {
-      "enable": false,
-      "filetypes": ["typescript", "typescript.tsx"],
-      "module": "node"
     }
   }
 }
