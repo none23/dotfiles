@@ -1,14 +1,15 @@
-" Plug {{{
 scriptencoding utf-8
 set encoding=utf-8
+set nocompatible
 
+" Plug {{{
 " install if not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall | source ~/.vimrc
 endif
 
-set nocompatible
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'easymotion/vim-easymotion'
@@ -26,9 +27,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
 " Plug 'ap/vim-css-color'
 Plug 'jparise/vim-graphql'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'wakatime/vim-wakatime'
 Plug 'mattn/emmet-vim'
@@ -149,7 +151,8 @@ set norelativenumber
 " ask confirmation instead of failing
 set confirm
 
-
+" neovim-ruby
+let g:ruby_host_prog = 'rvm system do neovim-ruby-host'
 " }}}
 
 " language-specific-autocmd {{{
@@ -163,10 +166,9 @@ autocmd FileType zsh,bash,shell,vim,sql setlocal foldmethod=marker
 autocmd BufNewFile,BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
 
 " consider .ts and .tsx files to be javascript
-autocmd BufNewFile,BufRead *.ts setfiletype javascript
-autocmd BufNewFile,BufRead *.ts setlocal filetype=javascript
-autocmd BufNewFile,BufRead *.tsx setfiletype javascript.jsx
-autocmd BufNewFile,BufRead *.tsx setlocal filetype=javascript.jsx
+autocmd FileType typescriptreact setlocal filetype=javascript.jsx
+autocmd FileType javascriptreact setlocal filetype=javascript.jsx
+autocmd FileType typescript setlocal filetype=javascript
 
 " consider these files be json:
 " .babelrc, .prettierrc, .eslintrc, etc.
@@ -390,6 +392,7 @@ nmap ga <plug>(EasyAlign)
 " emmet {{{
 let g:user_emmet_settings = {
       \ 'javascript.jsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
+      \ 'javascriptreact': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ 'typescriptreact': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ 'typescript.tsx': { 'extends': 'jsx', 'attribute_name': { 'for': 'htmlFor', 'class': 'className' }, 'quote_char': '"' },
       \ }
@@ -418,8 +421,8 @@ let g:ale_lint_delay = 100
 let g:ale_fix_on_save = 1
 
 let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['flow', 'eslint']
-let g:ale_linters['typescript'] = ['eslint']
+let g:ale_linters['javascript'] = ['tsserver', 'flow', 'eslint']
+let g:ale_linters['typescript'] = ['tsserver', 'eslint']
 let g:ale_linters['css'] = ['css-languageserver']
 let g:ale_linters['scss'] = ['css-languageserver']
 
@@ -437,7 +440,6 @@ let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_javascript_eslint_suppress_missing_config = 1
 let g:ale_javascript_eslint_suppress_eslintignore = 1
 let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_typescript_tsserver_use_global = 0
 
 nnoremap ,e :ALENextWrap<cr>
 nnoremap <leader>an :ALENextWrap<cr>
@@ -563,7 +565,7 @@ nmap <leader>f  <plug>(coc-format-selected)
 augroup mygroup
   autocmd!
   " setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,jsonc setlocal formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,javascript,javascript.jsx,json,jsonc setlocal formatexpr=CocAction('formatSelected')
 
   " update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
