@@ -1,86 +1,85 @@
-# list files
+#!/bin/zsh
+
+__command_exists () { hash "$1" 2>/dev/null }
+__alias_command_if_exists () { __command_exists "$1" && alias "$1"="$2" }
+
 alias la='ls -AFlh --color=tty'
 alias ll='ls -lFh --color=tty'
 alias ls='ls --color=tty'
 
-# yay {{{
-alias Y='pacman -Syu && yay -Syua && npm update -g'
-alias Yy='pacman -Syy && yay -Syy'
-alias Yc='pacman -Sc && yay -Sc'
-alias Ycc='pacman -Scc && yay -Scc && npm cache clean --force'
-alias yor='yay -Rsc $(yay -Qtdq)'
 
-# sshuttle
-alias sshide='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid'
-alias sshide-dl='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid --no-latency-control'
-alias sshive='sshuttle -r aws 0/0 --dns --verbose'
-alias sshive-dl='sshuttle -r aws 0/0 --dns --verbose --no-latency-control'
+__command_exists npm \
+  && alias npm-up="(npm outdated -g | grep -P '^[a-z-]+' -o) | xargs -d \\\\n npm i -g"
+__command_exists yay \
+  && alias Y='pacman -Syu && yay -Syua && npm-up'
+__command_exists yay \
+  && alias Yy='pacman -Syy && yay -Syy'
+__command_exists yay \
+  && alias Yc='pacman -Sc && yay -Sc'
+__command_exists yay \
+  && alias Ycc='pacman -Scc && yay -Scc && npm cache clean --force'
+__command_exists yay \
+  && alias yor='yay -Rsc $(yay -Qtdq)'
 
-# npm/yarn
-alias ni='yarn'
-alias nrb='yarn run build'
-alias nrt='yarn run test'
-alias nrw='yarn start || yarn run watch'
 
-# wireless
-function _wireless_aliases {
+__alias_command_if_exists apt 'sudo apt'
+__command_exists apt \
+  && alias Y='apt update && apt dist-upgrade -y && npm update -g'
+
+
+__sshuttle_aliases () {
+  alias sshide='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid'
+  alias sshide-dl='sshuttle -r aws 0/0 --dns --daemon --pidfile /tmp/sshuttle.pid --no-latency-control'
+  alias sshive='sshuttle -r aws 0/0 --dns --verbose'
+  alias sshive-dl='sshuttle -r aws 0/0 --dns --verbose --no-latency-control'
+}
+__command_exists sshuttle && __sshuttle_aliases
+
+
+__WIRELESS_IFACE="${$(ip a | grep -o -P '\d+:\s+(w[a-z0-9]+)')[(w)2]}"
+__wireless_aliases () {
   local IFACE
-  IFACE="wlp3s0"
-
+  IFACE="$1"
   alias monup="sudo ifconfig $IFACE down && sudo iwconfig $IFACE mode monitor && sudo ifconfig $IFACE up"
   alias mondown="sudo ifconfig $IFACE down && sudo iwconfig $IFACE mode managed && sudo ifconfig $IFACE up"
   alias airod="sudo airodump-ng -i $IFACE --wps --manufacturer"
   alias rvr="sudo reaver -i $IFACE -K 1 -vv -b"
   alias wmac="sudo macchanger -ab $IFACE"
+  alias foilhat='sudo rfkill block all'
 }
+[[ -n "$__WIRELESS_IFACE" ]] && __wireless_aliases
+
+
 alias N='sudo systemctl start NetworkManager.service'
 alias nmkill='sudo killall NetworkManager && echo "NetworkManager killed" || echo "Nothing to kill"'
-alias foilhat='sudo rfkill block all'
-_wireless_aliases
 
-# touchpad
-alias toff='xinput disable Elan\ Touchpad'
-alias tonn='xinput enable Elan\ Touchpad'
-function ton {
-    local LOCKFILE
-    LOCKFILE="/tmp/.touchpad-on.lock"
 
-    if [[ -a "$LOCKFILE" ]]; then
-        xinput disable Elan\ Touchpad
-        rm "$LOCKFILE"
-    else
-        xinput enable Elan\ Touchpad
-        touch "$LOCKFILE"
-    fi
+__touchpad_aliases () {
+  alias toff='xinput disable Elan\ Touchpad'
+  alias tonn='xinput enable Elan\ Touchpad'
+  function ton {
+      local LOCKFILE
+      LOCKFILE="$XDG_RUNTIME_DIR/.touchpad-on.lock"
+
+      if [[ -a "$LOCKFILE" ]]; then
+          xinput disable Elan\ Touchpad
+          rm "$LOCKFILE"
+      else
+          xinput enable Elan\ Touchpad
+          touch "$LOCKFILE"
+      fi
+  }
 }
-
-alias eslint-none23="(cd $(npm root)/.. \
-    && [[ -a .eslintrc.js ]] && mv .eslintrc.js{,.old} \
-    && [[ -a ~/.eslintrc.js ]] && cp ~/.eslintrc.js .eslintrc.js \
-    && yarn add -D babel-eslint eslint \
-          eslint-config-none23 \
-          eslint-plugin-compat \
-          eslint-plugin-flowtype \
-          eslint-plugin-import \
-          eslint-plugin-jest \
-          eslint-plugin-jsx-a11y \
-          eslint-plugin-node \
-          eslint-plugin-promise \
-          eslint-plugin-react \
-  )"
-
-dot () {
-    if [[ -d /home/n/none23/dotfiles ]]; then
-        ( cd /home/n/none23/dotfiles && git aa && git c && git p )
-    fi
-}
+# if touchpad exists
+[[ -n "$(cat /proc/bus/input/devices | grep -i name | grep -iP 'touch(pad)?')" ]] && __touchpad_aliases
 
 
-# dpms control {{{
+# dpms control
 alias wkp='xset dpms force on'
 alias pretendtosleep='xset dpms force off'
-# }}}
-# chromium-tor {{{
+
+
+# chromium-tor
 _start_tor_if_not_running () {
     if [[ -n "$(ps -ef | grep tor | grep -v grep)" ]]; then
         echo "tor already running"
@@ -89,55 +88,45 @@ _start_tor_if_not_running () {
         echo "tor started"
     fi
 }
-alias chromium-tor='_start_tor_if_not_running; chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
+__command_exists tor \
+  && __command_exists chromium \
+  && alias chromium-tor='_start_tor_if_not_running; chromium --proxy-server="socks5://localhost:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"'
 
-# }}}
-# shutdown/reboot {{{
+
+# shutdown/reboot
 alias shutdown='sudo systemctl poweroff'
 alias reboot='sudo systemctl reboot'
 
-# }}}
-# add sudo {{{
-ifconfig () {
-    /usr/bin/ifconfig "$@" || sudo /usr/bin/ifconfig "$@"
-}
 
-iwconfig () {
-    /usr/bin/iwconfig "$@" || sudo /usr/bin/iwconfig "$@"
-}
+# add sudo
+__command_exists nmap && nmap () { local NMAP; NMAP="$(which nmap)"; "$NMAP" "$@" || sudo "$NMAP" "$@" }
+__alias_command_if_exists aircheck 'sudo aircheck'
+__alias_command_if_exists gparted 'sudo gparted'
+__alias_command_if_exists masscan 'sudo masscan'
+__alias_command_if_exists minicom 'sudo minicom'
+__alias_command_if_exists wifite 'sudo wifite'
+__alias_command_if_exists wifijammer 'sudo wifijammer'
+alias cfdisk 'sudo cfdisk'
+alias cgdisk 'sudo cgdisk'
+alias du 'sudo du'
+alias fdisk 'sudo fdisk'
+alias fstrim 'sudo fstrim'
+alias gdisk 'sudo gdisk'
+alias hdparm 'sudo hdparm'
+alias lsmod 'sudo lsmod'
+alias mkinitcpio 'sudo mkinitcpio'
+alias mkfs.ext4 'sudo mkfs.ext4'
+alias mkfs.ext3 'sudo mkfs.ext3'
+alias mkfs.ext2 'sudo mkfs.ext2'
+alias modprobe 'sudo modprobe'
+alias mount 'sudo mount'
+alias rfkill 'sudo rfkill'
+alias rmmod 'sudo rmmod'
+alias skill 'sudo kill'
+alias skillall 'sudo killall'
+alias systemctl 'sudo systemctl'
+alias umount 'sudo umount'
 
-nmap () {
-    /usr/bin/nmap "$@" || sudo /usr/bin/nmap "$@"
-}
-
-alias aircheck='sudo aircheck'
-alias cfdisk='sudo cfdisk'
-alias cgdisk='sudo cgdisk'
-alias du='sudo du'
-alias fdisk='sudo fdisk'
-alias fstrim='sudo fstrim'
-alias gdisk='sudo gdisk'
-alias gparted='sudo gparted'
-alias hdparm='sudo hdparm'
-alias lsmod='sudo lsmod'
-alias masscan='sudo masscan'
-alias minicom='sudo minicom'
-alias mkinitcpio='sudo mkinitcpio'
-alias mkfs.ext4='sudo mkfs.ext4'
-alias mkfs.ext3='sudo mkfs.ext3'
-alias mkfs.ext2='sudo mkfs.ext2'
-alias modprobe='sudo modprobe'
-alias mount='sudo mount'
-alias rfkill='sudo rfkill'
-alias rmmod='sudo rmmod'
-alias skill='sudo kill'
-alias skillall='sudo killall'
-alias systemctl='sudo systemctl'
-alias umount='sudo umount'
-alias wifite='sudo wifite'
-alias wifijammer='sudo wifijammer'
-# }}}
-# extract {{{
 extract () {
     if [ -z "$1" ]; then
          # display usage if no parameters given
@@ -171,37 +160,31 @@ extract () {
         done
     fi
 }
-# }}}
-# misc {{{
-pn () {
-    [[ ! "$*" ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*"
-}
 
-rr () {
-    [[ $1 ]] && ranger "$*" || ranger "$(pwd)"
-}
+pn () { [[ ! "$*" ]] && ping -c 5 -i 0.2 8.8.8.8 || ping -c 5 -i 0.2 "$*" }
 
-zathura () {
-    ( [[ $1 ]] && /usr/bin/zathura $1 || /usr/bin/zathura ) &
-}
+__command_exists ranger \
+  && rr () { [[ -n "$1" ]] && ranger "$*" || ranger "$(pwd)" }
 
-alias pacman='sudo pacman'
-alias dd='sudo dd bs=512K status=progress'
+__ZATHURA="$(which zathura)";
+__command_exists zathura \
+  && zathura () {  ([[ -n "$1" ]] && "$__ZATHURA" "$1" || "$__ZATHURA" ) & }
+
+__alias_command_if_exists pacman 'sudo pacman'
+alias dd='sudo dd bs=4M status=progress'
 alias df='df -h'
 alias du='du -h '
-alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
-alias lt='lt -l localhost -s none23'
-alias flow='$(npm bin)/flow'
-alias jest='$(npm bin)/jest'
-alias eslint='$(npm bin)/eslint'
-alias stylelint='$(npm bin)/stylelint'
-# }}}
-# global aliases {{{
-alias -g vim='nvim'
-alias -g vimdiff='nvim -d'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-# }}}
+__command_exists jq \
+  && alias myip='curl -s "https://httpbin.org/ip" | jq -r ".origin"'
+__alias_command_if_exists lt 'lt -l localhost -s none23'
+__alias_command_if_exists flow '$(npm bin)/flow'
+__alias_command_if_exists jest '$(npm bin)/jest'
+__alias_command_if_exists eslint '$(npm bin)/eslint'
+__alias_command_if_exists stylelint '$(npm bin)/stylelint'
+
+__command_exists nvim \
+  && alias -g vim='nvim'
+__command_exists nvim \
+  && alias -g vimdiff='nvim -d'
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=2
