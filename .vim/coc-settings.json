@@ -1,31 +1,55 @@
 {
-  "javascript.suggest.paths": true,
-  "suggest.timeout": 3000,
+  "suggest.timeout": 5000,
   "prettier.semi": true,
   "prettier.trailingComma": "all",
   "prettier.disableSuccessMessage": true,
   "codeLens.enable": false,
+  "eslint.autoFix": true,
   "eslint.packageManager": "yarn",
   "eslint.enable": true,
   "eslint.quiet": true,
   "eslint.run": "onSave",
   "eslint.filetypes": [
-    "javascript",
     "typescript",
-    "javascriptreact",
-    "typescriptreact"
+    "typescript.tsx",
+    "typescriptreact",
+    "javascript",
+    "javascript.jsx",
+    "javascriptreact"
   ],
-  "tsserver.log": "off",
-  "tsserver.enableJavascript": true,
   "tsserver.enable": true,
-  "tsserver.formatOnType": false,
+  "tsserver.implicitProjectConfig.checkJs": false,
+  "tsserver.enableJavascript": true,
   "tsserver.disableAutomaticTypeAcquisition": true,
-  "tsserver.reportStyleChecksAsWarnings": true,
+  "tsserver.formatOnType": false,
+  "tsserver.reportStyleChecksAsWarnings": false,
+  "javascript.suggest.enabled": true,
+  "typescript.suggest.enabled": true,
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": true,
+  "javascript.format.enabled": false,
+  "typescript.format.enabled": false,
+  "typescript.updateImportsOnFileMove.enable": true,
+  "typescript.showUnused": false,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "languageserver": {
+    "tsserver": {
+      "enable": false,
+      "filetypes": [
+        "typescript",
+        "typescript.tsx",
+        "typescriptreact",
+        "javascript",
+        "javascript.jsx",
+        "javascriptreact"
+      ],
+      "module": "node"
+    },
     "flow": {
       "command": "flow",
       "args": ["lsp"],
-      "filetypes": ["javascript", "typescript"],
+      "filetypes": ["javascript", "javascriptreact", "javascript.jsx"],
       "initializationOptions": {},
       "requireRootPattern": true,
       "settings": {},
@@ -39,8 +63,7 @@
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
-      "filetypes": ["shell", "bash", "zsh"],
-      "ignoredRootPaths": ["~"]
+      "filetypes": ["sh", "zsh", "bash", "shell"]
     },
     "reason": {
       "command": "~/.config/nvim/reason-language-server",
