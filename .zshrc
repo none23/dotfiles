@@ -21,10 +21,11 @@ setopt appendhistory
 eval $(keychain --eval --quiet id_rsa)
 
 # automatic startx on tty1
-[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx
+[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1
+
 
 ## same, but doesn't exit if X fails
-# [[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx
+#[[ -z "$DISPLAY" && "$(fgconsole)" -eq 1 ]] && startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1
 
 # zstyle completions {{{
 zstyle :compinstall filename '/home/n/.zshrc'
@@ -75,8 +76,6 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || \
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
 }
-# vi-mode in node repl
-alias node='NODE_NO_READLINE=1 rlwrap node'
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
@@ -96,6 +95,46 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [[ -a ~/.zshrc-pre ]] && source ~/.zshrc-pre || touch ~/.zshrc-pre
 [[ -a ~/.zshrc-post ]] && source ~/.zshrc-post || touch ~/.zshrc-post
 
+# xdg settings
+[[ -n "XDG_CONFIG_HOME" ]] || export XDG_CONFIG_HOME="$HOME/.config"
+[[ -n "XDG_DATA_HOME" ]] || export XDG_DATA_HOME="$HOME/.local/share"
+[[ -n "XDG_RUNTIME_DIR" ]] || export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+[[ -n "XDG_CACHE_HOME" ]] || export  XDG_CACHE_HOME="$HOME/.cache"
+
+export ATOM_HOME="$XDG_DATA_HOME"/atom
+export ACKRC="$XDG_CONFIG_HOME/ack/ackrc"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export KDEHOME="$XDG_CONFIG_HOME"/kde
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
+export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
+
+echo hsts-file \= "$XDG_CACHE_HOME"/wget-hsts >> "$XDG_CONFIG_HOME/wgetrc"
+
+[[ -d "$XDG_CONFIG_HOME/pg" ]] || mkdir "$XDG_CACHE_HOME/pg"
+[[ -d "$XDG_CACHE_HOME/pg" ]] || mkdir "$XDG_CACHE_HOME/pg"
+
+alias mitmproxy="mitmproxy --set confdir=$XDG_CONFIG_HOME/mitmproxy"
+alias mitmweb="mitmweb --set confdir=$XDG_CONFIG_HOME/mitmproxy"
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+
 # serverless
 [[ -f ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && \
   . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
@@ -103,3 +142,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   . ~/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
 # vim:filetype=zsh:foldmethod=marker:foldlevel=0
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
