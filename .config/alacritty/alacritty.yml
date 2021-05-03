@@ -4,8 +4,8 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-env:
-  TERM: xterm-256color
+# env:
+  # TERM: xterm-256color
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
@@ -15,6 +15,7 @@ env:
   #
 
 window:
+  dynamic_title: true
   dimensions:
     columns: 0
     lines: 0
@@ -85,22 +86,22 @@ font:
   normal:
     family: "xos4 Terminus"
     # The `style` can be specified to pick a specific face.
-    # style: Regular
+    style: Regular
 
   # Bold font face
   bold:
     family: "xos4 Terminus"
     # The `style` can be specified to pick a specific face.
-    # style: Bold
+    style: Bold
 
   # Italic font face
   italic:
-    family: "xos5 Terminus"
+    family: "xos4 Terminus"
     # The `style` can be specified to pick a specific face.
-    # style: Italic
+    style: Italic
 
   # Point size
-  size: 5
+  size: 9
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -199,7 +200,7 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
 
@@ -245,7 +246,6 @@ selection:
   # clipboard.
   save_to_clipboard: false
 
-dynamic_title: true
 
 
 # Cursor style
@@ -360,7 +360,7 @@ key_bindings:
   - { key: Insert,   mods: Shift,            action: PasteSelection               }
 
   - { key: Equals,   mods: Control,          action: IncreaseFontSize             }
-  - { key: Subtract, mods: Control,          action: DecreaseFontSize             }
+  - { key: Minus,    mods: Control,          action: DecreaseFontSize             }
   - { key: Key0,     mods: Control,          action: ResetFontSize                }
 
   - { key: PageUp,   mods: Control,          action: ScrollPageUp                 }
