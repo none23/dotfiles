@@ -16,7 +16,6 @@
   "telemetry.enableTelemetry": false,
   "explorer.confirmDelete": false,
   "workbench.sideBar.location": "left",
-  "extensions.ignoreRecommendations": true,
   "flow.showStatus": true,
   "flow.runOnEdit": false,
   "flow.useLSP": true,
@@ -58,7 +57,7 @@
     "<C-f>": false
   },
   "editor.minimap.enabled": true,
-  "window.zoomLevel": -1,
+  "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
     "statusBar.background": "#de5e1e",
     "statusBar.noFolderBackground": "#de5e1e",
@@ -75,7 +74,6 @@
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.quoteStyle": "single",
-  "typescript.tsserver.log": "terse",
   "tsserver.enable": false,
   "tsserver.formatOnType": true,
   "tsserver.npm": "yarn",
@@ -101,7 +99,6 @@
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
   "javascript.format.insertSpaceAfterSemicolonInForStatements": false,
   "javascript.format.insertSpaceBeforeAndAfterBinaryOperators": false,
-  "javascript.preferences.renameShorthandProperties": false,
   "javascript.suggest.completeJSDocs": false,
   "prettier.trailingComma": "all",
   "prettier.configPath": ".prettierrc",
@@ -138,19 +135,14 @@
     "unfetch"
   ],
   "flow.useCodeSnippetOnFunctionSuggest": false,
-  "typescript.check.npmIsInstalled": false,
   "typescript.preferences.renameShorthandProperties": false,
   "typescript.suggest.completeJSDocs": false,
   "cSpell.enabled": false,
   "javascript.suggest.includeAutomaticOptionalChainCompletions": false,
-  "typescript.disableAutomaticTypeAcquisition": true,
   "typescript.reportStyleChecksAsWarnings": false,
-  "typescript.suggest.includeAutomaticOptionalChainCompletions": false,
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.implementationsCodeLens.enabled": true,
   "typescript.referencesCodeLens.enabled": true,
   "editor.wordWrapColumn": 100,
-  "javascript.implicitProjectConfig.checkJs": true,
   "javascript.referencesCodeLens.enabled": true,
   "typescript.tsserver.maxTsServerMemory": 6000,
   "gitlens.insiders": true,
@@ -160,6 +152,53 @@
   "typescript.preferences.importModuleSpecifierEnding": "minimal",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vim.debug.silent": true,
+  "workbench.enableExperiments": false,
+  "http.proxySupport": "off",
+  "http.systemCertificates": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "extensions.webWorker": true,
+  "eslint.lintTask.enable": true,
+  "eslint.packageManager": "yarn",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "diffEditor.codeLens": true,
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.size": "fit",
+  "files.autoGuessEncoding": true,
+  "workbench.editor.revealIfOpen": true,
+  "search.seedOnFocus": true,
+  "search.showLineNumbers": true,
+  "search.smartCase": true,
+  "search.useGlobalIgnoreFiles": true,
+  "debug.openDebug": "neverOpen",
+  "debug.showInlineBreakpointCandidates": false,
+  "terminal.external.linuxExec": "alacritty",
+  "extensions.ignoreRecommendations": true,
+  "javascript.implicitProjectConfig.checkJs": true,
+  "javascript.preferences.renameShorthandProperties": false,
+  "javascript.preferences.useAliasesForRenames": false,
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "js/ts.implicitProjectConfig.strictNullChecks": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsserver.pluginPaths": [
+    ".yarn"
+  ],
+  "stylelint.configBasedir": ".",
+  "stylelint.packageManager": "yarn",
+  "stylelint.reportNeedlessDisables": true,
+  "stylelint.stylelintPath": ".",
+  "stylelint.syntax": "css-in-js",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.singleQuote": true,
+  "prettier.requireConfig": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
