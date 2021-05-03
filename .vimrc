@@ -28,16 +28,16 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
-" Plug 'ap/vim-css-color'
 Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'reasonml-editor/vim-reason-plus'
+Plug 'rescript-lang/vim-rescript'
 Plug 'wakatime/vim-wakatime'
 Plug 'mattn/emmet-vim'
-Plug 'SirVer/ultisnips'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-apathy'
+Plug 'jreybert/vimagit'
+Plug 'rescript-lang/vim-rescript'
+
 
 call plug#end()
 
@@ -74,7 +74,7 @@ set fileformats=unix,mac,dos
 set fileformat=unix
 
 " browse files in same dir as open file
-set browsedir=buffer
+set browsedir=current
 
 " keep splits equal width (but not height)
 set equalalways
@@ -166,9 +166,12 @@ autocmd FileType zsh,bash,shell,vim,sql setlocal foldmethod=marker
 autocmd BufNewFile,BufRead *.{js,jsx,mjs,jsm,es,es6,flow} setfiletype javascript
 
 " consider .ts and .tsx files to be javascript
-autocmd FileType typescriptreact setlocal filetype=javascript.jsx
-autocmd FileType javascriptreact setlocal filetype=javascript.jsx
-autocmd FileType typescript setlocal filetype=javascript
+" autocmd FileType typescriptreact setlocal filetype=javascript.jsx
+" autocmd FileType javascriptreact setlocal filetype=javascript.jsx
+" autocmd FileType typescript setlocal filetype=javascript
+autocmd FileType typescriptreact setlocal syntax=javascript.jsx
+autocmd FileType javascriptreact setlocal syntax=javascript.jsx
+autocmd FileType typescript setlocal syntax=javascript
 
 " consider these files be json:
 " .babelrc, .prettierrc, .eslintrc, etc.
@@ -343,11 +346,31 @@ map <leader>h <plug>(easymotion-linebackward))
 " expand-region {{{
 vmap v <plug>(expand_region_expand)
 vmap <c-v> <plug>(expand_region_shrink)
+" }}}
+
+" gitgutter {{{
+" git next/previous hunk
+nmap <Leader>gn <Plug>GitGutterNextHunk
+nmap <Leader>gp <Plug>GitGutterPrevHunk
+
+" stage/revert hunk
+nmap <Leader>ga <Plug>GitGutterStageHunk
+nmap <Leader>gu <Plug>GitGutterUndoHunk
+" }}}
+
+" vimagit {{{
+" only show filenames by default (hide diffs)
+let g:magit_default_fold_level = 0
+
+" open vimagit pane
+nnoremap <leader>gs :Magit<CR>
+
 
 " }}}
 
 " polyglot {{{
 "let g:polyglot_disabled = ['markdown', 'graphql']
+" }}}
 
 " tab-man {{{
 " toggle display
@@ -401,10 +424,6 @@ autocmd FileType javascript.jsx,typescript.tsx EmmetInstall
 
 " }}}
 
-" ultisnips {{{
-let g:UltiSnipsExpandTrigger="<c-j>"
-
-" }}}
 
 " ale {{{
 " let g:ale_set_baloons = 1
@@ -420,22 +439,24 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_delay = 100
 let g:ale_fix_on_save = 1
 
-let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['tsserver', 'flow', 'eslint']
-let g:ale_linters['typescript'] = ['tsserver', 'eslint']
-let g:ale_linters['css'] = ['css-languageserver']
-let g:ale_linters['scss'] = ['css-languageserver']
+let g:ale_linters = {
+  \ 'javascript': ['flow-language-server', 'css-languageserver', 'eslint'],
+  \ 'typescript': ['tsserver', 'eslint'],
+  \ 'css': ['css-languageserver'],
+  \ 'scss': ['css-languageserver'],
+\}
 
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier', 'eslint']
-let g:ale_fixers['typescript'] = ['prettier', 'eslint']
-let g:ale_fixers['json'] = ['prettier']
-let g:ale_fixers['jsonc'] = ['prettier']
-let g:ale_fixers['json5'] = ['prettier']
-let g:ale_fixers['css'] = ['prettier', 'stylelint']
-let g:ale_fixers['scss'] = ['prettier', 'stylelint']
-let g:ale_fixers['graphql'] = ['prettier']
-let g:ale_fixers['markdown'] = ['prettier']
+let g:ale_fixers = {
+  \ 'javascript': ['prettier', 'eslint'],
+  \ 'typescript': ['prettier', 'eslint'],
+  \ 'json': ['prettier'],
+  \ 'jsonc': ['prettier'],
+  \ 'json5': ['prettier'],
+  \ 'css': ['prettier', 'stylelint'],
+  \ 'scss': ['prettier', 'stylelint'],
+  \ 'graphql': ['prettier'],
+  \ 'markdown': ['prettier'],
+\}
 
 let g:ale_javascript_eslint_suppress_missing_config = 1
 let g:ale_javascript_eslint_suppress_eslintignore = 1

@@ -1,4 +1,6 @@
 {
+  "coc.tslint.enable": false,
+  "coc.tsserver.enable": false,
   "suggest.timeout": 5000,
   "prettier.semi": true,
   "prettier.trailingComma": "all",
@@ -25,7 +27,7 @@
   "tsserver.reportStyleChecksAsWarnings": false,
   "javascript.suggest.enabled": true,
   "typescript.suggest.enabled": true,
-  "javascript.validate.enable": false,
+  "javascript.validate.enable": true,
   "typescript.validate.enable": true,
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
@@ -34,6 +36,13 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "languageserver": {
+    "rescript": {
+      "enable": true,
+      "module": "~/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript"],
+      "rootPatterns": ["bsconfig.json"]
+    },
     "tsserver": {
       "enable": false,
       "filetypes": [
@@ -64,11 +73,6 @@
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh", "zsh", "bash", "shell"]
-    },
-    "reason": {
-      "command": "~/.config/nvim/reason-language-server",
-      "filetypes": ["reason"],
-      "rootPatterns": ["bsconfig.json"]
     }
   }
 }
