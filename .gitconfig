@@ -1,3 +1,6 @@
+[add "interactive"]
+	useBuiltin = true
+
 [alias]
     a = add
     aa = add --all
@@ -41,8 +44,14 @@
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
-
     tree = log --graph --oneline --decorate --all
+
+[branch]
+  autoSetupMerge = always
+  autoSetupRebase = always
+
+[checkout]
+	defaultRemote = origin
 
 [color]
     branch = auto
@@ -66,12 +75,14 @@
     changed = yellow
     untracked = dim
 
-[core]
-  excludesFile = ~/.gitignore-glogal
-	editor = nvim
+[commit]
+	gpgsign = true
 
-[help]
-    autocorrect = 50
+[core]
+    excludesFile = ~/.gitignore-glogal
+    editor = nvim
+    ignoreCase = false
+    precomposeUnicode = true
 
 [diff]
     tool = vimdiff
@@ -83,6 +94,15 @@
 [difftool "vimdiff"]
     cmd = nvim -d $LOCAL $REMOTE -c '$wincmd l'
 
+[feature]
+	experimental = true
+
+[gpg]
+	program = gpg
+
+[help]
+    autocorrect = 50
+
 [merge]
     prompt = true
     tool = vimdiff
@@ -90,6 +110,12 @@
 
 [mergetool "vimdiff"]
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd l' -c '$wincmd l'
+
+[pull]
+	rebase = interactive
+
+[rerere]
+	enabled = true
 
 [user]
     email = n.anisimov.23@gmail.com
