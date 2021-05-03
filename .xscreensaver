@@ -28,18 +28,18 @@ dpmsEnabled:	False
 dpmsQuickOff:	False
 dpmsStandby:	12:00:00
 dpmsSuspend:	12:00:00
-dpmsOff:	24:00:00
+dpmsOff:	999:00:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: False
-imageDirectory:	
+imageDirectory:
 
 mode:		one
 selected:	143
 
 textMode:	program
 textLiteral:	XScreenSaver
-textFile:	
+textFile:
 textProgram:	fortune
 textURL:	https://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss
 
@@ -269,8 +269,8 @@ pointerHysteresis:  10
 windowCreationTimeout:0:00:30
 initialDelay:	0:00:00
 GetViewPortIsFullOfLies:False
-procInterrupts:	True
+procInterrupts:	False
 xinputExtensionDev: False
-overlayStderr:	True
+overlayStderr:	False
 authWarningSlack:   20
 
