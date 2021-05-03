@@ -14,7 +14,7 @@ let g:colors_name = "nwsome"
 hi Boolean                 guifg=#fefa00   guibg=NONE      gui=NONE      ctermfg=184   ctermbg=NONE  cterm=NONE
 hi Character               guifg=#de5e1e   guibg=NONE      gui=NONE      ctermfg=202   ctermbg=NONE  cterm=NONE
 hi Comment                 guifg=#555555   guibg=NONE      gui=NONE      ctermfg=240   ctermbg=NONE  cterm=NONE
-hi Conceal                 guifg=#ff6600   guibg=NONE      gui=NONE      ctermfg=202   ctermbg=NONE  cterm=NONE 
+hi Conceal                 guifg=#ff6600   guibg=NONE      gui=NONE      ctermfg=202   ctermbg=NONE  cterm=NONE
 hi Conditional             guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
 hi Constant                guifg=#de5e1e   guibg=NONE      gui=NONE      ctermfg=202   ctermbg=NONE  cterm=NONE
 hi Cursor                  guifg=#000000   guibg=#666666   gui=NONE      ctermfg=NONE  ctermbg=246   cterm=NONE
@@ -43,7 +43,7 @@ hi Keyword                 guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg
 hi Label                   guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
 hi LineNr                  guifg=#de5e1e   guibg=NONE      gui=NONE      ctermfg=166   ctermbg=NONE  cterm=NONE
 hi Macro                   guifg=#bbbbbb   guibg=NONE      gui=NONE      ctermfg=250   ctermbg=NONE  cterm=NONE
-hi MatchParen              guifg=#000000   guibg=#fefa00   gui=bold      ctermfg=NONE  ctermbg=112   cterm=bold
+hi MatchParen              guifg=#000000   guibg=#966a00   gui=bold      ctermfg=NONE  ctermbg=112   cterm=bold
 hi ModeMsg                 guifg=#de5e1e   guibg=#000000   gui=NONE      ctermfg=166   ctermbg=NONE  cterm=NONE
 hi MoreMsg                 guifg=#defa11   guibg=#000000   gui=NONE      ctermfg=184   ctermbg=NONE  cterm=NONE
 hi NonText                 guifg=#ffaa55   guibg=#000000   gui=NONE      ctermfg=215   ctermbg=NONE  cterm=NONE
