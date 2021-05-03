@@ -30,11 +30,11 @@ URxvt.scrollBar: false
 URxvt.scrollTtyOutput: false
 URxvt.scrollTtyKeypress: true
 URxvt.secondaryScroll: true
-URxvt.saveLines: 30000
+URxvt.saveLines: 300000
 URxvt.cursorBlink: true
-URxvt*Font: xft:Inconsolata:pixelsize=9,xft:Terminus:pixelsize=9
+URxvt*Font: xft:Inconsolata:pixelsize=10
 URxvt*.cursorColor: #F67730
-URxvt*foreground: #aaa
+URxvt*foreground: #AAAAAA
 URxvt*background: #000000
 URxvt*color0:     #000d18
 URxvt*color1:     #ff6C6C
@@ -70,23 +70,24 @@ URxvt.keysym.KP_7: 7
 URxvt.keysym.KP_8: 8
 URxvt.keysym.KP_9: 9
 URxvt.keysym.KP_0: 0
-xscreensaver*Font: xft:Inconsolata:pixelsize=9,xft:Terminess\ Powerline:pixelsize=8
-xscreensaver.Dialog.foreground:         #de5e1e
-xscreensaver.Dialog.background:         #111111
-xscreensaver.Dialog.topShadowColor:     #111111
-xscreensaver.Dialog.bottomShadowColor:  #111111
-xscreensaver.Dialog.Button.foreground:  #de5e1e
-xscreensaver.Dialog.Button.background:  #111111
-xscreensaver.Dialog.text.foreground:    #de5e1e
-xscreensaver.Dialog.text.background:    #111111
-xscreensaver.Dialog.internalBorderWidth:20
-xscreensaver.Dialog.borderWidth:        0
-xscreensaver.Dialog.shadowThickness:    0
-xscreensaver.passwd.thermometer.foreground:  #de5e1e
-xscreensaver.passwd.thermometer.background:  #000000
-xscreensaver.passwd.thermometer.width:       8
-xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
-xscreensaver.newLoginCommand: 
+xscreensaver*Font: xft:Inconsolata:pixelsize=10
+xscreensaver.Dialog.foreground: #DE5E1E
+xscreensaver.Dialog.background: #111111
+xscreensaver.Dialog.topShadowColor: #333333
+xscreensaver.Dialog.bottomShadowColor: #000000
+xscreensaver.Dialog.Button.foreground: #DE5E1E
+xscreensaver.Dialog.Button.background: #111111
+xscreensaver.Dialog.text.foreground: #DE5E1E
+xscreensaver.Dialog.text.background: #111111
+xscreensaver.Dialog.internalBorderWidth: 20
+xscreensaver.Dialog.borderWidth: 1
+xscreensaver.Dialog.shadowThickness: 2
+xscreensaver.Dialog.logo.width: 2
+xscreensaver.Dialog.logo.height: 2
+xscreensaver.passwd.thermometer.width: 20
+xscreensaver.passwd.thermometer.foreground: #DE5E1E
+xscreensaver.passwd.thermometer.background: #000000
+xscreensaver.dateFormat: %I:%M%P %a %b %d, %Y
 Gdraw.Foreground: #ffffff
 Gdraw.Background: #101010
 Gdraw.GGadget.Box.BorderBrightest: #131313
