@@ -29,7 +29,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
 Plug 'jparise/vim-graphql'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'rescript-lang/vim-rescript'
 Plug 'wakatime/vim-wakatime'
 Plug 'mattn/emmet-vim'
@@ -37,7 +37,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-apathy'
 Plug 'jreybert/vimagit'
 Plug 'rescript-lang/vim-rescript'
-
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -442,6 +443,7 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {
   \ 'javascript': ['flow-language-server', 'css-languageserver', 'eslint'],
   \ 'typescript': ['tsserver', 'eslint'],
+  \ 'typescriptreact': ['tsserver', 'eslint'],
   \ 'css': ['css-languageserver'],
   \ 'scss': ['css-languageserver'],
 \}
@@ -449,6 +451,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
   \ 'javascript': ['prettier', 'eslint'],
   \ 'typescript': ['prettier', 'eslint'],
+  \ 'typescriptreact': ['prettier', 'eslint'],
   \ 'json': ['prettier'],
   \ 'jsonc': ['prettier'],
   \ 'json5': ['prettier'],

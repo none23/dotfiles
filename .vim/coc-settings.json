@@ -1,6 +1,4 @@
 {
-  "coc.tslint.enable": false,
-  "coc.tsserver.enable": false,
   "suggest.timeout": 5000,
   "prettier.semi": true,
   "prettier.trailingComma": "all",
