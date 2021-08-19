@@ -14,13 +14,18 @@ ShowAppNameOnTitleBar=false
 ShowMenuBarByDefault=false
 
 [MainWindow]
+DisplayPort-0 DVI-D-0 HDMI-A-0 XPosition 3440x1440=1922
+DisplayPort-0 DVI-D-0 HDMI-A-0 YPosition 3440x1440=20
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAAAAA1gAAAWKAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHABzAGUAcwBzAGkAbwBuAFQAbwBvAGwAYgBhAHIAAAAAAP////8AAAAAAAAAAA==
+State=AAAA/wAAAAD9AAAAAAAAA1gAAAHWAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHABzAGUAcwBzAGkAbwBuAFQAbwBvAGwAYgBhAHIAAAAAAP////8AAAAAAAAAAA==
 StatusBar=Disabled
 ToolBarsMovable=Disabled
 
-[Notification Messages]
-CloseAllTabs=true
+[SplitView]
+SplitViewVisibility=AlwaysHideSplitHeader
 
 [TabBar]
 TabBarVisibility=AlwaysHideTabBar
+
+[ThumbnailsSettings]
+ThumbnailSize=16
