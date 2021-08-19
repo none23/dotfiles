@@ -1,10 +1,10 @@
 [Appearance]
-AntiAliasFonts=false
-BoldIntense=false
+AntiAliasFonts=true
+BoldIntense=true
 ColorScheme=Linux
-Font=xos4 Terminus,9,-1,5,50,0,0,0,0,0
+Font=JetBrains Mono,9,-1,5,50,0,0,0,0,0
 LineSpacing=0
-UseFontLineChararacters=false
+UseFontLineChararacters=true
 
 [Cursor Options]
 CursorShape=0
@@ -21,6 +21,7 @@ Icon=/home/n/none23/newcoolavatar.png
 Name=nwsome
 Parent=FALLBACK/
 SilenceSeconds=30
+TerminalMargin=0
 
 [Interaction Options]
 AutoCopySelectedText=true

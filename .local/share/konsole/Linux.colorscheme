@@ -89,6 +89,8 @@ Color=170,170,170
 Color=255,255,255
 
 [General]
+Blur=false
+ColorRandomization=false
 Description=nwsomeColors
 Opacity=0.85
 Wallpaper=

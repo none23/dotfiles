@@ -1,123 +1,133 @@
 [add "interactive"]
-	useBuiltin = true
+  useBuiltin = true
 
 [alias]
-    a = add
-    aa = add --all
-    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
-    bum = branch --set-upstream-to=origin/master
-    c = commit -S
-    ca = commit --amend -S
-    d = diff --stat
-    dh = difftool HEAD^
-    dl = diff --cached HEAD^
-    dt = difftool
-    dmt = difftool origin master
-    dw = diff --word-diff
-    f = fetch
-    g = grep -I
-    gf = grep -Il
-    gg = log -S
-    h = show -s HEAD
-    k = checkout
-    kb = checkout -b
-    km = checkout master
-    l = pull origin HEAD
-    lr = pull --rebase -S origin master
-    mo = merge --ours --no-ff -S
-    mt = merge --theirs --no-ff -S
-    mm = merge --no-ff -S
-    p = push origin HEAD
-    pf = push --force origin HEAD
-    ra = rebase --abort
-    rc = rebase --continue
-    ri = rebase --interactive -S
-    rim = rebase --interactive -S origin/master
-    s = status
-    st = stash
-    sta = stash apply
+  a = add
+  aa = add --all
+  b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+  bum = branch --set-upstream-to=origin/master
+  c = commit -S
+  ca = commit --amend -S
+  d = diff --stat
+  dh = difftool HEAD^
+  dl = diff --cached HEAD^
+  dt = difftool
+  dmt = difftool origin master
+  dw = diff --word-diff
+  f = fetch
+  g = grep -I
+  gf = grep -Il
+  gg = log -S
+  h = show -s HEAD
+  k = checkout
+  kb = checkout -b
+  km = checkout master
+  l = pull origin HEAD
+  lr = pull --rebase -S origin master
+  mo = merge --ours --no-ff -S
+  mt = merge --theirs --no-ff -S
+  mm = merge --no-ff -S
+  p = push origin HEAD
+  pf = push --force origin HEAD
+  ra = rebase --abort
+  rc = rebase --continue
+  ri = rebase --interactive -S
+  rim = rebase --interactive -S origin/master
+  s = status
+  st = stash
+  sta = stash apply
 
-    done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
-    wip = "!f() { git branch | grep "$1" | cut -c 3- | grep -v wip | xargs -I{} git branch -m {} wip-{}; }; f"
+  done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+  wip = "!f() { git branch | grep "$1" | cut -c 3- | grep -v wip | xargs -I{} git branch -m {} wip-{}; }; f"
 
-    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
-    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
-    tree = log --graph --oneline --decorate --all
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+  tree = log --graph --oneline --decorate --all
 
 [branch]
   autoSetupMerge = always
   autoSetupRebase = always
 
 [checkout]
-	defaultRemote = origin
+  defaultRemote = origin
 
 [color]
-    branch = auto
-    diff = auto
-    status = auto
+  branch = auto
+  diff = auto
+  status = auto
 
 [color "branch"]
-    current = red blink
-    local = cyan
-    remote = green
+  current = red blink
+  local = cyan
+  remote = green
 
 [color "diff"]
-    meta = magenta
-    frag = magenta
-    old = red
-    new = green
-    plain = dim
+  meta = magenta
+  frag = magenta
+  old = red
+  new = green
+  plain = dim
 
 [color "status"]
-    added = green
-    changed = yellow
-    untracked = dim
+  added = green
+  changed = yellow
+  untracked = dim
 
 [commit]
-	gpgsign = true
+  gpgsign = true
 
 [core]
-    excludesFile = ~/.gitignore-glogal
-    editor = nvim
-    ignoreCase = false
-    precomposeUnicode = true
+  excludesFile = ~/.gitignore-glogal
+  editor = nvim
+  ignoreCase = false
+  precomposeUnicode = true
 
 [diff]
-    tool = vimdiff
+  tool = nvimdiff
+  renames = copy
 
 [difftool]
-    prompt = false
-    tool = vimdiff
+  prompt = false
+  tool = nvimdiff
 
-[difftool "vimdiff"]
-    cmd = nvim -d $LOCAL $REMOTE -c '$wincmd l'
+[difftool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE -c '$wincmd l'
 
 [feature]
-	experimental = true
+  experimental = true
 
 [gpg]
-	program = gpg
+  program = gpg
 
 [help]
-    autocorrect = 50
+  autocorrect = 50
+
+[log]
+  date = relative
 
 [merge]
-    prompt = true
-    tool = vimdiff
-    conflictstyle = diff3
+  prompt = false
+  tool = nvimmerge
 
-[mergetool "vimdiff"]
-    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd l' -c '$wincmd l'
+[mergetool]
+  prompt = false
+
+[mergetool "nvimmerge"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd l' -c '$wincmd l'
 
 [pull]
-	rebase = interactive
+  rebase = interactive
+
+[push]
+  default = matching
 
 [rerere]
-	enabled = true
+  enabled = 1
+  autoupdate = 1
 
 [user]
-    email = n.anisimov.23@gmail.com
-    name = none23
-    signingkey = 03B9BFBA70DBD164C8215239584CC768671E4E97
+  email = n.anisimov.23@gmail.com
+  name = none23
+  signingkey = 03B9BFBA70DBD164C8215239584CC768671E4E97
