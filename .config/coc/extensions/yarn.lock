@@ -921,10 +921,10 @@ coc-prettier@>=1.1.24:
     prettier-stylelint "^0.4.2"
     prettier-tslint "^0.4.2"
 
-coc-snippets@>=2.4.3:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.4.3.tgz#b6118af5022bdd3f52d13cc75e4bdacbfd1f9264"
-  integrity sha512-1vIMSDI8zKbr7J/jD4Ey9EFfYnipRaYzbaY9WZHnStEb0H2M/obIjwl5k9gRFGfJV00vB7zDpHp19FXLXVqzhQ==
+coc-snippets@>=2.4.4:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-3.0.8.tgz#ba5a440a3f94c8d84f2f2153ededda87be56bfbf"
+  integrity sha512-+9CpyQNMNQQCn3gGbH84/nuihfWzt0I/TXGVAj11AQL4ns4iAlQaaqqle7FmG1VTlvHYwZy5luN8YYWqKBx6uQ==
 
 coc-styled-components@>=0.5.0:
   version "0.5.0"
@@ -3034,9 +3034,9 @@ minimist-options@^3.0.1:
     is-plain-obj "^1.1.0"
 
 minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 mixin-deep@^1.2.0:
   version "1.3.2"
