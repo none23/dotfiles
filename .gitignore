@@ -5,6 +5,9 @@
 .vim/plugged
 .config/nvim/autoload
 .config/ranger/tagged
+.config/vifm
+!.config/vifm/colors
+!.config/vifm/vifmrc
 .vim/autoload
 .vim/autoload
 .*.pyc
