@@ -2,17 +2,17 @@
   useBuiltin = true
 
 [alias]
-  a = add
+  a = add -p
   aa = add --all
   b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
-  bum = branch --set-upstream-to=origin/master
+  bum = branch --set-upstream-to=origin/main
   c = commit -S
   ca = commit --amend -S
   d = diff --stat
   dh = difftool HEAD^
   dl = diff --cached HEAD^
   dt = difftool
-  dmt = difftool origin master
+  dmt = difftool origin main
   dw = diff --word-diff
   f = fetch
   g = grep -I
@@ -21,9 +21,9 @@
   h = show -s HEAD
   k = checkout
   kb = checkout -b
-  km = checkout master
+  km = checkout main
   l = pull origin HEAD
-  lr = pull --rebase -S origin master
+  lr = pull --rebase -S origin main
   mo = merge --ours --no-ff -S
   mt = merge --theirs --no-ff -S
   mm = merge --no-ff -S
@@ -32,7 +32,7 @@
   ra = rebase --abort
   rc = rebase --continue
   ri = rebase --interactive -S
-  rim = rebase --interactive -S origin/master
+  rim = rebase --interactive -S origin/main
   s = status
   st = stash
   sta = stash apply
@@ -130,4 +130,6 @@
 [user]
   email = n.anisimov.23@gmail.com
   name = none23
-  signingkey = 03B9BFBA70DBD164C8215239584CC768671E4E97
+  signingkey = 33B04BC85C24AF34C9F54644A8D2412FF6FF28BC
+[init]
+	defaultBranch = main
