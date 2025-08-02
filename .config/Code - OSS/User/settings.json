@@ -32,10 +32,8 @@
   "files.trimTrailingWhitespace": true,
   "files.autoGuessEncoding": true,
   "files.exclude": {
-    "**/coverage/**": true,
-    "**/dist/**": true,
-    "**/flow-coverage/**": true,
-    "**/node_modsules/**": true
+    "**/node_modules/**": true,
+    "**/.next/**": true
   },
 
   "explorer.confirmDelete": false,
@@ -50,7 +48,9 @@
   "workbench.colorCustomizations": {
     "statusBar.background": "#111111",
     "statusBar.noFolderBackground": "#111111",
-    "statusBar.debuggingBackground": "#111111"
+    "statusBar.debuggingBackground": "#111111",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
   },
 
   "extensions.webWorker": true,
@@ -70,7 +70,7 @@
 
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "diffEditor.codeLens": true,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
 
   "vsicons.dontShowNewVersionMessage": true,
 
