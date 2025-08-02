@@ -127,9 +127,18 @@
   enabled = 1
   autoupdate = 1
 
+[init]
+	defaultBranch = main
+
 [user]
   email = n.anisimov.23@gmail.com
   name = none23
   signingkey = 33B04BC85C24AF34C9F54644A8D2412FF6FF28BC
-[init]
-	defaultBranch = main
+
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
