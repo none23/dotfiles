@@ -80,6 +80,15 @@
   editor = nvim
   ignoreCase = false
   precomposeUnicode = true
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = false
+  side-by-side = true
 
 [diff]
   tool = nvimdiff
@@ -111,6 +120,7 @@
 [merge]
   prompt = false
   tool = nvimmerge
+  conflictStyle = zdiff3
 
 [mergetool]
   prompt = false
@@ -134,9 +144,9 @@
   signingkey = 33B04BC85C24AF34C9F54644A8D2412FF6FF28BC
 
 [credential "https://github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
+  helper =
+  helper = !/usr/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
+  helper =
+  helper = !/usr/bin/gh auth git-credential
