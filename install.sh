@@ -173,13 +173,23 @@ target_is_current() {
     local source=$1
     local target=$2
     local kind=$3
+    local resolved_target
 
     if [[ "$kind" == "system" ]]; then
         [[ -f "$target" ]] && cmp -s -- "$source" "$target"
         return
     fi
 
-    [[ -L "$target" ]] && [[ "$(readlink -f -- "$target" 2>/dev/null || true)" == "$source" ]]
+    resolved_target=$(readlink -f -- "$target" 2>/dev/null || true)
+    [[ "$resolved_target" == "$source" ]]
+}
+
+target_resolves_inside_repo() {
+    local target=$1
+    local resolved_target
+
+    resolved_target=$(readlink -f -- "$target" 2>/dev/null || true)
+    [[ "$resolved_target" == "$repo_dir" || "$resolved_target" == "$repo_dir/"* ]]
 }
 
 check_parent() {
@@ -221,6 +231,11 @@ for index in "${!target_paths[@]}"; do
         target_actions+=(install)
         printf '  new        %s\n' "$target"
         continue
+    fi
+
+    if [[ "$kind" != "system" ]] && target_resolves_inside_repo "$target"; then
+        printf 'Refusing to replace a target that resolves inside this repository: %s\n' "$target" >&2
+        exit 1
     fi
 
     if [[ -e "$backup" || -L "$backup" ]]; then
