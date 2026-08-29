@@ -1,0 +1,32 @@
+# some global theme specific variables
+set $gtk-theme Matcha-dark-aliz
+set $icon-theme Papirus-Dark-Maia
+set $cursor-theme xcursor-breeze
+set $gui-font Roboto 11
+set $term-font JetBrainsMono NF 16
+set $gtk-color-scheme prefer-dark
+set $kvantum-theme Matcha-Dark-Aliz
+
+set $black     #000000
+set $darkgray  #222222
+set $text      #eeeeee
+set $lightgray #444444
+set $offwhite  #dddddd
+set $orange    #de5e1e
+set $red       #bb0000
+set $green     #9fca56
+set $blue      #55b5db
+set $purple    #a074c4
+
+set $background-color $black
+set $text-color       $text
+set $selection-color  $darkgray
+set $accent-color     $orange
+
+# Property Name         Border    BG        Text      Indicator Child Border
+client.focused          $offwhite $orange   $black    $text      $orange
+client.focused_inactive $darkgray $darkgray $offwhite $lightgray $darkgray
+client.unfocused        $darkgray $darkgray $offwhite $text      $darkgray
+client.urgent           $red      $red      $black    $red       $red
+client.placeholder      $black    $black    $offwhite $black     $black
+client.background       $darkgray
