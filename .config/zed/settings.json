@@ -1,0 +1,267 @@
+{
+  "session": {
+     "trust_all_worktrees": true
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  },
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
+  "auto_install_extensions": {
+    "baml": true,
+    "dockerfile": true,
+    "emmet": true,
+    "graphql": true,
+    "html": true,
+    "java": true,
+    "json5": true,
+    "kotlin": true,
+    "lua": true,
+    "rescript": true,
+    "scss": true,
+    "stylelint": true,
+    "toml": true,
+    "xml": true
+  },
+  "vim_mode": true,
+  "vim": {
+    "default_mode": "normal",
+    "use_system_clipboard": "never",
+    "use_smartcase_find": true,
+    "use_regex_search": true,
+    "gdefault": true,
+    "toggle_relative_line_numbers": false
+  },
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "buffer_font_size": 12.0,
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "font_size": 15
+  },
+  "ui_font_size": 16,
+  "icon_theme": "Zed (Default)",
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "nwsome"
+  },
+  "edit_predictions": {
+    "provider": "none"
+  },
+  "tab_size": 2,
+  "hard_tabs": false,
+  "preferred_line_length": 100,
+  "soft_wrap": "none",
+  "wrap_guides": [100],
+  "show_wrap_guides": true,
+  "vertical_scroll_margin": 9,
+  "horizontal_scroll_margin": 9,
+  "scroll_beyond_last_line": "off",
+  "scrollbar": {
+    "show": "never"
+  },
+  "relative_line_numbers": "disabled",
+  "current_line_highlight": "all",
+  "use_smartcase_search": true,
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "line_ending": "prefer_lf",
+  "format_on_save": "off",
+  "autosave": "off",
+  "semantic_tokens": "off",
+  "inlay_hints": {
+    "enabled": false
+  },
+  "gutter": {
+    "line_numbers": true,
+    "folds": true,
+    "runnables": false,
+    "breakpoints": false
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "project_panel": {
+    "dock": "left",
+    "hide_hidden": false,
+    "hide_gitignore": true,
+    "auto_reveal_entries": true,
+    "show_diagnostics": "all"
+  },
+  "file_types": {
+    "JSONC": [
+      ".babelrc",
+      ".eslintrc",
+      ".huskyrc",
+      ".lintstagedrc",
+      ".prettierrc",
+      ".stylelintrc",
+      "*.code-workspace",
+      ".coc-settings.json",
+      ".vscode/settings.json",
+      "tsconfig.json"
+    ]
+  },
+  "languages": {
+    "Lua": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": [
+            "--respect-ignores",
+            "--stdin-filepath",
+            "{buffer_path}",
+            "-"
+          ]
+        }
+      }
+    },
+    "Python": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "external": {
+            "command": "isort",
+            "arguments": ["--stdout", "-"]
+          }
+        },
+        {
+          "external": {
+            "command": "black",
+            "arguments": ["--stdin-filename", "{buffer_path}", "-"]
+          }
+        }
+      ]
+    },
+    "Rust": {
+      "format_on_save": "on",
+      "formatter": "language_server"
+    },
+    "JavaScript": {
+      "format_on_save": "on",
+      "formatter": [
+        "auto",
+        {
+          "code_action": "source.fixAll.eslint"
+        }
+      ]
+    },
+    "TypeScript": {
+      "format_on_save": "on",
+      "formatter": [
+        "auto",
+        {
+          "code_action": "source.fixAll.eslint"
+        }
+      ]
+    },
+    "TSX": {
+      "format_on_save": "on",
+      "formatter": [
+        "auto",
+        {
+          "code_action": "source.fixAll.eslint"
+        }
+      ]
+    },
+    "CSS": {
+      "format_on_save": "on",
+      "formatter": [
+        "auto",
+        {
+          "code_action": "source.fixAll.stylelint"
+        }
+      ]
+    },
+    "SCSS": {
+      "format_on_save": "on",
+      "formatter": [
+        "auto",
+        {
+          "code_action": "source.fixAll.stylelint"
+        }
+      ]
+    },
+    "GraphQL": {
+      "format_on_save": "on"
+    },
+    "Markdown": {
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "format_on_save": "on"
+    },
+    "JSONC": {
+      "format_on_save": "on"
+    },
+    "JSON5": {
+      "format_on_save": "on"
+    }
+  },
+  "lsp": {
+    "lua-language-server": {
+      "settings": {
+        "Lua": {
+          "diagnostics": {
+            "globals": ["vim"]
+          }
+        }
+      }
+    },
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "preferences": {
+            "importModuleSpecifier": "non-relative"
+          }
+        }
+      }
+    },
+    "stylelint-lsp": {
+      "settings": {
+        "stylelint": {
+          "packageManager": "pnpm",
+          "validate": ["css", "postcss", "scss"]
+        }
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "experimental": {
+          "classRegex": [
+            [
+              "cva(?:<[^>]*>)?\\(([^)]*)\\)",
+              "[\"'`]([^\"'`]*)[\"'`]"
+            ],
+            [
+              "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]",
+              "[\"'`]([^\"'`]*)[\"'`]"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}
