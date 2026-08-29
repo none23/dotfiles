@@ -1,0 +1,116 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "ctrl-p": "file_finder::Toggle",
+      ";": "command_palette::Toggle",
+      "ctrl-l": "editor::Cancel",
+
+      "up": "workspace::ActivateNextPane",
+      "down": "workspace::ActivatePreviousPane",
+      "left": "pane::ActivatePreviousItem",
+      "right": "pane::ActivateNextItem",
+      "ctrl-up": "pane::ActivateNextItem",
+      "ctrl-down": "pane::ActivatePreviousItem",
+
+      "t t": "workspace::NewFile",
+      "t n": "pane::ActivateNextItem",
+      "t p": "pane::ActivatePreviousItem",
+
+      "f2": "workspace::NewTerminal",
+      "f5": "project_panel::ToggleFocus",
+      "f7": ["workspace::SendKeystrokes", "\" + shift-p"],
+      "f8": ["workspace::SendKeystrokes", "\" + y y"],
+      "f9": ["workspace::SendKeystrokes", "\" + p"],
+
+      ", e": "editor::GoToDiagnostic",
+      "[ g": "editor::GoToPreviousDiagnostic",
+      "] g": "editor::GoToDiagnostic",
+      "g d": "editor::GoToDefinition",
+      "g y": "editor::GoToTypeDefinition",
+      "g i": "editor::GoToImplementation",
+      "g r": "editor::FindAllReferences",
+      "shift-k": "editor::Hover",
+
+      "space r n": "editor::Rename",
+      "space a": "diagnostics::Deploy",
+      "space a c": "editor::ToggleCodeActions",
+      "space a s": "editor::ToggleCodeActions",
+      "space q f": "editor::ToggleCodeActions",
+      "space r": "editor::ToggleCodeActions",
+      "space r e": "editor::ToggleCodeActions",
+      "space c l": "editor::ToggleCodeActions",
+
+      "space g n": "editor::GoToHunk",
+      "space g p": "editor::GoToPreviousHunk",
+      "space g a": "git::StageAndNext",
+      "space g u": "git::Restore",
+      "space g s": "git_panel::ToggleFocus",
+      "space l g": "git::ViewUncommittedChanges",
+
+      "space f f": "file_finder::Toggle",
+      "space f g": "workspace::NewSearch",
+      "space f b": "tab_switcher::Toggle",
+      "space f h": "zed::OpenDocs",
+      "space e": "zed::Extensions",
+      "space c": "command_palette::Toggle",
+      "space o": "outline::Toggle",
+      "space s": "project_symbols::Toggle",
+      "space p": "workspace::ReopenLastPicker",
+
+      "g a": "editor::AlignSelections",
+      "space f": "editor::Format",
+      "space q": ["workspace::SendKeystrokes", "$ i enter escape shift-j"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !menu",
+    "bindings": {
+      "v": "editor::SelectLargerSyntaxNode",
+      "ctrl-v": "editor::SelectSmallerSyntaxNode",
+      "f7": ["workspace::SendKeystrokes", "\" + shift-p"],
+      "f8": ["workspace::SendKeystrokes", "\" + y"],
+      "f9": ["workspace::SendKeystrokes", "\" + p"],
+      "space f": "editor::FormatSelections",
+      "space a": "editor::ToggleCodeActions",
+      "space r": "editor::ToggleCodeActions",
+      "g a": "editor::AlignSelections"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-space": "editor::ShowCompletions",
+      "ctrl-j": "editor::NextSnippetTabstop"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "escape escape": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "escape escape": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "ctrl-p": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle"
+    }
+  }
+]

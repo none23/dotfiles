@@ -1,0 +1,88 @@
+{
+  "suggest.timeout": 5000,
+
+  "codeLens.enable": false,
+
+ //  "prettier.enable": true,
+ //  "prettier.onlyUseLocalVersion": false,
+ //  "prettier.semi": true,
+ //  "prettier.trailingComma": "all",
+ //  "prettier.disableSuccessMessage": true,
+ //  "prettier.requireConfig": true,
+
+   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "graphql", "vue", "svelte", "json", "jsonc", "markdown", "mdx", "yaml", "yml", "html", "css", "postcss", "scss", "less", "sass", "stylus", "vue-html", "vue-postcss", "vue-styled", "svelte-html", "svelte-postcss", "svelte-styled", "rescript"],
+  "eslint.autoFixOnSave": false,
+  "eslint.packageManager": "pnpm",
+  "eslint.quiet": false,
+  "eslint.run": "onSave",
+
+  "tsserver.enable": true,
+  "tsserver.implicitProjectConfig.checkJs": false,
+  "tsserver.useLocalTsdk": true,
+  "tsserver.enableJavascript": true,
+  "tsserver.disableAutomaticTypeAcquisition": true,
+  "tsserver.formatOnType": false,
+  "tsserver.formatOnSave": true,
+  "tsserver.reportStyleChecksAsWarnings": false,
+  "javascript.suggest.enabled": true,
+  "typescript.suggest.enabled": true,
+  "typescript.suggest.completeFunctionCalls": false,
+  "javascript.validate.enable": true,
+  "typescript.validate.enable": true,
+  "javascript.format.enabled": false,
+  "typescript.format.enabled": false,
+  "typescript.updateImportsOnFileMove.enable": true,
+  "typescript.showUnused": false,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "cva(?:<[^>]*>)?(([^)]*))",
+      "[\"'`]([^\"'`]*).*?[\"'`]",
+      "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"
+    ]
+  ],
+
+  "Lua.diagnostics.globals": ["vim"],
+
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "typescriptreact", "graphql"]
+    },
+    "rescript": {
+      "enable": true,
+      "module": "~/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript"],
+      "rootPatterns": ["bsconfig.json"]
+    },
+    //     "flow": {
+    //       "command": "flow",
+    //       "args": ["lsp"],
+    //       "filetypes": ["javascript", "javascriptreact", "javascript.jsx"],
+    //       "initializationOptions": {},
+    //       "requireRootPattern": true,
+    //       "settings": {},
+    //       "rootPatterns": [".flowconfig"]
+    //     },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh", "zsh", "bash", "shell"]
+    },
+    "baml": {
+      "command": "baml",
+      "args": ["lsp"],
+      "filetypes": ["baml"],
+      "rootPatterns": ["baml.toml", "baml_src", ".git"]
+    }
+  }
+}
