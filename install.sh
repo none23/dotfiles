@@ -11,7 +11,7 @@ tool_labels=(
     "Git"
     "npm"
     "tmux"
-    "Neovim, Vim, and Coc"
+    "Neovim and Coc"
     "Zed"
     "Sway desktop (requires sudo for key remapping)"
     "Foot"
@@ -102,8 +102,6 @@ fi
 
 if is_selected 6; then
     add_target 6 vim-config/.config/nvim "$config_home/nvim"
-    add_target 6 vim-config/.config/nvim "$HOME/.vim"
-    add_target 6 vim-config/.config/nvim/init.lua "$HOME/.vimrc"
     add_target 6 vim-config/.config/coc/extensions/package.json "$config_home/coc/extensions/package.json"
 fi
 
