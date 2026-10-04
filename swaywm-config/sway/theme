@@ -5,7 +5,7 @@ set $cursor-theme xcursor-breeze
 set $gui-font Roboto 11
 set $term-font JetBrainsMono NF 16
 set $gtk-color-scheme prefer-dark
-set $kvantum-theme Matcha-Dark-Aliz
+set $kvantum-theme Matchama-Dark-Aliz
 
 set $black     #000000
 set $darkgray  #222222
