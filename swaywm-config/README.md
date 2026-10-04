@@ -12,7 +12,7 @@ configured.
 ```sh
 sudo pacman -S --needed \
   git \
-  sway swaybg swayidle swaylock \
+  sway swaybg swaylock \
   waybar foot rofi mako \
   grim slurp swappy wl-clipboard cliphist \
   keyd \
