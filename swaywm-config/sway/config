@@ -172,6 +172,9 @@ $bindsym $mod+Shift+c reload
 ## Action // Toggle Waybar ##
 $bindsym $mod+Shift+b exec pkill -SIGUSR1 waybar
 
+## Action // Turn displays off until keyboard or mouse activity ##
+$bindsym --release $mod+F7 exec $once $HOME/.config/sway/scripts/screen-off.sh
+
 # --locked flags allow the buttons to be used whilst the screen is locked.
 $bindsym --locked XF86AudioRaiseVolume exec $volume_up
 

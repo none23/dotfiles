@@ -12,7 +12,7 @@ configured.
 ```sh
 sudo pacman -S --needed \
   git \
-  sway swaybg swaylock \
+  sway swaybg swayidle swaylock \
   waybar foot rofi mako \
   grim slurp swappy wl-clipboard cliphist \
   keyd \
@@ -65,6 +65,10 @@ swaymsg reload
 ```
 
 ## Keyboard mapping
+
+Super+F7 turns off all displays after one second without input. Move the mouse or
+press any key to turn them back on. This does not lock or suspend the computer.
+The temporary `swayidle` process exits when the displays wake; it does not run at startup.
 
 The keyboard behavior depends on the system-level `keyd` configuration shipped in this repository:
 
