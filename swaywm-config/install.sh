@@ -34,6 +34,7 @@ link_config sway
 link_config waybar
 link_config swappy
 link_config sworkstyle/config
+link_config xdg-desktop-portal/sway-portals.conf
 
 sudo install -Dm0644 "$repo_dir/keyd/default.conf" /etc/keyd/default.conf
 sudo systemctl enable --now keyd
