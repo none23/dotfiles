@@ -116,6 +116,7 @@ if is_selected 8; then
     add_target 8 swaywm-config/waybar "$config_home/waybar" sway
     add_target 8 swaywm-config/swappy "$config_home/swappy" sway
     add_target 8 swaywm-config/sworkstyle/config "$config_home/sworkstyle/config" sway
+    add_target 8 swaywm-config/xdg-desktop-portal/sway-portals.conf "$config_home/xdg-desktop-portal/sway-portals.conf" sway
     add_target 8 swaywm-config/keyd/default.conf /etc/keyd/default.conf system
 fi
 
