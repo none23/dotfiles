@@ -19,6 +19,15 @@ LW_POST_PROCESS_MODEL="${LW_POST_PROCESS_MODEL:-}"
 LW_POST_PROCESS_TIMEOUT="${LW_POST_PROCESS_TIMEOUT:-20}"
 LW_POST_PROCESS_GLOSSARY_FILE="${LW_POST_PROCESS_GLOSSARY_FILE:-}"
 
+# Sway does not reliably retain stderr from shortcut commands.
+LW_LOG_DIR="${XDG_STATE_HOME:-${HOME}/.local/state}/local-wisper"
+if (umask 077; mkdir -p "${LW_LOG_DIR}" && touch "${LW_LOG_DIR}/sway.log"); then
+  exec 2>>"${LW_LOG_DIR}/sway.log"
+  printf '\n[%s] command=%s pid=%s\n' "$(date -Is)" "${1:-record}" "$$" >&2
+else
+  echo "local wisper: could not open persistent error log" >&2
+fi
+
 if [[ -z "${LW_BIN}" ]]; then
   if command -v notify-send >/dev/null 2>&1; then
     notify-send echo "local wisper: 'lw' is not in PATH, intall it from https://github.com/none23/local-wisper"
@@ -63,4 +72,10 @@ case "${1:-}" in
     ;;
 esac
 
-exec "${LW_BIN}" "${args[@]}" "$@"
+if "${LW_BIN}" "${args[@]}" "$@"; then
+  exit 0
+else
+  status=$?
+  printf '[%s] command=%s pid=%s exited=%s\n' "$(date -Is)" "${1:-record}" "$$" "${status}" >&2
+  exit "${status}"
+fi
