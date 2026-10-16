@@ -213,5 +213,6 @@
   "flow.showUncovered": true,
   "flow.useNPMPackagedFlow": true,
   "flow.pathToFlow": "${flowconfigDir}/node_modules/.bin/flow",
-  "chat.disableAIFeatures": true
+  "chat.disableAIFeatures": true,
+  "security.workspace.trust.untrustedFiles": "open"
 }
