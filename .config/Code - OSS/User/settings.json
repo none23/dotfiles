@@ -212,5 +212,6 @@
   "flow.useLSP": true,
   "flow.showUncovered": true,
   "flow.useNPMPackagedFlow": true,
-  "flow.pathToFlow": "${flowconfigDir}/node_modules/.bin/flow"
+  "flow.pathToFlow": "${flowconfigDir}/node_modules/.bin/flow",
+  "chat.disableAIFeatures": true
 }
