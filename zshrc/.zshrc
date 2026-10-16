@@ -281,6 +281,11 @@ precmd() {
   fi
 }
 
+# Claude Code: skip the workspace trust prompt everywhere, including $HOME.
+# Undocumented internal flag; it does not sandbox anything. Must be shell env:
+# settings.json "env" is applied too late to affect the trust check.
+export CLAUDE_CODE_SANDBOXED=1
+
 # Vite+ bin (https://viteplus.dev)
 if [[ -d "$HOME/.vite-plus" ]]; then
   source "$HOME/.vite-plus/env"
